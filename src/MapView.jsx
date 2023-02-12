@@ -1,4 +1,4 @@
-import React,{useState,useCallback} from "react";
+import React, { useState, useCallback } from "react";
 import "ol/ol.css";
 import { Map } from "@react-ol/fiber";
 import TileGrid from 'ol/tilegrid/TileGrid.js';
@@ -56,13 +56,61 @@ const AltdorfMap = <olLayerTile preload={10} minZoom={7}>
 
 
 
-
-export const MapView = ({ className }) =>  {
-  
-  
-  const [map, setMap] = useState(null);
-  const [coordinates, setCoordinates] = useState(undefined);
+const ClickFeature = ({ coordinates, map, location=[0,1] }) => {
   const [popup, setPopup] = useState(null);
+
+
+  return (
+    <>
+      {popup ? (
+        <olOverlay
+          // offset={[0, -30]}
+          position={coordinates}
+          element={popup}
+          args={{
+            stopEvent: false,
+          }}
+        />
+      ) : null}
+{/* 
+      <div ref={setPopup}>
+        <div>
+          <p>Null Island</p>
+        </div>
+      </div> */}
+
+      <olLayerVector>
+        <olSourceVector>
+          <olFeature>
+            <olStyleStyle attach="style">
+              <olStyleIcon
+                attach="image"
+                args={{
+                  anchor: [0.5, 46],
+                  anchorXUnits: 'fraction',
+                  anchorYUnits: 'pixels',
+                  src: "/vite.svg",
+                }}
+              />
+            </olStyleStyle>
+            <olGeomPoint coordinates={[-10000,1000]} />
+          </olFeature>
+        </olSourceVector>
+      </olLayerVector>
+    </>
+  )
+}
+
+
+
+
+
+
+export const MapView = ({ className }) => {
+
+
+  const [map, setMap] = useState(null);
+
 
 
   const onClick = useCallback(
@@ -89,64 +137,36 @@ export const MapView = ({ className }) =>  {
     [map]
   );
 
-  
+
   return (
     <>
-      <div ref={setPopup}>
-        <div>
-          <p>Null Island</p>
-        </div>
+
+
+
+      <div className={className}>
+        <Map ref={setMap} style={{ width: "100%", height: "96vh" }} onPointermove={onPointermove} onClick={onClick} >
+
+
+
+          {/* controls */}
+          {/* <olControlOverviewMap layers={[]} /> */}
+          <olControlRotate />
+          <olControlFullScreen />
+          {/* <olControlScaleLine render={console.log} /> */}
+
+          {/* view */}
+          <olView initialCenter={[0, 0]} initialZoom={10} />
+          {/* layers */}
+          {WarhammerMainMap}
+          {MarienburgMap}
+          {AltdorfMap}
+
+          {/* points */}
+<ClickFeature map={map}/>
+
+
+        </Map>
       </div>
-    
-  <div className={className}>
-    <Map ref={setMap} style={{ width: "100%", height: "96vh" }} onPointermove={onPointermove} onClick={onClick} >
-
-    {popup ? (
-          <olOverlay
-            offset={[0, -30]}
-            position={coordinates}
-            element={popup}
-            args={{
-              stopEvent: false,
-            }}
-          />
-        ) : null}
-
-      {/* controls */}
-      {/* <olControlOverviewMap layers={[]} /> */}
-      <olControlRotate />
-      <olControlFullScreen />
-      {/* <olControlScaleLine render={console.log} /> */}
-      
-      {/* view */}
-      <olView initialCenter={[0, 0]} initialZoom={10} />
-      {/* layers */}
-      {WarhammerMainMap}
-      {MarienburgMap}
-      {AltdorfMap}
-
-      {/* points */}
-
-      <olLayerVector>
-          <olSourceVector>
-            <olFeature>
-              <olStyleStyle attach="style">
-                <olStyleIcon
-                  attach="image"
-                  args={{
-                    anchor: [0.5, 46],
-                    anchorXUnits: 'fraction',
-                    anchorYUnits: 'pixels',
-                    src: "/vite.svg",
-                  }}
-                />
-              </olStyleStyle>
-              <olGeomPoint coordinates={[0, 0]} />
-            </olFeature>
-          </olSourceVector>
-        </olLayerVector>
-
-    </Map>
-  </div>
-  </>
-)};
+    </>
+  )
+};
