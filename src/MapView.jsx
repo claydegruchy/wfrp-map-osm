@@ -1,8 +1,11 @@
-import React,{useState} from "react";
+import React,{useState,useCallback} from "react";
 import "ol/ol.css";
 import { Map } from "@react-ol/fiber";
-
 import TileGrid from 'ol/tilegrid/TileGrid.js';
+
+
+import { Point } from "ol/geom";
+
 
 
 
@@ -51,15 +54,64 @@ const AltdorfMap = <olLayerTile preload={10} minZoom={7}>
 </olLayerTile>
 
 
+
+
+
 export const MapView = ({ className }) =>  {
   
   
   const [map, setMap] = useState(null);
+  const [coordinates, setCoordinates] = useState(undefined);
+  const [popup, setPopup] = useState(null);
+
+
+  const onClick = useCallback(
+    (evt) => {
+      if (!map) return;
+      const feature = map.forEachFeatureAtPixel(evt.pixel, (f) => f);
+      if (feature) {
+        const coordinate = feature.getGeometry().getCoordinates();
+        setCoordinates(coordinate);
+      } else {
+        setCoordinates(undefined);
+      }
+    },
+    [map]
+  );
+
+  const onPointermove = useCallback(
+    (e) => {
+      if (!map) return;
+      const pixel = map.getEventPixel(e.originalEvent);
+      const hit = map.hasFeatureAtPixel(pixel);
+      map.getTarget().style.cursor = hit ? "pointer" : "";
+    },
+    [map]
+  );
 
   
   return (
+    <>
+      <div ref={setPopup}>
+        <div>
+          <p>Null Island</p>
+        </div>
+      </div>
+    
   <div className={className}>
-    <Map ref={setMap} style={{ width: "100%", height: "96vh" }} tabindex="0" >
+    <Map ref={setMap} style={{ width: "100%", height: "96vh" }} onPointermove={onPointermove} onClick={onClick} >
+
+    {popup ? (
+          <olOverlay
+            offset={[0, -30]}
+            position={coordinates}
+            element={popup}
+            args={{
+              stopEvent: false,
+            }}
+          />
+        ) : null}
+
       {/* controls */}
       {/* <olControlOverviewMap layers={[]} /> */}
       <olControlRotate />
@@ -75,8 +127,26 @@ export const MapView = ({ className }) =>  {
 
       {/* points */}
 
-
+      <olLayerVector>
+          <olSourceVector>
+            <olFeature>
+              <olStyleStyle attach="style">
+                <olStyleIcon
+                  attach="image"
+                  args={{
+                    anchor: [0.5, 46],
+                    anchorXUnits: 'fraction',
+                    anchorYUnits: 'pixels',
+                    src: "/vite.svg",
+                  }}
+                />
+              </olStyleStyle>
+              <olGeomPoint coordinates={[0, 0]} />
+            </olFeature>
+          </olSourceVector>
+        </olLayerVector>
 
     </Map>
   </div>
+  </>
 )};
