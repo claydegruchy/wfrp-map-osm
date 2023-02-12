@@ -1,0 +1,22 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0.5rem;
+  text-align: center;
+}
+
+.App{
+  height: 100%;  /* Fill the window */
+  display: flex; /* Magic begins */
+  flex-direction: row;
+}
+
+.mapview {
+  min-height: 0; /* Let the content overflow */
+  flex: 5;       /* Fill the available space */
+
+}
+
+.controlview{
+  flex:1
+}

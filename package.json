@@ -1,16 +1,22 @@
 {
   "name": "wfrp-map-osm",
   "version": "1.0.0",
+  "type": "module",
   "scripts": {
     "start": "vite",
     "build": "vite build",
     "serve": "vite preview"
   },
   "devDependencies": {
-    "vite": "^4.0.4"
+    "@types/react": "^18.0.27",
+    "@types/react-dom": "^18.0.10",
+    "@vitejs/plugin-react": "^3.1.0",
+    "vite": "^4.1.0"
   },
   "dependencies": {
-    "ol": "latest",
-    "ol-ext": "^4.0.4"
+    "@react-ol/fiber": "1.0.0-beta.1",
+    "ol": "^7.2.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   }
 }
