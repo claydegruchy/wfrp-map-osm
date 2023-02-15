@@ -14,25 +14,39 @@ const addPoint = (points, setPoints) => {
 }
 
 
-const PointInfoArea = ({ selectedPoints }) => {
+const PointInfoCard = ({ point: { name, coordinate, src } }) => {
   return (
-    <div>
-      <div>
-        Selected point
+    <div className='card' >
+      <img key={coordinate.join()} src={src}></img>
+      <div className='name'> {name}</div>
+    </div>
+  )
+}
+
+
+const PointInfoContainer = ({ selectedPoints }) => {
+  return (
+    <div >
+    <h3 >
+        Selected point{selectedPoints.length>1?"s":""}
+      </h3>
+      <div className='point-container'>
+      {selectedPoints.map(p => <PointInfoCard point={p} />)}
       </div>
-      {selectedPoints.map(s => <img src={s.src}></img>)}
     </div >)
 }
 
 function App() {
 
-  const [selectedPoints, setSelectedPoints] = useState([]);
   const [points, setPoints] = useState([
-    { coordinate: [67407.3609068255, -48424.000743312456], src: "./locations/resturant.png", },
-    { coordinate: [-77809.69087466034, -45063.73644258009], src: "./locations/brothel.png", },
-    { coordinate: [37590.37353834105, 64001.50753808682], src: "./locations/casino.png", },
-    { coordinate: [-71694.99329685087, 60732.028906339765], src: "./locations/deg_14th_century_dutch_canal_city_in_background_crowds_tall_bui_90750d10-6c19-4f79-96ee-e4b49c6c6fca.png", },
+    { name: "resturant", coordinate: [0, 0], src: "./locations/resturant.png", },
+    { name: "brothel", coordinate: [-77809.69087466034, -45063.73644258009], src: "./locations/brothel.png", },
+    { name: "casino", coordinate: [37590.37353834105, 64001.50753808682], src: "./locations/casino.png", },
+    { name: 'canal', coordinate: [-71694.99329685087, 60732.028906339765], src: "./locations/deg_14th_century_dutch_canal_city_in_background_crowds_tall_bui_90750d10-6c19-4f79-96ee-e4b49c6c6fca.png", },
   ])
+
+
+  const [selectedPoints, setSelectedPoints] = useState([]);
 
 
   return (
@@ -42,7 +56,7 @@ function App() {
           <button onClick={() => addPoint(points, setPoints)}></button>
         </div>
 
-        {selectedPoints.length > 0 ? <PointInfoArea selectedPoints={selectedPoints} /> : null}
+        {selectedPoints.length > 0 ? <PointInfoContainer selectedPoints={selectedPoints} /> : null}
       </div>
       <MapView className={"mapview"} points={points} setSelectedPoints={setSelectedPoints}></MapView>
     </div>

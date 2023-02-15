@@ -4,18 +4,50 @@
   text-align: center;
 }
 
-.App{
-  height: 100%;  /* Fill the window */
-  display: flex; /* Magic begins */
+.App {
+  height: 100%;
+  /* Fill the window */
+  display: flex;
+  /* Magic begins */
   flex-direction: row;
 }
 
 .mapview {
-  min-height: 0; /* Let the content overflow */
-  flex: 5;       /* Fill the available space */
+  min-height: 0;
+  /* Let the content overflow */
+  flex: 5;
+  /* Fill the available space */
 
 }
 
-.controlview{
-  flex:1
+.controlview {
+  flex: 1.5
+}
+
+.controlview img {
+  width: 100%;
+  height: auto;
+}
+
+.point-container{
+padding: 10px;
+overflow: scroll;
+}
+
+.card{
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 4px;
+  padding: 15px;
+  border-radius: 10px;
+  border: 1px solid rgb(204, 204, 204);
+  color: black;
+  /* max-height: 18vh;
+  max-width: 18vw; */
+  /* position: relative; */
+  overflow: scroll;
+  flex-direction: column;
+} 
+
+.card .name{
+
 }

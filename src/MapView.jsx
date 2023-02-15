@@ -6,8 +6,9 @@ import React, {
 } from "react";
 
 
-
 import "ol/ol.css";
+import "./MapView.css";
+
 import { Map } from "@react-ol/fiber";
 import TileGrid from 'ol/tilegrid/TileGrid.js';
 
@@ -104,14 +105,16 @@ const clusterStyle = (feature) => {
 export const styleCache = [];
 
 
-
+// const FindPointAtCoord = (coord, points)=>{}
 
 export const MapView = ({ className, points, setSelectedPoints }) => {
 
 
   const [map, setMap] = useState(null);
   const [displayText, setDisplayText] = useState(null);
-  
+  const [previewPoint, setPreviewPoint] = useState([]);
+  const [popup, setPopup] = useState(null);
+
 
 
 
@@ -119,33 +122,26 @@ export const MapView = ({ className, points, setSelectedPoints }) => {
     ({ coordinate }) => console.log({ coordinate }), []
   )
 
-  const onPointermove = useCallback(
-    // controls the cursor and makes sure it is a pointer when hovering an interactive feature
-    (e) => {
-      if (!map) return;
-      const pixel = map.getEventPixel(e.originalEvent);
-      const hit = map.hasFeatureAtPixel(pixel);
-      map.getTarget().style.cursor = hit ? "pointer" : "";
-    },
-    [map]
-  );
+
+  const handleMove = useCallback((e) => {
 
 
 
-  const handleSelect = useCallback((e) => {
 
-    var t = e.target.getFeatures().getArray().map(select =>
+    var hovered = e.target.getFeatures().getArray().map(select =>
       points.find(({ coordinate }) =>
         coordinate.join() == select.getGeometry().getCoordinates().join()))
-       setSelectedPoints(t)
+    setPreviewPoint(hovered)
+
+  }, [points]);
 
 
-    setDisplayText(
-      ` ${e.target
-        .getFeatures()
-        .getLength()} selected features (last operation selected ${e.selected.length
-      } and deselected  ${e.deselected.length} features)`
-    );
+  const handleClick = useCallback((e) => {
+    var selected = e.target.getFeatures().getArray().map(select =>
+      points.find(({ coordinate }) =>
+        coordinate.join() == select.getGeometry().getCoordinates().join()))
+    setSelectedPoints(selected)
+
   }, [points]);
 
 
@@ -160,9 +156,29 @@ export const MapView = ({ className, points, setSelectedPoints }) => {
 
 
       <div className={className}>
-        <span>{displayText}</span>
+        {/* hidden popup waiting for usafe */}
+        <div className="hidden-popup-container" >
+        <div ref={setPopup} className='preview-popup'>
+          <img className="preview-image" src={(previewPoint.length > 0 && previewPoint[0].src || './locations/resturant.png')} alt="" />
+          {previewPoint.length>0? <div>{previewPoint[0]?.name||"lmao"}</div>:null}
+        </div>
+        </div>
 
-        <Map ref={setMap} style={{ width: "100%", height: "96vh" }} onPointermove={onPointermove} onSingleclick={onClick} >
+
+        {/* the map */}
+        <Map ref={setMap}
+          style={{ width: "100%", height: "96vh" }}
+          onSingleclick={onClick} >
+
+          {/* the map popup */}
+          {previewPoint.length > 0 ? (
+            <olOverlay
+              element={popup}
+              position={previewPoint[0].coordinate}
+              positioning={'bottom-center'}
+              offset={[0, -12]}
+            />
+          ) : null}
 
 
 
@@ -188,17 +204,21 @@ export const MapView = ({ className, points, setSelectedPoints }) => {
               {points.map(p => <olFeature key={p.coordinate.join()}  >
                 <olGeomPoint coordinates={p.coordinate} />
               </olFeature>)}
-
             </olSourceVector>
             {/* </olSourceCluster> */}
-
           </olLayerVector>
 
 
           <olInteractionSelect
             args={{ condition: click }}
             // style={selectedStyleFunction}
-            onSelect={handleSelect}
+            onSelect={handleClick}
+          />
+
+          <olInteractionSelect
+            args={{ condition: pointerMove }}
+            // style={selectedStyleFunction}
+            onSelect={handleMove}
           />
 
         </Map>
