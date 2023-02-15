@@ -1,11 +1,30 @@
-import React, { useState, useCallback } from "react";
+import React, {
+  useState,
+  // useEffect,
+  useMemo,
+  useCallback
+} from "react";
+
+
+
 import "ol/ol.css";
 import { Map } from "@react-ol/fiber";
 import TileGrid from 'ol/tilegrid/TileGrid.js';
 
+import { click, pointerMove, altKeyOnly } from "ol/events/condition";
 
-import { Point } from "ol/geom";
+import { Style, Circle as CircleStyle, Fill, Stroke, Text } from "ol/style";
 
+
+
+// import { create } from 'zustand'
+// const featureStore = create((set) => ({
+//   features: [],
+//   add: (n) => set((state) => ({ features: [...features, n] })),
+//   // bears: 0,
+//   // increasePopulation: () => set((state) => ({ bears: state.bears + 1 })),
+//   // removeAllBears: () => set({ bears: 0 }),
+// }))
 
 
 
@@ -18,7 +37,7 @@ const WarhammerMainMap = <olLayerTile preload={10} >
 </olLayerTile >
 
 
-const MarienburgMap = <olLayerTile preload={10} minZoom={7}>
+const MarienburgMap = <olLayerTile preload={3} minZoom={7}>
   <olSourceTileImage
     tileGrid={new TileGrid({
       extent: [-3320017.90883266041, 4701281.93297282793, -3175634.72078718198, 4803354.42623188905],
@@ -36,7 +55,7 @@ const MarienburgMap = <olLayerTile preload={10} minZoom={7}>
 </olLayerTile>
 
 
-const AltdorfMap = <olLayerTile preload={10} minZoom={7}>
+const AltdorfMap = <olLayerTile preload={3} minZoom={7}>
   <olSourceTileImage
     tileGrid={new TileGrid({
       extent: [-1879572.67834710842, 3734469.05619834783, -1754782.27834710851, 3824113.85619834764],
@@ -54,80 +73,54 @@ const AltdorfMap = <olLayerTile preload={10} minZoom={7}>
 </olLayerTile>
 
 
-
-
-const ClickFeature = ({ coordinates, map, location=[0,1] }) => {
-  const [popup, setPopup] = useState(null);
-
-
-  return (
-    <>
-      {popup ? (
-        <olOverlay
-          // offset={[0, -30]}
-          position={coordinates}
-          element={popup}
-          args={{
-            stopEvent: false,
-          }}
-        />
-      ) : null}
-{/* 
-      <div ref={setPopup}>
-        <div>
-          <p>Null Island</p>
-        </div>
-      </div> */}
-
-      <olLayerVector>
-        <olSourceVector>
-          <olFeature>
-            <olStyleStyle attach="style">
-              <olStyleIcon
-                attach="image"
-                args={{
-                  anchor: [0.5, 46],
-                  anchorXUnits: 'fraction',
-                  anchorYUnits: 'pixels',
-                  src: "/vite.svg",
-                }}
-              />
-            </olStyleStyle>
-            <olGeomPoint coordinates={[-10000,1000]} />
-          </olFeature>
-        </olSourceVector>
-      </olLayerVector>
-    </>
-  )
+// styling items
+const clusterStyle = (feature) => {
+  const size = feature.get("features").length;
+  let style = styleCache[size];
+  if (!style) {
+    style = new Style({
+      image: new CircleStyle({
+        radius: 10,
+        stroke: new Stroke({
+          color: "#fff",
+        }),
+        fill: new Fill({
+          color: "#3399CC",
+        }),
+      }),
+      text: new Text({
+        text: size == 1 ? "Image" : size.toString(),
+        fill: new Fill({
+          color: "#fff",
+        }),
+      }),
+    });
+    styleCache[size] = style;
+  }
+  return style;
 }
 
 
+export const styleCache = [];
 
 
 
 
-export const MapView = ({ className }) => {
+export const MapView = ({ className, points }) => {
 
 
   const [map, setMap] = useState(null);
+  const [displayText, setDisplayText] = useState(null);
+  const [selectedPoints, setSelectedPoints] = useState([]);
 
 
 
   const onClick = useCallback(
-    (evt) => {
-      if (!map) return;
-      const feature = map.forEachFeatureAtPixel(evt.pixel, (f) => f);
-      if (feature) {
-        const coordinate = feature.getGeometry().getCoordinates();
-        setCoordinates(coordinate);
-      } else {
-        setCoordinates(undefined);
-      }
-    },
-    [map]
-  );
+    ({ coordinate }) => console.log({ coordinate }), []
+  )
 
   const onPointermove = useCallback(
+    // controls the cursor and makes sure it is a pointer when hovering an interactive feature
     (e) => {
       if (!map) return;
       const pixel = map.getEventPixel(e.originalEvent);
@@ -138,13 +131,38 @@ export const MapView = ({ className }) => {
   );
 
 
+
+  const handleSelect = useCallback((e) => {
+
+    var t = e.target.getFeatures().getArray().map(select =>
+      points.find(({ coordinate }) =>
+        coordinate.join() == select.getGeometry().getCoordinates().join()))
+       setSelectedPoints(t)
+
+
+    setDisplayText(
+      ` ${e.target
+        .getFeatures()
+        .getLength()} selected features (last operation selected ${e.selected.length
+      } and deselected  ${e.deselected.length} features)`
+    );
+  }, [points]);
+
+
+
+
+
+
+
   return (
     <>
 
 
 
       <div className={className}>
-        <Map ref={setMap} style={{ width: "100%", height: "96vh" }} onPointermove={onPointermove} onClick={onClick} >
+        <span>{displayText}</span>
+
+        <Map ref={setMap} style={{ width: "100%", height: "96vh" }} onPointermove={onPointermove} onSingleclick={onClick} >
 
 
 
@@ -162,11 +180,32 @@ export const MapView = ({ className }) => {
           {AltdorfMap}
 
           {/* points */}
-<ClickFeature map={map}/>
+          <olLayerVector
+          // style={clusterStyle}
+          >
+            {/* <olSourceCluster distance={40} minDistance={20}> */}
+            <olSourceVector >
+              {points.map(p => <olFeature key={p.coordinate.join()}  >
+                <olGeomPoint coordinates={p.coordinate} />
+              </olFeature>)}
 
+            </olSourceVector>
+            {/* </olSourceCluster> */}
+
+          </olLayerVector>
+
+
+          <olInteractionSelect
+            args={{ condition: click }}
+            // style={selectedStyleFunction}
+            onSelect={handleSelect}
+          />
 
         </Map>
       </div>
     </>
   )
 };
+
+
+
