@@ -15,24 +15,24 @@ const addPoint = (points, setPoints) => {
 
 
 const PointInfoArea = ({ selectedPoints }) => {
-  return (<div>
+  return (
     <div>
-      Selected point
-    </div>
-    {selectedPoints.map(s => <div>Name: {s.name}</div>)}
-  </div >)
+      <div>
+        Selected point
+      </div>
+      {selectedPoints.map(s => <img src={s.src}></img>)}
+    </div >)
 }
 
 function App() {
 
   const [selectedPoints, setSelectedPoints] = useState([]);
   const [points, setPoints] = useState([
-    { name: '67407', coordinate: [67407.3609068255, -48424.000743312456] },
-    { name: '77809', coordinate: [-77809.69087466034, -45063.73644258009] },
-    { name: '37590', coordinate: [37590.37353834105, 64001.50753808682] },
-    { name: '71694', coordinate: [-71694.99329685087, 60732.028906339765] },
+    { coordinate: [67407.3609068255, -48424.000743312456], src: "./locations/resturant.png", },
+    { coordinate: [-77809.69087466034, -45063.73644258009], src: "./locations/brothel.png", },
+    { coordinate: [37590.37353834105, 64001.50753808682], src: "./locations/casino.png", },
+    { coordinate: [-71694.99329685087, 60732.028906339765], src: "./locations/deg_14th_century_dutch_canal_city_in_background_crowds_tall_bui_90750d10-6c19-4f79-96ee-e4b49c6c6fca.png", },
   ])
-
 
 
   return (
