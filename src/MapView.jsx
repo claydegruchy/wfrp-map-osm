@@ -106,12 +106,12 @@ export const styleCache = [];
 
 
 
-export const MapView = ({ className, points }) => {
+export const MapView = ({ className, points, setSelectedPoints }) => {
 
 
   const [map, setMap] = useState(null);
   const [displayText, setDisplayText] = useState(null);
-  const [selectedPoints, setSelectedPoints] = useState([]);
+  
 
 
 
