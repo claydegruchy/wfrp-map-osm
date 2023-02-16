@@ -5,7 +5,7 @@ import { saveAs } from 'file-saver';
 
 
 
-const PointInfoCard = ({ point: { name, coordinates, src } }) => {
+const PointInfoCard = ({ point: { name, coordinates, src, ...rest } }) => {
     // add button states for feedback
     const downloadImage = () => saveAs(src, name + '.png')
     const copyLink = () => navigator.clipboard.writeText(location.href + name + coordinates)
@@ -15,6 +15,10 @@ const PointInfoCard = ({ point: { name, coordinates, src } }) => {
         <div className='card' >
             <img src={src}></img>
             <div className='name'> {name}</div>
+
+            {rest.public ? <div>Public</div> : <div>Private</div>}
+
+
             <div>
                 <button title="Download" onClick={downloadImage}>⏬</button>
                 <button title="Share" onClick={copyLink}>🔗</button>
@@ -63,7 +67,7 @@ const AddPointDialog = ({ addNewPointHook, closePointDialog }) => {
                     <input name="src" type="text" />
                 </label>
                 <label>Share publically:
-                    <input name="public" data-val="true" value="true" checked type="checkbox" />
+                    <input name="public" data-val="true" value="true" defaultChecked type="checkbox" />
                 </label>
 
                 <input type="submit" value="💾" />
@@ -81,13 +85,12 @@ const SearchBox = () => {
     </label>)
 }
 
-export const ControlPanel = ({ selectedPoints, addNewPointHook, addPointDialogOpen, closePointDialog }) => {
+export const ControlPanel = ({ selectedPoints, addNewPointHook, addPointDialogOpen, closePointDialog, user }) => {
     // const inputuseState
-
 
     return (
         <div className='controlview' >
-            {addPointDialogOpen ? < AddPointDialog addNewPointHook={addNewPointHook} closePointDialog={closePointDialog} /> : "Right click to add a new location"}
+            {user && addPointDialogOpen ? < AddPointDialog addNewPointHook={addNewPointHook} closePointDialog={closePointDialog} /> : null}
             {/* <SearchBox /> */}
 
             {selectedPoints.length > 0 ? <PointInfoContainer selectedPoints={selectedPoints} /> : null}

@@ -75,23 +75,31 @@ export const logout = () => {
 
 
 export const GetPoints = async () => {
-    
-    const q = query(collection(db, "points"), where("public", "==", true));
+
+    const q = query(collection(db, "points"));
     const querySnapshot = await getDocs(q);
     let o = []
-    querySnapshot.forEach(doc => o.push({ ...doc.data() }))
+    querySnapshot.forEach(doc => {
+        let d = doc.data()
+        o.push({ ...d, owned_by_user: d.owner_id == auth.currentUser.uid })
+    })
     console.log(o)
     return o
-    
+
 }
 
-export const AddPoint = async ({point,image}) => {
+export const AddPoint = async ({ point, image }) => {
     console.log(point)
-    await addDoc(collection(db, "points"), {
+
+    let newPoint = {
         created: new Date(),
         owner_id: auth.currentUser.uid,
-        ...point
-    });
+        ...point,
+        owned_by_user: undefined,
+    }
+    delete newPoint.owned_by_user
+
+    await addDoc(collection(db, "points"), newPoint);
 }
 
 export const DeletePoint = async (point) => {

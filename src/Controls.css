@@ -1,6 +1,7 @@
 .controlview {
     flex: 1.5;
     max-width: 100%;
+    width:20vw
 }
 
 .controlview img {
