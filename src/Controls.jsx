@@ -1,5 +1,5 @@
 import './Controls.css'
-
+import { useState } from 'react';
 import { saveAs } from 'file-saver';
 
 
@@ -38,14 +38,34 @@ const PointInfoContainer = ({ selectedPoints }) => {
 }
 
 
-const addPoint = (points, setPoints) => {
-    console.log(points)
-    setPoints([...points, {
-        name: Math.random().toString(), coordinate: [Math.random() * 1000000, Math.random() * 1000000]
-    }])
+
+const AddPointDialog = ({ addNewPoint, closePointDialog }) => {
+    const handleSubmit = (e) => {
+        // Prevent the browser from reloading the page
+        e.preventDefault();
+        const form = e.target;
+        const formData = new FormData(form);
+        addNewPoint(Object.fromEntries(formData.entries()))
+        closePointDialog()
+    }
+
+    return (
+        <div className='add-point-dialog'>
+            <form onSubmit={handleSubmit}>
+                <label>Name:
+                    <input name="name" type="text" />
+                </label>
+                <label>SRC:
+                    <input name="src" type="text" />
+                </label>
+                <input type="submit" value="💾" />
+                <button onClick={closePointDialog} >x</button>
+
+
+            </form>
+
+        </div>)
 }
-
-
 
 const SearchBox = () => {
     return (<label> Search
@@ -53,17 +73,15 @@ const SearchBox = () => {
     </label>)
 }
 
-export const ControlPanel = ({ points, setPoints, selectedPoints }) => {
+export const ControlPanel = ({ selectedPoints, addNewPoint, addPointDialogOpen, closePointDialog }) => {
+    // const inputuseState
+
 
     return (
         <div className='controlview' >
-            <div>
-                <div>controls</div>
-            </div>
+            {addPointDialogOpen ? < AddPointDialog addNewPoint={addNewPoint} closePointDialog={closePointDialog} /> : "Right click to add a new location"}
             {/* <SearchBox /> */}
-            <div>
-                <button onClick={() => addPoint(points, setPoints)}>+</button>
-            </div>
+
             {selectedPoints.length > 0 ? <PointInfoContainer selectedPoints={selectedPoints} /> : null}
         </div>
     )

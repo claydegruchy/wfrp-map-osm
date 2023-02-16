@@ -1,8 +1,9 @@
 import React, {
   useState,
-  // useEffect,
+  useEffect,
   useMemo,
-  useCallback
+  useCallback,
+  useRef,
 } from "react";
 
 
@@ -16,6 +17,10 @@ import { click, pointerMove, altKeyOnly } from "ol/events/condition";
 
 import { Style, Circle as CircleStyle, Fill, Stroke, Text } from "ol/style";
 
+
+const context = function (mapBrowserEvent) {
+  return mapBrowserEvent.type == "contextmenu";
+}
 
 
 // import { create } from 'zustand'
@@ -74,7 +79,9 @@ const AltdorfMap = <olLayerTile preload={3} minZoom={7}>
 </olLayerTile>
 
 
+
 // styling items
+const styleCache = [];
 const clusterStyle = (feature) => {
   const size = feature.get("features").length;
   let style = styleCache[size];
@@ -102,37 +109,69 @@ const clusterStyle = (feature) => {
 }
 
 
-export const styleCache = [];
 
 
-// const FindPointAtCoord = (coord, points)=>{}
 
-export const MapView = ({ className, points, setSelectedPoints }) => {
+const PreviewPopup = ({ setPopup, previewPoint }) =>
+  <div ref={setPopup} className='preview-popup'>
+    <img className="preview-image" src={(previewPoint.length > 0 && previewPoint[0].src || './locations/resturant.png')} alt="" />
+    {previewPoint.length > 0 ? <div>{previewPoint[0]?.name || "lmao"}</div> : null}
+  </div>
 
 
+const ContextPopup = ({ setContextMenu, contextMenuLocation, newLocationHook }) =>
+  <div ref={setContextMenu} className='contextmenu-popup'>
+    <button onClick={() => newLocationHook({coordinates:contextMenuLocation})}>Add Location</button>
+  </div>
+
+
+
+export const MapView = ({ points, setSelectedPoints, newLocationHook,addPointDialogOpen }) => {
+
+  // map definer
   const [map, setMap] = useState(null);
-  const [displayText, setDisplayText] = useState(null);
+
+  // popup preview stuff
   const [previewPoint, setPreviewPoint] = useState([]);
   const [popup, setPopup] = useState(null);
 
+  // context menu stuff
+  const [contextMenu, setContextMenu] = useState(null);
+  const [contextMenuLocation, setContextMenuLocation] = useState(null);
+
+
+  // closes the context menu when the add point dialog is closed
+  useEffect(()=>{
+    if(!addPointDialogOpen)  setContextMenuLocation(null)
+  },[addPointDialogOpen])
 
 
 
-  const onClick = useCallback(
+  // controllers for the context menu
+  useEffect(() => {
+    if (!map) return
+    // right click menu needs to use an event listener
+    map.on('contextmenu', function (e) {
+      e.preventDefault();
+      setContextMenuLocation(e.coordinate)
+    });
+    // makes the popup go away
+    map.on('click', function (e) {
+      setContextMenuLocation(null)
+    });
+
+  }, [map])
+
+  const onMapClick = useCallback(
     ({ coordinate }) => console.log({ coordinate }), []
   )
 
 
   const handleMove = useCallback((e) => {
-
-
-
-
     var hovered = e.target.getFeatures().getArray().map(select =>
       points.find(({ coordinate }) =>
         coordinate.join() == select.getGeometry().getCoordinates().join()))
     setPreviewPoint(hovered)
-
   }, [points]);
 
 
@@ -145,27 +184,24 @@ export const MapView = ({ className, points, setSelectedPoints }) => {
   }, [points]);
 
 
-
-
-
-
-
   return (
     <>
       <div className='mapview'>
         {/* hidden popup waiting for usafe */}
         <div className="hidden-popup-container" >
-          <div ref={setPopup} className='preview-popup'>
-            <img className="preview-image" src={(previewPoint.length > 0 && previewPoint[0].src || './locations/resturant.png')} alt="" />
-            {previewPoint.length > 0 ? <div>{previewPoint[0]?.name || "lmao"}</div> : null}
-          </div>
+          <PreviewPopup setPopup={setPopup} previewPoint={previewPoint} />
+          <ContextPopup setContextMenu={setContextMenu} contextMenuLocation={contextMenuLocation} newLocationHook={newLocationHook} />
         </div>
+
+
 
 
         {/* the map */}
         <Map ref={setMap}
           style={{ width: "100%", height: "96vh" }}
-          onSingleclick={onClick} >
+        // onSingleclick={onMapClick}
+
+        >
 
           {/* the map popup */}
           {previewPoint.length > 0 ? (
@@ -177,6 +213,17 @@ export const MapView = ({ className, points, setSelectedPoints }) => {
             />
           ) : null}
 
+
+
+          {/* context menu */}
+          {contextMenuLocation ? (
+            <olOverlay
+              element={contextMenu}
+              position={contextMenuLocation}
+              positioning={'bottom-center'}
+              offset={[0, -12]}
+            />
+          ) : null}
 
 
           {/* controls */}
@@ -194,14 +241,14 @@ export const MapView = ({ className, points, setSelectedPoints }) => {
 
           {/* points */}
           <olLayerVector
-            // style={new Style({
-            //   radius: 100,
+          // style={new Style({
+          //   radius: 100,
 
-            //   text: new Text({
-            //     scale:4,
-            //     text: "📍"
-            //   })
-            // })}
+          //   text: new Text({
+          //     scale:4,
+          //     text: "📍"
+          //   })
+          // })}
           >
             {/* <olSourceCluster distance={40} minDistance={20}> */}
             <olSourceVector >
@@ -212,6 +259,12 @@ export const MapView = ({ className, points, setSelectedPoints }) => {
             {/* </olSourceCluster> */}
           </olLayerVector>
 
+
+          <olInteractionSelect
+            args={{ condition: () => true }}
+            // style={selectedStyleFunction}
+            onSelect={console.log}
+          />
 
           <olInteractionSelect
             args={{ condition: click }}

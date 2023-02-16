@@ -18,12 +18,40 @@ function App() {
 
 
   const [selectedPoints, setSelectedPoints] = useState([]);
+  const [addPointDialogOpen, setAddPointDialogOpen] = useState(false)
+  const [addPointDialogCoordinate, setAddPointDialogCoordinate] = useState(false)
 
+  const newLocationHook = ({ coordinates }) => {
+    setAddPointDialogOpen(true)
+    setAddPointDialogCoordinate(coordinates)
+  }
+
+  const addNewPoint = ({ src, name }) => {
+    setPoints([...points, {
+      src, name, coordinate: addPointDialogCoordinate
+    }])
+  }
+
+  const closePointDialog = () => {
+    setAddPointDialogOpen(false)
+    setAddPointDialogCoordinate(null)
+  }
 
   return (
     <div className="App">
-<ControlPanel points={points} setPoints={setPoints} selectedPoints={selectedPoints} setSelectedPoints={setSelectedPoints} />
-      <MapView points={points} setSelectedPoints={setSelectedPoints}></MapView>
+      <ControlPanel
+        points={points}
+        selectedPoints={selectedPoints}
+        addNewPoint={addNewPoint}
+        addPointDialogOpen={addPointDialogOpen}
+        closePointDialog={closePointDialog}
+      />
+      <MapView
+        points={points}
+        setSelectedPoints={setSelectedPoints}
+        newLocationHook={newLocationHook}
+        addPointDialogOpen={addPointDialogOpen}
+      ></MapView>
     </div>
   )
 }
