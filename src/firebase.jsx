@@ -19,6 +19,7 @@ import {
     getDocs,
     collection,
     where,
+    setDoc,
     addDoc,
 } from "firebase/firestore";
 
@@ -52,11 +53,9 @@ googleProvider.setCustomParameters({ prompt: 'select_account' });
 export const signInWithGoogle = async () => {
     try {
         const res = await signInWithPopup(auth, googleProvider);
-        // const user = res.user;
-        // const q = query(collection(db, "users"), where("uid", "==", user.uid));
-        // const docs = await getDocs(q);
+
         // if (docs.docs.length === 0) {
-        //     await addDoc(collection(db, "users"), {
+        //     await getDocs(collection(db, "users"), {
         //         uid: user.uid,
         //         name: user.displayName,
         //         authProvider: "google",
@@ -72,5 +71,36 @@ export const signInWithGoogle = async () => {
 
 export const logout = () => {
     signOut(auth);
-  };
-  
+};
+
+
+export const GetPoints = async () => {
+    
+    const q = query(collection(db, "points"), where("public", "==", true));
+    const querySnapshot = await getDocs(q);
+    let o = []
+    querySnapshot.forEach(doc => o.push({ ...doc.data() }))
+    console.log(o)
+    return o
+    
+}
+
+export const AddPoint = async ({point,image}) => {
+    console.log(point)
+    await addDoc(collection(db, "points"), {
+        created: new Date(),
+        owner_id: auth.currentUser.uid,
+        ...point
+    });
+}
+
+export const DeletePoint = async (point) => {
+    await addDoc(collection(db, "points"), {
+        created: new Date(),
+        owner_id: auth.currentUser.uid,
+        ...point
+    });
+}
+
+
+// 

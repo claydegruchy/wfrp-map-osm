@@ -169,16 +169,16 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook,addPointDia
 
   const handleMove = useCallback((e) => {
     var hovered = e.target.getFeatures().getArray().map(select =>
-      points.find(({ coordinate }) =>
-        coordinate.join() == select.getGeometry().getCoordinates().join()))
+      points.find(({ coordinates }) =>
+        coordinates.join() == select.getGeometry().getCoordinates().join()))
     setPreviewPoint(hovered)
   }, [points]);
 
 
   const handleClick = useCallback((e) => {
     var selected = e.target.getFeatures().getArray().map(select =>
-      points.find(({ coordinate }) =>
-        coordinate.join() == select.getGeometry().getCoordinates().join()))
+      points.find(({ coordinates }) =>
+        coordinates.join() == select.getGeometry().getCoordinates().join()))
     setSelectedPoints(selected)
 
   }, [points]);
@@ -199,7 +199,7 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook,addPointDia
         {/* the map */}
         <Map ref={setMap}
           style={{ width: "100%", height: "96vh" }}
-        // onSingleclick={onMapClick}
+        onSingleclick={onMapClick}
 
         >
 
@@ -207,7 +207,7 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook,addPointDia
           {previewPoint.length > 0 ? (
             <olOverlay
               element={popup}
-              position={previewPoint[0].coordinate}
+              position={previewPoint[0].coordinates}
               positioning={'bottom-center'}
               offset={[0, -12]}
             />
@@ -233,7 +233,7 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook,addPointDia
           {/* <olControlScaleLine render={console.log} /> */}
 
           {/* view */}
-          <olView initialCenter={[0, 0]} initialZoom={10} />
+          <olView initialCenter={[0, 0]} initialZoom={3} />
           {/* layers */}
           {WarhammerMainMap}
           {MarienburgMap}
@@ -252,19 +252,14 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook,addPointDia
           >
             {/* <olSourceCluster distance={40} minDistance={20}> */}
             <olSourceVector >
-              {points.map(p => <olFeature key={p.coordinate.join()}  >
-                <olGeomPoint coordinates={p.coordinate} />
+              {points.map(p => <olFeature key={p.coordinates.join()}  >
+                <olGeomPoint coordinates={p.coordinates} />
               </olFeature>)}
             </olSourceVector>
             {/* </olSourceCluster> */}
           </olLayerVector>
 
 
-          <olInteractionSelect
-            args={{ condition: () => true }}
-            // style={selectedStyleFunction}
-            onSelect={console.log}
-          />
 
           <olInteractionSelect
             args={{ condition: click }}
