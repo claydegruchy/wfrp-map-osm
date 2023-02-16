@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@react-ol/fiber": "1.0.0-beta.1",
+    "file-saver": "^2.0.5",
     "ol": "^7.2.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
