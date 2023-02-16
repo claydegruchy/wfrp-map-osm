@@ -1,3 +1,13 @@
+.mapview {
+    min-height: 0;
+    /* Let the content overflow */
+    flex: 5;
+    /* Fill the available space */
+  
+  }
+  
+  
+
 .hidden-popup-container {
     width: 0;
     height: 0;

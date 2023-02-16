@@ -152,16 +152,13 @@ export const MapView = ({ className, points, setSelectedPoints }) => {
 
   return (
     <>
-
-
-
-      <div className={className}>
+      <div className='mapview'>
         {/* hidden popup waiting for usafe */}
         <div className="hidden-popup-container" >
-        <div ref={setPopup} className='preview-popup'>
-          <img className="preview-image" src={(previewPoint.length > 0 && previewPoint[0].src || './locations/resturant.png')} alt="" />
-          {previewPoint.length>0? <div>{previewPoint[0]?.name||"lmao"}</div>:null}
-        </div>
+          <div ref={setPopup} className='preview-popup'>
+            <img className="preview-image" src={(previewPoint.length > 0 && previewPoint[0].src || './locations/resturant.png')} alt="" />
+            {previewPoint.length > 0 ? <div>{previewPoint[0]?.name || "lmao"}</div> : null}
+          </div>
         </div>
 
 
@@ -197,7 +194,14 @@ export const MapView = ({ className, points, setSelectedPoints }) => {
 
           {/* points */}
           <olLayerVector
-          // style={clusterStyle}
+            // style={new Style({
+            //   radius: 100,
+
+            //   text: new Text({
+            //     scale:4,
+            //     text: "📍"
+            //   })
+            // })}
           >
             {/* <olSourceCluster distance={40} minDistance={20}> */}
             <olSourceVector >
