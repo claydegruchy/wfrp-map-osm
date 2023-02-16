@@ -5,9 +5,15 @@ import {
   useState,
 } from "react";
 
+import { LoginHandler } from './Login'
+
+
+
 
 
 function App() {
+
+
 
   const [points, setPoints] = useState([
     { type: 'image', name: "resturant", coordinate: [0, 0], src: "./locations/resturant.png", },
@@ -39,13 +45,17 @@ function App() {
 
   return (
     <div className="App">
-      <ControlPanel
-        points={points}
-        selectedPoints={selectedPoints}
-        addNewPoint={addNewPoint}
-        addPointDialogOpen={addPointDialogOpen}
-        closePointDialog={closePointDialog}
-      />
+      <div>
+        <LoginHandler />
+
+        <ControlPanel
+          points={points}
+          selectedPoints={selectedPoints}
+          addNewPoint={addNewPoint}
+          addPointDialogOpen={addPointDialogOpen}
+          closePointDialog={closePointDialog}
+        />
+      </div>
       <MapView
         points={points}
         setSelectedPoints={setSelectedPoints}
