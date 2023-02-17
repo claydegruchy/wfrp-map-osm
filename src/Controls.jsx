@@ -18,16 +18,12 @@ const PointInfoCard = ({ point: { name, coordinates, src, owned_by_user, id, ...
 
             {rest.public ? <div>Public</div> : <div>Private</div>}
 
-            
-
-
             <div>
                 <button title="Download" onClick={downloadImage}>⏬</button>
-                {rest.public?<button title="Share" onClick={copyLink}>🔗</button>:null} 
+                {rest.public ? <button title="Share" onClick={copyLink}>🔗</button> : null}
                 {owned_by_user ? <button title="Delete" onClick={() => removePointHook(id)}>❌</button> : null}
 
             </div>
-
         </div>
     )
 }
@@ -61,25 +57,26 @@ const AddPointDialog = ({ addNewPointHook, closePointDialog }) => {
     }
 
     return (
-        <div className='add-point-dialog'>
-            <form onSubmit={handleSubmit}>
-                <label>Name:
-                    <input name="name" defaultValue={Math.random() * 10} type="text" />
-                </label>
-                <label>SRC:
-                    <input name="src" type="text" />
-                </label>
-                <label>Share publically:
-                    <input name="public" data-val="true" value="true" defaultChecked type="checkbox" />
-                </label>
-
-                <input type="submit" value="💾" />
-                <button onClick={closePointDialog} >x</button>
-
-
-            </form>
-
-        </div>)
+        <div className='point-container'>
+            <div className=' card'>
+                <form onSubmit={handleSubmit}>
+                    <label>Name:
+                        <input name="name" defaultValue={Math.random() * 10} type="text" />
+                    </label>
+                    <label>SRC:
+                        <input name="src" type="text" />
+                    </label>
+                    <label>Share publically:
+                        <input name="public" data-val="true" value="true" defaultChecked type="checkbox" />
+                    </label>
+                    <div>
+                        <input type="submit" value="💾" />
+                        <button onClick={closePointDialog} title="Cancel">❌</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    )
 }
 
 const SearchBox = () => {
