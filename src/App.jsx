@@ -6,7 +6,7 @@ import {
 } from "react";
 
 import { LoginHandler } from './Login'
-import { GetPoints, AddPoint,auth } from './firebase'
+import { GetPoints, AddPoint, DeletePoint, auth } from './firebase'
 import { useAuthState } from "react-firebase-hooks/auth";
 
 
@@ -35,7 +35,7 @@ function App() {
 
 
   const updatePointList = async () => {
-    setPoints(await GetPoints())
+    setPoints(await GetPoints()||[])  
   }
 
   const addNewPointHook = async (data) => {
@@ -49,8 +49,13 @@ function App() {
     
   }
 
-  const removePointHook = async()=>{
+  const removePointHook = async(id)=>{
     // where owner is user, 
+    // console.table(selectedPoints)
+    // console.table()
+    await DeletePoint(id)
+    setSelectedPoints(selectedPoints.filter((p)=>p.id!=id))
+    await updatePointList()
   }
 
 
@@ -60,11 +65,12 @@ function App() {
       <div>
         <LoginHandler authChangeHook={updatePointList} />
 
-
+{/* <button onClick={GetPoints}>p</button> */}
         <ControlPanel
           points={points}
           selectedPoints={selectedPoints}
           addNewPointHook={addNewPointHook}
+          removePointHook={removePointHook}
           addPointDialogOpen={addPointDialogOpen}
           closePointDialog={closePointDialogHook}
           user={user}

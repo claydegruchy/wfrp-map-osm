@@ -4,12 +4,12 @@ import { saveAs } from 'file-saver';
 
 
 
-
-const PointInfoCard = ({ point: { name, coordinates, src, ...rest } }) => {
+const PointInfoCard = ({ point: { name, coordinates, src, owned_by_user, id, ...rest }, removePointHook }) => {
     // add button states for feedback
     const downloadImage = () => saveAs(src, name + '.png')
     const copyLink = () => navigator.clipboard.writeText(location.href + name + coordinates)
 
+    console.log(id);
 
     return (
         <div className='card' >
@@ -18,10 +18,13 @@ const PointInfoCard = ({ point: { name, coordinates, src, ...rest } }) => {
 
             {rest.public ? <div>Public</div> : <div>Private</div>}
 
+            
+
 
             <div>
                 <button title="Download" onClick={downloadImage}>⏬</button>
-                <button title="Share" onClick={copyLink}>🔗</button>
+                {rest.public?<button title="Share" onClick={copyLink}>🔗</button>:null} 
+                {owned_by_user ? <button title="Delete" onClick={() => removePointHook(id)}>❌</button> : null}
 
             </div>
 
@@ -30,14 +33,14 @@ const PointInfoCard = ({ point: { name, coordinates, src, ...rest } }) => {
 }
 
 
-const PointInfoContainer = ({ selectedPoints }) => {
+const PointInfoContainer = ({ selectedPoints, removePointHook }) => {
     return (
         <div >
             <h3 >
                 Selected point{selectedPoints.length > 1 ? "s" : ""}
             </h3>
             <div className='point-container'>
-                {selectedPoints.map(p => <PointInfoCard key={p.coordinates.join()} point={p} />)}
+                {selectedPoints.map(p => <PointInfoCard removePointHook={removePointHook} key={p.coordinates.join()} point={p} />)}
             </div>
         </div >
     )
@@ -85,7 +88,7 @@ const SearchBox = () => {
     </label>)
 }
 
-export const ControlPanel = ({ selectedPoints, addNewPointHook, addPointDialogOpen, closePointDialog, user }) => {
+export const ControlPanel = ({ selectedPoints, addNewPointHook, addPointDialogOpen, closePointDialog, user, removePointHook }) => {
     // const inputuseState
 
     return (
@@ -93,7 +96,7 @@ export const ControlPanel = ({ selectedPoints, addNewPointHook, addPointDialogOp
             {user && addPointDialogOpen ? < AddPointDialog addNewPointHook={addNewPointHook} closePointDialog={closePointDialog} /> : null}
             {/* <SearchBox /> */}
 
-            {selectedPoints.length > 0 ? <PointInfoContainer selectedPoints={selectedPoints} /> : null}
+            {selectedPoints.length > 0 ? <PointInfoContainer selectedPoints={selectedPoints} removePointHook={removePointHook} /> : null}
         </div>
     )
 
