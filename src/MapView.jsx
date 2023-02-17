@@ -18,6 +18,45 @@ import { click, pointerMove, altKeyOnly } from "ol/events/condition";
 import { Style, Circle as CircleStyle, Fill, Stroke, Text } from "ol/style";
 
 
+
+const styleBuilder = (i = {}) => {
+  // this immense clunky hunk of shit sets the styles
+
+  let {
+    strokeWidth,
+    strokeColor,
+    fillColor,
+    circleRadius,
+  } = {
+    strokeWidth: 1.25,
+    strokeColor: '#3399CC',
+    fillColor: 'rgba(255,255,255,0.4)',
+    circleRadius: 5, ...i
+  }
+
+  const fill = new Fill({
+    color: fillColor,
+  });
+  const stroke = new Stroke({
+    color: strokeColor,
+    width: strokeWidth,
+  });
+
+  return new Style({
+    image: new CircleStyle({
+      fill: fill,
+      stroke: stroke,
+      radius: circleRadius,
+    }),
+    fill: fill,
+    stroke: stroke,
+  })
+
+}
+
+
+
+
 const context = function (mapBrowserEvent) {
   return mapBrowserEvent.type == "contextmenu";
 }
@@ -121,12 +160,19 @@ const PreviewPopup = ({ setPopup, previewPoint }) =>
 
 const ContextPopup = ({ setContextMenu, contextMenuLocation, newLocationHook }) =>
   <div ref={setContextMenu} className='contextmenu-popup'>
-    <button onClick={() => newLocationHook({coordinates:contextMenuLocation})}>Add Location</button>
+    <button onClick={() => newLocationHook({ coordinates: contextMenuLocation })}>Add Location</button>
   </div>
 
 
+const PointGroup = ({ points }) => <olSourceVector >
+  {points.map(p => <olFeature key={p.coordinates.join()}  >
+    <olGeomPoint coordinates={p.coordinates} />
+  </olFeature>)}
+</olSourceVector>
 
-export const MapView = ({ points, setSelectedPoints, newLocationHook,addPointDialogOpen }) => {
+
+
+export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDialogOpen, user }) => {
 
   // map definer
   const [map, setMap] = useState(null);
@@ -141,10 +187,14 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook,addPointDia
 
 
   // closes the context menu when the add point dialog is closed
-  useEffect(()=>{
-    if(!addPointDialogOpen)  setContextMenuLocation(null)
-  },[addPointDialogOpen])
+  useEffect(() => {
+    if (!addPointDialogOpen) setContextMenuLocation(null)
+  }, [addPointDialogOpen])
 
+
+  useEffect(()=>{
+    if(!user)setContextMenuLocation(null)
+  },[contextMenuLocation])
 
 
   // controllers for the context menu
@@ -169,16 +219,16 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook,addPointDia
 
   const handleMove = useCallback((e) => {
     var hovered = e.target.getFeatures().getArray().map(select =>
-      points.find(({ coordinate }) =>
-        coordinate.join() == select.getGeometry().getCoordinates().join()))
+      points.find(({ coordinates }) =>
+        coordinates.join() == select.getGeometry().getCoordinates().join()))
     setPreviewPoint(hovered)
   }, [points]);
 
 
   const handleClick = useCallback((e) => {
     var selected = e.target.getFeatures().getArray().map(select =>
-      points.find(({ coordinate }) =>
-        coordinate.join() == select.getGeometry().getCoordinates().join()))
+      points.find(({ coordinates }) =>
+        coordinates.join() == select.getGeometry().getCoordinates().join()))
     setSelectedPoints(selected)
 
   }, [points]);
@@ -199,7 +249,7 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook,addPointDia
         {/* the map */}
         <Map ref={setMap}
           style={{ width: "100%", height: "96vh" }}
-        // onSingleclick={onMapClick}
+          onSingleclick={onMapClick}
 
         >
 
@@ -207,7 +257,7 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook,addPointDia
           {previewPoint.length > 0 ? (
             <olOverlay
               element={popup}
-              position={previewPoint[0].coordinate}
+              position={previewPoint[0].coordinates}
               positioning={'bottom-center'}
               offset={[0, -12]}
             />
@@ -233,38 +283,23 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook,addPointDia
           {/* <olControlScaleLine render={console.log} /> */}
 
           {/* view */}
-          <olView initialCenter={[0, 0]} initialZoom={10} />
+          <olView initialCenter={[0, 0]} initialZoom={3} />
+
           {/* layers */}
           {WarhammerMainMap}
           {MarienburgMap}
           {AltdorfMap}
 
           {/* points */}
-          <olLayerVector
-          // style={new Style({
-          //   radius: 100,
+          <olLayerVector style={styleBuilder({ strokeColor: 'orange' })}>
+            <PointGroup points={points.filter(p => !p.public)} />
+          </olLayerVector>
 
-          //   text: new Text({
-          //     scale:4,
-          //     text: "📍"
-          //   })
-          // })}
-          >
-            {/* <olSourceCluster distance={40} minDistance={20}> */}
-            <olSourceVector >
-              {points.map(p => <olFeature key={p.coordinate.join()}  >
-                <olGeomPoint coordinates={p.coordinate} />
-              </olFeature>)}
-            </olSourceVector>
-            {/* </olSourceCluster> */}
+          <olLayerVector style={styleBuilder({ strokeColor: 'blue', strokeWidth: 2 })}>
+            <PointGroup points={points.filter(p => p.public)} />
           </olLayerVector>
 
 
-          <olInteractionSelect
-            args={{ condition: () => true }}
-            // style={selectedStyleFunction}
-            onSelect={console.log}
-          />
 
           <olInteractionSelect
             args={{ condition: click }}

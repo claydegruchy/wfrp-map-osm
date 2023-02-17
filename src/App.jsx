@@ -5,52 +5,84 @@ import {
   useState,
 } from "react";
 
+import { LoginHandler } from './Login'
+import { GetPoints, AddPoint, DeletePoint, auth } from './firebase'
+import { useAuthState } from "react-firebase-hooks/auth";
+
 
 
 function App() {
 
-  const [points, setPoints] = useState([
-    { type: 'image', name: "resturant", coordinate: [0, 0], src: "./locations/resturant.png", },
-    { type: 'image', name: "brothel", coordinate: [-77809.69087466034, -45063.73644258009], src: "./locations/brothel.png", },
-    { type: 'image', name: "casino", coordinate: [37590.37353834105, 64001.50753808682], src: "./locations/casino.png", },
-    { type: 'image', name: 'canal', coordinate: [-71694.99329685087, 60732.028906339765], src: "./locations/deg_14th_century_dutch_canal_city_in_background_crowds_tall_bui_90750d10-6c19-4f79-96ee-e4b49c6c6fca.png", },
-  ])
+  const [user, loading, error] = useAuthState(auth);
 
+  const [points, setPoints] = useState([])
 
+// point selection
   const [selectedPoints, setSelectedPoints] = useState([]);
+  // relates to opening dialog boxes from within the map
   const [addPointDialogOpen, setAddPointDialogOpen] = useState(false)
   const [addPointDialogCoordinate, setAddPointDialogCoordinate] = useState(false)
 
-  const newLocationHook = ({ coordinates }) => {
+  const openPointDialogHook = ({ coordinates }) => {
     setAddPointDialogOpen(true)
     setAddPointDialogCoordinate(coordinates)
   }
 
-  const addNewPoint = ({ src, name }) => {
-    setPoints([...points, {
-      src, name, coordinate: addPointDialogCoordinate
-    }])
-  }
-
-  const closePointDialog = () => {
+  const closePointDialogHook = () => {
     setAddPointDialogOpen(false)
     setAddPointDialogCoordinate(null)
   }
 
+
+  const updatePointList = async () => {
+    setPoints(await GetPoints()||[])  
+  }
+
+  const addNewPointHook = async (data) => {
+    let point = {
+      public: false,
+      ...data,
+      coordinates: addPointDialogCoordinate
+    }
+    await AddPoint({point})
+    await updatePointList()
+    
+  }
+
+  const removePointHook = async(id)=>{
+    // where owner is user, 
+    // console.table(selectedPoints)
+    // console.table()
+    await DeletePoint(id)
+    setSelectedPoints(selectedPoints.filter((p)=>p.id!=id))
+    await updatePointList()
+  }
+
+
+
   return (
     <div className="App">
-      <ControlPanel
-        points={points}
-        selectedPoints={selectedPoints}
-        addNewPoint={addNewPoint}
-        addPointDialogOpen={addPointDialogOpen}
-        closePointDialog={closePointDialog}
-      />
+      <div>
+        <LoginHandler authChangeHook={updatePointList} />
+
+{/* <button onClick={GetPoints}>p</button> */}
+        <ControlPanel
+          points={points}
+          selectedPoints={selectedPoints}
+          addNewPointHook={addNewPointHook}
+          removePointHook={removePointHook}
+          addPointDialogOpen={addPointDialogOpen}
+          closePointDialog={closePointDialogHook}
+          user={user}
+        />
+      </div>
       <MapView
         points={points}
         setSelectedPoints={setSelectedPoints}
-        newLocationHook={newLocationHook}
+        newLocationHook={openPointDialogHook}
         addPointDialogOpen={addPointDialogOpen}
+        user={user}
+
       ></MapView>
     </div>
   )

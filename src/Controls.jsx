@@ -3,35 +3,40 @@ import { useState } from 'react';
 import { saveAs } from 'file-saver';
 
 
-const PointInfoCard = ({ point: { name, coordinate, src } }) => {
+
+const PointInfoCard = ({ point: { name, coordinates, src, owned_by_user, id, ...rest }, removePointHook }) => {
     // add button states for feedback
     const downloadImage = () => saveAs(src, name + '.png')
-    const copyLink = () => navigator.clipboard.writeText(location.href + name + coordinate)
+    const copyLink = () => navigator.clipboard.writeText(location.href + name + coordinates)
 
+    console.log(id);
 
     return (
         <div className='card' >
             <img src={src}></img>
             <div className='name'> {name}</div>
+
+            {rest.public ? <div>Public</div> : <div>Private</div>}
+
             <div>
                 <button title="Download" onClick={downloadImage}>⏬</button>
-                <button title="Share" onClick={copyLink}>🔗</button>
+                {rest.public ? <button title="Share" onClick={copyLink}>🔗</button> : null}
+                {owned_by_user ? <button title="Delete" onClick={() => removePointHook(id)}>❌</button> : null}
 
             </div>
-
         </div>
     )
 }
 
 
-const PointInfoContainer = ({ selectedPoints }) => {
+const PointInfoContainer = ({ selectedPoints, removePointHook }) => {
     return (
         <div >
             <h3 >
                 Selected point{selectedPoints.length > 1 ? "s" : ""}
             </h3>
             <div className='point-container'>
-                {selectedPoints.map(p => <PointInfoCard key={p.coordinate.join()} point={p} />)}
+                {selectedPoints.map(p => <PointInfoCard removePointHook={removePointHook} key={p.coordinates.join()} point={p} />)}
             </div>
         </div >
     )
@@ -39,32 +44,39 @@ const PointInfoContainer = ({ selectedPoints }) => {
 
 
 
-const AddPointDialog = ({ addNewPoint, closePointDialog }) => {
+const AddPointDialog = ({ addNewPointHook, closePointDialog }) => {
     const handleSubmit = (e) => {
         // Prevent the browser from reloading the page
         e.preventDefault();
         const form = e.target;
         const formData = new FormData(form);
-        addNewPoint(Object.fromEntries(formData.entries()))
+        const o = Object.fromEntries(formData.entries())
+        o.public === 'true' ? o.public = true : o.public = false
+        addNewPointHook(o)
         closePointDialog()
     }
 
     return (
-        <div className='add-point-dialog'>
-            <form onSubmit={handleSubmit}>
-                <label>Name:
-                    <input name="name" type="text" />
-                </label>
-                <label>SRC:
-                    <input name="src" type="text" />
-                </label>
-                <input type="submit" value="💾" />
-                <button onClick={closePointDialog} >x</button>
-
-
-            </form>
-
-        </div>)
+        <div className='point-container'>
+            <div className=' card'>
+                <form onSubmit={handleSubmit}>
+                    <label>Name:
+                        <input name="name" defaultValue={Math.random() * 10} type="text" />
+                    </label>
+                    <label>SRC:
+                        <input name="src" type="text" />
+                    </label>
+                    <label>Share publically:
+                        <input name="public" data-val="true" value="true" defaultChecked type="checkbox" />
+                    </label>
+                    <div>
+                        <input type="submit" value="💾" />
+                        <button onClick={closePointDialog} title="Cancel">❌</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    )
 }
 
 const SearchBox = () => {
@@ -73,16 +85,15 @@ const SearchBox = () => {
     </label>)
 }
 
-export const ControlPanel = ({ selectedPoints, addNewPoint, addPointDialogOpen, closePointDialog }) => {
+export const ControlPanel = ({ selectedPoints, addNewPointHook, addPointDialogOpen, closePointDialog, user, removePointHook }) => {
     // const inputuseState
-
 
     return (
         <div className='controlview' >
-            {addPointDialogOpen ? < AddPointDialog addNewPoint={addNewPoint} closePointDialog={closePointDialog} /> : "Right click to add a new location"}
+            {user && addPointDialogOpen ? < AddPointDialog addNewPointHook={addNewPointHook} closePointDialog={closePointDialog} /> : null}
             {/* <SearchBox /> */}
 
-            {selectedPoints.length > 0 ? <PointInfoContainer selectedPoints={selectedPoints} /> : null}
+            {selectedPoints.length > 0 ? <PointInfoContainer selectedPoints={selectedPoints} removePointHook={removePointHook} /> : null}
         </div>
     )
 
