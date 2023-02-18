@@ -62,15 +62,8 @@ const context = function (mapBrowserEvent) {
 }
 
 
-// import { create } from 'zustand'
-// const featureStore = create((set) => ({
-//   features: [],
-//   add: (n) => set((state) => ({ features: [...features, n] })),
-//   // bears: 0,
-//   // increasePopulation: () => set((state) => ({ bears: state.bears + 1 })),
-//   // removeAllBears: () => set({ bears: 0 }),
-// }))
 
+const imageStorageURL = "https://claydegruchy.github.io/wfrp-map-storage"
 
 
 const WarhammerMainMap = <olLayerTile preload={10} >
@@ -91,7 +84,7 @@ const MarienburgMap = <olLayerTile preload={3} minZoom={7}>
       tileSize: [256, 256]
     })}
     tileUrlFunction={(tileCoord) => {
-      return ('./marienburg/{z}/{x}/{y}.png'
+      return (imageStorageURL+'/marienburg/{z}/{x}/{y}.png'
         .replace('{z}', String(tileCoord[0]))
         .replace('{x}', String(tileCoord[1]))
         .replace('{y}', String(- 1 - tileCoord[2])));
@@ -109,7 +102,7 @@ const AltdorfMap = <olLayerTile preload={3} minZoom={7}>
       tileSize: [256, 256]
     })}
     tileUrlFunction={(tileCoord) => {
-      return ('./altdorf/{z}/{x}/{y}.png'
+      return (imageStorageURL+'/altdorf/{z}/{x}/{y}.png'
         .replace('{z}', String(tileCoord[0]))
         .replace('{x}', String(tileCoord[1]))
         .replace('{y}', String(- 1 - tileCoord[2])));
