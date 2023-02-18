@@ -71,7 +71,7 @@ const WarhammerMainMap = <olLayerTile preload={10} >
     if (z > 7) return null
     // this Z being duplicated is a little stupid 
     // but it makes the files much easier to deal with than having them all in one folder
-    return imageStorageURL + `/world/${z}/${z}_${x}_${y}.jpg`
+    return imageStorageURL + `/world-map/${z}/${z}_${x}_${y}.jpg`
   }
   } />
 </olLayerTile >
