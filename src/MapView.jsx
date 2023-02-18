@@ -149,7 +149,7 @@ const clusterStyle = (feature) => {
 const PreviewPopup = ({ setPopup, previewPoint }) =>
   <div ref={setPopup} className='preview-popup'>
     <img className="preview-image" src={(previewPoint.length > 0 && previewPoint[0].src || './locations/resturant.png')} alt="" />
-    {previewPoint.length > 0 ? <div>{previewPoint[0]?.name || "lmao"}</div> : null}
+    {previewPoint.length > 0 ? <div>{previewPoint[0]?.name}</div> : null}
   </div>
 
 

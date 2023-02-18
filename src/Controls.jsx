@@ -45,6 +45,8 @@ const PointInfoContainer = ({ selectedPoints, removePointHook }) => {
 
 
 const AddPointDialog = ({ addNewPointHook, closePointDialog }) => {
+
+
     const handleSubmit = (e) => {
         // Prevent the browser from reloading the page
         e.preventDefault();
@@ -61,7 +63,7 @@ const AddPointDialog = ({ addNewPointHook, closePointDialog }) => {
             <div className=' card'>
                 <form onSubmit={handleSubmit}>
                     <label>Name:
-                        <input name="name" defaultValue={Math.random() * 10} type="text" />
+                        <input ref={input => {input && input.focus();console.log("foucs")}} autoFocus name="name" type="text" />
                     </label>
                     <label>SRC:
                         <input name="src" type="text" />
