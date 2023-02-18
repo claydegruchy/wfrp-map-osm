@@ -69,7 +69,7 @@ const imageStorageURL = "https://claydegruchy.github.io/wfrp-map-storage"
 const WarhammerMainMap = <olLayerTile preload={10} >
   <olSourceXYZ tileUrlFunction={([z, x, y]) => {
     if (z > 7) return null
-    return `http://www.gitzmansgallery.com/tiles/${z}_${x}_${y}.jpg`
+    return imageStorageURL + `/world/${z}_${x}_${y}.jpg`
   }
   } />
 </olLayerTile >
@@ -84,7 +84,7 @@ const MarienburgMap = <olLayerTile preload={3} minZoom={7}>
       tileSize: [256, 256]
     })}
     tileUrlFunction={(tileCoord) => {
-      return (imageStorageURL+'/marienburg/{z}/{x}/{y}.png'
+      return (imageStorageURL + '/marienburg/{z}/{x}/{y}.png'
         .replace('{z}', String(tileCoord[0]))
         .replace('{x}', String(tileCoord[1]))
         .replace('{y}', String(- 1 - tileCoord[2])));
@@ -102,7 +102,7 @@ const AltdorfMap = <olLayerTile preload={3} minZoom={7}>
       tileSize: [256, 256]
     })}
     tileUrlFunction={(tileCoord) => {
-      return (imageStorageURL+'/altdorf/{z}/{x}/{y}.png'
+      return (imageStorageURL + '/altdorf/{z}/{x}/{y}.png'
         .replace('{z}', String(tileCoord[0]))
         .replace('{x}', String(tileCoord[1]))
         .replace('{y}', String(- 1 - tileCoord[2])));
@@ -185,9 +185,9 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDi
   }, [addPointDialogOpen])
 
 
-  useEffect(()=>{
-    if(!user)setContextMenuLocation(null)
-  },[contextMenuLocation])
+  useEffect(() => {
+    if (!user) setContextMenuLocation(null)
+  }, [contextMenuLocation])
 
 
   // controllers for the context menu
