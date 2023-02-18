@@ -69,7 +69,9 @@ const imageStorageURL = "https://claydegruchy.github.io/wfrp-map-storage"
 const WarhammerMainMap = <olLayerTile preload={10} >
   <olSourceXYZ tileUrlFunction={([z, x, y]) => {
     if (z > 7) return null
-    return imageStorageURL + `/world/${z}_${x}_${y}.jpg`
+    // this Z being duplicated is a little stupid 
+    // but it makes the files much easier to deal with than having them all in one folder
+    return imageStorageURL + `/world/${z}/${z}_${x}_${y}.jpg`
   }
   } />
 </olLayerTile >
