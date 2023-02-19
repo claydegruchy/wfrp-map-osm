@@ -16,12 +16,13 @@ import {
 import {
     getFirestore,
     query,
-    getDocs,
     doc,
     collection,
+    getDocs,
+    getDoc,
     where,
-    setDoc,
     addDoc,
+    setDoc,
     deleteDoc,
 } from "firebase/firestore";
 
@@ -29,7 +30,8 @@ import {
     ref,
     uploadBytesResumable,
     getDownloadURL,
-    getStorage
+    getStorage,
+    deleteObject,
 } from "firebase/storage";
 
 
@@ -90,8 +92,6 @@ export const logout = () => {
 export const GetPoints = async () => {
     // get public points
 
-
-
     let o = []
 
     const parse = (doc, abc) => {
@@ -117,12 +117,8 @@ export const GetPoints = async () => {
 }
 
 
-export const UploadFile = (file) => {
 
-}
-
-
-export const AddPoint = async ({ point, file }) => {
+export const AddPoint = async ({ point, file, progressHook }) => {
     console.log("AddPoint", point)
     let newPoint = {
         created: new Date(),
@@ -141,42 +137,29 @@ export const AddPoint = async ({ point, file }) => {
     let uploadedPoint = await addDoc(pointsRef, newPoint);
 
     return new Promise((resolve, reject) => {
-
-
         if (file && file != "") {
             // upload the file, gets its ID
             // if we got an ID, update the point with the new image id
-            const storageRef = ref(storage, `/files/${crypto.randomUUID()}`);
+            const name = crypto.randomUUID();
+            const storageRef = ref(storage, `/files/${name}`);
             const uploadTask = uploadBytesResumable(storageRef, file);
 
             uploadTask.on('state_changed',
                 (snapshot) => {
                     // Observe state change events such as progress, pause, and resume
-                    // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
                     const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                    console.log('Upload is ' + progress + '% done');
-                    switch (snapshot.state) {
-                        case 'paused':
-                            console.log('Upload is paused');
-                            break;
-                        case 'running':
-                            console.log('Upload is running');
-                            break;
-                    }
+                    progressHook && progressHook({ progress, state: snapshot.state })
                 },
                 (error) => {
                     // Handle unsuccessful uploads
-                    console.log("upload fucked up",error);
+                    console.log("upload fucked up", error);
                     reject(error)
                 },
                 () => {
                     // Handle successful uploads on complete
-                    // For instance, get the download URL: https://firebasestorage.googleapis.com/...
                     getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
                         // update the point to have the src of the image
                         setDoc(uploadedPoint, { ...newPoint, src: downloadURL }).then(resolve)
-
-                        console.log('File available at', downloadURL);
                     });
                 }
             );
@@ -184,16 +167,33 @@ export const AddPoint = async ({ point, file }) => {
         } else {
             resolve(uploadedPoint)
         }
-
     })
+}
 
+const DeleteImage = async (point) => {
+    let { src } = point.data()
+    if (!src) return 
+    const fileRef = ref(storage, src);
+    console.log({fileRef});
 
+    return await deleteObject(fileRef)
 }
 
 export const DeletePoint = async (id) => {
-    console.log(id);
 
-    await deleteDoc(doc(db, "points", id));
+    // get the point
+    // if it has an image, delete that first
+    // then delete the point itself, if not error
+    let pointRef = await doc(db, "points", id);
+    try {
+        let p = await getDoc(pointRef)
+        await DeleteImage(p)
+        return await deleteDoc(pointRef)
+    } catch (error) {
+        console.log('[delete failed]', error);
+        throw error
+    }
 }
+
 
 
