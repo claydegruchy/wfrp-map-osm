@@ -9,7 +9,6 @@ const PointInfoCard = ({ point: { name, coordinates, src, owned_by_user, id, ...
     const downloadImage = () => saveAs(src, name + '.png')
     const copyLink = () => navigator.clipboard.writeText(location.href + name + coordinates)
 
-    console.log(id);
 
     return (
         <div className='card' >
@@ -47,6 +46,13 @@ const PointInfoContainer = ({ selectedPoints, removePointHook }) => {
 const AddPointDialog = ({ addNewPointHook, closePointDialog }) => {
 
 
+    const [file, setFile] = useState("");
+    // Handles input change event and updates state
+    function fileChange(event) {
+        setFile(event.target.files[0]);
+        
+    }
+
     const handleSubmit = (e) => {
         // Prevent the browser from reloading the page
         e.preventDefault();
@@ -54,7 +60,9 @@ const AddPointDialog = ({ addNewPointHook, closePointDialog }) => {
         const formData = new FormData(form);
         const o = Object.fromEntries(formData.entries())
         o.public === 'true' ? o.public = true : o.public = false
-        addNewPointHook(o)
+        addNewPointHook({pointData:o, file})
+        // reset things
+        setFile("")
         closePointDialog()
     }
 
@@ -63,10 +71,11 @@ const AddPointDialog = ({ addNewPointHook, closePointDialog }) => {
             <div className=' card'>
                 <form onSubmit={handleSubmit}>
                     <label>Name:
-                        <input ref={input => {input && input.focus();console.log("foucs")}} autoFocus name="name" type="text" />
+                        <input ref={input => { input && input.focus(); console.log("foucs") }} autoFocus name="name" type="text" />
                     </label>
-                    <label>SRC:
-                        <input name="src" type="text" />
+                    <label>Image
+                        <input type="file" accept="image/*" onChange={fileChange} /> 
+
                     </label>
                     <label>Share publically:
                         <input name="public" data-val="true" value="true" defaultChecked type="checkbox" />

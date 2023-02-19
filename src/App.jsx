@@ -38,13 +38,13 @@ function App() {
     setPoints(await GetPoints()||[])  
   }
 
-  const addNewPointHook = async (data) => {
+  const addNewPointHook = async ({pointData, file}) => {
     let point = {
       public: false,
-      ...data,
-      coordinates: addPointDialogCoordinate
+      ...pointData,
+      coordinates: addPointDialogCoordinate,
     }
-    await AddPoint({point})
+    await AddPoint({point, file})
     await updatePointList()
     
   }
