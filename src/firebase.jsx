@@ -118,7 +118,44 @@ export const GetPoints = async () => {
 
 
 
-export const AddPoint = async ({ point, file, progressHook }) => {
+
+export const UploadFile = async ({ thumbnail, file, name, progressHook }) => {
+    return await new Promise((resolve, reject) => {
+        // upload the file, gets its ID
+        // if we got an ID, update the point with the new image id
+
+        if (thumbnail) name = 'thumbnail_' + name
+
+        const storageRef = ref(storage, `/${thumbnail ? 'thumbnails' : 'files'}/${name}`);
+        const uploadTask = uploadBytesResumable(storageRef, thumbnail ? thumbnail : file);
+
+        uploadTask.on('state_changed',
+            (snapshot) => {
+                // Observe state change events such as progress, pause, and resume
+                const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                progressHook && progressHook({ progress, state: snapshot.state })
+            },
+            (error) => {
+                // Handle unsuccessful uploads
+                console.log("upload fucked up", error);
+                reject(error)
+            },
+            () => {
+                // Handle successful uploads on complete
+                getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+                    console.log(downloadURL);
+                    resolve(downloadURL)
+                    // update the point to have the src of the image
+                });
+            }
+        );
+
+    })
+
+
+}
+
+export const AddPoint = async ({ point, file, progressHook, thumbnail }) => {
     console.log("AddPoint", point)
     let newPoint = {
         created: new Date(),
@@ -136,47 +173,25 @@ export const AddPoint = async ({ point, file, progressHook }) => {
 
     let uploadedPoint = await addDoc(pointsRef, newPoint);
 
-    return new Promise((resolve, reject) => {
-        if (file && file != "") {
-            // upload the file, gets its ID
-            // if we got an ID, update the point with the new image id
-            const name = crypto.randomUUID();
-            const storageRef = ref(storage, `/files/${name}`);
-            const uploadTask = uploadBytesResumable(storageRef, file);
 
-            uploadTask.on('state_changed',
-                (snapshot) => {
-                    // Observe state change events such as progress, pause, and resume
-                    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                    progressHook && progressHook({ progress, state: snapshot.state })
-                },
-                (error) => {
-                    // Handle unsuccessful uploads
-                    console.log("upload fucked up", error);
-                    reject(error)
-                },
-                () => {
-                    // Handle successful uploads on complete
-                    getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-                        // update the point to have the src of the image
-                        setDoc(uploadedPoint, { ...newPoint, src: downloadURL }).then(resolve)
-                    });
-                }
-            );
+    if (file && file != "") {
+        const name = crypto.randomUUID();
 
-        } else {
-            resolve(uploadedPoint)
-        }
-    })
+        let mainImageSRC = await UploadFile({ name, file, progressHook })
+        let thumbnailSRC = await UploadFile({ name, thumbnail, progressHook })
+        let updatedPoint = await setDoc(uploadedPoint, { ...newPoint, src: mainImageSRC, thumb_src: thumbnailSRC })
+        return updatedPoint
+    } else {
+        return uploadedPoint
+    }
+
 }
 
 const DeleteImage = async (point) => {
-    let { src } = point.data()
-    if (!src) return 
-    const fileRef = ref(storage, src);
-    console.log({fileRef});
-
-    return await deleteObject(fileRef)
+    let { src, thumb_src } = point.data()
+    if (src) await deleteObject(ref(storage, src))
+    if (thumb_src) await deleteObject(ref(storage, thumb_src))
+    
 }
 
 export const DeletePoint = async (id) => {

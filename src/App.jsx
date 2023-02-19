@@ -11,6 +11,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 
 
 
+
 function App() {
 
   const [user, loading, error] = useAuthState(auth);
@@ -38,13 +39,13 @@ function App() {
     setPoints(await GetPoints() || [])
   }
 
-  const addNewPointHook = async ({ pointData, file }) => {
+  const addNewPointHook = async ({ pointData, file, thumbnail }) => {
     let point = {
       public: false,
       ...pointData,
       coordinates: addPointDialogCoordinate,
     }
-    await AddPoint({ point, file })
+    await AddPoint({ point, file, thumbnail })
     await updatePointList()
 
   }

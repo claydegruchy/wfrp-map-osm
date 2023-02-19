@@ -1,6 +1,11 @@
 import './Controls.css'
 import { useState } from 'react';
 import { saveAs } from 'file-saver';
+import {
+    fileToDataURL,
+    generateThumbnailFile,
+} from './ImageScalar';
+
 
 
 
@@ -45,12 +50,30 @@ const PointInfoContainer = ({ selectedPoints, removePointHook }) => {
 
 const AddPointDialog = ({ addNewPointHook, closePointDialog }) => {
 
-
+    const maxSize = 5120;
+    const [errorMessge, setErrorMessage] = useState(null);
     const [file, setFile] = useState("");
+    const [thumbnail, setThumbnail] = useState("");
+    const [thumbnailPreview, setThumbnailPreview] = useState();
+     
     // Handles input change event and updates state
-    function fileChange(event) {
-        setFile(event.target.files[0]);
-        
+    async function fileChange(event) {
+        let target = event?.target?.files?.[0]
+        if (!target) return
+        if ((target.size / 1024) > maxSize) {
+            setErrorMessage("Images must be smaller than 5mb")
+            return
+        }
+        // set the main file for upload
+        setFile(target);
+        // generate the thumbnail
+        let thumb = await generateThumbnailFile(target, 150)
+        // set the thumbnail for upload
+        setThumbnail(thumb)
+        // set the preview
+        setThumbnailPreview(await fileToDataURL(thumb))
+
+
     }
 
     const handleSubmit = (e) => {
@@ -60,7 +83,7 @@ const AddPointDialog = ({ addNewPointHook, closePointDialog }) => {
         const formData = new FormData(form);
         const o = Object.fromEntries(formData.entries())
         o.public === 'true' ? o.public = true : o.public = false
-        addNewPointHook({pointData:o, file})
+        addNewPointHook({ pointData: o, file, thumbnail })
         // reset things
         setFile("")
         closePointDialog()
@@ -74,7 +97,9 @@ const AddPointDialog = ({ addNewPointHook, closePointDialog }) => {
                         <input ref={input => { input && input.focus(); console.log("foucs") }} autoFocus name="name" type="text" />
                     </label>
                     <label>Image
-                        <input type="file" accept="image/*" onChange={fileChange} /> 
+                        {thumbnailPreview ? <img src={thumbnailPreview} alt="thumbnail" /> : null}
+                        <input type="file" accept="image/*" onChange={fileChange} />
+                        {errorMessge ? <div>Error: {errorMessge}</div> : null}
 
                     </label>
                     <label>Share publically:
