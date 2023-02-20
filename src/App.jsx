@@ -11,13 +11,14 @@ import { useAuthState } from "react-firebase-hooks/auth";
 
 
 
+
 function App() {
 
   const [user, loading, error] = useAuthState(auth);
 
   const [points, setPoints] = useState([])
 
-// point selection
+  // point selection
   const [selectedPoints, setSelectedPoints] = useState([]);
   // relates to opening dialog boxes from within the map
   const [addPointDialogOpen, setAddPointDialogOpen] = useState(false)
@@ -35,26 +36,28 @@ function App() {
 
 
   const updatePointList = async () => {
-    setPoints(await GetPoints()||[])  
+    setPoints(await GetPoints() || [])
   }
 
-  const addNewPointHook = async (data) => {
+  const addNewPointHook = async ({ pointData, file, thumbnail }) => {
     let point = {
       public: false,
-      ...data,
-      coordinates: addPointDialogCoordinate
+      ...pointData,
+      coordinates: addPointDialogCoordinate,
     }
-    await AddPoint({point})
+    await AddPoint({ point, file, thumbnail })
     await updatePointList()
-    
+
   }
 
-  const removePointHook = async(id)=>{
+  const removePointHook = async (id) => {
     // where owner is user, 
     // console.table(selectedPoints)
     // console.table()
     await DeletePoint(id)
-    setSelectedPoints(selectedPoints.filter((p)=>p.id!=id))
+    .then(() => setSelectedPoints(selectedPoints.filter((p) => p.id != id)))
+    .catch(console.error)
+
     await updatePointList()
   }
 
@@ -65,7 +68,7 @@ function App() {
       <div>
         <LoginHandler authChangeHook={updatePointList} />
 
-{/* <button onClick={GetPoints}>p</button> */}
+        {/* <button onClick={GetPoints}>p</button> */}
         <ControlPanel
           points={points}
           selectedPoints={selectedPoints}

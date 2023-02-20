@@ -146,11 +146,13 @@ const clusterStyle = (feature) => {
 
 
 
-const PreviewPopup = ({ setPopup, previewPoint }) =>
-  <div ref={setPopup} className='preview-popup'>
-    <img className="preview-image" src={(previewPoint.length > 0 && previewPoint[0].src || './locations/resturant.png')} alt="" />
+const PreviewPopup = ({ setPopup, previewPoint }) => {
+  var hasImage = previewPoint.length > 0 && previewPoint[0].thumb_src
+  return (<div ref={setPopup} className='preview-popup'>
+    {hasImage?<img className="preview-image" src={hasImage} alt="" />:null}
     {previewPoint.length > 0 ? <div>{previewPoint[0]?.name}</div> : null}
-  </div>
+  </div>)
+}
 
 
 const ContextPopup = ({ setContextMenu, contextMenuLocation, newLocationHook }) =>
