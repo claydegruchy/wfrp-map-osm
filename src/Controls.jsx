@@ -15,7 +15,7 @@ import { useDropzone } from 'react-dropzone'
 const PointInfoCard = ({ point: { name, coordinates, src, owned_by_user, id, ...rest }, removePointHook }) => {
     // add button states for feedback
     const downloadImage = () => saveAs(src, c + '.png')
-    const copyLink = () => navigator.clipboard.writeText(location.href + name + coordinates)
+    const copyLink = () => navigator.clipboard.writeText(location.href + coordinates)
 
 console.log({id});
     return (
