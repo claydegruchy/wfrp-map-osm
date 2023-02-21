@@ -14,8 +14,8 @@ import { useDropzone } from 'react-dropzone'
 
 const PointInfoCard = ({ point: { name, coordinates, src, owned_by_user, id, ...rest }, removePointHook }) => {
     // add button states for feedback
-    const downloadImage = () => saveAs(src, c + '.png')
-    const copyLink = () => navigator.clipboard.writeText(location.href + coordinates)
+    const downloadImage = () => saveAs(src, name + '.png')
+    const copyLink = () => navigator.clipboard.writeText(`${location.href}?c=${coordinates}`)
 
 console.log({id});
     return (
@@ -42,7 +42,7 @@ const PointInfoContainer = ({ selectedPoints, removePointHook }) => {
             <h3 >
                 Selected point{selectedPoints.length > 1 ? "s" : ""}
             </h3>
-            <div className='point-container'>
+            <div className='point-container overflow-y-auto max-h-screen '>
                 {selectedPoints.map(p => <PointInfoCard removePointHook={removePointHook} key={p.coordinates.join()} point={p} />)}
             </div>
         </div >
@@ -149,11 +149,13 @@ export const ControlPanel = ({ selectedPoints, addNewPointHook, addPointDialogOp
     // const inputuseState
 
     return (
-        <div className='controlview' >
+        <div className='controlview flex' >
             {user && addPointDialogOpen ? < AddPointDialog addNewPointHook={addNewPointHook} closePointDialog={closePointDialog} /> : null}
             {/* <SearchBox /> */}
+<div className=''>
+{selectedPoints.length > 0 ? <PointInfoContainer selectedPoints={selectedPoints} removePointHook={removePointHook} /> : null}
+</div>
 
-            {selectedPoints.length > 0 ? <PointInfoContainer selectedPoints={selectedPoints} removePointHook={removePointHook} /> : null}
         </div>
     )
 

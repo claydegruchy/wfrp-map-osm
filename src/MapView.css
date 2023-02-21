@@ -40,3 +40,8 @@
     flex: 1;
     border-radius: 10px;
 }
+
+.ol-zoom {
+    top: calc(100% - .5em*2 - 1.375em*2);
+    left: calc(100% - .5em*2 - 1.375em);
+}

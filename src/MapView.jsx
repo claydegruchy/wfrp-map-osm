@@ -169,7 +169,7 @@ const PointGroup = ({ points }) => <olSourceVector >
 
 
 
-export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDialogOpen, user }) => {
+export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDialogOpen, user, className }) => {
 
   // map definer
   const [map, setMap] = useState(null);
@@ -233,7 +233,7 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDi
 
   return (
     <>
-      <div className='mapview'>
+      <div className={className}>
         {/* hidden popup waiting for usafe */}
         <div className="hidden-popup-container" >
           <PreviewPopup setPopup={setPopup} previewPoint={previewPoint} />

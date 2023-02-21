@@ -3,7 +3,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useEffect } from 'react';
 
 
-
+const buttonClasses = 'bg-stone-200 text-slate-800 text-sm bg-stone-200 text-black text-sm hover:bg-stone-300 border border-slate-300 hover:border-slate-400'
 
 export const LoginHandler = ({ authChangeHook }) => {
     const [user, loading, error] = useAuthState(auth);
@@ -11,10 +11,11 @@ export const LoginHandler = ({ authChangeHook }) => {
     useEffect(() => { authChangeHook() }, [user])
 
     return (
-        <div>
+        <div className=' '>
             {loading ? "loading" : null}
-            {user ? <div>{user.displayName} ✔️</div> : <div>Sign in to save progress</div>}
-            {user ? <button onClick={logout}>signout</button> : <button onClick={signInWithGoogle}>signin</button>}
+            {user ? <button className={buttonClasses+""} onClick={logout}>✔️ {user.displayName}</button>
+                : <button className={buttonClasses+""} onClick={signInWithGoogle}>
+                    Sign in</button>}
         </div>
     )
 }
