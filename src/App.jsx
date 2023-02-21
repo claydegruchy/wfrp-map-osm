@@ -24,6 +24,9 @@ function App() {
   const [addPointDialogOpen, setAddPointDialogOpen] = useState(false)
   const [addPointDialogCoordinate, setAddPointDialogCoordinate] = useState(false)
 
+  const openControls = selectedPoints > 0 || addPointDialogOpen
+
+
   const openPointDialogHook = ({ coordinates }) => {
     setAddPointDialogOpen(true)
     setAddPointDialogCoordinate(coordinates)
@@ -55,8 +58,8 @@ function App() {
     // console.table(selectedPoints)
     // console.table()
     await DeletePoint(id)
-    .then(() => setSelectedPoints(selectedPoints.filter((p) => p.id != id)))
-    .catch(console.error)
+      .then(() => setSelectedPoints(selectedPoints.filter((p) => p.id != id)))
+      .catch(console.error)
 
     await updatePointList()
   }
@@ -65,11 +68,12 @@ function App() {
 
   return (
     <div className="App">
+      <div></div>
       <div>
         <LoginHandler authChangeHook={updatePointList} />
 
         {/* <button onClick={GetPoints}>p</button> */}
-        <ControlPanel
+        {openControls?     <ControlPanel
           points={points}
           selectedPoints={selectedPoints}
           addNewPointHook={addNewPointHook}
@@ -77,7 +81,8 @@ function App() {
           addPointDialogOpen={addPointDialogOpen}
           closePointDialog={closePointDialogHook}
           user={user}
-        />
+        />:null}
+   
       </div>
       <MapView
         points={points}
