@@ -275,7 +275,7 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDi
 
           {/* controls */}
           {/* <olControlOverviewMap layers={[]} /> */}
-          <olControlRotate />
+          {/* <olControlRotate /> */}
           <olControlFullScreen />
           {/* <olControlScaleLine render={console.log} /> */}
 
