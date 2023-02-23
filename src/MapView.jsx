@@ -20,6 +20,9 @@ import { Style, Circle as CircleStyle, Fill, Stroke, Text } from "ol/style";
 
 
 
+
+
+
 const styleBuilder = (i = {}) => {
   // this immense clunky hunk of shit sets the styles
 
