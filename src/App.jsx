@@ -8,6 +8,7 @@ import {
 import { LoginHandler } from './Login'
 import { GetPoints, AddPoint, DeletePoint, auth } from './firebase'
 import { useAuthState } from "react-firebase-hooks/auth";
+import { useEffect } from 'react';
 
 
 
@@ -25,9 +26,32 @@ function App() {
   const [addPointDialogOpen, setAddPointDialogOpen] = useState(false)
   const [addPointDialogCoordinate, setAddPointDialogCoordinate] = useState(false)
 
+  const [mapCommunications, setMapCommunications] = useState(null)
+
+
+
+  const PreSelectPoint = ()=>{
+    console.log(mapCommunications);
+    const url = new URLSearchParams(location.search)
+    var id = url.get('id')
+    if(!id || mapCommunications) return
+    var target = points.find(p=>p.id ==id)
+    if(!target) return
+    setSelectedPoints([target])
+    let t = new URL(location.href)
+    t.searchParams.delete('id', null)
+    // remove this so we dont repeatedly open the same point
+    // window.history.pushState(null, "", t.href);
+  }
+
+useEffect(e=>{
+  // only do this once
+  PreSelectPoint()
+},[points,mapCommunications])
+
+
   const openControls = selectedPoints.length > 0 || addPointDialogOpen
 
-console.log({openControls},selectedPoints.length > 0,addPointDialogOpen);
   const openPointDialogHook = ({ coordinates }) => {
     setAddPointDialogOpen(true)
     setAddPointDialogCoordinate(coordinates)
@@ -39,8 +63,11 @@ console.log({openControls},selectedPoints.length > 0,addPointDialogOpen);
   }
 
 
+
   const updatePointList = async () => {
     setPoints(await GetPoints() || [])
+    PreSelectPoint()
+
   }
 
   const addNewPointHook = async ({ pointData, file, thumbnail }) => {
@@ -64,6 +91,9 @@ console.log({openControls},selectedPoints.length > 0,addPointDialogOpen);
 
     await updatePointList()
   }
+
+
+
 
 
 
@@ -98,6 +128,8 @@ console.log({openControls},selectedPoints.length > 0,addPointDialogOpen);
           newLocationHook={openPointDialogHook}
           addPointDialogOpen={addPointDialogOpen}
           user={user}
+          setMapCommunications={setMapCommunications}
+          mapCommunications={mapCommunications}
           className={'flex-1'}
         ></MapView>
     </div>

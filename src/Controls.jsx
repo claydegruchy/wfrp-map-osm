@@ -15,9 +15,12 @@ import { useDropzone } from 'react-dropzone'
 const PointInfoCard = ({ point: { name, coordinates, src, owned_by_user, id, ...rest }, removePointHook }) => {
     // add button states for feedback
     const downloadImage = () => saveAs(src, name + '.png')
-    const copyLink = () => navigator.clipboard.writeText(`${location.href}?c=${coordinates}`)
+    const copyLink = () => {
+        let t = new URL(location.href)
+        t.searchParams.set('id', id)
+        navigator.clipboard.writeText(t)
+    }
 
-console.log({id});
     return (
         <div className='card' >
             <img src={src}></img>
@@ -152,9 +155,9 @@ export const ControlPanel = ({ selectedPoints, addNewPointHook, addPointDialogOp
         <div className='controlview flex' >
             {user && addPointDialogOpen ? < AddPointDialog addNewPointHook={addNewPointHook} closePointDialog={closePointDialog} /> : null}
             {/* <SearchBox /> */}
-<div className=''>
-{selectedPoints.length > 0 ? <PointInfoContainer selectedPoints={selectedPoints} removePointHook={removePointHook} /> : null}
-</div>
+            <div className=''>
+                {selectedPoints.length > 0 ? <PointInfoContainer selectedPoints={selectedPoints} removePointHook={removePointHook} /> : null}
+            </div>
 
         </div>
     )
