@@ -152,7 +152,7 @@ export const ControlPanel = ({ selectedPoints, addNewPointHook, addPointDialogOp
     // const inputuseState
 
     return (
-        <div className='controlview h-full' >
+        <div className='controlview h-full ' >
             {user && addPointDialogOpen ? < AddPointDialog addNewPointHook={addNewPointHook} closePointDialog={closePointDialog} /> : null}
             {/* <SearchBox /> */}
                 {selectedPoints.length > 0 ? <PointInfoContainer selectedPoints={selectedPoints} removePointHook={removePointHook} /> : null}

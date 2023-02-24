@@ -12,7 +12,7 @@ import { useEffect } from 'react';
 
 
 
-const FloatingControlPanel = ({ children }) => <div className='  absolute h-full z-10 top-5 left-5 flex flex-col justify-items-start' >{children}</div>
+const FloatingControlPanel = ({ children }) => <div className=' absolute h-full z-10 top-5 left-5' >{children}</div>
 
 function App() {
 

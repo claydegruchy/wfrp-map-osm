@@ -22,7 +22,6 @@ import { Style, Circle as CircleStyle, Fill, Stroke, Text } from "ol/style";
 
 
 
-
 const styleBuilder = (i = {}) => {
   // this immense clunky hunk of shit sets the styles
 
@@ -184,6 +183,7 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDi
   // context menu stuff
   const [contextMenu, setContextMenu] = useState(null);
   const [contextMenuLocation, setContextMenuLocation] = useState(null);
+
 
 
   // closes the context menu when the add point dialog is closed
