@@ -19,6 +19,9 @@ import { Style, Circle as CircleStyle, Fill, Stroke, Text } from "ol/style";
 
 
 
+
+
+
 const styleBuilder = (i = {}) => {
   // this immense clunky hunk of shit sets the styles
 
@@ -53,7 +56,6 @@ const styleBuilder = (i = {}) => {
   })
 
 }
-
 
 
 
@@ -149,7 +151,7 @@ const clusterStyle = (feature) => {
 const PreviewPopup = ({ setPopup, previewPoint }) => {
   var hasImage = previewPoint.length > 0 && previewPoint[0].thumb_src
   return (<div ref={setPopup} className='preview-popup'>
-    {hasImage?<img className="preview-image" src={hasImage} alt="" />:null}
+    {hasImage ? <img className="preview-image" src={hasImage} alt="" /> : null}
     {previewPoint.length > 0 ? <div>{previewPoint[0]?.name}</div> : null}
   </div>)
 }
@@ -169,7 +171,7 @@ const PointGroup = ({ points }) => <olSourceVector >
 
 
 
-export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDialogOpen, user }) => {
+export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDialogOpen, user, className, }) => {
 
   // map definer
   const [map, setMap] = useState(null);
@@ -181,6 +183,7 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDi
   // context menu stuff
   const [contextMenu, setContextMenu] = useState(null);
   const [contextMenuLocation, setContextMenuLocation] = useState(null);
+
 
 
   // closes the context menu when the add point dialog is closed
@@ -233,7 +236,7 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDi
 
   return (
     <>
-      <div className='mapview'>
+      <div className={className}>
         {/* hidden popup waiting for usafe */}
         <div className="hidden-popup-container" >
           <PreviewPopup setPopup={setPopup} previewPoint={previewPoint} />
@@ -280,7 +283,7 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDi
           {/* <olControlScaleLine render={console.log} /> */}
 
           {/* view */}
-          <olView initialCenter={[0, 0]} initialZoom={3} />
+          <olView initialCenter={[-3247495.2505356777, 4704319.403427397]} initialZoom={6} />
 
           {/* layers */}
           {WarhammerMainMap}

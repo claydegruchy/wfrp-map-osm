@@ -12,42 +12,6 @@ import { useDropzone } from 'react-dropzone'
 
 
 
-const PointInfoCard = ({ point: { name, coordinates, src, owned_by_user, id, ...rest }, removePointHook }) => {
-    // add button states for feedback
-    const downloadImage = () => saveAs(src, c + '.png')
-    const copyLink = () => navigator.clipboard.writeText(location.href + coordinates)
-
-console.log({id});
-    return (
-        <div className='card' >
-            <img src={src}></img>
-            <div className='name'> {name}</div>
-
-            {rest.public ? <div>Public</div> : <div>Private</div>}
-
-            <div>
-                <button title="Download" onClick={downloadImage}>⏬</button>
-                {rest.public ? <button title="Share" onClick={copyLink}>🔗</button> : null}
-                {owned_by_user ? <button title="Delete" onClick={() => removePointHook(id)}>❌</button> : null}
-
-            </div>
-        </div>
-    )
-}
-
-
-const PointInfoContainer = ({ selectedPoints, removePointHook }) => {
-    return (
-        <div >
-            <h3 >
-                Selected point{selectedPoints.length > 1 ? "s" : ""}
-            </h3>
-            <div className='point-container'>
-                {selectedPoints.map(p => <PointInfoCard removePointHook={removePointHook} key={p.coordinates.join()} point={p} />)}
-            </div>
-        </div >
-    )
-}
 
 
 function DropZoneFileInput() {
@@ -145,15 +109,54 @@ const SearchBox = () => {
     </label>)
 }
 
+
+const PointInfoCard = ({ point: { name, coordinates, src, owned_by_user, id, ...rest }, removePointHook }) => {
+    // add button states for feedback
+    const downloadImage = () => saveAs(src, name + '.png')
+    const copyLink = () => {
+        let t = new URL(location.href)
+        t.searchParams.set('id', id)
+        navigator.clipboard.writeText(t)
+    }
+
+    return (
+        <div className=' bg-gray-500 border  p-2 rounded-lg m-1 ' >
+            <img className='rounded-lg' src={src}></img>
+            <div className='name'> {name}</div>
+            {rest.public ? <div>Public</div> : <div>Private</div>}
+            <div>
+                <button title="Download" onClick={downloadImage}>⏬</button>
+                {rest.public ? <button title="Share" onClick={copyLink}>🔗</button> : null}
+                {owned_by_user ? <button title="Delete" onClick={() => removePointHook(id)}>❌</button> : null}
+
+            </div>
+        </div>
+    )
+}
+
+
+const PointInfoContainer = ({ selectedPoints, removePointHook }) => {
+    return (
+        <div className='h-full'>
+            <h3 >
+                Selected point{selectedPoints.length > 1 ? "s" : ""}
+            </h3>
+            <div className=' flex-row overflow-scroll  h-full'>
+                {selectedPoints.map(p => <PointInfoCard removePointHook={removePointHook} key={p.coordinates.join()} point={p} />)}
+            </div>
+        </div >
+    )
+}
+
 export const ControlPanel = ({ selectedPoints, addNewPointHook, addPointDialogOpen, closePointDialog, user, removePointHook }) => {
     // const inputuseState
 
     return (
-        <div className='controlview' >
+        <div className='controlview h-full ' >
             {user && addPointDialogOpen ? < AddPointDialog addNewPointHook={addNewPointHook} closePointDialog={closePointDialog} /> : null}
             {/* <SearchBox /> */}
+                {selectedPoints.length > 0 ? <PointInfoContainer selectedPoints={selectedPoints} removePointHook={removePointHook} /> : null}
 
-            {selectedPoints.length > 0 ? <PointInfoContainer selectedPoints={selectedPoints} removePointHook={removePointHook} /> : null}
         </div>
     )
 
