@@ -12,7 +12,7 @@ import { useEffect } from 'react';
 
 
 
-const FloatingControlPanel = ({ children }) => <div className=' absolute h-full z-10 top-5 left-5' >{children}</div>
+
 
 function App() {
 
@@ -98,31 +98,25 @@ function App() {
 
 
   return (
-    <div className="App flex">
-
-
-
-      <div className='flex-0' >
-
-
-
-
-      </div   >
-      <FloatingControlPanel>
-        <div className='flex gap-2'>
+    <div className="App flex h-screen">
+      <div className=' absolute flex gap-2 z-10 top-2 left-2' >
         <LoginDialog authChangeHook={updatePointList} />
-        <HelpDialog/>
-        </div>
-          {openControls ? <ControlPanel
-            points={points}
-            selectedPoints={selectedPoints}
-            addNewPointHook={addNewPointHook}
-            removePointHook={removePointHook}
-            addPointDialogOpen={addPointDialogOpen}
-            closePointDialog={closePointDialogHook}
-            user={user}
-          /> : null}
-      </FloatingControlPanel>
+        <HelpDialog />
+      </div>
+      <div className=' absolute flex z-10 bottom-0 ' >
+
+        {openControls ? <ControlPanel
+          points={points}
+          selectedPoints={selectedPoints}
+          addNewPointHook={addNewPointHook}
+          removePointHook={removePointHook}
+          addPointDialogOpen={addPointDialogOpen}
+          closePointDialog={closePointDialogHook}
+          user={user}
+        /> : null}
+      </div>
+
+
       <MapView
         points={points}
         setSelectedPoints={setSelectedPoints}

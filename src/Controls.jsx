@@ -120,42 +120,29 @@ const PointInfoCard = ({ point: { name, coordinates, src, owned_by_user, id, ...
     }
 
     return (
-        <div className=' bg-gray-500 border  p-2 rounded-lg m-1 ' >
-            <img className='rounded-lg' src={src}></img>
+        <div className=' bg-gray-500 border flex-col flex p-2 m-1 ' >
+            <img className='rounded-lg h-52 md:h-96 w-auto' src={src}></img>
             <div className='name'> {name}</div>
             {rest.public ? <div>Public</div> : <div>Private</div>}
-            <div>
-                <button title="Download" onClick={downloadImage}>⏬</button>
-                {rest.public ? <button title="Share" onClick={copyLink}>🔗</button> : null}
-                {owned_by_user ? <button title="Delete" onClick={() => removePointHook(id)}>❌</button> : null}
-
+            <div className='flex'>
+            <button title="Download" onClick={downloadImage}>⏬</button>
+            {rest.public ? <button title="Share" onClick={copyLink}>🔗</button> : null}
+            {owned_by_user ? <button title="Delete" onClick={() => removePointHook(id)}>❌</button> : null}
             </div>
         </div>
     )
 }
 
 
-const PointInfoContainer = ({ selectedPoints, removePointHook }) => {
-    return (
-        <div className='h-full'>
-            <h3 >
-                Selected point{selectedPoints.length > 1 ? "s" : ""}
-            </h3>
-            <div className=' flex-row overflow-scroll  h-full'>
-                {selectedPoints.map(p => <PointInfoCard removePointHook={removePointHook} key={p.coordinates.join()} point={p} />)}
-            </div>
-        </div >
-    )
-}
+
 
 export const ControlPanel = ({ selectedPoints, addNewPointHook, addPointDialogOpen, closePointDialog, user, removePointHook }) => {
     // const inputuseState
 
     return (
-        <div className='controlview h-full ' >
+        <div className='flex flex-row  ' >
             {user && addPointDialogOpen ? < AddPointDialog addNewPointHook={addNewPointHook} closePointDialog={closePointDialog} /> : null}
-            {/* <SearchBox /> */}
-                {selectedPoints.length > 0 ? <PointInfoContainer selectedPoints={selectedPoints} removePointHook={removePointHook} /> : null}
+            {selectedPoints.length > 0 ? <>{selectedPoints.map(p => <PointInfoCard removePointHook={removePointHook} key={p.coordinates.join()} point={p} />)}</> : null}
 
         </div>
     )
