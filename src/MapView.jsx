@@ -250,6 +250,8 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDi
         <Map ref={setMap}
           style={{ width: "100%", height: "96vh" }}
           onSingleclick={onMapClick}
+          
+
 
         >
 
@@ -283,7 +285,10 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDi
           {/* <olControlScaleLine render={console.log} /> */}
 
           {/* view */}
-          <olView initialCenter={[-3247495.2505356777, 4704319.403427397]} initialZoom={6} />
+          <olView initialCenter={[-3247495.2505356777, 4704319.403427397]} initialZoom={6} 
+          constrainResolution={true} 
+          enableRotation={false}
+          />
 
           {/* layers */}
           {WarhammerMainMap}

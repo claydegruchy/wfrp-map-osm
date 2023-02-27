@@ -18,6 +18,8 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
   overflow: hidden;
+    touch-action: pan-x pan-y;
+    height: 100% 
 
 }
 
