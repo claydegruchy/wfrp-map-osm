@@ -169,7 +169,7 @@ const PointGroup = ({ points }) => <olSourceVector >
   </olFeature>)}
 </olSourceVector>
 
-
+const isMobile = window.innerWidth <= 768;
 
 export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDialogOpen, user, className, }) => {
 
@@ -248,7 +248,7 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDi
 
         {/* the map */}
         <Map ref={setMap}
-          style={{ width: "100%", height: "96vh" }}
+          style={{ width: "100%", height: "100vh" }}
           onSingleclick={onMapClick}
           
 
@@ -300,7 +300,7 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDi
             <PointGroup points={points.filter(p => !p.public)} />
           </olLayerVector>
 
-          <olLayerVector style={styleBuilder({ strokeColor: 'blue', strokeWidth: 2 })}>
+          <olLayerVector style={styleBuilder({ strokeColor: 'blue', strokeWidth: 2, circleRadius: isMobile?8:5 })}>
             <PointGroup points={points.filter(p => p.public)} />
           </olLayerVector>
 
