@@ -22,6 +22,7 @@
     "firebase": "^9.17.1",
     "ol": "^7.2.2",
     "react": "^18.2.0",
+    "react-device-detect": "^2.2.3",
     "react-dom": "^18.2.0",
     "react-dropzone": "^14.2.3",
     "react-firebase-hooks": "^5.1.1",

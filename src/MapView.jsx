@@ -17,8 +17,7 @@ import { click, pointerMove, altKeyOnly } from "ol/events/condition";
 
 import { Style, Circle as CircleStyle, Fill, Stroke, Text } from "ol/style";
 
-
-
+import {isMobile} from 'react-device-detect';
 
 
 
@@ -169,7 +168,6 @@ const PointGroup = ({ points }) => <olSourceVector >
   </olFeature>)}
 </olSourceVector>
 
-const isMobile = window.innerWidth <= 768;
 
 export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDialogOpen, user, className, }) => {
 
@@ -250,7 +248,7 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDi
         <Map ref={setMap}
           style={{ width: "100%", height: "100vh" }}
           onSingleclick={onMapClick}
-          
+
 
 
         >
@@ -285,9 +283,9 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDi
           {/* <olControlScaleLine render={console.log} /> */}
 
           {/* view */}
-          <olView initialCenter={[-3247495.2505356777, 4704319.403427397]} initialZoom={6} 
-          constrainResolution={true} 
-          enableRotation={false}
+          <olView initialCenter={[-3247495.2505356777, 4704319.403427397]} initialZoom={6}
+            constrainResolution={true}
+            enableRotation={false}
           />
 
           {/* layers */}
@@ -300,7 +298,7 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDi
             <PointGroup points={points.filter(p => !p.public)} />
           </olLayerVector>
 
-          <olLayerVector style={styleBuilder({ strokeColor: 'blue', strokeWidth: 2, circleRadius: isMobile?8:5 })}>
+          <olLayerVector style={styleBuilder({ strokeColor: 'blue', strokeWidth: 2, circleRadius: isMobile ? 8 : 5 })}>
             <PointGroup points={points.filter(p => p.public)} />
           </olLayerVector>
 
@@ -312,11 +310,12 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDi
             onSelect={handleClick}
           />
 
-          <olInteractionSelect
+          {isMobile ? null : <olInteractionSelect
             args={{ condition: pointerMove }}
             // style={selectedStyleFunction}
             onSelect={handleMove}
-          />
+          />}
+
 
         </Map>
       </div>
