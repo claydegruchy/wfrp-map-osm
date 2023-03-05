@@ -17,8 +17,7 @@ import { click, pointerMove, altKeyOnly } from "ol/events/condition";
 
 import { Style, Circle as CircleStyle, Fill, Stroke, Text } from "ol/style";
 
-
-
+import {isMobile} from 'react-device-detect';
 
 
 
@@ -169,7 +168,6 @@ const PointGroup = ({ points }) => <olSourceVector >
   </olFeature>)}
 </olSourceVector>
 
-const isMobile = window.innerWidth <= 768;
 
 export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDialogOpen, user, className, }) => {
 
