@@ -110,9 +110,9 @@ const SearchBox = () => {
 }
 
 
-const PointInfoCard = ({ point: { name, coordinates, src, owned_by_user, id, ...rest }, removePointHook }) => {
+const PointInfoCard = ({ point: { name, coordinates, images, owned_by_user, id, ...rest }, removePointHook }) => {
     // add button states for feedback
-    const downloadImage = () => saveAs(src, name + '.png')
+    const downloadImage = (src, i) => saveAs(src, name + i + '.png')
     const copyLink = () => {
         let t = new URL(location.href)
         t.searchParams.set('id', id)
@@ -121,13 +121,16 @@ const PointInfoCard = ({ point: { name, coordinates, src, owned_by_user, id, ...
 
     return (
         <div className=' bg-gray-500 border flex-col flex p-2 m-1 ' >
-            <img className='rounded-lg h-52 md:h-96 w-auto' src={src}></img>
+            <div>
+                {images.map((src, i) => <img key={i} onClick={() => downloadImage(src, i)} className='rounded-lg h-52 md:h-96 w-auto' src={src}></img>)}
+
+            </div>
             <div className='name'> {name}</div>
             {rest.public ? <div>Public</div> : <div>Private</div>}
             <div className='flex'>
-            <button title="Download" onClick={downloadImage}>⏬</button>
-            {rest.public ? <button title="Share" onClick={copyLink}>🔗</button> : null}
-            {owned_by_user ? <button title="Delete" onClick={() => removePointHook(id)}>❌</button> : null}
+                {/* <button title="Download" onClick={downloadImage}>⏬</button> */}
+                {rest.public ? <button title="Share" onClick={copyLink}>🔗</button> : null}
+                {owned_by_user ? <button title="Delete" onClick={() => removePointHook(id)}>❌</button> : null}
             </div>
         </div>
     )

@@ -117,6 +117,32 @@ export const GetPoints = async () => {
 }
 
 
+async function Utility_PointUpdateOperations() {
+
+    const sortObject = o => Object.keys(o).sort().reduce((r, k) => (r[k] = o[k], r), {})
+
+
+    GetPoints()
+        .then(async points => {
+            for (let point of points) {
+                if (!point.images) point.images = [point.src]
+                if (!point.category) point.tags = ["art"]
+                delete point.src
+                const newPoint = sortObject(point)
+                // console.log(newPoint);
+                // let pointRef = await doc(db, "points", point.id);
+                // console.log(pointRef);
+                // let out = await setDoc(pointRef, newPoint)
+                // log
+            }
+            return points
+        })
+        .then(console.log)
+
+}
+
+
+
 
 
 export const UploadFile = async ({ thumbnail, file, name, progressHook }) => {
@@ -151,11 +177,9 @@ export const UploadFile = async ({ thumbnail, file, name, progressHook }) => {
         );
 
     })
-
-
 }
 
-export const AddPoint = async ({ point, file, progressHook, thumbnail }) => {
+export const AddPoint = async ({ point, imageFiles, progressHook, thumbnail }) => {
     console.log("AddPoint", point)
     let newPoint = {
         created: new Date(),
@@ -174,12 +198,28 @@ export const AddPoint = async ({ point, file, progressHook, thumbnail }) => {
     let uploadedPoint = await addDoc(pointsRef, newPoint);
 
 
-    if (file && file != "") {
-        const name = crypto.randomUUID();
+    if (imageFiles && imageFiles.length > 0) {
 
-        let mainImageSRC = await UploadFile({ name, file, progressHook })
-        let thumbnailSRC = await UploadFile({ name, thumbnail, progressHook })
-        let updatedPoint = await setDoc(uploadedPoint, { ...newPoint, src: mainImageSRC, thumb_src: thumbnailSRC })
+        // let temp = { ...newPoint, images: [], thumb_src: null }
+        // let temp = { ...newPoint, images: [mainImageSRC], thumb_src: thumbnailSRC }
+        newPoint.images = []
+
+        console.log("uploading thumb");
+        const thumbName = crypto.randomUUID();
+        newPoint.thumb_src = await UploadFile({ thumbName, thumbnail, progressHook })
+        console.log("uploading thumb done", newPoint.thumb_src);
+        console.log("uploading images");
+
+
+        for (const image of imageFiles) {
+            const imageName = crypto.randomUUID();
+            let imageSRC = await UploadFile({ imageName, image, progressHook })
+            newPoint.images.push(imageSRC)
+            console.log("uploaded image", imageSRC);
+        }
+        console.log("updating point with images", newPoint);
+        let updatedPoint = await setDoc(uploadedPoint, newPoint)
+
         return updatedPoint
     } else {
         return uploadedPoint
@@ -188,10 +228,15 @@ export const AddPoint = async ({ point, file, progressHook, thumbnail }) => {
 }
 
 const DeleteImage = async (point) => {
-    let { src, thumb_src } = point.data()
-    if (src) await deleteObject(ref(storage, src))
+    let { images, thumb_src } = point.data()
+    if (images && images.length > 0) {
+        for (const image of images) {
+            await deleteObject(ref(storage, image))
+        }
+
+    }
     if (thumb_src) await deleteObject(ref(storage, thumb_src))
-    
+
 }
 
 export const DeletePoint = async (id) => {
