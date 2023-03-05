@@ -8,53 +8,56 @@ import {
 
 import { useDropzone } from 'react-dropzone'
 
+import { Modal } from "./DialogBoxes"
 
 
 
 
 
 
-function DropZoneFileInput() {
-    const onDrop = useCallback(acceptedFiles => {
-        // Do something with the files
-        console.log(acceptedFiles);
-    }, [])
+
+const DropZoneFileInput = ({ onChange }) => {
+
+
     const { getRootProps, getInputProps, isDragActive } = useDropzone({
-        onDrop, maxFiles: 1
+        onDrop: onChange,
+        maxFiles: 5,
+        maxSize: 2120,
+        onDropRejected: e => console.error(e)
     })
 
     return (
         <div className={'dropzone ' + (isDragActive ? "active" : "")} {...getRootProps()}>
             <input {...getInputProps()} />
-            {
-                isDragActive ?
-                    <div>Drop the files here ...</div> :
-                    <div>Drag image, or click to select</div>
-            }
+            {isDragActive ? (<div>Drop the files here ...</div>) : (<div>Drag image, or click to select</div>)}
         </div>
     )
 }
 
 const AddPointDialog = ({ addNewPointHook, closePointDialog }) => {
 
-    const maxSize = 5120;
+    const maxSize = 2120;
     const [errorMessge, setErrorMessage] = useState(null);
-    const [file, setFile] = useState("");
+    const [images, setimages] = useState("");
     const [thumbnail, setThumbnail] = useState("");
     const [thumbnailPreview, setThumbnailPreview] = useState();
 
     // Handles input change event and updates state
-    async function fileChange(event) {
-        let target = event?.target?.files?.[0]
-        if (!target) return
-        if ((target.size / 1024) > maxSize) {
-            setErrorMessage("Images must be smaller than 5mb")
-            return
+    async function fileChange(uploads) {
+        if (!uploads || uploads.length < 1) return
+        const stagedImages = []
+
+        for (const upload of uploads) {
+            if ((upload.size / 1024) > maxSize) {
+                setErrorMessage("Images must be smaller than 5mb")
+                return
+            }
+            stagedImages.push(upload)
         }
         // set the main file for upload
-        setFile(target);
+        setimages(stagedImages);
         // generate the thumbnail
-        let thumb = await generateThumbnailFile(target, 150)
+        let thumb = await generateThumbnailFile(uploads[0], 150)
         // set the thumbnail for upload
         setThumbnail(thumb)
         // set the preview
@@ -64,6 +67,7 @@ const AddPointDialog = ({ addNewPointHook, closePointDialog }) => {
     }
 
     const handleSubmit = (e) => {
+        console.log("submitting", e);
         // Prevent the browser from reloading the page
         e.preventDefault();
         const form = e.target;
@@ -72,12 +76,13 @@ const AddPointDialog = ({ addNewPointHook, closePointDialog }) => {
         o.public === 'true' ? o.public = true : o.public = false
         addNewPointHook({ pointData: o, file, thumbnail })
         // reset things
-        setFile("")
+        setimages("")
         closePointDialog()
     }
 
     return (
-        <div className='point-container'>
+        <div className='point-container bg-white'>
+            <Modal></Modal>
             <div className=' card'>
                 <form onSubmit={handleSubmit}>
                     <label>Name:
@@ -85,8 +90,8 @@ const AddPointDialog = ({ addNewPointHook, closePointDialog }) => {
                     </label>
                     <label>Image
                         {thumbnailPreview ? <img src={thumbnailPreview} alt="thumbnail" /> : null}
-                        <input type="file" accept="image/*" onChange={fileChange} />
-                        {/* <DropZoneFileInput /> */}
+                        {/* <input type="file" accept="image/*" onChange={fileChange} /> */}
+                        <DropZoneFileInput onChange={fileChange} />
                         {errorMessge ? <div>Error: {errorMessge}</div> : null}
 
                     </label>
