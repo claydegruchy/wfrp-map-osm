@@ -127,14 +127,14 @@ async function Utility_PointUpdateOperations() {
             console.log({points});
             for (let point of points) {
 
-                if (!point.credit) point.credit = "GeDruchy"
+                // if (!point.credit) point.credit = "GeDruchy"
                 // if (!point.category) point.tags = ["art"]
-                delete point.owned_by_user
+                // delete point.owned_by_user
                 // console.log(point);
                 // const newPoint = sortObject(point)
                 // console.log(newPoint);
-                let pointRef = await doc(db, "points", point.id);
-                console.log(pointRef,point);
+                // let pointRef = await doc(db, "points", point.id);
+                // console.log(pointRef,point);
                 // let out = await setDoc(pointRef, point)
                 // log
             }
@@ -145,7 +145,7 @@ async function Utility_PointUpdateOperations() {
         .then(console.log)
 
 }
-Utility_PointUpdateOperations()
+// Utility_PointUpdateOperations()
 
 
 
