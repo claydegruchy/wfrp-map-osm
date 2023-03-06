@@ -1,5 +1,5 @@
 import './Controls.css'
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useRef } from 'react';
 import { saveAs } from 'file-saver';
 import {
     fileToDataURL,
@@ -8,7 +8,7 @@ import {
 
 import { useDropzone } from 'react-dropzone'
 
-import { Modal } from "./DialogBoxes"
+import { Modal, Button } from "./DialogBoxes"
 
 
 
@@ -16,14 +16,14 @@ import { Modal } from "./DialogBoxes"
 
 
 
-const DropZoneFileInput = ({ onChange }) => {
+const DropZoneFileInput = ({ onChange, onDropRejected, maxFiles }) => {
 
 
     const { getRootProps, getInputProps, isDragActive } = useDropzone({
         onDrop: onChange,
-        maxFiles: 5,
-        maxSize: 2120,
-        onDropRejected: e => console.error(e)
+        maxFiles,
+        maxSize: 4e6,
+        onDropRejected,
     })
 
     return (
@@ -34,13 +34,22 @@ const DropZoneFileInput = ({ onChange }) => {
     )
 }
 
+
+
+
 const AddPointDialog = ({ addNewPointHook, closePointDialog }) => {
 
-    const maxSize = 2120;
+    const maxFiles = 5;
+
     const [errorMessge, setErrorMessage] = useState(null);
-    const [images, setimages] = useState("");
+    const [imageFiles, setImageFiles] = useState([]);
+    const [mainIndex, setMainIndex] = useState(0);
     const [thumbnail, setThumbnail] = useState("");
     const [thumbnailPreview, setThumbnailPreview] = useState();
+
+    const form = useRef(null)
+    console.log({ mainIndex });
+
 
     // Handles input change event and updates state
     async function fileChange(uploads) {
@@ -48,14 +57,10 @@ const AddPointDialog = ({ addNewPointHook, closePointDialog }) => {
         const stagedImages = []
 
         for (const upload of uploads) {
-            if ((upload.size / 1024) > maxSize) {
-                setErrorMessage("Images must be smaller than 5mb")
-                return
-            }
             stagedImages.push(upload)
         }
         // set the main file for upload
-        setimages(stagedImages);
+        setImageFiles(stagedImages);
         // generate the thumbnail
         let thumb = await generateThumbnailFile(uploads[0], 150)
         // set the thumbnail for upload
@@ -74,37 +79,55 @@ const AddPointDialog = ({ addNewPointHook, closePointDialog }) => {
         const formData = new FormData(form);
         const o = Object.fromEntries(formData.entries())
         o.public === 'true' ? o.public = true : o.public = false
-        addNewPointHook({ pointData: o, file, thumbnail })
+        addNewPointHook({ pointData: o, imageFiles, thumbnail })
         // reset things
-        setimages("")
+        setImageFiles([])
         closePointDialog()
     }
 
-    return (
-        <div className='point-container bg-white'>
-            <Modal></Modal>
-            <div className=' card'>
-                <form onSubmit={handleSubmit}>
-                    <label>Name:
-                        <input ref={input => { input && input.focus(); console.log("foucs") }} autoFocus name="name" type="text" />
-                    </label>
-                    <label>Image
-                        {thumbnailPreview ? <img src={thumbnailPreview} alt="thumbnail" /> : null}
-                        {/* <input type="file" accept="image/*" onChange={fileChange} /> */}
-                        <DropZoneFileInput onChange={fileChange} />
-                        {errorMessge ? <div>Error: {errorMessge}</div> : null}
+    const submitForm = useCallback(() => form.current.dispatchEvent(new Event("submit", { cancelable: true, bubbles: true })), [form])
 
-                    </label>
-                    <label>Share publically:
-                        <input name="public" data-val="true" value="true" defaultChecked type="checkbox" />
-                    </label>
-                    <div>
-                        <input type="submit" value="💾" />
-                        <button onClick={closePointDialog} title="Cancel">❌</button>
-                    </div>
-                </form>
-            </div>
+    const ImagePreview = (file, i) => {
+        const src = URL.createObjectURL(file)
+
+        return <div className={`relative`}>
+            {i == mainIndex ? <div className='absolute bottom-1 left-1'>⭐️</div> : null}
+            {/* <div className='absolute top-1 right-1'>⭐️</div> */}
+            <img onClick={() => setMainIndex(i)} className={`max-w-xs max-h-24`} src={src}></img>
         </div>
+    }
+
+    return (
+        <Modal title={"Add location"} setShowModal={closePointDialog}
+            customButtons={[<Button
+                onClick={submitForm}
+                addClasses={"text-blue-500"} >
+                Submit
+            </Button >]}
+        >
+
+            <form className='w-96' ref={form} onSubmit={handleSubmit}>
+                <label>Name:
+                    <input ref={input => { input && input.focus() }} autoFocus name="name" type="text" />
+                </label>
+                <div className='p-5 flex flex-wrap gap-1 justify-around'>
+                    {imageFiles.map(ImagePreview)}
+                </div>
+                {/* {thumbnailPreview ? <img src={thumbnailPreview} alt="thumbnail" /> : null} */}
+                {/* <input type="file" accept="image/*" onChange={fileChange} /> */}
+                {imageFiles.length >= maxFiles ? null : <DropZoneFileInput onChange={fileChange} onDropRejected={console.error} maxFiles={maxFiles} />}
+
+                {errorMessge ? <div>Error: {errorMessge}</div> : null}
+
+                <label>Share publically:
+                    <input name="public" data-val="true" value="true" defaultChecked type="checkbox" />
+                </label>
+                <div>
+                    <input hidden type="submit" value="💾" />
+                </div>
+            </form>
+        </Modal >
+
     )
 }
 
@@ -127,7 +150,7 @@ const PointInfoCard = ({ point: { name, coordinates, images, owned_by_user, id, 
     return (
         <div className=' bg-gray-500 border flex-col flex p-2 m-1 ' >
             <div>
-                {images.map((src, i) => <img key={i} onClick={() => downloadImage(src, i)} className='rounded-lg h-52 md:h-96 w-auto' src={src}></img>)}
+                {images && images.map((src, i) => <img key={i} onClick={() => downloadImage(src, i)} className='rounded-lg h-52 md:h-96 w-auto' src={src}></img>)}
 
             </div>
             <div className='name'> {name}</div>
@@ -147,8 +170,11 @@ const PointInfoCard = ({ point: { name, coordinates, images, owned_by_user, id, 
 export const ControlPanel = ({ selectedPoints, addNewPointHook, addPointDialogOpen, closePointDialog, user, removePointHook }) => {
     // const inputuseState
 
+
     return (
         <div className='flex flex-row  ' >
+
+
             {user && addPointDialogOpen ? < AddPointDialog addNewPointHook={addNewPointHook} closePointDialog={closePointDialog} /> : null}
             {selectedPoints.length > 0 ? <>{selectedPoints.map(p => <PointInfoCard removePointHook={removePointHook} key={p.coordinates.join()} point={p} />)}</> : null}
 

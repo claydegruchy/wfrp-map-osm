@@ -220,6 +220,7 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDi
       points.find(({ coordinates }) =>
         coordinates.join() == select.getGeometry().getCoordinates().join()))
     setPreviewPoint(hovered)
+    console.log({hovered});
   }, [points]);
 
 
