@@ -6,7 +6,11 @@ module.exports = {
 
   ],
   theme: {
-    extend: {},
+    extend: {
+      maxHeight: {
+        '128': '32rem',
+      }
+    },
     theme: {
       screens: {
         'tablet': '640px',

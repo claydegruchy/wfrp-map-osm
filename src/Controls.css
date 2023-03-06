@@ -108,3 +108,10 @@ input {
     border-width: 6px;
     
 }
+
+
+img.loading-spinner{
+    background: transparent url(loading.gif) no-repeat scroll center center;
+    background-size: 10%;
+
+}

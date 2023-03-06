@@ -17,7 +17,7 @@ import { click, pointerMove, altKeyOnly } from "ol/events/condition";
 
 import { Style, Circle as CircleStyle, Fill, Stroke, Text } from "ol/style";
 
-import {isMobile} from 'react-device-detect';
+import { isMobile } from 'react-device-detect';
 
 
 
@@ -148,10 +148,17 @@ const clusterStyle = (feature) => {
 
 
 const PreviewPopup = ({ setPopup, previewPoint }) => {
-  var hasImage = previewPoint.length > 0 && previewPoint[0].thumb_src
+  const p = previewPoint[0]
+  var hasImage = previewPoint.length > 0 && p.thumb_src
   return (<div ref={setPopup} className='preview-popup'>
-    {hasImage ? <img className="preview-image" src={hasImage} alt="" /> : null}
-    {previewPoint.length > 0 ? <div>{previewPoint[0]?.name}</div> : null}
+    {hasImage ?
+      <div className="">
+        {p?.images.length > 1 ? <div className=" absolute invert top-2 left-3" >{p.images.length - 1}+</div> : null}
+        <img className="preview-image" src={hasImage} alt="" />
+      </div>
+      : null}
+    {previewPoint.length > 0 ? <div>{p?.name}</div> : null}
+    {/* previewPoint.images */}
   </div>)
 }
 
@@ -220,6 +227,7 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDi
       points.find(({ coordinates }) =>
         coordinates.join() == select.getGeometry().getCoordinates().join()))
     setPreviewPoint(hovered)
+    console.log({ hovered });
   }, [points]);
 
 
