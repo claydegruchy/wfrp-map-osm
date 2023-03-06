@@ -141,8 +141,8 @@ const PointInfoCard = ({ point: { name, credit, coordinates, images, owned_by_us
 
     return (
         <div className=' bg-gray-500 border flex-col flex p-2 m-1 ' >
-            <div className='flex flex-row lg:flex-col gap-1 max-w-lg lg:max-h-128 overflow-scroll'>
-                {images && images.map((src, i) => <img key={i} onClick={() => downloadImage(src, i)} className='loading-spinner rounded-lg h-52 md:h-96 w-auto' src={src} />)}
+            <div className=' flex flex-row lg:flex-col gap-1 max-w-lg lg:max-h-128 overflow-scroll'>
+                {images && images.map((src, i) => <img key={i} onClick={() => downloadImage(src, i)} className=' object-contain loading-spinner rounded-lg h-52 md:h-96 w-auto' src={src} />)}
 
             </div>
             <div className='name'> {name}</div>

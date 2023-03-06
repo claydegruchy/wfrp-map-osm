@@ -112,6 +112,6 @@ input {
 
 img.loading-spinner{
     background: transparent url(loading.gif) no-repeat scroll center center;
-    background-size: contain;
+    background-size: 10%;
 
 }

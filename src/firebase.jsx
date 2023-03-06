@@ -126,10 +126,10 @@ async function Utility_PointUpdateOperations() {
         .then(async points => {
             console.log({points});
             for (let point of points) {
+                // delete point.owned_by_user
 
                 // if (!point.credit) point.credit = "GeDruchy"
                 // if (!point.category) point.tags = ["art"]
-                // delete point.owned_by_user
                 // console.log(point);
                 // const newPoint = sortObject(point)
                 // console.log(newPoint);

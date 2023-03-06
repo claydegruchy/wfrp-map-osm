@@ -1,10 +1,12 @@
+import React from "react";
 import { signInWithGoogle, auth, logout } from './firebase';
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useEffect } from 'react';
 import { useState } from 'react';
 
+import './DialogBoxes.css'
 
-import React from "react";
+
 
 export const Button = ({ children, addClasses, ...rest }) => <button {...rest}
     className={"background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 " + addClasses}
@@ -76,11 +78,45 @@ export const HelpDialog = () => {
     return (<>
         <button onClick={() => setShowModal(true)} className={buttonClasses}>❓</button>
         {showModal ? <Modal title={'Help'} setShowModal={setShowModal}>
-            <div> this is some text content</div>
-            <div> this is some text content</div>
-            <div> this is some text content</div>
-            <div> this is some text content</div>
-            <div> this is some text content</div>
+            <div className=' lg:max-w-3xl text-left text-sm lg:text-md '>
+                <div className='border text-sm'>
+                    <h2 className='text-xl bold text-slate-900'>Updates!</h2>
+                    <p>Added marienburg and altdorf city maps</p>
+
+                </div>
+
+                <h2 className='text-xl bold text-slate-900'>What is this</h2>
+                <p>This is a Warhammer world map sharing system inspired by the amazing maps over at gitzmansgallery.</p>
+                <p>The system allows you to view the old world, zoom in to street level in some locations, and share your art, battlemaps, and stories.</p>
+
+                <h2 className='text-xl bold text-slate-900'>Credits</h2>
+                <p>
+                    Big thanks to gitzmansgallery for putting the main map together. Extract from gitzmansgallery.com:
+                    <div className="italic"> Some original artwork is credited to Andreas Blicher, based upon Alfred Nunez, Jr.'s outstanding cartography and research. Many other sources were used including those from the Warhammer Maps page.</div>
+
+                </p>
+                <p>
+                    Thanks to Magnus Seter via http://altdorfer.blogspot.com for Altdorf. I hope to load the various POIs one day.
+                </p>
+                <p>
+                    Big thanks to https://www.deviantart.com/planjanusza for the free listed assets on their deviantart. Amazing stuff and inspired me to make this. Multiple maps are used from here (so far: marienburg)
+                </p>
+
+                <h2 className='text-xl bold text-slate-900'>How do I add new locations?</h2>
+                <ol className='list-decimal indent-3'>
+                    <li>Login in the top left</li>
+                    <li>Right click a location</li>
+                    <li>Add some art that you think is cool for that location, and maybe some battlemaps if you have them (file size limit ~5mb)</li>
+                    <li>Star the image that you want to show in the preview (art works best for this)</li>
+                    <li>Check the box if you want to share them publically so everyone can enjoy them</li>
+                </ol>
+                <p className='italic'>If you didn't create the images, make sure to credit the artist who did!</p>
+                
+
+                <h2 className='text-xl bold text-slate-900'>I have a high def map of a city/part of the world that I want to add</h2>
+                Adding zoomable maps is not yet automated, but <a href='https://forms.gle/5RRtzuv3Um5xN9Eh9'>use this form</a> and I'll try to add it for you
+            </div>
+
         </Modal> : null}
 
     </>)
