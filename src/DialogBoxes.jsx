@@ -82,18 +82,16 @@ export const HelpDialog = () => {
                 <div className='border text-sm'>
                     <h2 className='text-xl bold text-slate-900'>Updates!</h2>
                     <p>Added marienburg and altdorf city maps</p>
-
                 </div>
-
                 <h2 className='text-xl bold text-slate-900'>What is this</h2>
                 <p>This is a Warhammer world map sharing system inspired by the amazing maps over at gitzmansgallery.</p>
                 <p>The system allows you to view the old world, zoom in to street level in some locations, and share your art, battlemaps, and stories.</p>
+                <p>This is intended for fan art, but (non-video game) offical art is okay</p>
 
                 <h2 className='text-xl bold text-slate-900'>Credits</h2>
                 <p>
                     Big thanks to gitzmansgallery for putting the main map together. Extract from gitzmansgallery.com:
                     <div className="italic"> Some original artwork is credited to Andreas Blicher, based upon Alfred Nunez, Jr.'s outstanding cartography and research. Many other sources were used including those from the Warhammer Maps page.</div>
-
                 </p>
                 <p>
                     Thanks to Magnus Seter via http://altdorfer.blogspot.com for Altdorf. I hope to load the various POIs one day.
