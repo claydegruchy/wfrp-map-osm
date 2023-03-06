@@ -70,13 +70,15 @@ function App() {
 
   }
 
-  const addNewPointHook = async ({ pointData, file, thumbnail }) => {
+  const addNewPointHook = async ({ pointData, imageFiles, thumbnail }) => {
     let point = {
       public: false,
       ...pointData,
       coordinates: addPointDialogCoordinate,
+      imageFiles:[],
+      thumbnail
     }
-    await AddPoint({ point, file, thumbnail })
+    await AddPoint({ point, imageFiles, thumbnail })
     await updatePointList()
 
   }
