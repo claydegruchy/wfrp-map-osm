@@ -119,28 +119,33 @@ export const GetPoints = async () => {
 
 async function Utility_PointUpdateOperations() {
 
-    const sortObject = o => Object.keys(o).sort().reduce((r, k) => (r[k] = o[k], r), {})
+    // const sortObject = o => Object.keys(o).sort().reduce((r, k) => (r[k] = o[k], r), {})
 
-
+// GeDruchy
     GetPoints()
         .then(async points => {
+            console.log({points});
             for (let point of points) {
-                if (!point.images) point.images = [point.src]
-                if (!point.category) point.tags = ["art"]
-                delete point.src
-                const newPoint = sortObject(point)
+
+                if (!point.credit) point.credit = "GeDruchy"
+                // if (!point.category) point.tags = ["art"]
+                delete point.owned_by_user
+                // console.log(point);
+                // const newPoint = sortObject(point)
                 // console.log(newPoint);
-                // let pointRef = await doc(db, "points", point.id);
-                // console.log(pointRef);
-                // let out = await setDoc(pointRef, newPoint)
+                let pointRef = await doc(db, "points", point.id);
+                console.log(pointRef,point);
+                // let out = await setDoc(pointRef, point)
                 // log
             }
+            // console.log(auth.currentUser.displayName);
+
             return points
         })
         .then(console.log)
 
 }
-
+Utility_PointUpdateOperations()
 
 
 
@@ -180,14 +185,20 @@ export const UploadFile = async ({ thumbnail, file, name, progressHook }) => {
 }
 
 export const AddPoint = async ({ point, imageFiles, progressHook, thumbnail }) => {
-    console.log("AddPoint", point)
+    console.log("AddPoint", { point, imageFiles })
     let newPoint = {
         created: new Date(),
         owner_id: auth.currentUser.uid,
         ...point,
         owned_by_user: undefined,
     }
-
+    if (point.credit && point.credit != "") {
+        newPoint.credit += ', added by ' + auth.currentUser.displayName
+    } else {
+        newPoint.credit = auth.currentUser.displayName
+    }
+// if you dont enter a credit, it credits you the person submiting
+// if you DO enter a creidt, it credits whoever you entered "care of" your username
 
     // remove stuff we don't want to send to the db
     delete newPoint.owned_by_user
@@ -206,14 +217,16 @@ export const AddPoint = async ({ point, imageFiles, progressHook, thumbnail }) =
 
         console.log("uploading thumb");
         const thumbName = crypto.randomUUID();
-        newPoint.thumb_src = await UploadFile({ thumbName, thumbnail, progressHook })
+        newPoint.thumb_src = await UploadFile({ name: thumbName, thumbnail, progressHook })
         console.log("uploading thumb done", newPoint.thumb_src);
         console.log("uploading images");
 
 
-        for (const image of imageFiles) {
+        for (const file of imageFiles) {
             const imageName = crypto.randomUUID();
-            let imageSRC = await UploadFile({ imageName, image, progressHook })
+
+            let imageSRC = await UploadFile({ name: imageName, file, progressHook })
+            console.log({ imageSRC });
             newPoint.images.push(imageSRC)
             console.log("uploaded image", imageSRC);
         }
@@ -231,11 +244,15 @@ const DeleteImage = async (point) => {
     let { images, thumb_src } = point.data()
     if (images && images.length > 0) {
         for (const image of images) {
+            console.log("deleting image", image);
             await deleteObject(ref(storage, image))
         }
 
     }
-    if (thumb_src) await deleteObject(ref(storage, thumb_src))
+    if (thumb_src) {
+        console.log("deleting thumb", thumb_src);
+        await deleteObject(ref(storage, thumb_src))
+    }
 
 }
 

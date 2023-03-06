@@ -2,12 +2,9 @@ import './Controls.css'
 import { useState, useCallback, useRef } from 'react';
 import { saveAs } from 'file-saver';
 import {
-    fileToDataURL,
     generateThumbnailFile,
 } from './ImageScalar';
-
 import { useDropzone } from 'react-dropzone'
-
 import { Modal, Button } from "./DialogBoxes"
 
 
@@ -37,18 +34,15 @@ const DropZoneFileInput = ({ onChange, onDropRejected, maxFiles }) => {
 
 
 
-const AddPointDialog = ({ addNewPointHook, closePointDialog }) => {
+const AddPointDialog = ({ addNewPointHook, closePointDialog, user }) => {
 
     const maxFiles = 5;
 
     const [errorMessge, setErrorMessage] = useState(null);
     const [imageFiles, setImageFiles] = useState([]);
     const [mainIndex, setMainIndex] = useState(0);
-    const [thumbnail, setThumbnail] = useState("");
-    const [thumbnailPreview, setThumbnailPreview] = useState();
 
     const form = useRef(null)
-    console.log({ mainIndex });
 
 
     // Handles input change event and updates state
@@ -61,17 +55,11 @@ const AddPointDialog = ({ addNewPointHook, closePointDialog }) => {
         }
         // set the main file for upload
         setImageFiles(stagedImages);
-        // generate the thumbnail
-        let thumb = await generateThumbnailFile(uploads[0], 150)
-        // set the thumbnail for upload
-        setThumbnail(thumb)
-        // set the preview
-        setThumbnailPreview(await fileToDataURL(thumb))
 
 
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         console.log("submitting", e);
         // Prevent the browser from reloading the page
         e.preventDefault();
@@ -79,6 +67,7 @@ const AddPointDialog = ({ addNewPointHook, closePointDialog }) => {
         const formData = new FormData(form);
         const o = Object.fromEntries(formData.entries())
         o.public === 'true' ? o.public = true : o.public = false
+        const thumbnail = imageFiles.length > 0 && await generateThumbnailFile(imageFiles[mainIndex], 150)
         addNewPointHook({ pointData: o, imageFiles, thumbnail })
         // reset things
         setImageFiles([])
@@ -91,8 +80,8 @@ const AddPointDialog = ({ addNewPointHook, closePointDialog }) => {
         const src = URL.createObjectURL(file)
 
         return <div className={`relative`}>
-            {i == mainIndex ? <div className='absolute bottom-1 left-1'>⭐️</div> : null}
-            {/* <div className='absolute top-1 right-1'>⭐️</div> */}
+            {i == mainIndex ? <div className='absolute bottom-1 left-1'>⭐️
+            </div> : null}
             <img onClick={() => setMainIndex(i)} className={`max-w-xs max-h-24`} src={src}></img>
         </div>
     }
@@ -107,10 +96,11 @@ const AddPointDialog = ({ addNewPointHook, closePointDialog }) => {
         >
 
             <form className='w-96' ref={form} onSubmit={handleSubmit}>
-                <label>Name:
-                    <input ref={input => { input && input.focus() }} autoFocus name="name" type="text" />
+                <label>Location name:
+                    <input className='border' ref={input => { input && input.focus() }} autoFocus name="name" type="text" />
                 </label>
-                <div className='p-5 flex flex-wrap gap-1 justify-around'>
+
+                <div className='p-5 flex-0 flex flex-wrap gap-1 justify-around'>
                     {imageFiles.map(ImagePreview)}
                 </div>
                 {/* {thumbnailPreview ? <img src={thumbnailPreview} alt="thumbnail" /> : null} */}
@@ -118,7 +108,9 @@ const AddPointDialog = ({ addNewPointHook, closePointDialog }) => {
                 {imageFiles.length >= maxFiles ? null : <DropZoneFileInput onChange={fileChange} onDropRejected={console.error} maxFiles={maxFiles} />}
 
                 {errorMessge ? <div>Error: {errorMessge}</div> : null}
-
+                <label>Images by:
+                    <input className='border italic' name="credit" type="text" placeholder={user.displayName} />
+                </label>
                 <label>Share publically:
                     <input name="public" data-val="true" value="true" defaultChecked type="checkbox" />
                 </label>
@@ -138,7 +130,7 @@ const SearchBox = () => {
 }
 
 
-const PointInfoCard = ({ point: { name, coordinates, images, owned_by_user, id, ...rest }, removePointHook }) => {
+const PointInfoCard = ({ point: { name, credit, coordinates, images, owned_by_user, id, ...rest }, removePointHook }) => {
     // add button states for feedback
     const downloadImage = (src, i) => saveAs(src, name + i + '.png')
     const copyLink = () => {
@@ -149,16 +141,16 @@ const PointInfoCard = ({ point: { name, coordinates, images, owned_by_user, id, 
 
     return (
         <div className=' bg-gray-500 border flex-col flex p-2 m-1 ' >
-            <div>
-                {images && images.map((src, i) => <img key={i} onClick={() => downloadImage(src, i)} className='rounded-lg h-52 md:h-96 w-auto' src={src}></img>)}
+            <div className='flex flex-row lg:flex-col gap-1 max-w-lg lg:max-h-128 overflow-scroll'>
+                {images && images.map((src, i) => <img key={i} onClick={() => downloadImage(src, i)} className='loading-spinner rounded-lg h-52 md:h-96 w-auto' src={src} />)}
 
             </div>
             <div className='name'> {name}</div>
-            {rest.public ? <div>Public</div> : <div>Private</div>}
+            <div className='italic'>By {credit || "Unknown"}</div>
             <div className='flex'>
                 {/* <button title="Download" onClick={downloadImage}>⏬</button> */}
                 {rest.public ? <button title="Share" onClick={copyLink}>🔗</button> : null}
-                {owned_by_user ? <button title="Delete" onClick={() => removePointHook(id)}>❌</button> : null}
+                {owned_by_user ? <button title="Delete" onClick={() => removePointHook(id)}>🗑️</button> : null}
             </div>
         </div>
     )
@@ -175,7 +167,7 @@ export const ControlPanel = ({ selectedPoints, addNewPointHook, addPointDialogOp
         <div className='flex flex-row  ' >
 
 
-            {user && addPointDialogOpen ? < AddPointDialog addNewPointHook={addNewPointHook} closePointDialog={closePointDialog} /> : null}
+            {user && addPointDialogOpen ? < AddPointDialog addNewPointHook={addNewPointHook} closePointDialog={closePointDialog} user={user} /> : null}
             {selectedPoints.length > 0 ? <>{selectedPoints.map(p => <PointInfoCard removePointHook={removePointHook} key={p.coordinates.join()} point={p} />)}</> : null}
 
         </div>
