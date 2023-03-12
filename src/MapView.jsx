@@ -15,6 +15,8 @@ import { Map } from "@react-ol/fiber";
 import { click, pointerMove, altKeyOnly } from "ol/events/condition";
 
 import { Style, Circle as CircleStyle, Fill, Stroke, Text } from "ol/style";
+import GeoJSON from "ol/format/GeoJSON";
+
 
 import { isMobile } from 'react-device-detect';
 
@@ -139,6 +141,9 @@ const PointGroup = ({ points }) => <olSourceVector >
 </olSourceVector>
 
 
+
+
+
 export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDialogOpen, user, className, }) => {
 
   // map definer
@@ -189,8 +194,7 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDi
     var hovered = e.target.getFeatures().getArray().map(select =>
       points.find(({ coordinates }) =>
         coordinates.join() == select.getGeometry().getCoordinates().join()))
-    setPreviewPoint(hovered)
-    console.log({ hovered });
+    setPreviewPoint(hovered.filter(s => s))
   }, [points]);
 
 
@@ -215,6 +219,7 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDi
 
 
 
+
         {/* the map */}
         <Map ref={setMap}
           style={{ width: "100%", height: "100vh" }}
@@ -225,7 +230,7 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDi
         >
 
           {/* the map popup */}
-          {previewPoint.length > 0 ? (
+          {previewPoint.length > 0 && previewPoint[0]?.coordinates ? (
             <olOverlay
               element={popup}
               position={previewPoint[0].coordinates}

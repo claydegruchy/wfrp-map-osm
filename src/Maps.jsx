@@ -1,8 +1,26 @@
 import TileGrid from 'ol/tilegrid/TileGrid.js';
 
+import { fromExtent } from 'ol/geom/Polygon';
+import { getVectorContext } from "ol/render";
 
-// const imageStorageURL = "https://claydegruchy.github.io/wfrp-map-storage"
-const imageStorageURL = "http://localhost:8080/"
+
+
+import { Style, Circle as CircleStyle, Fill, Stroke, Text } from "ol/style";
+const st =
+    new Style({
+        stroke: new Stroke({
+            width: 3,
+            color: 'rgba(255, 255, 255, 1)',
+            lineDash: [.1, 5] //or other combinations
+
+        })
+    })
+
+
+
+
+const imageStorageURL = "https://claydegruchy.github.io/wfrp-map-storage"
+// const imageStorageURL = "http://localhost:8080/"
 
 
 export const WarhammerMainMap = <olLayerTile preload={10} >
@@ -16,17 +34,40 @@ export const WarhammerMainMap = <olLayerTile preload={10} >
 </olLayerTile >
 
 
-const MapImportTemplate = ({ folderName, TileGridData, minZoom = 7 }) => <olLayerTile preload={3} minZoom={minZoom}>
-    <olSourceTileImage
-        tileGrid={new TileGrid(TileGridData)}
-        tileUrlFunction={(tileCoord) => {
-            return (imageStorageURL + '/' + folderName + '{z}/{x}/{y}.png'
-                .replace('{z}', String(tileCoord[0]))
-                .replace('{x}', String(tileCoord[1]))
-                .replace('{y}', String(- 1 - tileCoord[2])));
-        }}>
-    </olSourceTileImage>
-</olLayerTile>
+// const AnimatePoly = (event) => {
+//     const vectorContext = getVectorContext(event);
+//     const { frameState } = event;
+
+//     console.log(vectorContext,
+//         frameState);
+// }
+
+const MapImportTemplate = ({ folderName, TileGridData, minZoom = 7 }) =>
+    <>
+        {/* <olLayerVector
+            // onPostrender={AnimatePoly}
+            style={st}>
+            <olSourceVector >
+                <olFeature  >
+                    <olGeomPolygon args={[
+                        fromExtent(TileGridData.extent).getCoordinates()
+                    ]} />
+                </olFeature>
+            </olSourceVector>
+        </olLayerVector> */}
+
+        <olLayerTile preload={3} minZoom={minZoom}>
+            <olSourceTileImage
+                tileGrid={new TileGrid(TileGridData)}
+                tileUrlFunction={(tileCoord) => {
+                    return (imageStorageURL + '/' + folderName + '{z}/{x}/{y}.png'
+                        .replace('{z}', String(tileCoord[0]))
+                        .replace('{x}', String(tileCoord[1]))
+                        .replace('{y}', String(- 1 - tileCoord[2])));
+                }}>
+            </olSourceTileImage>
+        </olLayerTile>
+    </>
 
 export const MarienburgMap = MapImportTemplate({
     folderName: 'marienburg/',
