@@ -32,6 +32,14 @@ const DropZoneFileInput = ({ onChange, onDropRejected, maxFiles }) => {
 }
 
 
+export const generateThumbAndAdd = async ({ pointData, imageFiles, addNewPointHook, mainIndex }) => {
+    console.log({ pointData, imageFiles, addNewPointHook, mainIndex });
+
+    pointData.public === 'true' ? pointData.public = true : pointData.public = false
+    const thumbnail = imageFiles.length > 0 && await generateThumbnailFile(imageFiles[mainIndex], 150)
+    addNewPointHook({ pointData, imageFiles, thumbnail })
+    // reset things
+}
 
 
 const AddPointDialog = ({ addNewPointHook, closePointDialog, user }) => {
@@ -59,17 +67,17 @@ const AddPointDialog = ({ addNewPointHook, closePointDialog, user }) => {
 
     }
 
+
+
     const handleSubmit = async (e) => {
         console.log("submitting", e);
         // Prevent the browser from reloading the page
         e.preventDefault();
         const form = e.target;
         const formData = new FormData(form);
-        const o = Object.fromEntries(formData.entries())
-        o.public === 'true' ? o.public = true : o.public = false
-        const thumbnail = imageFiles.length > 0 && await generateThumbnailFile(imageFiles[mainIndex], 150)
-        addNewPointHook({ pointData: o, imageFiles, thumbnail })
-        // reset things
+        const pointData = Object.fromEntries(formData.entries())
+        await generateThumbAndAdd({ pointData, imageFiles, addNewPointHook, mainIndex })
+
         setImageFiles([])
         closePointDialog()
     }
@@ -159,13 +167,20 @@ const PointInfoCard = ({ point: { name, credit, coordinates, images, owned_by_us
 
 
 
+
 export const ControlPanel = ({ selectedPoints, addNewPointHook, addPointDialogOpen, closePointDialog, user, removePointHook }) => {
-    // const inputuseState
+
+
+
+
+
+
+
+
 
 
     return (
         <div className='flex flex-row  ' >
-
 
             {user && addPointDialogOpen ? < AddPointDialog addNewPointHook={addNewPointHook} closePointDialog={closePointDialog} user={user} /> : null}
             {selectedPoints.length > 0 ? <>{selectedPoints.map(p => <PointInfoCard removePointHook={removePointHook} key={p.coordinates.join()} point={p} />)}</> : null}

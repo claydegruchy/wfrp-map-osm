@@ -10,6 +10,8 @@ import { GetPoints, AddPoint, DeletePoint, auth } from './firebase'
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useEffect } from 'react';
 
+import { AddBulkPoints } from './Utilities'
+
 
 
 
@@ -71,12 +73,13 @@ function App() {
   }
 
   const addNewPointHook = async ({ pointData, imageFiles, thumbnail }) => {
-    console.log(pointData);
+    console.log("[addNewPointHook]", { pointData });
     let point = {
       public: false,
-      ...pointData,
       coordinates: addPointDialogCoordinate,
+      ...pointData,
     }
+    console.log("[addNewPointHook]", { point });
 
     await AddPoint({ point, imageFiles, thumbnail })
     await updatePointList()
@@ -101,6 +104,8 @@ function App() {
 
   return (
     <div className="App flex h-screen">
+      {/* enable for bulk addition operations */}
+      {/* <AddBulkPoints addNewPointHook={addNewPointHook} points={points} /> */}
       <div className=' absolute flex gap-2 z-10 top-2 left-2' >
         <LoginDialog authChangeHook={updatePointList} />
         <HelpDialog />

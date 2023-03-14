@@ -44,11 +44,14 @@ const styleBuilder = (i = {}) => {
     strokeColor,
     fillColor,
     circleRadius,
+    txt,
   } = {
     strokeWidth: 1.25,
     strokeColor: '#3399CC',
     fillColor: 'rgba(255,255,255,0.4)',
-    circleRadius: 5, ...i
+    circleRadius: 5,
+    txt: '',
+    ...i
   }
 
   const fill = new Fill({
@@ -58,6 +61,17 @@ const styleBuilder = (i = {}) => {
     color: strokeColor,
     width: strokeWidth,
   });
+  const text = new Text({
+    text: txt,
+    scale: 1.3,
+    fill: new Fill({
+      color: '#000000'
+    }),
+    stroke: new Stroke({
+      color: '#FFFF99',
+      width: 3.5
+    })
+  })
 
   return new Style({
     image: new CircleStyle({
@@ -65,8 +79,8 @@ const styleBuilder = (i = {}) => {
       stroke: stroke,
       radius: circleRadius,
     }),
-    fill: fill,
-    stroke: stroke,
+    fill,
+    stroke, text
   })
 
 }
@@ -157,6 +171,8 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDi
   const [contextMenu, setContextMenu] = useState(null);
   const [contextMenuLocation, setContextMenuLocation] = useState(null);
 
+  const [POIPlacementArray, updatePOIPlacementArray] = useState([]);
+
 
 
   // closes the context menu when the add point dialog is closed
@@ -185,9 +201,26 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDi
 
   }, [map])
 
-  const onMapClick = useCallback(
-    ({ coordinate }) => console.log({ coordinate }), []
-  )
+  // [ADD POINT MODE]
+  // const onMapClick = useCallback(
+  //   ({ coordinate, originalEvent, e }) => {
+  //     console.log({ coordinate, POIPlacementArray })
+  //     if (originalEvent.altKey) {
+  //       updatePOIPlacementArray([...POIPlacementArray, coordinate])
+  //     }
+  //     if (originalEvent.shiftKey) {
+  //       updatePOIPlacementArray(POIPlacementArray.slice(0, -1))
+  //     }
+
+
+  //   }, [POIPlacementArray]
+  // )
+
+  // useEffect(() => {
+  //   console.debug(POIPlacementArray);
+  // }, [POIPlacementArray])
+
+
 
 
   const handleMove = useCallback((e) => {
@@ -202,7 +235,11 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDi
     var selected = e.target.getFeatures().getArray().map(select =>
       points.find(({ coordinates }) =>
         coordinates.join() == select.getGeometry().getCoordinates().join()))
+      .filter(s => s)
+      console.log({selected});
     setSelectedPoints(selected)
+
+
 
   }, [points]);
 
@@ -223,7 +260,8 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDi
         {/* the map */}
         <Map ref={setMap}
           style={{ width: "100%", height: "100vh" }}
-          onSingleclick={onMapClick}
+          // [ADD POINT MODE]
+          // onSingleclick={onMapClick}
 
 
 
@@ -278,6 +316,21 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDi
           {Ubersreik}
 
           {/* points */}
+          {/* used for placing POIs */}
+          <olLayerVector style={e => {
+            let i = POIPlacementArray.findIndex(coord => coord.join() == e.getGeometry().getCoordinates().join())
+            if (!i && i != 0) return
+            let s = styleBuilder({ strokeColor: 'red', txt: i.toString() })
+            return s
+          }}>
+            <olSourceVector >
+              {POIPlacementArray.map((coordinate, i) => <olFeature key={i}  >
+                <olGeomPoint coordinates={coordinate} />
+              </olFeature>)}
+            </olSourceVector>
+          </olLayerVector>
+
+
           <olLayerVector style={styleBuilder({ strokeColor: 'orange' })}>
             <PointGroup points={points.filter(p => !p.public)} />
           </olLayerVector>
@@ -285,6 +338,8 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDi
           <olLayerVector style={styleBuilder({ strokeColor: 'blue', strokeWidth: 2, circleRadius: isMobile ? 8 : 5 })}>
             <PointGroup points={points.filter(p => p.public)} />
           </olLayerVector>
+
+
 
 
 
