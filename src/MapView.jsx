@@ -163,6 +163,9 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDi
   // map definer
   const [map, setMap] = useState(null);
 
+
+  // console.log(map && map.getView().getZoom());
+
   // popup preview stuff
   const [previewPoint, setPreviewPoint] = useState([]);
   const [popup, setPopup] = useState(null);
@@ -299,6 +302,7 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDi
           <olView initialCenter={[-3247495.2505356777, 4704319.403427397]} initialZoom={6}
             constrainResolution={true}
             enableRotation={false}
+            maxZoom={14}
           />
 
           {/* layers */}
@@ -330,13 +334,21 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDi
           </olLayerVector>
 
 
-          <olLayerVector style={styleBuilder({ strokeColor: 'orange' })}>
+          <olLayerVector style={(feature, zoom) => styleBuilder({ strokeColor: 'orange' })}>
             <PointGroup points={points.filter(p => !p.public)} />
           </olLayerVector>
 
-          <olLayerVector style={styleBuilder({ strokeColor: 'blue', strokeWidth: 2, circleRadius: isMobile ? 8 : 5 })}>
-            <PointGroup points={points.filter(p => p.public)} />
+          {/* <olLayerVector style={(e, a, c) => { console.log(e, a, c); return styleBuilder({ txt: "HELLO", strokeColor: 'yellow', strokeWidth: 2, circleRadius: isMobile ? 8 : 5 }) }}> */}
+
+          <olLayerVector style={(feature, zoom) => styleBuilder({ strokeColor: 'yellow', strokeWidth: 2, circleRadius: isMobile ? 8 : 5 })}>
+            <PointGroup points={points.filter(p => p.public).filter(p => !p.images || p.images?.length == 0)} />
           </olLayerVector>
+
+
+          <olLayerVector style={(feature, zoom) => styleBuilder({ strokeColor: 'blue', strokeWidth: 2, circleRadius: isMobile ? 8 : 5 })}>
+            <PointGroup points={points.filter(p => p.public).filter(p => p.images?.length > 0)} />
+          </olLayerVector>
+
 
 
 

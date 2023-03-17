@@ -3,6 +3,11 @@
 @tailwind utilities;
 
 
+
+*::-webkit-scrollbar {
+  display: none;
+}
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -19,6 +24,9 @@
   -webkit-text-size-adjust: 100%;
   overflow: hidden;
   touch-action: pan-x pan-y;
+
+  -ms-overflow-style: none;  /* IE and Edge */
+scrollbar-width: none;  /* Firefox */
 
 }
 
