@@ -129,14 +129,17 @@ const clusterStyle = (feature) => {
 const PreviewPopup = ({ setPopup, previewPoint }) => {
   const p = previewPoint[0]
   var hasImage = previewPoint.length > 0 && p.thumb_src
-  return (<div ref={setPopup} className='preview-popup'>
+  return (<div ref={setPopup} className='preview-popup  flex place-content-center'>
     {hasImage ?
-      <div className="">
-        {p?.images.length > 1 ? <div className=" absolute invert top-2 left-3" >{p.images.length - 1}+</div> : null}
-        <img className="preview-image" src={hasImage} alt="" />
+      <div className="  place-content-center flex "  >
+        <section className="relative">
+          {p?.images.length > 1 ? <div className=" absolute invert top-2 left-3" >{p.images.length - 1}+</div> : null}
+          <img src={hasImage} alt="" />
+        </section>
       </div>
       : null}
-    {previewPoint.length > 0 ? <div>{p?.name}</div> : null}
+    <div className="flex place-content-center">{previewPoint.length > 0 ? <div className="w-40">{p?.name}</div> : null}</div>
+
     {/* previewPoint.images */}
   </div>)
 }
@@ -187,6 +190,11 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDi
   useEffect(() => {
     if (!user) setContextMenuLocation(null)
   }, [contextMenuLocation])
+
+  useEffect(() => {
+    if (!points || points.length < 1) return
+    setPreviewPoint([points.find(p => p.name.includes('Bruynwater'))])
+  }, [points])
 
 
   // controllers for the context menu
@@ -320,7 +328,7 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDi
 
           {/* points */}
           {/* used for placing POIs */}
-          <olLayerVector style={e => {
+          {/* <olLayerVector style={e => {
             let i = POIPlacementArray.findIndex(coord => coord.join() == e.getGeometry().getCoordinates().join())
             if (!i && i != 0) return
             let s = styleBuilder({ strokeColor: 'red', txt: i.toString() })
@@ -331,12 +339,8 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDi
                 <olGeomPoint coordinates={coordinate} />
               </olFeature>)}
             </olSourceVector>
-          </olLayerVector>
+          </olLayerVector> */}
 
-
-          <olLayerVector style={(feature, zoom) => styleBuilder({ strokeColor: 'orange' })}>
-            <PointGroup points={points.filter(p => !p.public)} />
-          </olLayerVector>
 
           {/* <olLayerVector style={(e, a, c) => { console.log(e, a, c); return styleBuilder({ txt: "HELLO", strokeColor: 'yellow', strokeWidth: 2, circleRadius: isMobile ? 8 : 5 }) }}> */}
 
@@ -349,7 +353,9 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDi
             <PointGroup points={points.filter(p => p.public).filter(p => p.images?.length > 0)} />
           </olLayerVector>
 
-
+          <olLayerVector style={(feature, zoom) => styleBuilder({ strokeColor: 'orange' })}>
+            <PointGroup points={points.filter(p => !p.public)} />
+          </olLayerVector>
 
 
 
