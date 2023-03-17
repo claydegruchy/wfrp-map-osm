@@ -32,6 +32,14 @@ const DropZoneFileInput = ({ onChange, onDropRejected, maxFiles }) => {
 }
 
 
+export const generateThumbAndAdd = async ({ pointData, imageFiles, addNewPointHook, mainIndex }) => {
+    console.log({ pointData, imageFiles, addNewPointHook, mainIndex });
+
+    pointData.public === 'true' ? pointData.public = true : pointData.public = false
+    const thumbnail = imageFiles.length > 0 && await generateThumbnailFile(imageFiles[mainIndex], 150)
+    addNewPointHook({ pointData, imageFiles, thumbnail })
+    // reset things
+}
 
 
 const AddPointDialog = ({ addNewPointHook, closePointDialog, user }) => {
@@ -59,17 +67,17 @@ const AddPointDialog = ({ addNewPointHook, closePointDialog, user }) => {
 
     }
 
+
+
     const handleSubmit = async (e) => {
         console.log("submitting", e);
         // Prevent the browser from reloading the page
         e.preventDefault();
         const form = e.target;
         const formData = new FormData(form);
-        const o = Object.fromEntries(formData.entries())
-        o.public === 'true' ? o.public = true : o.public = false
-        const thumbnail = imageFiles.length > 0 && await generateThumbnailFile(imageFiles[mainIndex], 150)
-        addNewPointHook({ pointData: o, imageFiles, thumbnail })
-        // reset things
+        const pointData = Object.fromEntries(formData.entries())
+        await generateThumbAndAdd({ pointData, imageFiles, addNewPointHook, mainIndex })
+
         setImageFiles([])
         closePointDialog()
     }
@@ -130,7 +138,7 @@ const SearchBox = () => {
 }
 
 
-const PointInfoCard = ({ point: { name, credit, coordinates, images, owned_by_user, id, ...rest }, removePointHook }) => {
+const PointInfoCard = ({ point: { name, credit, coordinates, images, owned_by_user, id, ...rest }, removePointHook, close }) => {
     // add button states for feedback
     const downloadImage = (src, i) => saveAs(src, name + i + '.png')
     const copyLink = () => {
@@ -141,6 +149,16 @@ const PointInfoCard = ({ point: { name, credit, coordinates, images, owned_by_us
 
     return (
         <div className=' bg-gray-500 border flex-col flex p-2 m-1 ' >
+            <div className='absolute top-2 right-2 ' onClick={close}>
+                <button type="button" class="bg-white rounded-md p-1 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                    <span class="sr-only">Close menu</span>
+                    <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+
+
+            </div>
             <div className=' flex flex-row lg:flex-col gap-1 max-w-lg lg:max-h-128 overflow-scroll'>
                 {images && images.map((src, i) => <img key={i} onClick={() => downloadImage(src, i)} className=' object-contain loading-spinner rounded-lg h-52 md:h-96 w-auto' src={src} />)}
 
@@ -152,6 +170,7 @@ const PointInfoCard = ({ point: { name, credit, coordinates, images, owned_by_us
                 {rest.public ? <button title="Share" onClick={copyLink}>🔗</button> : null}
                 {owned_by_user ? <button title="Delete" onClick={() => removePointHook(id)}>🗑️</button> : null}
             </div>
+
         </div>
     )
 }
@@ -159,16 +178,15 @@ const PointInfoCard = ({ point: { name, credit, coordinates, images, owned_by_us
 
 
 
-export const ControlPanel = ({ selectedPoints, addNewPointHook, addPointDialogOpen, closePointDialog, user, removePointHook }) => {
-    // const inputuseState
+
+export const ControlPanel = ({ selectedPoints, deselectPoint, addNewPointHook, addPointDialogOpen, closePointDialog, user, removePointHook }) => {
 
 
     return (
         <div className='flex flex-row  ' >
 
-
             {user && addPointDialogOpen ? < AddPointDialog addNewPointHook={addNewPointHook} closePointDialog={closePointDialog} user={user} /> : null}
-            {selectedPoints.length > 0 ? <>{selectedPoints.map(p => <PointInfoCard removePointHook={removePointHook} key={p.coordinates.join()} point={p} />)}</> : null}
+            {selectedPoints.length > 0 ? <>{selectedPoints.map((p, i) => <PointInfoCard removePointHook={removePointHook} key={p.coordinates.join()} point={p} close={() => deselectPoint(i)} />)}</> : null}
 
         </div>
     )

@@ -24,6 +24,7 @@ import {
     addDoc,
     setDoc,
     deleteDoc,
+    updateDoc,
 } from "firebase/firestore";
 
 import {
@@ -117,35 +118,6 @@ export const GetPoints = async () => {
 }
 
 
-async function Utility_PointUpdateOperations() {
-
-    // const sortObject = o => Object.keys(o).sort().reduce((r, k) => (r[k] = o[k], r), {})
-
-// GeDruchy
-    GetPoints()
-        .then(async points => {
-            console.log({points});
-            for (let point of points) {
-                // delete point.owned_by_user
-
-                // if (!point.credit) point.credit = "GeDruchy"
-                // if (!point.category) point.tags = ["art"]
-                // console.log(point);
-                // const newPoint = sortObject(point)
-                // console.log(newPoint);
-                // let pointRef = await doc(db, "points", point.id);
-                // console.log(pointRef,point);
-                // let out = await setDoc(pointRef, point)
-                // log
-            }
-            // console.log(auth.currentUser.displayName);
-
-            return points
-        })
-        .then(console.log)
-
-}
-// Utility_PointUpdateOperations()
 
 
 
@@ -197,8 +169,8 @@ export const AddPoint = async ({ point, imageFiles, progressHook, thumbnail }) =
     } else {
         newPoint.credit = auth.currentUser.displayName
     }
-// if you dont enter a credit, it credits you the person submiting
-// if you DO enter a creidt, it credits whoever you entered "care of" your username
+    // if you dont enter a credit, it credits you the person submiting
+    // if you DO enter a creidt, it credits whoever you entered "care of" your username
 
     // remove stuff we don't want to send to the db
     delete newPoint.owned_by_user
@@ -274,3 +246,42 @@ export const DeletePoint = async (id) => {
 
 
 
+
+
+
+async function Utility_PointUpdateOperations() {
+
+    // const sortObject = o => Object.keys(o).sort().reduce((r, k) => (r[k] = o[k], r), {})
+
+
+    // AddPoint({ point: { coordinates: positions[0], public: false, name: "test" } })
+
+    // GeDruchy
+    GetPoints()
+        .then(async points => {
+            for (let point of points.filter(p => !p.public)) {
+                delete point.owned_by_user
+
+                //             // if (!point.credit) point.credit = "GeDruchy"
+                //             // if (!point.category) point.tags = ["art"]
+                //             // console.log(point);
+                //             // const newPoint = sortObject(point)
+                //             // console.log(newPoint);
+
+
+                let pointRef = await doc(db, "points", point.id);
+                console.log(point);
+                await updateDoc(pointRef, {
+                    "public": true
+                });
+                //             // let out = await setDoc(pointRef, point)
+                //             // log
+            }
+            //         // console.log(auth.currentUser.displayName);
+
+            //         return points
+        })
+    //     .then(console.log)
+
+}
+// Utility_PointUpdateOperations()
