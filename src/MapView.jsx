@@ -236,7 +236,6 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDi
       points.find(({ coordinates }) =>
         coordinates.join() == select.getGeometry().getCoordinates().join()))
       .filter(s => s)
-      console.log({selected});
     setSelectedPoints(selected)
 
 
@@ -260,8 +259,8 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDi
         {/* the map */}
         <Map ref={setMap}
           style={{ width: "100%", height: "100vh" }}
-          // [ADD POINT MODE]
-          // onSingleclick={onMapClick}
+        // [ADD POINT MODE]
+        // onSingleclick={onMapClick}
 
 
 

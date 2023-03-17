@@ -71,6 +71,8 @@ function App() {
     PreSelectPoint()
 
   }
+  const deselectPoint = (i) => setSelectedPoints(selectedPoints.filter((item, index) => index != i))
+
 
   const addNewPointHook = async ({ pointData, imageFiles, thumbnail }) => {
     console.log("[addNewPointHook]", { pointData });
@@ -115,6 +117,7 @@ function App() {
         {openControls ? <ControlPanel
           points={points}
           selectedPoints={selectedPoints}
+          deselectPoint={deselectPoint}
           addNewPointHook={addNewPointHook}
           removePointHook={removePointHook}
           addPointDialogOpen={addPointDialogOpen}
