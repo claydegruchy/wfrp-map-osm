@@ -191,10 +191,9 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDi
     if (!user) setContextMenuLocation(null)
   }, [contextMenuLocation])
 
-  useEffect(() => {
-    if (!points || points.length < 1) return
-    setPreviewPoint([points.find(p => p.name.includes('Bruynwater'))])
-  }, [points])
+
+
+  
 
 
   // controllers for the context menu
