@@ -103,6 +103,7 @@ const AddPointDialog = ({ addNewPointHook, closePointDialog, user }) => {
             </Button >]}
         >
 
+            <h3 className="text-3xl font-semibold">This tool is a work in progress. In the future you will be able to add your own locations, but at the moment this is restricted to admins.</h3>
             <form className='w-96' ref={form} onSubmit={handleSubmit}>
                 <label>Location name:
                     <input className='border' ref={input => { input && input.focus() }} autoFocus name="name" type="text" />

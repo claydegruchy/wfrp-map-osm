@@ -1,4 +1,4 @@
-# WFRP Map
+# Hammermap
 A map for WFRP or other games. Used to store battlemaps and images for games, plus give extra detail to locations
 
 # Storage of map files
