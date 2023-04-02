@@ -193,9 +193,6 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDi
 
 
 
-  
-
-
   // controllers for the context menu
   useEffect(() => {
     if (!map) return
@@ -289,6 +286,7 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDi
 
 
           {/* context menu */}
+          
           {contextMenuLocation ? (
             <olOverlay
               element={contextMenu}
