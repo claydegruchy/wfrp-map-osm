@@ -19,7 +19,7 @@
   "dependencies": {
     "@react-ol/fiber": "1.0.0-beta.1",
     "file-saver": "^2.0.5",
-    "firebase": "^9.17.1",
+    "firebase": "^9.23.0",
     "ol": "^7.2.2",
     "react": "^18.2.0",
     "react-device-detect": "^2.2.3",
