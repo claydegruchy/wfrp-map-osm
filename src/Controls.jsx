@@ -121,7 +121,7 @@ const AddPointDialog = ({ addNewPointHook, closePointDialog, user }) => {
                     <input className='border italic' name="credit" type="text" placeholder={user.displayName} />
                 </label>
                 <label>Share publically:
-                    <input name="public" data-val="true" value="true" defaultChecked type="checkbox" />
+                    <input name="public" data-val="false" value="false"  type="checkbox" />
                 </label>
                 <div>
                     <input hidden type="submit" value="💾" />

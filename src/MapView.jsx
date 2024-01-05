@@ -16,6 +16,29 @@ import { click, pointerMove, altKeyOnly } from "ol/events/condition";
 
 import { Style, Circle as CircleStyle, Fill, Stroke, Text } from "ol/style";
 import GeoJSON from "ol/format/GeoJSON";
+import Polygon from "ol/geom/Polygon";
+
+
+import crop from "ol-ext/filter/Crop";
+import voronoi from '@turf/voronoi'
+import convex from "@turf/convex";
+import { point, featureCollection } from "@turf/helpers";
+import {
+  bbox,
+  getCoords,
+  polygon,
+  mask,
+  intersect,
+  explode,
+  union,
+  polygonSmooth,
+  simplify
+
+} from '@turf/turf'
+
+
+
+
 
 
 import { isMobile } from 'react-device-detect';
@@ -48,7 +71,7 @@ const styleBuilder = (i = {}) => {
   } = {
     strokeWidth: 1.25,
     strokeColor: '#3399CC',
-    fillColor: 'rgba(255,255,255,0.4)',
+    fillColor: 'rgba(255,255,255,0.1)',
     circleRadius: 5,
     txt: '',
     ...i
@@ -159,6 +182,120 @@ const PointGroup = ({ points }) => <olSourceVector >
 
 
 
+const ConvexHull = ({ points }) => {
+
+  var p = featureCollection(
+    //   [
+    //   point([0, 0]),
+    //   point([1000000, 0]),
+    //   point([0, 1000000]),
+    //   point([0, 0]),
+    // ]
+    points.map(p => point(p.coordinates))
+  );
+
+  if (points.length < 3) return null
+  var options = { units: 'miles', maxEdge: 1 };
+
+  var { geometry: { coordinates } } = convex(p, options);
+  // point
+
+
+
+  return (
+    <olSourceVector features={[]} >
+      <olFeature>
+        <olGeomPolygon
+          args={[
+            coordinates
+            // [
+            //   [
+            //     [0, 0],
+            //     [1000000, 0],
+            //     [0, 1000000],
+            //     [0, 0],
+            //   ],
+            // ],
+          ]}
+        />
+      </olFeature>
+    </olSourceVector>
+  )
+}
+
+function VoronoiCells({ points, smooth = true }) {
+
+  var p = featureCollection(
+    points.map(p => point(p.coordinates))
+
+  );
+
+  const bounds = bbox(p);
+
+  if (!p || p.length < 1) return null
+
+  function maskMultiPolygon(multiPolygon, geometryToMask) {
+    // Step 1: Split MultiPolygon into an array of Polygons
+    const polygons = multiPolygon.features
+
+    console.log(polygons.length);
+
+    // Step 2: Loop for each Polygon and call mask()
+    const maskResults = [];
+    let i = 0
+    for (const polygon of polygons) {
+      let maskedGeometry = intersect(geometryToMask, polygon,);
+      if (smooth) {
+        // maskedGeometry = simplify(maskedGeometry, { tolerance: 50000, highQuality: false })
+        maskedGeometry = polygonSmooth(maskedGeometry, { iterations: 3 }).features[0]
+
+      }
+      // console.log({ maskedGeometry }, i)
+
+      maskResults.push(maskedGeometry);
+      i++
+    }
+    return featureCollection(maskResults)
+
+  }
+
+  var voronoiPolygons = voronoi(p, { bbox: bounds });
+  if (!voronoiPolygons) return null
+
+  const masked = maskMultiPolygon(voronoiPolygons, convex(p))
+
+
+
+  return (
+    <>
+      {
+        masked.features
+          // .filter((f) => coordinates[0].length > 2)
+          .map(({ geometry: { coordinates } }) =>
+            <olLayerVector key={coordinates.join()} style={(feature, zoom) => styleBuilder({
+              strokeColor: 'rgba(125, 0, 0, 0.8)',
+              fillColor: 'rgba(0, 0, 0, 0.8)'
+            })}><olSourceVector features={[]} >
+
+                <olFeature>
+                  <olGeomPolygon
+                    args={[
+                      coordinates
+                    ]}
+                  />
+                </olFeature>
+              </olSourceVector>
+            </olLayerVector>
+
+          )
+      }
+    </>
+
+
+  )
+
+}
+
 
 
 export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDialogOpen, user, className, }) => {
@@ -166,6 +303,7 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDi
   // map definer
   const [map, setMap] = useState(null);
 
+  const voronoi = useRef(null)
 
   // console.log(map && map.getView().getZoom());
 
@@ -200,11 +338,16 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDi
     map.on('contextmenu', function (e) {
       e.preventDefault();
       setContextMenuLocation(e.coordinate)
+      // if url bar has param "fast" then console log xxx
+
+
     });
     // makes the popup go away
     map.on('click', function (e) {
       setContextMenuLocation(null)
     });
+
+
 
   }, [map])
 
@@ -250,6 +393,9 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDi
   }, [points]);
 
 
+
+
+
   return (
     <>
       <div className={className}>
@@ -286,7 +432,7 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDi
 
 
           {/* context menu */}
-          
+
           {contextMenuLocation ? (
             <olOverlay
               element={contextMenu}
@@ -350,9 +496,20 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDi
             <PointGroup points={points.filter(p => p.public).filter(p => p.images?.length > 0)} />
           </olLayerVector>
 
-          <olLayerVector style={(feature, zoom) => styleBuilder({ strokeColor: 'orange' })}>
+          {/* <olLayerVector style={(feature, zoom) => styleBuilder({ strokeColor: 'orange' })}>
+            <ConvexHull points={points.filter(p => !p.public)} />
+          </olLayerVector> */}
+
+          {(user?.email == 'clay.degruchy@gmail.com') ?
+            <VoronoiCells ref={voronoi} smooth={false} points={points.filter(p => !p.public)} /> : null
+          }
+
+
+
+          <olLayerVector zIndex={2} style={(feature, zoom) => styleBuilder({ strokeColor: '#FFD580' })}>
             <PointGroup points={points.filter(p => !p.public)} />
           </olLayerVector>
+
 
 
 
@@ -368,6 +525,9 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDi
             // style={selectedStyleFunction}
             onSelect={handleMove}
           />}
+
+
+
 
 
         </Map>
