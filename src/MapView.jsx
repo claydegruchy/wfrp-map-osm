@@ -246,7 +246,7 @@ function VoronoiCells({ points, smooth = true }) {
     for (const polygon of polygons) {
       let maskedGeometry = intersect(geometryToMask, polygon,);
       if (smooth) {
-        maskedGeometry = simplify(maskedGeometry, { tolerance: 50000, highQuality: false })
+        // maskedGeometry = simplify(maskedGeometry, { tolerance: 50000, highQuality: false })
         maskedGeometry = polygonSmooth(maskedGeometry, { iterations: 3 }).features[0]
 
       }
@@ -264,8 +264,6 @@ function VoronoiCells({ points, smooth = true }) {
 
   const masked = maskMultiPolygon(voronoiPolygons, convex(p))
 
-  console.log({ masked });
-  console.log(masked.features.map(f => f.geometry.coordinates[0].length))
 
 
   return (
@@ -397,8 +395,6 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDi
 
 
 
-  // convex
-  // console.log(coordinates);
 
   return (
     <>
@@ -504,7 +500,11 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDi
             <ConvexHull points={points.filter(p => !p.public)} />
           </olLayerVector> */}
 
-          <VoronoiCells ref={voronoi} smooth={false} points={points.filter(p => !p.public)} />
+          {(user?.email == 'clay.degruchy@gmail.com') ?
+            <VoronoiCells ref={voronoi} smooth={false} points={points.filter(p => !p.public)} /> : null
+          }
+
+
 
           <olLayerVector zIndex={2} style={(feature, zoom) => styleBuilder({ strokeColor: '#FFD580' })}>
             <PointGroup points={points.filter(p => !p.public)} />
