@@ -32,6 +32,7 @@ import {
   explode,
   union,
   polygonSmooth,
+  simplify
 
 } from '@turf/turf'
 
@@ -222,7 +223,7 @@ const ConvexHull = ({ points }) => {
   )
 }
 
-const VoronoiCells = ({ points, smooth = true }) => {
+function VoronoiCells({ points, smooth = true }) {
 
   var p = featureCollection(
     points.map(p => point(p.coordinates))
@@ -244,7 +245,11 @@ const VoronoiCells = ({ points, smooth = true }) => {
     let i = 0
     for (const polygon of polygons) {
       let maskedGeometry = intersect(geometryToMask, polygon,);
-      if (smooth) maskedGeometry = polygonSmooth(maskedGeometry, { iterations: 3 }).features[0]
+      if (smooth) {
+        maskedGeometry = simplify(maskedGeometry, { tolerance: 50000, highQuality: false })
+        maskedGeometry = polygonSmooth(maskedGeometry, { iterations: 3 }).features[0]
+
+      }
       // console.log({ maskedGeometry }, i)
 
       maskResults.push(maskedGeometry);
@@ -271,7 +276,7 @@ const VoronoiCells = ({ points, smooth = true }) => {
           .map(({ geometry: { coordinates } }) =>
             <olLayerVector key={coordinates.join()} style={(feature, zoom) => styleBuilder({
               strokeColor: 'rgba(125, 0, 0, 0.8)',
-              fillColor: 'rgba(125, 125, 0, 0.1)'
+              fillColor: 'rgba(0, 0, 0, 0.8)'
             })}><olSourceVector features={[]} >
 
                 <olFeature>
@@ -495,15 +500,14 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDi
             <PointGroup points={points.filter(p => p.public).filter(p => p.images?.length > 0)} />
           </olLayerVector>
 
-          <olLayerVector style={(feature, zoom) => styleBuilder({ strokeColor: 'orange' })}>
+          {/* <olLayerVector style={(feature, zoom) => styleBuilder({ strokeColor: 'orange' })}>
             <ConvexHull points={points.filter(p => !p.public)} />
-          </olLayerVector>
+          </olLayerVector> */}
 
-          <VoronoiCells ref={voronoi} points={points.filter(p => !p.public)} />
+          <VoronoiCells ref={voronoi} smooth={false} points={points.filter(p => !p.public)} />
 
-          <olLayerVector style={(feature, zoom) => styleBuilder({ strokeColor: '#FFD580' })}>
+          <olLayerVector zIndex={2} style={(feature, zoom) => styleBuilder({ strokeColor: '#FFD580' })}>
             <PointGroup points={points.filter(p => !p.public)} />
-
           </olLayerVector>
 
 
