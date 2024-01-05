@@ -33,7 +33,6 @@ function App() {
 
 
   const PreSelectPoint = () => {
-    console.log(mapCommunications);
     const url = new URLSearchParams(location.search)
     var id = url.get('id')
     if (!id || mapCommunications) return
