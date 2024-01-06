@@ -32,7 +32,8 @@ import {
   explode,
   union,
   polygonSmooth,
-  simplify
+  simplify,
+  concave
 
 } from '@turf/turf'
 
@@ -195,9 +196,9 @@ const ConvexHull = ({ points }) => {
   );
 
   if (points.length < 3) return null
-  var options = { units: 'miles', maxEdge: 1 };
+  var options = { units: 'miles', maxEdge: 10000 };
 
-  var { geometry: { coordinates } } = convex(p, options);
+  var { geometry: { coordinates } } = concave(p, options);
   // point
 
 
@@ -262,8 +263,7 @@ function VoronoiCells({ points, smooth = true }) {
   var voronoiPolygons = voronoi(p, { bbox: bounds });
   if (!voronoiPolygons) return null
 
-  const masked = maskMultiPolygon(voronoiPolygons, convex(p))
-
+  const masked = maskMultiPolygon(voronoiPolygons, concave(p))
 
 
   return (
@@ -341,6 +341,7 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDi
       // if url bar has param "fast" then console log xxx
 
 
+
     });
     // makes the popup go away
     map.on('click', function (e) {
@@ -394,6 +395,7 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDi
 
 
 
+  console.log(JSON.stringify(points));
 
 
   return (
@@ -500,8 +502,8 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDi
             <ConvexHull points={points.filter(p => !p.public)} />
           </olLayerVector> */}
 
-          {(user?.email == 'clay.degruchy@gmail.com') ?
-            <VoronoiCells ref={voronoi} smooth={false} points={points.filter(p => !p.public)} /> : null
+          {(user?.email == 'clay.degruchy@gmail.com' && new URLSearchParams(location.search).get('overlay')) ?
+            <VoronoiCells ref={voronoi} smooth={new URLSearchParams(location.search).get('smooth')} points={points.filter(p => !p.public)} /> : null
           }
 
 
