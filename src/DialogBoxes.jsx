@@ -19,7 +19,7 @@ export const Button = ({ children, addClasses, ...rest }) => <button {...rest}
 export const Modal = ({ children, title, setShowModal, customButtons }) => (
     <div
         className=" justify-left items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
-        <div className={"relative w-auto my-6 mx-0 z-10 p-3 " + (new URLSearchParams(location.search).get('overlay') ? "max-w-sm" : "max-w-3xl")}>
+        <div className={"relative w-auto my-6 mx-0 z-10 p-3 " + (new URLSearchParams(location.search).get('edit') ? "max-w-sm" : "max-w-3xl")}>
             {/*content*/}
             <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                 {/*header*/}

@@ -234,7 +234,7 @@ function VoronoiCells({ points, smooth = true }) {
 
   const bounds = bbox(p);
 
-  if (!p || p.length < 1) return null
+  if (!points || points.length < 1) return null
 
   function maskMultiPolygon(multiPolygon, geometryToMask) {
     // Step 1: Split MultiPolygon into an array of Polygons
@@ -266,7 +266,7 @@ function VoronoiCells({ points, smooth = true }) {
   console.log("pp",
 
   );
-  let concaveHullPolygon = concaveHull(points.map(p => p.coordinates), 0.9,600000)
+  let concaveHullPolygon = concaveHull(points.map(p => p.coordinates), 0.9, 600000)
   // only returns a list of coords, need to convert to a poly feature
   concaveHullPolygon = polygon([concaveHullPolygon], {})
   console.log(concaveHullPolygon);
@@ -346,8 +346,9 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDi
     // right click menu needs to use an event listener
     map.on('contextmenu', function (e) {
       e.preventDefault();
-      setContextMenuLocation(e.coordinate)
+      (new URLSearchParams(location.search).get('edit')) ? newLocationHook({ coordinates: e.coordinate }) : setContextMenuLocation(e.coordinate)
       // if url bar has param "fast" then console log xxx
+
 
 
 
@@ -511,7 +512,7 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDi
             <ConvexHull points={points.filter(p => !p.public)} />
           </olLayerVector> */}
 
-          {(new URLSearchParams(location.search).get('overlay')) ?
+          {(new URLSearchParams(location.search).get('edit')) ?
             <VoronoiCells ref={voronoi} smooth={new URLSearchParams(location.search).get('smooth')} points={points.filter(p => !p.public)} /> : null
           }
 
