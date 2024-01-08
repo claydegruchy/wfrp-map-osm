@@ -24,6 +24,8 @@
     "@turf/turf": "^6.5.0",
     "@turf/voronoi": "^6.5.0",
     "concaveman": "^1.2.1",
+        "d3-delaunay": "^6.0.2",
+    "delaunator": "^5.0.0",
     "file-saver": "^2.0.5",
     "firebase": "^9.23.0",
     "ol": "^7.5.2",

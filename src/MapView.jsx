@@ -408,12 +408,15 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDi
             <ConvexHull points={points.filter(p => !p.public)} />
           </olLayerVector> */}
 
-          {(new URLSearchParams(location.search).get('edit')) ?
-            // <VoronoiCells ref={voronoi} smooth={new URLSearchParams(location.search).get('smooth')} points={points.filter(p => !p.public)} /> : null
-            <DelaunayCells points={points.filter(p => !p.public)} /> : null
+          {(new URLSearchParams(location.search).get('voronoi')) ?
+            <VoronoiCells ref={voronoi} smooth={new URLSearchParams(location.search).get('smooth')} points={points.filter(p => !p.public)} /> : null
+
           }
 
+          {(new URLSearchParams(location.search).get('delaunay')) ?
+            <DelaunayCells points={points.filter(p => !p.public)} /> : null
 
+          }
 
           <olLayerVector zIndex={2} style={(feature, zoom) => styleBuilder({ strokeColor: 'red' })}>
             <PointGroup points={points.filter(p => !p.public)} />
