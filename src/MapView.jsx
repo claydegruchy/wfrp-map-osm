@@ -33,12 +33,11 @@ import {
   union,
   polygonSmooth,
   simplify,
-  concave
+  concave,
 
 } from '@turf/turf'
 
-
-
+import concaveHull from 'concaveman'
 
 
 
@@ -196,7 +195,9 @@ const ConvexHull = ({ points }) => {
   );
 
   if (points.length < 3) return null
-  var options = { units: 'miles', maxEdge: 10000 };
+  var options = { units: 'miles', maxEdge: 0.0001 };
+
+
 
   var { geometry: { coordinates } } = concave(p, options);
   // point
@@ -262,8 +263,16 @@ function VoronoiCells({ points, smooth = true }) {
 
   var voronoiPolygons = voronoi(p, { bbox: bounds });
   if (!voronoiPolygons) return null
+  console.log("pp",
 
-  const masked = maskMultiPolygon(voronoiPolygons, concave(p))
+  );
+  let concaveHullPolygon = concaveHull(points.map(p => p.coordinates), 0.9,600000)
+  // only returns a list of coords, need to convert to a poly feature
+  concaveHullPolygon = polygon([concaveHullPolygon], {})
+  console.log(concaveHullPolygon);
+
+
+  const masked = maskMultiPolygon(voronoiPolygons, concaveHullPolygon)
 
 
   return (
@@ -395,7 +404,7 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDi
 
 
 
-  console.log(JSON.stringify(points));
+  // console.log(JSON.stringify(points));
 
 
   return (
@@ -502,13 +511,13 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDi
             <ConvexHull points={points.filter(p => !p.public)} />
           </olLayerVector> */}
 
-          {(user?.email == 'clay.degruchy@gmail.com' && new URLSearchParams(location.search).get('overlay')) ?
+          {(new URLSearchParams(location.search).get('overlay')) ?
             <VoronoiCells ref={voronoi} smooth={new URLSearchParams(location.search).get('smooth')} points={points.filter(p => !p.public)} /> : null
           }
 
 
 
-          <olLayerVector zIndex={2} style={(feature, zoom) => styleBuilder({ strokeColor: '#FFD580' })}>
+          <olLayerVector zIndex={2} style={(feature, zoom) => styleBuilder({ strokeColor: 'red' })}>
             <PointGroup points={points.filter(p => !p.public)} />
           </olLayerVector>
 

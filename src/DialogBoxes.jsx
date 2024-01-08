@@ -19,7 +19,7 @@ export const Button = ({ children, addClasses, ...rest }) => <button {...rest}
 export const Modal = ({ children, title, setShowModal, customButtons }) => (
     <div
         className=" justify-left items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
-        <div className="relative w-auto my-6 mx-0 max-w-3xl z-10 p-3">
+        <div className={"relative w-auto my-6 mx-0 z-10 p-3 " + (new URLSearchParams(location.search).get('overlay') ? "max-w-sm" : "max-w-3xl")}>
             {/*content*/}
             <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                 {/*header*/}
@@ -111,7 +111,7 @@ export const HelpDialog = () => {
                     <li>Check the box if you want to share them publically so everyone can enjoy them</li>
                 </ol> */}
                 {/* <p className='italic'>If you didn't create the images, make sure to credit the artist who did!</p> */}
-                
+
 
                 <h2 className='text-xl bold text-slate-900'>I have a high def map of a city/part of the world that I want to add</h2>
                 Adding zoomable maps is not yet automated, but <a href='https://forms.gle/5RRtzuv3Um5xN9Eh9'>use this form</a> and I'll try to add it for you
