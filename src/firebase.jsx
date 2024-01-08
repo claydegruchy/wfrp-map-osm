@@ -246,6 +246,25 @@ export const DeletePoint = async (id) => {
 
 
 
+export const GetPaths = async () => {
+    const pathsRef = collection(db, "paths");
+    const paths = await getDocs(pathsRef);
+    let o = []
+    paths.forEach(doc => {
+        o.push({ ...doc.data(), id: doc.id })
+    })
+    return o
+}
+
+export const AddPath = async ({ source_id, desination_id, name }) => {
+    const pathsRef = collection(db, "paths");
+    const path = await addDoc(pathsRef, {
+        source_id: db.doc('points/' + source_id),
+        desination_id: db.doc('points/' + desination_id),
+        name
+    });
+    return path
+}
 
 
 
@@ -271,9 +290,9 @@ async function Utility_PointUpdateOperations() {
 
                 let pointRef = await doc(db, "points", point.id);
                 console.log(point);
-                await updateDoc(pointRef, {
-                    "public": true
-                });
+                // await updateDoc(pointRef, {
+                //     "public": true
+                // });
                 //             // let out = await setDoc(pointRef, point)
                 //             // log
             }

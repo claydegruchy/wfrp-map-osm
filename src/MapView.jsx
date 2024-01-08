@@ -20,24 +20,18 @@ import Polygon from "ol/geom/Polygon";
 
 
 import crop from "ol-ext/filter/Crop";
-import voronoi from '@turf/voronoi'
 import convex from "@turf/convex";
 import { point, featureCollection } from "@turf/helpers";
 import {
-  bbox,
   getCoords,
-  polygon,
   mask,
-  intersect,
   explode,
   union,
-  polygonSmooth,
   simplify,
   concave,
 
 } from '@turf/turf'
 
-import concaveHull from 'concaveman'
 
 
 
@@ -56,10 +50,11 @@ import {
   Sartosa,
   Ubersreik,
 } from './Maps'
+import { VoronoiCells } from "./components/VoronoiCells";
 
 
 
-const styleBuilder = (i = {}) => {
+export const styleBuilder = (i = {}) => {
   // this immense clunky hunk of shit sets the styles
 
   let {
@@ -225,88 +220,6 @@ const ConvexHull = ({ points }) => {
   )
 }
 
-function VoronoiCells({ points, smooth = true }) {
-
-  var p = featureCollection(
-    points.map(p => point(p.coordinates))
-
-  );
-
-  const bounds = bbox(p);
-
-  if (!points || points.length < 1) return null
-
-  function maskMultiPolygon(multiPolygon, geometryToMask) {
-    // Step 1: Split MultiPolygon into an array of Polygons
-    const polygons = multiPolygon.features
-
-    console.log(polygons.length);
-
-    // Step 2: Loop for each Polygon and call mask()
-    const maskResults = [];
-    let i = 0
-    for (const polygon of polygons) {
-      let maskedGeometry = intersect(geometryToMask, polygon,);
-      if (smooth) {
-        // maskedGeometry = simplify(maskedGeometry, { tolerance: 50000, highQuality: false })
-        maskedGeometry = polygonSmooth(maskedGeometry, { iterations: 3 }).features[0]
-
-      }
-      // console.log({ maskedGeometry }, i)
-
-      maskResults.push(maskedGeometry);
-      i++
-    }
-    return featureCollection(maskResults)
-
-  }
-
-  var voronoiPolygons = voronoi(p, { bbox: bounds });
-  if (!voronoiPolygons) return null
-  console.log("pp",
-
-  );
-  let concaveHullPolygon = concaveHull(points.map(p => p.coordinates), 0.9, 600000)
-  // only returns a list of coords, need to convert to a poly feature
-  concaveHullPolygon = polygon([concaveHullPolygon], {})
-  console.log(concaveHullPolygon);
-
-
-  const masked = maskMultiPolygon(voronoiPolygons, concaveHullPolygon)
-
-
-  return (
-    <>
-      {
-        masked.features
-          // .filter((f) => coordinates[0].length > 2)
-          .map(({ geometry: { coordinates } }) =>
-            <olLayerVector key={coordinates.join()} style={(feature, zoom) => styleBuilder({
-              strokeColor: 'rgba(125, 0, 0, 0.8)',
-              fillColor: 'rgba(0, 0, 0, 0.8)'
-            })}><olSourceVector features={[]} >
-
-                <olFeature>
-                  <olGeomPolygon
-                    args={[
-                      coordinates
-                    ]}
-                  />
-                </olFeature>
-              </olSourceVector>
-            </olLayerVector>
-
-          )
-      }
-    </>
-
-
-  )
-
-}
-
-
-
 export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDialogOpen, user, className, }) => {
 
   // map definer
@@ -362,24 +275,6 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDi
 
   }, [map])
 
-  // [ADD POINT MODE]
-  // const onMapClick = useCallback(
-  //   ({ coordinate, originalEvent, e }) => {
-  //     console.log({ coordinate, POIPlacementArray })
-  //     if (originalEvent.altKey) {
-  //       updatePOIPlacementArray([...POIPlacementArray, coordinate])
-  //     }
-  //     if (originalEvent.shiftKey) {
-  //       updatePOIPlacementArray(POIPlacementArray.slice(0, -1))
-  //     }
-
-
-  //   }, [POIPlacementArray]
-  // )
-
-  // useEffect(() => {
-  //   console.debug(POIPlacementArray);
-  // }, [POIPlacementArray])
 
 
 

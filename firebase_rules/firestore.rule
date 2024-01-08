@@ -1,0 +1,44 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /points/{point} {
+
+
+      allow read: if resource.data.public == true || (request.auth != null && request.auth.uid == resource.data.owner_id);
+
+    }
+    match /points/{point} {
+
+      function isSignedIn() {
+        return request.auth != null;
+      }
+
+      function isOwner(){
+        return isSignedIn() && (request.auth.uid == resource.data.owner_id) 
+      }
+
+
+      function isValid(){
+        return request.resource.data.keys().hasAll(['coordinates', 'created', 'name', 'owner_id', 'public']);
+      }
+
+      function isAdmin(){
+        return isSignedIn() && (request.auth.uid == "Y11axwPd6heYY48jweWEZ9gEmp83")  
+      }
+
+
+
+      allow create: if isSignedIn() && isAdmin();
+      // allow create: if isSignedIn() &&  isValid();
+      allow update: if isOwner() && isValid();
+      allow delete: if isOwner();
+
+
+    }
+    match /paths/{path} {
+      allow list: if true;
+      allow read: if true;
+    }
+  }
+
+}

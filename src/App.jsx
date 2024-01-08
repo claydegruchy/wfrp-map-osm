@@ -6,7 +6,7 @@ import {
 } from "react";
 
 import { LoginDialog, HelpDialog } from './DialogBoxes'
-import { GetPoints, AddPoint, DeletePoint, auth } from './firebase'
+import { GetPoints, AddPoint, DeletePoint, auth, GetPaths, AddPath, } from './firebase'
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useEffect } from 'react';
 
@@ -21,6 +21,7 @@ function App() {
   const [user, loading, error] = useAuthState(auth);
 
   const [points, setPoints] = useState([])
+  const [paths, setPaths] = useState([])
 
   // point selection
   const [selectedPoints, setSelectedPoints] = useState([]);
@@ -63,13 +64,13 @@ function App() {
     setAddPointDialogCoordinate(null)
   }
 
-
-
-  const updatePointList = async () => {
+  const updateFirebaseElements = async () => {
     setPoints(await GetPoints() || [])
+    setPaths(await GetPaths() || [])
     PreSelectPoint()
-
   }
+
+
   const deselectPoint = (i) => setSelectedPoints(selectedPoints.filter((item, index) => index != i))
 
 
@@ -83,7 +84,7 @@ function App() {
     console.log("[addNewPointHook]", { point });
 
     await AddPoint({ point, imageFiles, thumbnail })
-    await updatePointList()
+    await updateFirebaseElements()
 
   }
 
@@ -95,20 +96,20 @@ function App() {
       .then(() => setSelectedPoints(selectedPoints.filter((p) => p.id != id)))
       .catch(console.error)
 
-    await updatePointList()
+    await updateFirebaseElements()
   }
 
 
 
 
-
+  console.log({ paths });
 
   return (
     <div className="App flex h-screen">
       {/* enable for bulk addition operations */}
       {/* <AddBulkPoints addNewPointHook={addNewPointHook} points={points} /> */}
       <div className=' absolute flex gap-2 z-10 top-2 left-2' >
-        <LoginDialog authChangeHook={updatePointList} />
+        <LoginDialog authChangeHook={updateFirebaseElements} />
         <HelpDialog />
       </div>
       <div className=' absolute flex z-10 bottom-0 ' >
