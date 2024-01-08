@@ -58,8 +58,8 @@ export function VoronoiCells({ points, smooth = true }) {
         .map(({ geometry: { coordinates } }) => <olLayerVector key={coordinates.join()} style={(feature, zoom) => styleBuilder({
           strokeColor: 'rgba(125, 0, 0, 0.8)',
           fillColor: 'rgba(0, 0, 0, 0.8)'
-        })}><olSourceVector features={[]}>
-
+        })}>
+          <olSourceVector features={[]}>
             <olFeature>
               <olGeomPolygon
                 args={[

@@ -51,6 +51,7 @@ import {
   Ubersreik,
 } from './Maps'
 import { VoronoiCells } from "./components/VoronoiCells";
+import { DelaunayCells } from "./components/DelaunayCells";
 
 
 
@@ -408,7 +409,8 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDi
           </olLayerVector> */}
 
           {(new URLSearchParams(location.search).get('edit')) ?
-            <VoronoiCells ref={voronoi} smooth={new URLSearchParams(location.search).get('smooth')} points={points.filter(p => !p.public)} /> : null
+            // <VoronoiCells ref={voronoi} smooth={new URLSearchParams(location.search).get('smooth')} points={points.filter(p => !p.public)} /> : null
+            <DelaunayCells points={points.filter(p => !p.public)} /> : null
           }
 
 
