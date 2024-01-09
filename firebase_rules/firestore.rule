@@ -1,6 +1,17 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(){
+      return isSignedIn() && (request.auth.uid == resource.data.owner_id) 
+    }
+
+    function isAdmin(){
+      return isSignedIn() && (request.auth.uid == "Y11axwPd6heYY48jweWEZ9gEmp83")  
+    }
     match /points/{point} {
 
 
@@ -9,22 +20,14 @@ service cloud.firestore {
     }
     match /points/{point} {
 
-      function isSignedIn() {
-        return request.auth != null;
-      }
 
-      function isOwner(){
-        return isSignedIn() && (request.auth.uid == resource.data.owner_id) 
-      }
 
 
       function isValid(){
         return request.resource.data.keys().hasAll(['coordinates', 'created', 'name', 'owner_id', 'public']);
       }
 
-      function isAdmin(){
-        return isSignedIn() && (request.auth.uid == "Y11axwPd6heYY48jweWEZ9gEmp83")  
-      }
+
 
 
 
@@ -35,10 +38,15 @@ service cloud.firestore {
 
 
     }
-    match /paths/{path} {
-      allow list: if true;
-      allow read: if true;
+    match /paths/{pathId} {
+      function isValid() {
+        return request.resource.data.keys().hasAll(['destination_id', 'source_id', 'created'])
+          && request.resource.data.created is timestamp
+      }
+
+      allow read: if isAdmin()
+      allow create: if isValid() && isAdmin();
+      allow update: if isValid() && isAdmin();
     }
   }
-
 }

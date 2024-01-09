@@ -117,7 +117,16 @@ export const GetPoints = async () => {
     return o
 }
 
+export const GetPoint = async ({ id, reference }) => {
+    let pointRef = reference || await doc(db, "points", id);
+    let point = (await getDoc(pointRef))
+    if (!point.exists()) {
+        console.log("no such point");
+        return null
+    }
+    return point.data()
 
+}
 
 
 
@@ -257,6 +266,9 @@ export const GetPaths = async () => {
 }
 
 export const AddPath = async ({ source_id, desination_id, name }) => {
+    // validate
+    if (!source_id || !desination_id || !name) throw new Error("missing data")
+
     const pathsRef = collection(db, "paths");
     const path = await addDoc(pathsRef, {
         source_id: db.doc('points/' + source_id),

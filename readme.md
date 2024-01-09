@@ -25,3 +25,15 @@ Thanks to Magnus Seter via http://altdorfer.blogspot.com. I hope to load the var
 ### Various maps from planjanusza
 Big thanks to https://www.deviantart.com/planjanusza for the free listed assets on their deviantart. Amazing stuff and inspired me to make this. Multiple maps are used from here and I hope this list is exhaustive:
 - Marienburg
+
+
+
+# notes
+DelaunayCells
+in order to make this work, i need to make paths their own entities in firebase
+- generate the paths with Delaunay
+- set the paths in the database
+- remove the Delaunay generated paths from the ui, and use db to infrom the paths
+
+but then i need a pipeline to ensure i can do this again easily in future without needning to remove the paths.
+maybe every point that has a path cnnected to it should not be included in future Delaunay calculations

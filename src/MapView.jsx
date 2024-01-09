@@ -32,7 +32,7 @@ import {
 
 } from '@turf/turf'
 
-
+import { Delaunay } from 'd3-delaunay';
 
 
 import { isMobile } from 'react-device-detect';
@@ -221,8 +221,7 @@ const ConvexHull = ({ points }) => {
   )
 }
 
-export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDialogOpen, user, className, }) => {
-
+export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDialogOpen, user, className, paths }) => {
   // map definer
   const [map, setMap] = useState(null);
 
@@ -240,6 +239,7 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDi
 
   const [POIPlacementArray, updatePOIPlacementArray] = useState([]);
 
+  const [lines, setLines] = useState([])
 
 
   // closes the context menu when the add point dialog is closed
@@ -271,10 +271,45 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDi
     map.on('click', function (e) {
       setContextMenuLocation(null)
     });
-
-
-
   }, [map])
+
+
+
+
+  useEffect(e => {
+    // Math.random().toString(16).slice(2)
+    console.log("points changed... updating Delaunay");
+    const firstCoords = points
+      .filter(p => !p.name.includes(" "))
+      .map(p => p.coordinates)
+      // .slice(0, 30)
+      .flat()
+
+    const d = new Delaunay(firstCoords);
+    Promise.all(d.trianglePolygons())
+      .then((triangles) => {
+        const l = []
+        const g = []
+
+        for (const triangle of triangles) {
+          for (let i = 0; i < 3; i++) {
+            let a = triangle[i]
+            let b = triangle[(i + 1) % 3]
+
+            const dis = Math.sqrt((a[0] - b[0]) ** 2 + (a[1] - b[1]) ** 2);
+
+            g.push(dis)
+            if (dis > 872217) continue
+
+            l.push([a, b])
+          }
+        }
+        // p({ g: g.sort((a, b) => a - b) })
+
+        setLines(l)
+
+      })
+  }, [points])
 
 
 
@@ -414,9 +449,23 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDi
           }
 
           {(new URLSearchParams(location.search).get('delaunay')) ?
-            <DelaunayCells points={points.filter(p => !p.public)} /> : null
-
+            <olLayerVector style={(feature, zoom) => styleBuilder({
+              strokeColor: 'rgba(125, 0, 0, 0.8)',
+              fillColor: 'rgba(0, 0, 0, 0.8)',
+              strokeWidth: 10
+            })} >
+              <DelaunayCells lines={lines} paths={paths} />
+            </olLayerVector> : null
           }
+
+          <olLayerVector style={(feature, zoom) => styleBuilder({
+            strokeColor: 'rgba(0, 125, 0, 0.8)',
+            fillColor: 'rgba(0, 0, 0, 0.8)',
+            strokeWidth: 10
+          })} >
+            <DelaunayCells lines={paths.map(e => e.vector)} />
+          </olLayerVector>
+
 
           <olLayerVector zIndex={2} style={(feature, zoom) => styleBuilder({ strokeColor: 'red' })}>
             <PointGroup points={points.filter(p => !p.public)} />
@@ -432,15 +481,36 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDi
             onSelect={handleClick}
           />
 
+          <olInteractionSelect
+            args={{ condition: click }}
+            // style={selectedStyleFunction}
+            onSelect={e => {
+              if (!e.mapBrowserEvent.originalEvent.altKey) return
+              console.log("alt click")
+            }}
+          />
+
+
+          <olInteractionSelect
+            args={{ condition: pointerMove }}
+            onSelect={e => {
+              // check if key down
+              if (!e.mapBrowserEvent.originalEvent.altKey) return
+              var hovered = e.target.getFeatures().getArray()
+              console.log("ban this route", hovered);
+              // .map(select =>
+              //   points.find(({ coordinates }) =>
+              //     coordinates.join() == select.getGeometry().getCoordinates().join()))
+              // updatePOIPlacementArray(hovered.filter(s => s).map(p => p.coordinates))
+            }
+            }
+          />
+
           {isMobile ? null : <olInteractionSelect
             args={{ condition: pointerMove }}
             // style={selectedStyleFunction}
             onSelect={handleMove}
           />}
-
-
-
-
 
         </Map>
       </div>

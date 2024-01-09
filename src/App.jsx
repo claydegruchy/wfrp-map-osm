@@ -6,14 +6,13 @@ import {
 } from "react";
 
 import { LoginDialog, HelpDialog } from './DialogBoxes'
-import { GetPoints, AddPoint, DeletePoint, auth, GetPaths, AddPath, } from './firebase'
+import { GetPoints, AddPoint, DeletePoint, auth, GetPaths, AddPath, GetPoint } from './firebase'
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useEffect } from 'react';
 
 import { AddBulkPoints } from './Utilities'
 
-
-
+export const findPoint = (points, id) => points.find(p => p.id == id)
 
 
 function App() {
@@ -65,8 +64,21 @@ function App() {
   }
 
   const updateFirebaseElements = async () => {
-    setPoints(await GetPoints() || [])
-    setPaths(await GetPaths() || [])
+    const unprocessedPoints = await GetPoints() || []
+    setPoints(unprocessedPoints)
+
+    // we query enmasse and update the paths locally to not spam firestore
+    const unprocessedPaths = await GetPaths() || []
+    const processedPaths = []
+    unprocessedPaths.forEach(async path => {
+      path.source_point = findPoint(unprocessedPoints, path.source_id.id)
+      path.destination_point = findPoint(unprocessedPoints, path.destination_id.id)
+      path.vector = [path.source_point.coordinates, path.destination_point.coordinates]
+      processedPaths.push(path)
+    })
+
+    setPaths(processedPaths)
+
     PreSelectPoint()
   }
 
@@ -102,7 +114,6 @@ function App() {
 
 
 
-  console.log({ paths });
 
   return (
     <div className="App flex h-screen">
@@ -134,6 +145,7 @@ function App() {
         addPointDialogOpen={addPointDialogOpen}
         user={user}
         setMapCommunications={setMapCommunications}
+        paths={paths}
 
         className={'flex-1'}
       ></MapView>
