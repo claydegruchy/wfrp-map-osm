@@ -20,11 +20,14 @@ import {
     collection,
     getDocs,
     getDoc,
-    where,
     addDoc,
     setDoc,
     deleteDoc,
     updateDoc,
+
+    where,
+    and,
+    or,
 } from "firebase/firestore";
 
 import {
@@ -265,15 +268,46 @@ export const GetPaths = async () => {
     return o
 }
 
-export const AddPath = async ({ source_id, desination_id, name }) => {
+export const UpdatePath = async ({ id, data }) => {
+    const pathRef = doc(db, "paths", id);
+    const original = await getDoc(pathRef)
+    if (!original.exists()) {
+        console.log("no such path");
+        return null
+    }
+
+    console.log("updating path", { id, data });
+
+    return await updateDoc(pathRef, data);
+}
+
+export const AddPath = async ({ source_id, destination_id, type, name, status }) => {
     // validate
-    if (!source_id || !desination_id || !name) throw new Error("missing data")
+    if (!source_id || !destination_id || !type) throw new Error("missing data")
 
     const pathsRef = collection(db, "paths");
+    // check for duplicates
+    const paths = await getDocs(query(pathsRef,
+        or(
+            and(
+                where("source_id", "==", source_id),
+                where("destination_id", "==", destination_id)),
+            and(where("source_id", "==", destination_id),
+                where("destination_id", "==", source_id))
+        )
+    ));
+
+    if (paths.docs.length > 0) throw new Error("duplicate path")
+
+
     const path = await addDoc(pathsRef, {
-        source_id: db.doc('points/' + source_id),
-        desination_id: db.doc('points/' + desination_id),
-        name
+        source_id: source_id,
+        destination_id: destination_id,
+        name,
+        type,
+        created: new Date(),
+        status,
+
     });
     return path
 }

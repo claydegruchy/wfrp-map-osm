@@ -48,7 +48,9 @@ function App() {
   useEffect(e => {
     // only do this once
     PreSelectPoint()
-  }, [points, mapCommunications])
+  }, [mapCommunications])
+
+
 
 
   const openControls = selectedPoints.length > 0 || addPointDialogOpen
@@ -63,22 +65,33 @@ function App() {
     setAddPointDialogCoordinate(null)
   }
 
-  const updateFirebaseElements = async () => {
-    const unprocessedPoints = await GetPoints() || []
-    setPoints(unprocessedPoints)
-
+  const updatePaths = async (unprocessedPoints) => {
+    if (unprocessedPoints.length < 1) return
+    console.log("[updatePaths]", unprocessedPoints.length)
     // we query enmasse and update the paths locally to not spam firestore
     const unprocessedPaths = await GetPaths() || []
     const processedPaths = []
     unprocessedPaths.forEach(async path => {
-      path.source_point = findPoint(unprocessedPoints, path.source_id.id)
-      path.destination_point = findPoint(unprocessedPoints, path.destination_id.id)
+      path.source_point = findPoint(unprocessedPoints, path.source_id)
+      path.destination_point = findPoint(unprocessedPoints, path.destination_id)
       path.vector = [path.source_point.coordinates, path.destination_point.coordinates]
       processedPaths.push(path)
     })
-
+    console.log({ processedPaths });
     setPaths(processedPaths)
+  }
 
+
+  useEffect(e => {
+    // only do this once
+    updatePaths(points)
+  }, [points])
+
+  const updateFirebaseElements = async () => {
+    const unprocessedPoints = await GetPoints() || []
+    setPoints(unprocessedPoints)
+
+    updatePaths(unprocessedPoints)
     PreSelectPoint()
   }
 
@@ -146,6 +159,7 @@ function App() {
         user={user}
         setMapCommunications={setMapCommunications}
         paths={paths}
+        updatePaths={updateFirebaseElements}
 
         className={'flex-1'}
       ></MapView>

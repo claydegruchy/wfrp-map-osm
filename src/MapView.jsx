@@ -51,9 +51,12 @@ import {
   Ubersreik,
 } from './Maps'
 import { VoronoiCells } from "./components/VoronoiCells";
-import { DelaunayCells } from "./components/DelaunayCells";
+
+import { AddBulkPaths, debounce } from './Utilities'
 
 
+
+import { UpdatePath } from './firebase'
 
 export const styleBuilder = (i = {}) => {
   // this immense clunky hunk of shit sets the styles
@@ -221,13 +224,16 @@ const ConvexHull = ({ points }) => {
   )
 }
 
-export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDialogOpen, user, className, paths }) => {
+
+
+
+
+
+export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDialogOpen, user, className, paths, updatePaths }) => {
   // map definer
   const [map, setMap] = useState(null);
 
   const voronoi = useRef(null)
-
-  // console.log(map && map.getView().getZoom());
 
   // popup preview stuff
   const [previewPoint, setPreviewPoint] = useState([]);
@@ -237,9 +243,53 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDi
   const [contextMenu, setContextMenu] = useState(null);
   const [contextMenuLocation, setContextMenuLocation] = useState(null);
 
-  const [POIPlacementArray, updatePOIPlacementArray] = useState([]);
 
   const [lines, setLines] = useState([])
+
+
+  const [geoFeatures, setGeoFeatures] = useState({
+    type: "FeatureCollection",
+    crs: {
+      type: "name",
+      properties: {
+        name: "EPSG:3857",
+      },
+    },
+    features: []
+  })
+
+
+
+  useEffect(() => {
+    const geos = {
+      type: "FeatureCollection",
+      crs: {
+        type: "name",
+        properties: {
+          name: "EPSG:3857",
+        },
+      },
+      features: []
+    }
+
+    paths.forEach(path => {
+      geos.features.push({
+        type: "Feature",
+        // need to do this as i can't find a way of passing custom data
+        id: path.id + ":" + path.status,
+        geometry: {
+          type: "LineString",
+          coordinates: path.vector,
+        }
+      })
+
+    })
+
+    setGeoFeatures(geos)
+    // console.log(geos)
+
+  }, [paths])
+
 
 
   // closes the context menu when the add point dialog is closed
@@ -254,6 +304,11 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDi
 
 
 
+
+
+
+
+
   // controllers for the context menu
   useEffect(() => {
     if (!map) return
@@ -263,10 +318,8 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDi
       (new URLSearchParams(location.search).get('edit')) ? newLocationHook({ coordinates: e.coordinate }) : setContextMenuLocation(e.coordinate)
       // if url bar has param "fast" then console log xxx
 
-
-
-
     });
+
     // makes the popup go away
     map.on('click', function (e) {
       setContextMenuLocation(null)
@@ -274,13 +327,18 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDi
   }, [map])
 
 
-
-
   useEffect(e => {
-    // Math.random().toString(16).slice(2)
+    // manual ignore list
+    const ignore = [
+      'Hundsheimerwald',
+    ]
+    // manual add list
+
     console.log("points changed... updating Delaunay");
     const firstCoords = points
       .filter(p => !p.name.includes(" "))
+      .filter(p => !p.public)
+      .filter(p => !ignore.includes(p.name))
       .map(p => p.coordinates)
       // .slice(0, 30)
       .flat()
@@ -299,19 +357,45 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDi
             const dis = Math.sqrt((a[0] - b[0]) ** 2 + (a[1] - b[1]) ** 2);
 
             g.push(dis)
-            if (dis > 872217) continue
+            if (dis > 572217) continue
 
             l.push([a, b])
           }
         }
         // p({ g: g.sort((a, b) => a - b) })
-
+        console.log("lines", l.length);
         setLines(l)
 
       })
   }, [points])
 
 
+  const pathBan = e => {
+    // check if key down
+    if (e.mapBrowserEvent.originalEvent.altKey || e.mapBrowserEvent.originalEvent.ctrlKey) {
+      let hovered = e.target.getFeatures().getArray()
+      if (!hovered || hovered.length < 1) return
+      let [id, status] = hovered[0].id_.split(":")
+
+      if (e.mapBrowserEvent.originalEvent.altKey && status == 'active') {
+        console.log("ban this route", id, status);
+
+        UpdatePath({ id, data: { status: 'banned' } })
+        paths.find(p => p.id == id).status = 'banned'
+        updatePaths(points)
+
+      }
+      if (e.mapBrowserEvent.originalEvent.ctrlKey && status != 'active') {
+        console.log("enable this route", id, status);
+
+        UpdatePath({ id, data: { status: 'active' } })
+        updatePaths(points)
+
+      }
+    }
+  }
+
+  const pathBanDebounce = useCallback(debounce(pathBan, 100), [paths])
 
 
 
@@ -330,18 +414,21 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDi
       .filter(s => s)
     setSelectedPoints(selected)
 
-
+    var selected = e.target.getFeatures()[0]
+    console.log("selected", selected?.getProperties());
 
   }, [points]);
 
 
 
-  // console.log(JSON.stringify(points));
+  const hoverStyleStatic = useMemo(() => styleBuilder({ strokeColor: 'red' }))
 
 
   return (
     <>
-      <div className={className}>
+      {new URLSearchParams(location.search).get('edit') ? <button onClick={() => AddBulkPaths({ lines, points, paths })}>Add Bulk Paths</button> : null}
+
+      < div className={className}>
         {/* hidden popup waiting for usafe */}
         <div className="hidden-popup-container" >
           <PreviewPopup setPopup={setPopup} previewPoint={previewPoint} />
@@ -386,7 +473,6 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDi
           ) : null}
 
 
-          {/* controls */}
           {/* <olControlOverviewMap layers={[]} /> */}
           {/* <olControlRotate /> */}
           <olControlFullScreen />
@@ -430,46 +516,74 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDi
 
           {/* <olLayerVector style={(e, a, c) => { console.log(e, a, c); return styleBuilder({ txt: "HELLO", strokeColor: 'yellow', strokeWidth: 2, circleRadius: isMobile ? 8 : 5 }) }}> */}
 
-          <olLayerVector style={(feature, zoom) => styleBuilder({ strokeColor: 'yellow', strokeWidth: 2, circleRadius: isMobile ? 8 : 5 })}>
+          {/* <olLayerVector style={(feature, zoom) => styleBuilder({ strokeColor: 'yellow', strokeWidth: 2, circleRadius: isMobile ? 8 : 5 })}>
             <PointGroup points={points.filter(p => p.public).filter(p => !p.images || p.images?.length == 0)} />
           </olLayerVector>
 
 
           <olLayerVector style={(feature, zoom) => styleBuilder({ strokeColor: 'blue', strokeWidth: 2, circleRadius: isMobile ? 8 : 5 })}>
             <PointGroup points={points.filter(p => p.public).filter(p => p.images?.length > 0)} />
+          </olLayerVector> */}
+
+          <olLayerVector zIndex={2} style={hoverStyleStatic}>
+            <PointGroup points={points.filter(p => !p.public)} />
           </olLayerVector>
 
-          {/* <olLayerVector style={(feature, zoom) => styleBuilder({ strokeColor: 'orange' })}>
-            <ConvexHull points={points.filter(p => !p.public)} />
-          </olLayerVector> */}
+
+
 
           {(new URLSearchParams(location.search).get('voronoi')) ?
             <VoronoiCells ref={voronoi} smooth={new URLSearchParams(location.search).get('smooth')} points={points.filter(p => !p.public)} /> : null
 
           }
 
-          {(new URLSearchParams(location.search).get('delaunay')) ?
+          {/* {(new URLSearchParams(location.search).get('delaunay')) ?
             <olLayerVector style={(feature, zoom) => styleBuilder({
               strokeColor: 'rgba(125, 0, 0, 0.8)',
               fillColor: 'rgba(0, 0, 0, 0.8)',
               strokeWidth: 10
             })} >
-              <DelaunayCells lines={lines} paths={paths} />
+              <LineDraw lines={lines} />
             </olLayerVector> : null
-          }
+          } */}
 
-          <olLayerVector style={(feature, zoom) => styleBuilder({
-            strokeColor: 'rgba(0, 125, 0, 0.8)',
+
+          {/* <olLayerVector style={(feature, zoom) => styleBuilder({
+            strokeColor: 'grey',
             fillColor: 'rgba(0, 0, 0, 0.8)',
             strokeWidth: 10
           })} >
-            <DelaunayCells lines={paths.map(e => e.vector)} />
+            <LineDraw paths={paths.filter(p => p.status != 'active')} />
+          </olLayerVector> */}
+
+          <olLayerVector style={(feature, zoom) => styleBuilder({
+            strokeColor: 'brown',
+            fillColor: 'rgba(0, 0, 0, 0.8)',
+            strokeWidth: 10
+          })} >
+            {/* <olSourceVector format={new GeoJSON()} loader={(extent, resolution, projection, success, failure) => {
+
+              console.log("loading geojson", geoFeatures)
+              success(geoFeatures)
+            }} /> */}
+            <olSourceVector features={[]}>
+
+
+              <olFeature>
+                <olGeomPolygon
+                  ref={e => {
+                    e ? e.setProperties("id_", 123) : null
+
+
+                  }}
+                  args={[
+                    paths.filter(p => p.status != 'active').map(p => p.vector).slice(0, 1)
+                  ]} />
+              </olFeature>
+            </olSourceVector>
           </olLayerVector>
 
 
-          <olLayerVector zIndex={2} style={(feature, zoom) => styleBuilder({ strokeColor: 'red' })}>
-            <PointGroup points={points.filter(p => !p.public)} />
-          </olLayerVector>
 
 
 
@@ -493,17 +607,9 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDi
 
           <olInteractionSelect
             args={{ condition: pointerMove }}
-            onSelect={e => {
-              // check if key down
-              if (!e.mapBrowserEvent.originalEvent.altKey) return
-              var hovered = e.target.getFeatures().getArray()
-              console.log("ban this route", hovered);
-              // .map(select =>
-              //   points.find(({ coordinates }) =>
-              //     coordinates.join() == select.getGeometry().getCoordinates().join()))
-              // updatePOIPlacementArray(hovered.filter(s => s).map(p => p.coordinates))
-            }
-            }
+            onSelect={pathBanDebounce}
+          // onSelect={pathBan}
+
           />
 
           {isMobile ? null : <olInteractionSelect
@@ -513,7 +619,7 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDi
           />}
 
         </Map>
-      </div>
+      </div >
     </>
   )
 };

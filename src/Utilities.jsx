@@ -1,5 +1,7 @@
 import { generateThumbAndAdd } from "./Controls"
 
+import { AddPath } from './firebase'
+
 export const AddBulkPoints = ({ addNewPointHook, points }) => {
 
 
@@ -397,7 +399,7 @@ export const AddBulkPoints = ({ addNewPointHook, points }) => {
         let pn = points.map(p => p.name)
         let POIS = positions.map((p, i) => ({ coordinates: p, name: labels[i], index: i })).filter(({ name }) => !pn.includes(name))
         console.log({ POIS });
-        
+
 
         // for (const { coordinates, name } of POIS.slice(4, -1)) {
         for (const { coordinates, name } of POIS) {
@@ -427,4 +429,68 @@ export const AddBulkPoints = ({ addNewPointHook, points }) => {
 
     // const blob = new Blob([content], { type: "image/png" });
     return <button className='bg-black' onClick={() => start()}>AddPoints</button>
+}
+
+
+export const AddBulkPaths = async ({ lines, points, paths }) => {
+    console.log("AddBulkPaths", { lines, points });
+    const pointFind = (coords) => {
+        const i = points.findIndex(p => p.coordinates[0] == coords[0] && p.coordinates[1] == coords[1])
+        if (i == -1) throw new Error("not found")
+        return points[i]
+    }
+
+    // remove lines that already have a path
+    console.log(lines.length)
+    lines = lines
+        .filter(l => {
+            let s = pointFind(l[0])
+            let d = pointFind(l[1])
+            let found = paths.find(p => p.source_id == s.id && p.destination_id == d.id)
+            return !found
+        })
+        // remove reverse line duplicates
+        .filter(l => {
+            let s = pointFind(l[0])
+            let d = pointFind(l[1])
+            let found = paths.find(p => p.source_id == d.id && p.destination_id == s.id)
+            return !found
+
+        })
+    console.log("adding", lines.length, "paths")
+
+    let i = 0
+    for (const coordinates of lines) {
+
+        let s = pointFind(coordinates[0])
+        let d = pointFind(coordinates[1])
+
+        let source_id = s.id
+        let destination_id = d.id
+
+        let name = `${s.name}/${d.name} route`
+        let type = 'land'
+        let status = 'active'
+
+        let path = { source_id, destination_id, name, type, status }
+        console.log(path);
+        try {
+            await AddPath(path)
+        } catch (error) {
+            console.log(error);
+        }
+        i++
+        console.log(i);
+    }
+
+}
+
+
+// simple debounce
+export const debounce = (func, timeout = 300) => {
+    let timer;
+    return (...args) => {
+        clearTimeout(timer);
+        timer = setTimeout(() => { func.apply(this, args); }, timeout);
+    };
 }
