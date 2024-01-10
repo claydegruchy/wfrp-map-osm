@@ -1,10 +1,20 @@
 <script lang="ts">
   import "../app.css";
 
-  import { FirebaseApp } from "sveltefire";
+  import { FirebaseApp, Collection } from "sveltefire";
   import { initializeApp } from "firebase/app";
   import { getFirestore } from "firebase/firestore";
   import { getAuth } from "firebase/auth";
+  import { collection, query, where, getDocs } from "firebase/firestore";
+
+  import {
+    store_firestore,
+    store_pointsRef,
+    store_pathRef,
+    store_userRef,
+  } from "$store";
+
+  import Scenes from "$components/Scenes.svelte";
 
   const firebaseConfig = {
     apiKey: "AIzaSyAIuuslz-mzVUlKj0ccbQ4dbxE6t4ims5Q",
@@ -20,11 +30,22 @@
   export const app = initializeApp(firebaseConfig);
   export const firestore = getFirestore(app);
   export const auth = getAuth(app);
+
+  const pointsRef = collection(firestore, "points");
+  const pathRef = collection(firestore, "paths");
+  const userRef = collection(firestore, "users");
+
+  store_firestore.set(firestore);
+  store_pointsRef.set(pointsRef);
+  store_pathRef.set(pathRef);
+  store_userRef.set(userRef);
 </script>
 
 <FirebaseApp {auth} {firestore}>
   base layout
-  <slot class="flex h-screen" />
+  <Scenes />
+
+  <slot />
 </FirebaseApp>
 
 <style></style>

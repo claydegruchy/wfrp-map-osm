@@ -12,25 +12,14 @@ service cloud.firestore {
     function isAdmin(){
       return isSignedIn() && (request.auth.uid == "Y11axwPd6heYY48jweWEZ9gEmp83")  
     }
+
     match /points/{point} {
-
-
-      allow read: if resource.data.public == true || (request.auth != null && request.auth.uid == resource.data.owner_id);
-
-    }
-    match /points/{point} {
-
-
-
-
       function isValid(){
         return request.resource.data.keys().hasAll(['coordinates', 'created', 'name', 'owner_id', 'public']);
       }
 
 
-
-
-
+      allow read: if resource.data.public == true || (request.auth != null && request.auth.uid == resource.data.owner_id);
       allow create: if isSignedIn() && isAdmin();
       // allow create: if isSignedIn() &&  isValid();
       allow update: if isOwner() && isValid();
@@ -45,7 +34,8 @@ service cloud.firestore {
       }
 
       allow read: if isAdmin()
-      allow create: if isValid() && isAdmin();
+      // allow create: if isValid() && isAdmin();
+      allow create: if true;
       allow update: if isValid() && isAdmin();
     }
   }

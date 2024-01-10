@@ -6,8 +6,7 @@
     "bg-stone-200 text-slate-800 text-sm bg-stone-200 text-black text-sm hover:bg-stone-300 border border-slate-300 hover:border-slate-400";
 </script>
 
-<!-- todo merge me -->
-<div>
+<div class=" bg-white p-2 rounded-md">
   <SignedOut let:auth>
     <button {classes} on:click={() => signInWithPopup(auth, googleProvider)}
       >Sign In</button
