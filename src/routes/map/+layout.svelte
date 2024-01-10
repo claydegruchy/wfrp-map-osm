@@ -1,14 +1,11 @@
 <script>
   /** @type {import('./$types').LayoutData} */
-  export let data;
+  import LoginToggle from "$components/LoginToggle.svelte";
 </script>
 
 <nav>
-  <ul>
-    <li><a href="/map">Map</a></li>
-    <li><a href="/map/+page">Page</a></li>
-  </ul>
+  map nav
+  <LoginToggle />
 </nav>
-
 
 <slot />

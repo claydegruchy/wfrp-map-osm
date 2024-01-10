@@ -21,5 +21,6 @@
 </script>
 
 <FirebaseApp {auth} {firestore}>
+  base layout
   <slot />
 </FirebaseApp>
