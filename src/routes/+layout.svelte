@@ -1,4 +1,6 @@
 <script lang="ts">
+  import "../app.css";
+
   import { FirebaseApp } from "sveltefire";
   import { initializeApp } from "firebase/app";
   import { getFirestore } from "firebase/firestore";
@@ -22,5 +24,7 @@
 
 <FirebaseApp {auth} {firestore}>
   base layout
-  <slot />
+  <slot class="flex h-screen" />
 </FirebaseApp>
+
+<style></style>

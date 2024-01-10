@@ -2,4 +2,6 @@
   /** @type {import('./$types').PageData} */
 </script>
 
-<div>im a page</div>
+<div class="absolute flex z-10 bottom-0 page">
+  <!-- map goes here -->
+</div>
