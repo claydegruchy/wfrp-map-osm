@@ -4,3 +4,7 @@
 
   const googleProvider = new GoogleAuthProvider();
 </script>
+
+<SignedIn let:user let:signOut>
+  <button on:click={signOut} title="Sign Out">✔️ {user.displayName}</button>
+</SignedIn>
