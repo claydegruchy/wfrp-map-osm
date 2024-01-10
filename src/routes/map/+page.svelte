@@ -1,49 +1,30 @@
 <script>
-  import { onMount } from "svelte";
+  import Map from "$components/Map.svelte";
 
-  import maplibregl from "maplibre-gl";
-  import "maplibre-gl/dist/maplibre-gl.css";
-
-  let map;
-  let mapContainer;
-
-  onMount(() => {
-    console.log("mounted");
-    map = new maplibregl.Map({
-      container: "map", // container id
-      style: {
-        version: 8,
-        sources: {
-          "raster-tiles": {
-            type: "raster",
-            tiles: [
-              // NOTE: Layers from Stadia Maps do not require an API key for localhost development or most production
-              // web deployments. See https://docs.stadiamaps.com/authentication/ for details.
-              "https://tiles.stadiamaps.com/tiles/stamen_watercolor/{z}/{x}/{y}.jpg",
-            ],
-            tileSize: 256,
-            attribution:
-              'Map tiles by <a target="_blank" href="http://stamen.com">Stamen Design</a>; Hosting by <a href="https://stadiamaps.com/" target="_blank">Stadia Maps</a>. Data &copy; <a href="https://www.openstreetmap.org/about" target="_blank">OpenStreetMap</a> contributors',
-          },
-        },
-        layers: [
-          {
-            id: "simple-tiles",
-            type: "raster",
-            source: "raster-tiles",
-            minzoom: 0,
-            maxzoom: 22,
-          },
-        ],
-      },
-      center: [-74.5, 40], // starting position
-      zoom: 2, // starting zoom
-    });
-  });
+  import MapLayer from "$components/MapLayer.svelte";
 </script>
 
-<div
-  class="map absolute bottom-0 top-0 right-0 left-0 page"
-  id="map"
-  bind:this={mapContainer}
-></div>
+<!-- <div class="map flex absolute bottom-0 top-0 right-0 left-0 page"> -->
+<Map>
+  <MapLayer
+    name="world-map"
+    attribution="Map tiles by Extract from gitzmansgallery.com: Some original artwork is credited to Andreas Blicher, based upon Alfred Nunez, Jr.'s outstanding cartography and research"
+    relativeUrl={"/world-map/{z}/{z}_{x}_{y}.jpg"}
+    minzoom={0}
+    maxzoom={20}
+  />
+
+  <MapLayer
+    name="altdorf"
+    attribution="Map tiles by Extract from gitzmansgallery.com: Some original artwork is credited to Andreas Blicher, based upon Alfred Nunez, Jr.'s outstanding cartography and research"
+    relativeUrl={"/altdorf/{z}/{x}/{y}.png"}
+    minzoom={1}
+    maxzoom={7}
+    tileSize={256}
+    bounds={[
+      -1879572.67834710842, 3734469.05619834783, -1754782.27834710851,
+      3824113.85619834764,
+    ]}
+  />
+</Map>
+<!-- </div> -->
