@@ -1,9 +1,11 @@
 <script>
   import { onMount, setContext } from "svelte";
-  import MapLayer from "./MapLayer.svelte";
+  import "ol/ol.css";
 
-  import maplibregl from "maplibre-gl";
-  import "maplibre-gl/dist/maplibre-gl.css";
+  // import openlayers
+
+  import Map from "ol/Map";
+  import View from "ol/View";
 
   setContext("mapSharedState", {
     getMapInstance: () => mapInstance,
@@ -14,24 +16,26 @@
   let mapContainer;
 
   onMount(() => {
-    const initialState = { lng: -16.884488645726726, lat: 31.7800177883011, zoom: 6 };
+    const initialState = {
+      center: [-1879572.67834710842, 3734469.05619834783],
+      zoom: 6,
+    };
 
-    mapInstance = new maplibregl.Map({
-      container: mapContainer, // container id
-      style: {
-        version: 8,
-        sources: {},
-        layers: [],
-      },
-      center: [initialState.lng, initialState.lat],
-      zoom: initialState.zoom,
-    });
-
-    mapInstance.on("load", function () {
-      mapInstance.resize();
+    mapInstance = new Map({
+      target: mapContainer,
+      layers: [],
+      view: new View({
+        center: [0, 0],
+        zoom: 2,
+        ...initialState,
+      }),
     });
   });
 </script>
+
+<!-- 
+  enable this to allow key scrolling at the coost of having to click on the map to use it
+  tabindex="1"  -->
 
 <div id="map" bind:this={mapContainer}>
   {#if mapInstance}

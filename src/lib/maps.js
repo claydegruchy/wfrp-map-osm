@@ -1,76 +1,4 @@
-import TileGrid from 'ol/tilegrid/TileGrid.js';
-
-import { fromExtent } from 'ol/geom/Polygon';
-import { getVectorContext } from "ol/render";
-
-
-
-import { Style, Circle as CircleStyle, Fill, Stroke, Text } from "ol/style";
-const st =
-    new Style({
-        stroke: new Stroke({
-            width: 3,
-            color: 'rgba(255, 255, 255, 1)',
-            lineDash: [.1, 5] //or other combinations
-
-        })
-    })
-
-
-
-
-const imageStorageURL = "https://claydegruchy.github.io/wfrp-map-storage"
-// const imageStorageURL = "http://localhost:8080/"
-
-
-export const WarhammerMainMap = <olLayerTile preload={10} >
-    <olSourceXYZ tileUrlFunction={([z, x, y]) => {
-        if (z > 7) return null
-        // this Z being duplicated is a little stupid 
-        // but it makes the files much easier to deal with than having them all in one folder
-        return imageStorageURL + `/world-map/${z}/${z}_${x}_${y}.jpg`
-    }
-    } />
-</olLayerTile >
-
-
-// const AnimatePoly = (event) => {
-//     const vectorContext = getVectorContext(event);
-//     const { frameState } = event;
-
-//     console.log(vectorContext,
-//         frameState);
-// }
-
-const MapImportTemplate = ({ folderName, TileGridData, minZoom = 7 }) =>
-    <>
-        {/* <olLayerVector
-            // onPostrender={AnimatePoly}
-            style={st}>
-            <olSourceVector >
-                <olFeature  >
-                    <olGeomPolygon args={[
-                        fromExtent(TileGridData.extent).getCoordinates()
-                    ]} />
-                </olFeature>
-            </olSourceVector>
-        </olLayerVector> */}
-
-        <olLayerTile preload={3} minZoom={minZoom}>
-            <olSourceTileImage
-                tileGrid={new TileGrid(TileGridData)}
-                tileUrlFunction={(tileCoord) => {
-                    return (imageStorageURL + '/' + folderName + '{z}/{x}/{y}.png'
-                        .replace('{z}', String(tileCoord[0]))
-                        .replace('{x}', String(tileCoord[1]))
-                        .replace('{y}', String(tileCoord[2])));
-                        // .replace('{y}', String(- 1 - tileCoord[2])));
-                }}>
-            </olSourceTileImage>
-        </olLayerTile>
-    </>
-
-export const MarienburgMap = MapImportTemplate({
+const MarienburgMap = ({
     folderName: 'marienburg/',
     TileGridData: {
         extent: [-3320017.90883266041, 4701281.93297282793, -3175634.72078718198, 4803354.42623188905],
@@ -80,7 +8,7 @@ export const MarienburgMap = MapImportTemplate({
     }
 })
 
-export const AltdorfMap = MapImportTemplate({
+const AltdorfMap = ({
     folderName: 'altdorf/',
     TileGridData: {
         extent: [-1879572.67834710842, 3734469.05619834783, -1754782.27834710851, 3824113.85619834764],
@@ -91,7 +19,7 @@ export const AltdorfMap = MapImportTemplate({
 })
 
 
-export const BelAliad = MapImportTemplate({
+const BelAliad = ({
     folderName: 'bel-aliad/',
     TileGridData: {
         extent: [-6263717.82972954586, -8308152.66590153147, -6072722.52184196468, -8172069.18098247424],
@@ -102,7 +30,7 @@ export const BelAliad = MapImportTemplate({
 })
 
 
-export const Carroburg = MapImportTemplate({
+const Carroburg = ({
     folderName: 'carroburg/',
     TileGridData: {
         extent: [-2336072.31802160759, 3813618.46259524534, -2256925.53634464741, 3886329.45650243759],
@@ -112,7 +40,7 @@ export const Carroburg = MapImportTemplate({
     }
 })
 
-export const Kemperbad = MapImportTemplate({
+const Kemperbad = ({
     folderName: 'kemperbad/',
     TileGridData: {
         extent: [-1299736.61052961973, 3123678.84778461512, -1234865.07755173231, 3183325.4963311227],
@@ -122,7 +50,7 @@ export const Kemperbad = MapImportTemplate({
     }
 })
 
-export const Miragliano = MapImportTemplate({
+const Miragliano = ({
     folderName: 'miragliano/',
     TileGridData: {
         extent: [-4605922.50961291138, -188443.516211102135, -4405031.33771685325, -34504.2169261353993],
@@ -132,7 +60,7 @@ export const Miragliano = MapImportTemplate({
     }
 })
 
-export const Nuln = MapImportTemplate({
+const Nuln = ({
     folderName: 'nuln/',
     TileGridData: {
         extent: [-1279663.36192043219, 2543263.40051604761, -1156404.03022357263, 2630250.09310057852],
@@ -142,7 +70,7 @@ export const Nuln = MapImportTemplate({
     }
 })
 
-export const Praag = MapImportTemplate({
+const Praag = ({
     folderName: 'praag/',
     TileGridData: {
         extent: [2950614.62863361603, 6650407.73730751686, 3058167.03111725114, 6733386.8636055924],
@@ -152,7 +80,7 @@ export const Praag = MapImportTemplate({
     }
 })
 
-export const Sartosa = MapImportTemplate({
+const Sartosa = ({
     folderName: 'sartosa/',
     TileGridData: {
         extent: [-5783856.21840337384, -3808154.81240130635, -5691449.91520323884, -3738727.39074430056],
@@ -162,7 +90,7 @@ export const Sartosa = MapImportTemplate({
     }
 })
 
-export const Ubersreik = MapImportTemplate({
+const Ubersreik = ({
     folderName: 'ubersreik/',
     TileGridData: {
         extent: [-1982290.77342086309, 2918950.9097141684, -1930845.08820988308, 2955383.42348277988],
@@ -171,3 +99,16 @@ export const Ubersreik = MapImportTemplate({
         tileSize: [256, 256]
     }
 })
+
+export const maps = [
+    MarienburgMap,
+    AltdorfMap,
+    BelAliad,
+    Carroburg,
+    Kemperbad,
+    Miragliano,
+    Nuln,
+    Praag,
+    Sartosa,
+    Ubersreik
+]
