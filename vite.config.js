@@ -7,6 +7,7 @@ export default defineConfig({
 		alias: {
 			$components: '/src/components',
 			$lib: '/src/lib',
+			$store: '/src/store.js',
 			// $stores: '/src/stores',
 			// $styles: '/src/styles',
 			// $utils: '/src/utils',
