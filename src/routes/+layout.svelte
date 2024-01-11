@@ -42,9 +42,6 @@
 </script>
 
 <FirebaseApp {auth} {firestore}>
-  base layout
-  <Scenes />
-
   <slot />
 </FirebaseApp>
 

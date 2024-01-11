@@ -1,16 +1,25 @@
-// a function to convert openlayers coordinate system to long lat
+import { getContext } from "svelte";
+// place files you want to import through the `$lib` alias in this folder.
+export const getMapInstance = () => {
+    const { getMapInstance } = getContext("mapSharedState");
+    return getMapInstance();
+}
 
-import proj4 from 'proj4';
-function transform(coord, source, destination) {
-    return proj4(source, destination, coord);
+export const debounce = (func, wait = 300) => {
+    let timeout;
+    return function (...args) {
+        const context = this;
+        clearTimeout(timeout);
+        timeout = setTimeout(() => func.apply(context, args), wait);
+    }
 }
-// a function to convert long lat to openlayers coordinate system
-export const convertToLongLat = (coord) => {
-    return transform(coord, 'EPSG:3857', 'EPSG:4326');
-}
-// convert bounds to long lat, output is array of 4 numbers
-export const convertBoundsToLongLat = (bounds) => {
-    const topLeft = convertToLongLat([bounds[0], bounds[1]]);
-    const bottomRight = convertToLongLat([bounds[2], bounds[3]]);
-    return [topLeft[0], topLeft[1], bottomRight[0], bottomRight[1]];
-}
+
+export const featureAtPixel = (pixel, mapInstance) => mapInstance.forEachFeatureAtPixel(
+    pixel,
+    feature => feature ? feature : null,
+);
+
+
+
+// debounced version of featureAtPixel
+export const featureAtPixelDebounced = debounce(featureAtPixel, 300);

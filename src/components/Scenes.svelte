@@ -1,25 +1,37 @@
-<script let:user>
+<script>
   import { get } from "svelte/store";
   import { store_pointsRef } from "$store";
   import { Collection, SignedIn } from "sveltefire";
-  import { collection, query, where, getDocs } from "firebase/firestore";
+  import { collection, query, where, getDocs, or } from "firebase/firestore";
+  import Point from "./Point.svelte";
+  import { getMapInstance, featureAtPixel } from "$lib/utilities.js";
 
   const pointsRef = get(store_pointsRef);
+
+  const mapInstance = getMapInstance();
+  console.log("[Scenes] initated");
+
+  mapInstance.on("pointermove", function (evt) {
+    if (evt.dragging) return;
+    const feature = featureAtPixel(evt.pixel, mapInstance);
+    if (!feature) return;
+    console.log(feature?.values_.name);
+  });
 </script>
 
-<div>
-  hello
-  <SignedIn>
-    <Collection ref={query(pointsRef, where("public", "==", true))} let:count>
-      <p>Fetched {count} documents</p>
-      <!-- {#each data as path}
-          <p>{path.name}</p>
-        {/each} -->
-    </Collection>
-  </SignedIn>
-  <!-- <Doc ref={`points/`} let:data={point} let:ref={pointRef}></Doc> -->
+<SignedIn let:auth>
+  <Collection
+    ref={query(pointsRef, where("owner_id", "==", auth?.currentUser?.uid))}
+    let:data
+  >
+    {#each data as point}
+      <Point {point} />
+    {/each}
+  </Collection>
+</SignedIn>
 
-  <!-- {#each publicPoints as point}
-    <Point></Point>
-  {/each} -->
-</div>
+<Collection ref={query(pointsRef, where("public", "==", true))} let:data>
+  {#each data as point}
+    <Point {point} />
+  {/each}
+</Collection>

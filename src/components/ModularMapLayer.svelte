@@ -61,6 +61,7 @@
     source: new VectorSource({
       features: [
         new Feature({
+          name: folderName,
           geometry: new Polygon([convertExtentToBox(extent)]),
         }),
       ],

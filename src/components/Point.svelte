@@ -4,13 +4,28 @@
   // import openlayers
   import Feature from "ol/Feature";
   import Point from "ol/geom/Point";
+  import Vector from "ol/layer/Vector";
+  import VectorSource from "ol/source/Vector";
 
-//   import { getContext } from "svelte";
-//   const { getMapInstance, getMapUrl } = getContext("mapSharedState");
+  import { olStyleBuilder } from "$lib/olStyleBuilder.js";
 
-  const point = new Feature({
-    geometry: new Point([0, 0]),
+  import { getContext } from "svelte";
+  const { getMapInstance } = getContext("mapSharedState");
+  const mapInstance = getMapInstance();
+
+  export let point;
+
+  const pointFeature = new Feature({
+    ...point,
+    geometry: new Point(point.coordinates),
   });
 
-  console.log("point", point);
+  mapInstance.addLayer(
+    new Vector({
+      style: olStyleBuilder({ strokeColor: "red" }),
+      source: new VectorSource({
+        features: [pointFeature],
+      }),
+    })
+  );
 </script>

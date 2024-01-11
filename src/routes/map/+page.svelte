@@ -10,6 +10,7 @@
 
 <Map>
   <MainMapLayer />
+  <Scenes />
 
   {#each maps as map}
     <ModularMapLayer
@@ -17,5 +18,4 @@
       TileGridData={map.TileGridData}
     />
   {/each}
-  <Scenes />
 </Map>
