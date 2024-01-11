@@ -225,6 +225,42 @@ const ConvexHull = ({ points }) => {
 }
 
 
+export function LineDraw({ lines = [], paths = [] }) {
+  const geos = {
+    type: "FeatureCollection",
+    crs: {
+      type: "name",
+      properties: {
+        name: "EPSG:3857",
+      },
+    },
+    features: []
+  }
+  lines.forEach(coords => {
+    geos.features.push({
+      type: "Feature",
+      geometry: {
+        type: "LineString",
+        coordinates: coords
+      }
+    })
+  })
+
+  paths.forEach(path => {
+    geos.features.push({
+      type: "Feature",
+      // need to do this as i can't find a way of passing custom data
+      id: path.id + ":" + path.status,
+      geometry: {
+        type: "LineString",
+        coordinates: path.vector,
+      }
+    })
+  })
+  if (lines.length < 1 && paths.length < 1) return null
+
+  return <olSourceVector features={new GeoJSON().readFeatures(geos)} />
+}
 
 
 
@@ -246,52 +282,6 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDi
 
   const [lines, setLines] = useState([])
 
-
-  const [geoFeatures, setGeoFeatures] = useState({
-    type: "FeatureCollection",
-    crs: {
-      type: "name",
-      properties: {
-        name: "EPSG:3857",
-      },
-    },
-    features: []
-  })
-
-
-
-  useEffect(() => {
-    const geos = {
-      type: "FeatureCollection",
-      crs: {
-        type: "name",
-        properties: {
-          name: "EPSG:3857",
-        },
-      },
-      features: []
-    }
-
-    paths.forEach(path => {
-      geos.features.push({
-        type: "Feature",
-        // need to do this as i can't find a way of passing custom data
-        id: path.id + ":" + path.status,
-        geometry: {
-          type: "LineString",
-          coordinates: path.vector,
-        }
-      })
-
-    })
-
-    setGeoFeatures(geos)
-    // console.log(geos)
-
-  }, [paths])
-
-
-
   // closes the context menu when the add point dialog is closed
   useEffect(() => {
     if (!addPointDialogOpen) setContextMenuLocation(null)
@@ -301,11 +291,6 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDi
   useEffect(() => {
     if (!user) setContextMenuLocation(null)
   }, [contextMenuLocation])
-
-
-
-
-
 
 
 
@@ -413,9 +398,6 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDi
         coordinates.join() == select.getGeometry().getCoordinates().join()))
       .filter(s => s)
     setSelectedPoints(selected)
-
-    var selected = e.target.getFeatures()[0]
-    console.log("selected", selected?.getProperties());
 
   }, [points]);
 
@@ -537,7 +519,7 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDi
 
           }
 
-          {/* {(new URLSearchParams(location.search).get('delaunay')) ?
+          {(new URLSearchParams(location.search).get('delaunay')) ?
             <olLayerVector style={(feature, zoom) => styleBuilder({
               strokeColor: 'rgba(125, 0, 0, 0.8)',
               fillColor: 'rgba(0, 0, 0, 0.8)',
@@ -545,7 +527,7 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDi
             })} >
               <LineDraw lines={lines} />
             </olLayerVector> : null
-          } */}
+          }
 
 
           {/* <olLayerVector style={(feature, zoom) => styleBuilder({
@@ -557,30 +539,11 @@ export const MapView = ({ points, setSelectedPoints, newLocationHook, addPointDi
           </olLayerVector> */}
 
           <olLayerVector style={(feature, zoom) => styleBuilder({
-            strokeColor: 'brown',
+            strokeColor: 'green',
             fillColor: 'rgba(0, 0, 0, 0.8)',
             strokeWidth: 10
           })} >
-            {/* <olSourceVector format={new GeoJSON()} loader={(extent, resolution, projection, success, failure) => {
-
-              console.log("loading geojson", geoFeatures)
-              success(geoFeatures)
-            }} /> */}
-            <olSourceVector features={[]}>
-
-
-              <olFeature>
-                <olGeomPolygon
-                  ref={e => {
-                    e ? e.setProperties("id_", 123) : null
-
-
-                  }}
-                  args={[
-                    paths.filter(p => p.status != 'active').map(p => p.vector).slice(0, 1)
-                  ]} />
-              </olFeature>
-            </olSourceVector>
+            <LineDraw paths={paths.filter(p => p.status == 'active')} />
           </olLayerVector>
 
 
