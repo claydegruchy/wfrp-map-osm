@@ -1,6 +1,7 @@
 import { Fill, Stroke, Circle as CircleStyle, Style, Text } from 'ol/style';
 
 export const olStyleBuilder = (i = {}) => {
+
     // this immense clunky hunk of shit sets the styles
 
     let {
@@ -44,7 +45,46 @@ export const olStyleBuilder = (i = {}) => {
             radius: circleRadius,
         }),
         fill,
-        stroke, text
+        stroke,
+        text
     })
 
+}
+
+
+export const sceneStyleGenerator = (feature, resolution) => {
+    const conditions = [
+        {
+            condition: ({ values_ }, resolution) => values_.public,
+            style: { strokeColor: 'red' }
+        },
+        {
+            condition: ({ values_ }, resolution) => true,
+            style: { strokeColor: 'yellow' }
+        },
+        {
+            condition: ({ values_ }, resolution) => values_.public == false,
+            style: { strokeColor: 'orange' }
+        },
+
+        {
+            condition: ({ values_ }, resolution) => values_.images && values_.images.length > 0,
+            style: { strokeColor: 'blue' }
+        },
+
+
+
+
+    ]
+
+
+    let init = {}
+    for (const { condition, style } of conditions) {
+        if (condition(feature)) {
+            init = style//{ ...init, ...style }
+        }
+    }
+
+
+    return olStyleBuilder(init)
 }

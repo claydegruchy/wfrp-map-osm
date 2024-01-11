@@ -7,9 +7,10 @@
   import Vector from "ol/layer/Vector";
   import VectorSource from "ol/source/Vector";
 
-  import { olStyleBuilder } from "$lib/olStyleBuilder.js";
+  import { sceneStyleGenerator } from "$lib/olStyleBuilder.js";
+  import { Stroke, Style } from "ol/style";
 
-  import { getContext } from "svelte";
+  import { getContext, onMount } from "svelte";
   const { getMapInstance } = getContext("mapSharedState");
   const mapInstance = getMapInstance();
 
@@ -17,12 +18,14 @@
   export let type;
   export let layer;
 
-  layer.getSource().addFeature(
-    new Feature({
-      ...point,
-      geometry: new Point(point.coordinates),
-    })
-  );
+  let pointFeature = new Feature({
+    ...point,
+    geometry: new Point(point.coordinates),
+  });
 
-  console.log("[Point] initated", type);
+  layer.getSource().addFeature(pointFeature);
+
+
+
+  console.log("[Point] initated", type, layer.ol_uid);
 </script>

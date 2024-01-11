@@ -1,25 +1,36 @@
 <script>
   import Vector from "ol/layer/Vector";
   import VectorSource from "ol/source/Vector";
-  import { olStyleBuilder } from "$lib/olStyleBuilder.js";
+  import VectorLayer from "ol/layer/Vector.js";
+  import { Stroke, Style } from "ol/style";
 
-  import { getMapInstance } from "$lib/utilities.js";
+  import { olStyleBuilder, sceneStyleGenerator } from "$lib/olStyleBuilder.js";
+
+  import { getContext, onMount } from "svelte";
+  const { getMapInstance } = getContext("mapSharedState");
+  // return getMapInstance();
   const mapInstance = getMapInstance();
 
   export let type;
+  export let layer;
+  export let styleGenerator;
 
-  const layer = new Vector({
-    style: olStyleBuilder({
-      strokeColor: type == "public" ? "red" : "orange",
-    }),
+  // Create a new style object for each feature
+  // feature, zoom
+  layer = new Vector({
+    name: type,
     source: new VectorSource({
       features: [],
     }),
   });
-
+  layer.setStyle(styleGenerator);
   mapInstance.addLayer(layer);
 
   console.log("[GenericLayer] initated", type);
+
+  console.log(mapInstance.getLayers());
 </script>
 
-<slot {layer} />
+{#if layer}
+  <slot {layer} />
+{/if}
