@@ -8,7 +8,6 @@
   import { maps } from "$lib/maps.js";
 </script>
 
-<!-- <div class="map flex absolute bottom-0 top-0 right-0 left-0 page"> -->
 <Map>
   <MainMapLayer />
 
@@ -20,5 +19,3 @@
   {/each}
   <Scenes />
 </Map>
-
-<!-- </div> -->

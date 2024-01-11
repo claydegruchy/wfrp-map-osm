@@ -30,14 +30,20 @@
         ...initialState,
       }),
     });
+
+    // for some reason, the map doesnt get if you have tabindex
+    mapInstance.on("loadend", function () {
+      mapContainer.focus();
+    });
   });
 </script>
 
 <!-- 
   enable this to allow key scrolling at the coost of having to click on the map to use it
-  tabindex="1"  -->
+   -->
 
-<div id="map" bind:this={mapContainer}>
+<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
+<div id="map" tabindex="0" bind:this={mapContainer}>
   {#if mapInstance}
     <slot />
   {/if}
@@ -50,5 +56,10 @@
     bottom: 0;
     width: 100%;
     height: 100%;
+  }
+
+  .ol-zoom {
+    bottom: calc(100% - 0.5em * 2 - 1.375em * 2);
+    right: calc(100% - 0.5em * 2 - 1.375em);
   }
 </style>

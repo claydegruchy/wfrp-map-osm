@@ -4,7 +4,3 @@
 
 
 /* openlayers */
-.ol-zoom {
-    top: calc(100% - 0.5em * 2 - 1.375em * 2);
-    right: calc(100% - 0.5em * 2 - 1.375em);
-  }

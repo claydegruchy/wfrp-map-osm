@@ -1,5 +1,4 @@
 <script>
-
   import Tile from "ol/layer/Tile";
   import TileImage from "ol/source/TileImage";
   import TileGrid from "ol/tilegrid/TileGrid";
