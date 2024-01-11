@@ -11,6 +11,7 @@
   const imageStorageURL = getMapUrl();
   console.log("[MainMapLayer] initated");
   const layerTile = new Tile({
+    name: "world-map",
     preload: 10,
     source: new XYZ({
       tileUrlFunction: ([z, x, y]) => {

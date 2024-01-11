@@ -14,7 +14,6 @@
     store_userRef,
   } from "$store";
 
-  import Scenes from "$components/Scenes.svelte";
 
   const firebaseConfig = {
     apiKey: "AIzaSyAIuuslz-mzVUlKj0ccbQ4dbxE6t4ims5Q",

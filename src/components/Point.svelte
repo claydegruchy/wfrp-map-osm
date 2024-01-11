@@ -14,18 +14,15 @@
   const mapInstance = getMapInstance();
 
   export let point;
+  export let type;
+  export let layer;
 
-  const pointFeature = new Feature({
-    ...point,
-    geometry: new Point(point.coordinates),
-  });
-
-  mapInstance.addLayer(
-    new Vector({
-      style: olStyleBuilder({ strokeColor: "red" }),
-      source: new VectorSource({
-        features: [pointFeature],
-      }),
+  layer.getSource().addFeature(
+    new Feature({
+      ...point,
+      geometry: new Point(point.coordinates),
     })
   );
+
+  console.log("[Point] initated", type);
 </script>

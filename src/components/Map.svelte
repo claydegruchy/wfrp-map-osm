@@ -57,9 +57,4 @@
     width: 100%;
     height: 100%;
   }
-
-  .ol-zoom {
-    bottom: calc(100% - 0.5em * 2 - 1.375em * 2);
-    right: calc(100% - 0.5em * 2 - 1.375em);
-  }
 </style>

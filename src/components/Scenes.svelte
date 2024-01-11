@@ -5,6 +5,7 @@
   import { collection, query, where, getDocs, or } from "firebase/firestore";
   import Point from "./Point.svelte";
   import { getMapInstance, featureAtPixel } from "$lib/utilities.js";
+  import VectorLayer from "./VectorLayer.svelte";
 
   const pointsRef = get(store_pointsRef);
 
@@ -20,18 +21,22 @@
 </script>
 
 <SignedIn let:auth>
-  <Collection
-    ref={query(pointsRef, where("owner_id", "==", auth?.currentUser?.uid))}
-    let:data
-  >
-    {#each data as point}
-      <Point {point} />
-    {/each}
-  </Collection>
+  <VectorLayer let:layer type={"personal"}>
+    <Collection
+      ref={query(pointsRef, where("owner_id", "==", auth?.currentUser?.uid))}
+      let:data
+    >
+      {#each data as point}
+        <Point {layer} {point} />
+      {/each}
+    </Collection>
+  </VectorLayer>
 </SignedIn>
 
 <Collection ref={query(pointsRef, where("public", "==", true))} let:data>
-  {#each data as point}
-    <Point {point} />
-  {/each}
+  <VectorLayer let:layer type={"public"}>
+    {#each data as point}
+      <Point {layer} {point} />
+    {/each}
+  </VectorLayer>
 </Collection>

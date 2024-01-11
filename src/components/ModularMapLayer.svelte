@@ -23,6 +23,7 @@
   const layerTile = new Tile({
     preload: 10,
     minZoom: 7,
+    name: folderName,
     source: new SourceTileImage({
       tileGrid: new TileGrid(TileGridData),
       tileUrlFunction: (tileCoord) => {
@@ -58,6 +59,7 @@
   // polygon with coords [10000,10000,-10000,10000,-10000,10000,10000,10000]
   const layerTileOutline = new Vector({
     maxZoom: 7,
+    name: folderName + "-outline",
     source: new VectorSource({
       features: [
         new Feature({
