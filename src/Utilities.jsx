@@ -270,26 +270,28 @@ let to_update = ["FMbFSAEk51Ro0rvo2waE"];
 export async function Utility_PointUpdateOperations({ lines, points, paths }) {
   console.log("starting", "Utility_PointUpdateOperations");
   // const sortObject = o => Object.keys(o).sort().reduce((r, k) => (r[k] = o[k], r), {})
-  return;
   // AddPoint({ point: { coordinates: positions[0], public: false, name: "test" } })
 
   // GeDruchy
 
   let i = 0;
+  return;
   for (let point of points) {
     console.log("check...");
     // if (point.name != "TESTING1") continue;
-    if (!to_update.includes(point.id)) continue;
+    if (point.public) continue;
     // if (!point.tags?.includes("nuln")) continue;
-    console.log("adding tags to", point.name);
     // continue;
-    // if (i > 2) return;
+    if (i > 50) return;
     i += 1;
-    // continue
+
+    let changes = { public: true };
+
+    if (!point.tags) changes.tags = ["the empire"];
+    console.log("making public", point.name, changes);
+
     let pointRef = await doc(db, "points", point.id);
-    await updateDoc(pointRef, {
-      tags: ["city", "city:nuln"],
-    });
+    await updateDoc(pointRef, changes);
 
     // let updated_point = { ...point, tags: [] };
     // console.log({ point }, { pointRef });

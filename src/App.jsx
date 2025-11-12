@@ -116,11 +116,17 @@ function App() {
   const deselectPoint = (i) =>
     setSelectedPoints(selectedPoints.filter((item, index) => index != i));
 
-  const addNewPointHook = async ({ pointData, imageFiles, thumbnail }) => {
+  const addNewPointHook = async ({
+    pointData,
+    imageFiles,
+    thumbnail,
+    tags,
+  }) => {
     console.log("[addNewPointHook]", { pointData });
     let point = {
       public: false,
       coordinates: addPointDialogCoordinate,
+      tags,
       ...pointData,
     };
     console.log("[addNewPointHook]", { point });
@@ -189,7 +195,7 @@ function App() {
         user={user}
         setMapCommunications={setMapCommunications}
         paths={paths}
-        updatePaths={updateFirebaseElements}
+        updateFirebaseElements={updateFirebaseElements}
         className={"flex-1"}
       ></MapView>
     </div>

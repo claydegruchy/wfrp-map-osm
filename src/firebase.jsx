@@ -169,7 +169,7 @@ export const UploadFile = async ({ thumbnail, file, name, progressHook }) => {
     })
 }
 
-export const AddPoint = async ({ point, imageFiles, progressHook, thumbnail }) => {
+export const AddPoint = async ({ point, imageFiles, progressHook, thumbnail,tags }) => {
     console.log("AddPoint", { point, imageFiles })
     let newPoint = {
         created: new Date(),

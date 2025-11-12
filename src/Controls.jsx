@@ -39,6 +39,11 @@ export const generateThumbAndAdd = async ({
   pointData.public === "true"
     ? (pointData.public = true)
     : (pointData.public = false);
+
+  if (pointData.tags) {
+    pointData.tags = pointData.tags.split(",");
+  }
+
   const thumbnail =
     imageFiles.length > 0 &&
     (await generateThumbnailFile(imageFiles[mainIndex], 150));
@@ -137,6 +142,16 @@ const AddPointDialog = ({ addNewPointHook, closePointDialog, user }) => {
             type="text"
           />
         </label>
+        <label>
+          Tags
+          <input
+            className="border"
+            autoFocus
+            name="tags"
+            type="text"
+            placeholder="Comma seperated list: city,the empire,etc..."
+          />
+        </label>
 
         <div className="p-5 flex-0 flex flex-wrap gap-1 justify-around">
           {imageFiles.map(ImagePreview)}
@@ -163,7 +178,7 @@ const AddPointDialog = ({ addNewPointHook, closePointDialog, user }) => {
         </label>
         <label>
           Share publically:
-          <input name="public" data-val="false" value="false" type="checkbox" />
+          <input name="public" data-val="true" value="true" type="checkbox" checked />
         </label>
         <div>
           <input hidden type="submit" value="💾" />

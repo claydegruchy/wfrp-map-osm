@@ -261,7 +261,7 @@ export const MapView = ({
   user,
   className,
   paths,
-  updatePaths,
+  updateFirebaseElements,
   enableRoads,
 }) => {
   // map definer
@@ -367,13 +367,13 @@ export const MapView = ({
 
         UpdatePath({ id, data: { status: "banned" } });
         paths.find((p) => p.id == id).status = "banned";
-        updatePaths(points);
+        updateFirebaseElements(points);
       }
       if (e.mapBrowserEvent.originalEvent.ctrlKey && status != "active") {
         console.log("enable this route", id, status);
 
         UpdatePath({ id, data: { status: "active" } });
-        updatePaths(points);
+        updateFirebaseElements(points);
       }
     }
   };
@@ -413,7 +413,7 @@ export const MapView = ({
     [points]
   );
 
-  const hoverStyleStatic = useMemo(() => styleBuilder({ strokeColor: "red" }));
+  const hoverStyleStatic = useMemo(() => styleBuilder({ strokeColor: "blue" }));
 
   return (
     <>
@@ -423,9 +423,10 @@ export const MapView = ({
             Add Bulk Paths
           </button> */}
           <button
-            onClick={() =>
-              Utility_PointUpdateOperations({ lines, points, paths })
-            }
+            onClick={async () => {
+              await Utility_PointUpdateOperations({ lines, points, paths });
+              updateFirebaseElements();
+            }}
           >
             Run point ops
           </button>
@@ -524,6 +525,22 @@ export const MapView = ({
           <olLayerVector
             style={(feature, zoom) =>
               styleBuilder({
+                strokeColor: "red",
+                strokeWidth: 2,
+                circleRadius: isMobile ? 8 : 5,
+              })
+            }
+          >
+            <PointGroup
+              points={points
+                .filter((p) => p.tags?.includes("city"))
+                .filter((p) => p.public)}
+            />
+          </olLayerVector>
+
+          <olLayerVector
+            style={(feature, zoom) =>
+              styleBuilder({
                 strokeColor: "blue",
                 strokeWidth: 2,
                 circleRadius: isMobile ? 8 : 5,
@@ -532,8 +549,8 @@ export const MapView = ({
           >
             <PointGroup
               points={points
-                .filter((p) => p.public)
-                }
+                .filter((p) => !p.tags?.includes("city"))
+                .filter((p) => p.public)}
             />
           </olLayerVector>
 
