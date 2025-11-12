@@ -41,7 +41,11 @@ import {
 } from "./Maps";
 import { VoronoiCells } from "./components/VoronoiCells";
 
-import { AddBulkPaths, debounce } from "./Utilities";
+import {
+  AddBulkPaths,
+  debounce,
+  Utility_PointUpdateOperations,
+} from "./Utilities";
 
 import { UpdatePath } from "./firebase";
 import { Geometry, Point } from "ol/geom";
@@ -414,9 +418,18 @@ export const MapView = ({
   return (
     <>
       {new URLSearchParams(location.search).get("edit") ? (
-        <button onClick={() => AddBulkPaths({ lines, points, paths })}>
-          Add Bulk Paths
-        </button>
+        <>
+          {/* <button onClick={() => AddBulkPaths({ lines, points, paths })}>
+            Add Bulk Paths
+          </button> */}
+          <button
+            onClick={() =>
+              Utility_PointUpdateOperations({ lines, points, paths })
+            }
+          >
+            Run point ops
+          </button>
+        </>
       ) : null}
 
       <div className={className}>
