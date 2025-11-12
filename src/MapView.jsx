@@ -508,9 +508,21 @@ export const MapView = ({
 
 
           */}
-          <olLayerVector style={(feature, zoom) => styleBuilder({ strokeColor: 'blue', strokeWidth: 2, circleRadius: isMobile ? 8 : 5 })}>
-            <PointGroup points={points.filter(p => p.public).filter(p => p.images?.length > 0)} />
-          </olLayerVector> 
+          <olLayerVector
+            style={(feature, zoom) =>
+              styleBuilder({
+                strokeColor: "blue",
+                strokeWidth: 2,
+                circleRadius: isMobile ? 8 : 5,
+              })
+            }
+          >
+            <PointGroup
+              points={points
+                .filter((p) => p.public)
+                }
+            />
+          </olLayerVector>
 
           <olLayerVector zIndex={2} style={hoverStyleStatic}>
             <PointGroup points={points.filter((p) => !p.public)} />
