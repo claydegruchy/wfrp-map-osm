@@ -255,7 +255,16 @@ export const SearchBox = ({ locations = [], onSearch, onSelect, onClear }) => {
 };
 
 const PointInfoCard = ({
-  point: { name, credit, coordinates, images, owned_by_user, id, ...rest },
+  point: {
+    name,
+    credit,
+    coordinates,
+    images,
+    owned_by_user,
+    id,
+    tags,
+    ...rest
+  },
   removePointHook,
   close,
 }) => {
@@ -305,6 +314,15 @@ const PointInfoCard = ({
       </div>
       <div className="name"> {name}</div>
       <div className="italic">By {credit || "Unknown"}</div>
+      {tags && tags.length > 0 ? (
+        <div>
+          <b>Tagged: </b>
+          {tags.join(", ")}
+        </div>
+      ) : (
+        ""
+      )}
+
       <div className="flex">
         {/* <button title="Download" onClick={downloadImage}>⏬</button> */}
         {rest.public ? (
