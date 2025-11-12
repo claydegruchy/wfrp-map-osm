@@ -306,46 +306,46 @@ export const MapView = ({
     setMapCommunications(map);
   }, [map]);
 
-  useEffect(
-    (e) => {
-      // manual ignore list
-      const ignore = ["Hundsheimerwald"];
-      // manual add list
+  // useEffect(
+  //   (e) => {
+  //     // manual ignore list
+  //     const ignore = ["Hundsheimerwald"];
+  //     // manual add list
 
-      console.log("points changed... updating Delaunay");
-      const firstCoords = points
-        .filter((p) => !p.name.includes(" "))
-        .filter((p) => !p.public)
-        .filter((p) => !ignore.includes(p.name))
-        .map((p) => p.coordinates)
-        // .slice(0, 30)
-        .flat();
+  //     console.log("points changed... updating Delaunay");
+  //     const firstCoords = points
+  //       .filter((p) => !p.name.includes(" "))
+  //       .filter((p) => !p.public)
+  //       .filter((p) => !ignore.includes(p.name))
+  //       .map((p) => p.coordinates)
+  //       // .slice(0, 30)
+  //       .flat();
 
-      const d = new Delaunay(firstCoords);
-      Promise.all(d.trianglePolygons()).then((triangles) => {
-        const l = [];
-        const g = [];
+  //     const d = new Delaunay(firstCoords);
+  //     Promise.all(d.trianglePolygons()).then((triangles) => {
+  //       const l = [];
+  //       const g = [];
 
-        for (const triangle of triangles) {
-          for (let i = 0; i < 3; i++) {
-            let a = triangle[i];
-            let b = triangle[(i + 1) % 3];
+  //       for (const triangle of triangles) {
+  //         for (let i = 0; i < 3; i++) {
+  //           let a = triangle[i];
+  //           let b = triangle[(i + 1) % 3];
 
-            const dis = Math.sqrt((a[0] - b[0]) ** 2 + (a[1] - b[1]) ** 2);
+  //           const dis = Math.sqrt((a[0] - b[0]) ** 2 + (a[1] - b[1]) ** 2);
 
-            g.push(dis);
-            if (dis > 572217) continue;
+  //           g.push(dis);
+  //           if (dis > 572217) continue;
 
-            l.push([a, b]);
-          }
-        }
-        // p({ g: g.sort((a, b) => a - b) })
-        console.log("lines", l.length);
-        setLines(l);
-      });
-    },
-    [points]
-  );
+  //           l.push([a, b]);
+  //         }
+  //       }
+  //       // p({ g: g.sort((a, b) => a - b) })
+  //       console.log("lines", l.length);
+  //       setLines(l);
+  //     });
+  //   },
+  //   [points]
+  // );
 
   const pathBan = (e) => {
     // check if key down
