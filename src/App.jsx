@@ -87,7 +87,6 @@ function App() {
       ];
       processedPaths.push(path);
     });
-    console.log({ processedPaths });
     setPaths(processedPaths);
   };
 
@@ -99,11 +98,18 @@ function App() {
     [points]
   );
 
+  useEffect(
+    (e) => {
+      // console.log(selectedPoints.map((o) => o.id));
+    },
+    [selectedPoints]
+  );
+
   const updateFirebaseElements = async () => {
     const unprocessedPoints = (await GetPoints()) || [];
     setPoints(unprocessedPoints);
 
-    updatePaths(unprocessedPoints);
+    // updatePaths(unprocessedPoints);
     PreSelectPoint();
   };
 
@@ -139,7 +145,7 @@ function App() {
     console.log(point, mapCommunications.getView());
     mapCommunications.getView().fit(new Point(point.coordinates), {
       padding: [100, 100, 100, 100],
-      maxZoom: 8,
+      maxZoom: point.tags?.includes("city") ? 12 : 8,
 
       duration: 1000,
     });
@@ -155,10 +161,7 @@ function App() {
         <LoginDialog authChangeHook={updateFirebaseElements} />
         <HelpDialog />
         {mapCommunications ? (
-          <SearchBox
-            locations={points}
-            onSelect={zoomToPoint}
-          />
+          <SearchBox locations={points} onSelect={zoomToPoint} />
         ) : (
           ""
         )}
