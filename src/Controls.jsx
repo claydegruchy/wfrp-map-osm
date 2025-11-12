@@ -188,7 +188,12 @@ export const SearchBox = ({ locations = [], onSearch, onSelect, onClear }) => {
     }
 
     const filtered = locations
-      .filter((loc) => loc.name.toLowerCase().includes(value.toLowerCase()))
+      .filter(
+        (loc) =>
+          loc.name.toLowerCase().includes(value.toLowerCase()) ||
+          (loc.tags &&
+            loc.tags.join(" ").toLowerCase().includes(value.toLowerCase()))
+      )
       .slice(0, 10);
 
     setResults(filtered);
@@ -237,19 +242,29 @@ export const SearchBox = ({ locations = [], onSearch, onSelect, onClear }) => {
         )}
       </div>
 
-      {results.length > 0 && (
-        <ul className="absolute left-0 right-0 top-full bg-white border border-gray-400 border-t-0 z-10">
-          {results.map((loc, i) => (
+      <ul className="absolute left-0 right-0 top-full bg-white border border-gray-400 border-t-0 z-10">
+        {results.map((loc, i) => {
+          const cityTag = loc.tags?.find((t) => t.includes("city:"));
+          const city = cityTag ? cityTag.split(":")[1] : null;
+
+          return (
             <li
               key={i}
               onClick={() => handleSelect(loc)}
-              className="p-1 text-gray-800 hover:bg-stone-200 cursor-pointer text-sm"
+              className="p-1 text-gray-800 hover:bg-stone-200 cursor-pointer text-sm flex items-center"
             >
-              {loc.name}
+              <span className="flex-grow">
+                {loc.name || "Unnamed location"}
+              </span>
+              {city && (
+                <span className="text-slate-600 text-xs ml-2 pl-2 border-l border-slate-300 italic">
+                  {city}
+                </span>
+              )}
             </li>
-          ))}
-        </ul>
-      )}
+          );
+        })}
+      </ul>
     </form>
   );
 };
