@@ -94,7 +94,7 @@ function App() {
   useEffect(
     (e) => {
       // only do this once
-      updatePaths(points);
+      // updatePaths(points);
     },
     [points]
   );
