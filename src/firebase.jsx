@@ -73,6 +73,7 @@ export const signInWithGoogle = async () => {
     try {
         const res = await signInWithPopup(auth, googleProvider);
 
+
         // if (docs.docs.length === 0) {
         //     await getDocs(collection(db, "users"), {
         //         uid: user.uid,
@@ -173,6 +174,7 @@ export const AddPoint = async ({ point, imageFiles, progressHook, thumbnail }) =
     let newPoint = {
         created: new Date(),
         owner_id: auth.currentUser.uid,
+        tags:[],
         ...point,
         owned_by_user: undefined,
     }
@@ -312,41 +314,3 @@ export const AddPath = async ({ source_id, destination_id, type, name, status })
     return path
 }
 
-
-
-async function Utility_PointUpdateOperations() {
-
-    // const sortObject = o => Object.keys(o).sort().reduce((r, k) => (r[k] = o[k], r), {})
-
-
-    // AddPoint({ point: { coordinates: positions[0], public: false, name: "test" } })
-
-    // GeDruchy
-    GetPoints()
-        .then(async points => {
-            for (let point of points.filter(p => !p.public)) {
-                delete point.owned_by_user
-
-                //             // if (!point.credit) point.credit = "GeDruchy"
-                //             // if (!point.category) point.tags = ["art"]
-                //             // console.log(point);
-                //             // const newPoint = sortObject(point)
-                //             // console.log(newPoint);
-
-
-                let pointRef = await doc(db, "points", point.id);
-                console.log(point);
-                // await updateDoc(pointRef, {
-                //     "public": true
-                // });
-                //             // let out = await setDoc(pointRef, point)
-                //             // log
-            }
-            //         // console.log(auth.currentUser.displayName);
-
-            //         return points
-        })
-    //     .then(console.log)
-
-}
-// Utility_PointUpdateOperations()
