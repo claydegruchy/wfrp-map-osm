@@ -525,11 +525,13 @@ export const MapView = ({
           */}
           <olLayerVector
             style={(feature, zoom) =>
-              styleBuilder({
-                strokeColor: "red",
-                strokeWidth: 2,
-                circleRadius: isMobile ? 8 : 5,
-              })
+              zoom < 1500 || zoom > 6000
+                ? styleBuilder({
+                    strokeColor: "red",
+                    strokeWidth: 2,
+                    circleRadius: isMobile ? 8 : 5,
+                  })
+                : null
             }
           >
             <PointGroup
@@ -541,11 +543,13 @@ export const MapView = ({
 
           <olLayerVector
             style={(feature, zoom) =>
-              styleBuilder({
-                strokeColor: "blue",
-                strokeWidth: 2,
-                circleRadius: isMobile ? 8 : 5,
-              })
+              zoom < 1500 || zoom > 6000
+                ? styleBuilder({
+                    strokeColor: "blue",
+                    strokeWidth: 2,
+                    circleRadius: isMobile ? 8 : 5,
+                  })
+                : null
             }
           >
             <PointGroup
