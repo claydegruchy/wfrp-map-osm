@@ -20,46 +20,34 @@ export const Button = ({ children, addClasses, ...rest }) => (
   </button>
 );
 
-export const Modal = ({ children, title, setShowModal, customButtons }) => (
-  <div className=" justify-left items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
-    <div
-      className={
-        "relative w-auto my-6 mx-0 z-10 p-3 " +
-        (new URLSearchParams(location.search).get("edit")
-          ? "max-w-sm"
-          : "max-w-3xl")
-      }
+import { useRef } from "react";
+
+export const Modal = ({ children, setShowModal }) => {
+  const ref = useRef(null);
+
+  useEffect(() => {
+    ref.current.showModal();
+    ref.current.scrollTo(0, 0);
+  }, []);
+
+  return (
+    <dialog
+      ref={ref}
+      className="p-4 bg-white rounded"
+      onClose={() => setShowModal(false)}
     >
-      {/*content*/}
-      <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
-        {/*header*/}
-        <div className="flex items-start justify-center p-5 border-b border-solid border-slate-200 rounded-t">
-          <h3 className="text-3xl font-semibold">{title}</h3>
-        </div>
-        {/*body*/}
-        <div className="relative p-6 flex-auto">
-          <p className="my-4 text-slate-500 text-lg leading-relaxed">
-            {children}
-          </p>
-        </div>
-        {/*footer*/}
-        <div className="flex items-center justify-around p-6 border-t border-solid border-slate-200 rounded-b">
-          {customButtons ? customButtons : null}
-          <Button
-            onClick={() => setShowModal(false)}
-            addClasses={"text-red-500 "}
-          >
-            Close
-          </Button>
-        </div>
-      </div>
-    </div>
-    <div
-      onClick={() => setShowModal(false)}
-      className="opacity-25 fixed inset-0 z-0 bg-black"
-    ></div>
-  </div>
-);
+      <button
+        onClick={() => {
+          ref.current.close();
+          setShowModal(false);
+        }}
+      >
+        Close
+      </button>
+      {children}
+    </dialog>
+  );
+};
 
 export const buttonClasses =
   "bg-stone-200 text-slate-800 text-sm bg-stone-200 text-black text-sm hover:bg-stone-300 border border-slate-300 hover:border-slate-400";
@@ -99,15 +87,18 @@ export const HelpDialog = () => {
         <Modal title={"Help"} setShowModal={setShowModal}>
           <div className=" lg:max-w-3xl text-left text-sm lg:text-md ">
             <div className="border text-sm">
+              <br />
               <h2 className="text-xl bold text-slate-900">Updates!</h2>
               <p>2025: Added a search function</p>
             </div>
+            <br />
             <h2 className="text-xl bold text-slate-900">What is this?</h2>
             <p>
               This is a searchable Warhammer world map inspired by the amazing
               maps over at gitzmansgallery
             </p>
             {/* <p>This is intended for fan art, but (non-video game) offical art is okay</p> */}
+            <br />
             <h2 className="text-xl bold text-slate-900">
               Why did you make this?
             </h2>
@@ -121,6 +112,7 @@ export const HelpDialog = () => {
               want to bother with it. Now I mostly use it as a personal tool for
               my campaigns.
             </p>
+            <br />
             <h2 className="text-xl bold text-slate-900">
               Why does this look like shit
             </h2>
@@ -128,6 +120,7 @@ export const HelpDialog = () => {
               Because I suck at css today, and sucked even more in 2022 when I
               started making this
             </p>
+            <br />
             <h2 className="text-xl bold text-slate-900">
               Why is there really bad looking AI art in here?
             </h2>
@@ -135,6 +128,7 @@ export const HelpDialog = () => {
               I used AI art in some games with my group in 2022, and loaded it
               into the map for easier finding. It was a different time.
             </p>
+            <br />
             <h2 className="text-xl bold text-slate-900">Credits</h2>
             <p>
               Big thanks to gitzmansgallery for the main map. Extract from
@@ -158,19 +152,23 @@ export const HelpDialog = () => {
               for the free listed assets on their deviantart. Amazing stuff and
               inspired me to make this. Multiple maps are used from here.
             </p>
+            <br />
             <h2 className="text-xl bold text-slate-900">
               I have a high def map of a city/part of the world that I want to
               add
             </h2>
-            I can add maps for you if they're free to use or you own them. Hit
-            me up on this
-            <a href="https://forms.gle/5RRtzuv3Um5xN9Eh9">Google Form</a> and
-            I'll try to add it for you
+            <p>
+              I can add maps for you if they're free to use or you own them. Hit
+              me up on this
+              <a href="https://forms.gle/5RRtzuv3Um5xN9Eh9">Google Form</a> and
+              I'll try to add it for you
+            </p>
+            <br />
             <h2 className="text-xl bold text-slate-900">
               What's next for this thing
             </h2>
             <p>
-              I made a star map of the alien universe a while back (
+              Route finding. I made a star map of the alien universe a while back (
               <a href="https://map.weylandyutani.company/">
                 https://map.weylandyutani.company/
               </a>
