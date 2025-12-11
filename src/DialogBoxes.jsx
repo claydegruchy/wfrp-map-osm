@@ -108,10 +108,11 @@ export const HelpDialog = () => {
             </p>
             <p>
               Originally I wanted to make a system that would let people share
-              maps but then I realised that I really don't like react and didn't
-              want to bother with it. Now I mostly use it as a personal tool for
-              my campaigns.
+              maps and crowdsource the world but I had some pretty bad community
+              interactions which made me shy on the idea, plus turns out I don't
+              like react.
             </p>
+            <p>Now I mostly use it as a personal tool for my campaigns.</p>
             <br />
             <h2 className="text-xl bold text-slate-900">
               Why does this look like shit
@@ -125,7 +126,7 @@ export const HelpDialog = () => {
               Why is there really bad looking AI art in here?
             </h2>
             <p>
-              I used AI art in some games with my group in 2022, and loaded it
+              I used AI art in some games with my group in 2023, and loaded it
               into the map for easier finding. It was a different time.
             </p>
             <br />
