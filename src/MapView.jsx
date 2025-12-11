@@ -437,11 +437,12 @@ export const MapView = ({
         {/* hidden popup waiting for usafe */}
         <div className="hidden-popup-container">
           <PreviewPopup setPopup={setPopup} previewPoint={previewPoint} />
-          <ContextPopup
+          {/* unhide me if you want to add shit */}
+          {/* <ContextPopup
             setContextMenu={setContextMenu}
             contextMenuLocation={contextMenuLocation}
             newLocationHook={newLocationHook}
-          />
+          /> */}
         </div>
 
         {/* the map */}
