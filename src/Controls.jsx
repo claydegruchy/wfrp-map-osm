@@ -355,11 +355,11 @@ const PointInfoCard = ({
 
       <div className="flex">
         {/* <button title="Download" onClick={downloadImage}>⏬</button> */}
-        {rest.public ? (
+        {/* {rest.public ? (
           <button title="Share" onClick={copyLink}>
             🔗
           </button>
-        ) : null}
+        ) : null} */}
         {owned_by_user ? (
           <button title="Delete" onClick={() => removePointHook(id)}>
             🗑️
