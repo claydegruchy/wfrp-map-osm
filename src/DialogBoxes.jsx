@@ -95,9 +95,34 @@ export const HelpDialog = () => {
             <h2 className="text-xl bold text-slate-900">What is this?</h2>
             <p>
               This is a searchable Warhammer world map inspired by the amazing
-              maps over at gitzmansgallery
+              maps over at gitzmansgallery. I didn't make any of these maps,
+              just put them together.
             </p>
             {/* <p>This is intended for fan art, but (non-video game) offical art is okay</p> */}
+            <br />
+            <h2 className="text-xl bold text-slate-900">Credits</h2>
+            <p>
+              Big thanks to gitzmansgallery for the main map. Extract from
+              gitzmansgallery.com:
+            </p>
+            <p>
+              <i>
+                Some original artwork is credited to Andreas Blicher, based upon
+                Alfred Nunez Jr.'s outstanding cartography and research. Many
+                other sources were used including those from the Warhammer Maps
+                page.
+              </i>
+            </p>
+            <p>
+              Thanks to Magnus Seter via http://altdorfer.blogspot.com for
+              Altdorf. I hope to load the various POIs one day.
+            </p>
+            <p>
+              Big thanks to{" "}
+              <a href="https://www.deviantart.com/planjanusza">planjanusza</a>{" "}
+              for the free listed assets on their deviantart. Amazing stuff and
+              inspired me to make this. Multiple maps are used from here.
+            </p>
             <br />
             <h2 className="text-xl bold text-slate-900">
               Why did you make this?
@@ -130,30 +155,7 @@ export const HelpDialog = () => {
               into the map for easier finding. It was a different time.
             </p>
             <br />
-            <h2 className="text-xl bold text-slate-900">Credits</h2>
-            <p>
-              Big thanks to gitzmansgallery for the main map. Extract from
-              gitzmansgallery.com:
-            </p>
-            <p>
-              <i>
-                Some original artwork is credited to Andreas Blicher, based upon
-                Alfred Nunez Jr.'s outstanding cartography and research. Many
-                other sources were used including those from the Warhammer Maps
-                page.
-              </i>
-            </p>
-            <p>
-              Thanks to Magnus Seter via http://altdorfer.blogspot.com for
-              Altdorf. I hope to load the various POIs one day.
-            </p>
-            <p>
-              Big thanks to{" "}
-              <a href="https://www.deviantart.com/planjanusza">planjanusza</a>{" "}
-              for the free listed assets on their deviantart. Amazing stuff and
-              inspired me to make this. Multiple maps are used from here.
-            </p>
-            <br />
+
             <h2 className="text-xl bold text-slate-900">
               I have a high def map of a city/part of the world that I want to
               add
