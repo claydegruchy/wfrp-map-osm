@@ -168,7 +168,8 @@ export const HelpDialog = () => {
               What's next for this thing
             </h2>
             <p>
-              Route finding. I made a star map of the alien universe a while back (
+              Route finding. I made a star map of the alien universe a while
+              back (
               <a href="https://map.weylandyutani.company/">
                 https://map.weylandyutani.company/
               </a>
@@ -182,6 +183,7 @@ export const HelpDialog = () => {
             </p>
             <br />
             <p>Maybe I'll remake it in Svelte or some other language</p>
+            <p>Probably open source</p>
           </div>
         </Modal>
       ) : null}
