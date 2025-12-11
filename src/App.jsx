@@ -53,6 +53,7 @@ function App() {
     (e) => {
       // only do this once
       PreSelectPoint();
+      updateFirebaseElements()
     },
     [mapCommunications]
   );
@@ -170,7 +171,7 @@ function App() {
           ""
         )}
         <HelpDialog />
-        <LoginDialog authChangeHook={updateFirebaseElements} />
+        {/* <LoginDialog authChangeHook={updateFirebaseElements} /> */}
       </div>
       <div className=" absolute flex z-10 bottom-0 ">
         {openControls ? (
