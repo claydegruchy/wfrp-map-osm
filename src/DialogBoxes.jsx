@@ -100,68 +100,90 @@ export const HelpDialog = () => {
           <div className=" lg:max-w-3xl text-left text-sm lg:text-md ">
             <div className="border text-sm">
               <h2 className="text-xl bold text-slate-900">Updates!</h2>
-              <p>
-                Added zoomable maps for ubersreik, altdorf, bel-aliad,
-                carroburg, kemperbad, marienburg, miragliano, nuln, praag and
-                sartosa
-              </p>
+              <p>2025: Added a search function</p>
             </div>
-            <h2 className="text-xl bold text-slate-900">What is this</h2>
+            <h2 className="text-xl bold text-slate-900">What is this?</h2>
             <p>
-              This is a Warhammer world map sharing system inspired by the
-              amazing maps over at gitzmansgallery.
+              This is a searchable Warhammer world map inspired by the amazing
+              maps over at gitzmansgallery
             </p>
-            {/* <p>The system allows you to view the old world, zoom in to street level in some locations, and share your art, battlemaps, and stories.</p> */}
             {/* <p>This is intended for fan art, but (non-video game) offical art is okay</p> */}
+            <h2 className="text-xl bold text-slate-900">
+              Why did you make this?
+            </h2>
             <p>
-              This is mostly made for my personal use (keeping track of cool art
-              is hard!) but I plan on opening it up so others can add art from
-              their adventures in the old world.
+              I wanted to learn QGIS, I wanted to learn react, and I like
+              warhammer, so I made this.
             </p>
             <p>
-              It's a work in progress, so please be patient with me as I add
-              more features.
+              Originally I wanted to make a system that would let people share
+              maps but then I realised that I really don't like react and didn't
+              want to bother with it. Now I mostly use it as a personal tool for
+              my campaigns.
+            </p>
+            <h2 className="text-xl bold text-slate-900">
+              Why does this look like shit
+            </h2>
+            <p>
+              Because I suck at css today, and sucked even more in 2022 when I
+              started making this
+            </p>
+            <h2 className="text-xl bold text-slate-900">
+              Why is there really bad looking AI art in here?
+            </h2>
+            <p>
+              I used AI art in some games with my group in 2022, and loaded it
+              into the map for easier finding. It was a different time.
             </p>
             <h2 className="text-xl bold text-slate-900">Credits</h2>
             <p>
               Big thanks to gitzmansgallery for the main map. Extract from
               gitzmansgallery.com:
-              <div className="italic">
-                {" "}
+            </p>
+            <p>
+              <i>
                 Some original artwork is credited to Andreas Blicher, based upon
-                Alfred Nunez, Jr.'s outstanding cartography and research. Many
+                Alfred Nunez Jr.'s outstanding cartography and research. Many
                 other sources were used including those from the Warhammer Maps
                 page.
-              </div>
+              </i>
             </p>
             <p>
               Thanks to Magnus Seter via http://altdorfer.blogspot.com for
               Altdorf. I hope to load the various POIs one day.
             </p>
             <p>
-              Big thanks to https://www.deviantart.com/planjanusza for the free
-              listed assets on their deviantart. Amazing stuff and inspired me
-              to make this. Multiple maps are used from here.
+              Big thanks to{" "}
+              <a href="https://www.deviantart.com/planjanusza">planjanusza</a>{" "}
+              for the free listed assets on their deviantart. Amazing stuff and
+              inspired me to make this. Multiple maps are used from here.
             </p>
-            <h2 className="text-xl bold text-slate-900">
-              How do I add new locations?
-            </h2>
-            <p>Right now, you can't. This feature is a work in progress.</p>
-            {/* <ol className='list-decimal indent-3'>
-                    <li>Login in the top left</li>
-                    <li>Right click a location</li>
-                    <li>Add some art that you think is cool for that location, and maybe some battlemaps if you have them (file size limit ~5mb)</li>
-                    <li>Star the image that you want to show in the preview (art works best for this)</li>
-                    <li>Check the box if you want to share them publically so everyone can enjoy them</li>
-                </ol> */}
-            {/* <p className='italic'>If you didn't create the images, make sure to credit the artist who did!</p> */}
             <h2 className="text-xl bold text-slate-900">
               I have a high def map of a city/part of the world that I want to
               add
             </h2>
-            Adding zoomable maps is not yet automated, but{" "}
-            <a href="https://forms.gle/5RRtzuv3Um5xN9Eh9">use this form</a> and
+            I can add maps for you if they're free to use or you own them. Hit
+            me up on this
+            <a href="https://forms.gle/5RRtzuv3Um5xN9Eh9">Google Form</a> and
             I'll try to add it for you
+            <h2 className="text-xl bold text-slate-900">
+              What's next for this thing
+            </h2>
+            <p>
+              I made a star map of the alien universe a while back (
+              <a href="https://map.weylandyutani.company/">
+                https://map.weylandyutani.company/
+              </a>
+              ), I might bring over the pathfinding systems so you can get map
+              directions between locations with accurate distances etc.
+            </p>
+            <br />
+            <p>
+              I'll probably drop firebase as I don't want to make this a sharing
+              system anymore.
+            </p>
+            <br />
+            <p>Maybe I'll remake it in Svelte or some other language</p>
           </div>
         </Modal>
       ) : null}
