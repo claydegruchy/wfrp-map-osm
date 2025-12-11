@@ -164,13 +164,13 @@ function App() {
       {/* enable for bulk addition operations */}
       {/* <AddBulkPoints addNewPointHook={addNewPointHook} points={points} /> */}
       <div className=" absolute flex gap-2 z-10 top-2 left-2">
-        <LoginDialog authChangeHook={updateFirebaseElements} />
-        <HelpDialog />
         {mapCommunications ? (
           <SearchBox locations={points} onSelect={zoomToPoint} />
         ) : (
           ""
         )}
+        <HelpDialog />
+        <LoginDialog authChangeHook={updateFirebaseElements} />
       </div>
       <div className=" absolute flex z-10 bottom-0 ">
         {openControls ? (
