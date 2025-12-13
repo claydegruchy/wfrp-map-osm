@@ -7,25 +7,13 @@
     RasterLayer,
     RasterTileSource,
   } from "svelte-maplibre";
-  import { paths, points } from "../public/data.json";
-  console.log(points);
 
-  function mercatorToLngLat([x, y]) {
-    const R = 6378137;
-    const lng = (x / R) * (180 / Math.PI);
-    const lat =
-      (2 * Math.atan(Math.exp(y / R)) - Math.PI / 2) * (180 / Math.PI);
-    return [lng, lat];
+  export let locations;
+  export function zoomTo(name) {
+    console.log("zoom to", name);
   }
 
-  let locations = points.map(({ coordinates, name, credit, tags }) => ({
-    lngLat: mercatorToLngLat(coordinates),
-    name,
-    credit,
-    tags,
-  }));
 
-  console.log(locations);
 </script>
 
 <MapLibre
@@ -54,6 +42,10 @@
     {#if tags}
       <Marker {lngLat}>
         <span class={`marker ` + tags.join(" ")}> </span>
+      </Marker>
+    {:else}
+      <Marker {lngLat}>
+        <span class={`marker `}>{name} </span>
       </Marker>
     {/if}
   {/each}
@@ -86,7 +78,7 @@
     border: 2px solid red;
   }
 
-  .marker.green {
+  .marker.empire {
     border: 2px solid green;
   }
 </style>
