@@ -7,37 +7,26 @@
     RasterLayer,
     RasterTileSource,
   } from "svelte-maplibre";
+  import BackgroundMaps from "./lib/BackgroundMaps.svelte";
 
   export let locations;
   export function zoomTo(name) {
     console.log("zoom to", name);
   }
 
-
+  let map;
 </script>
 
 <MapLibre
-  center={[1, 1]}
+  bind:map
+  center={[-16.323983027569785, 32.12166340509524]}
   zoom={3}
   minZoom={1}
   maxZoom={14}
   class="map"
   style="https://basemaps.cartocdn.com/gl/positron-gl-style/style.json"
 >
-  <RasterTileSource
-    tiles={[
-      "https://claydegruchy.github.io/wfrp-map-storage/world-map/{z}/{z}_{x}_{y}.jpg",
-    ]}
-    tileSize={256}
-    maxzoom={7}
-  >
-    <RasterLayer
-      paint={{
-        "raster-opacity": 0.5,
-      }}
-    />
-  </RasterTileSource>
-
+  <BackgroundMaps {map}></BackgroundMaps>
   {#each locations as { lngLat, name, tags }}
     {#if tags}
       <Marker {lngLat}>
