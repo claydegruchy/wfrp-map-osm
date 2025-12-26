@@ -26,14 +26,15 @@ body {
 
 body {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* Center the app content */
-  /* min-width: 320px;
-  min-height: 100vh; */
-  /* Full screen height */
   background: #f0f0f0;
-  /* Optional background color */
+}
+
+.map-container {
+  flex: 1;
+  /* takes all remaining space */
 }
 
 #app {
