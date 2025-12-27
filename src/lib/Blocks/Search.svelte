@@ -18,9 +18,10 @@
     showDropdown = true;
     isSearching = true;
     let queryResult = await lookUpName(query);
-    if (queryResult && queryResult.length > -1) results = queryResult;
 
-    console.log({ results, queryResult });
+    if (queryResult && queryResult.length > -1) {
+      results = queryResult;
+    }
 
     isSearching = false;
   }
@@ -29,6 +30,7 @@
     query = obj.name;
     selectedName = obj.id;
     showDropdown = false;
+    returnSelection(obj.id);
   }
 
   function startSearch(option) {
@@ -37,8 +39,9 @@
     returnSelection(selectedName);
   }
 
-  function onSearch() {
-    if (selectedName) startSearch(selectedName);
+  function clearSearch() {
+    selectedName = null;
+    query = null;
   }
 </script>
 
@@ -52,24 +55,23 @@
     on:blur={() => setTimeout(() => (showDropdown = false), 100)}
   />
 
-  {#if selectedName}
-    <button on:click={onSearch}>Start</button>
+  {#if selectedName || query}
+    <button on:click={clearSearch}>Clear</button>
+  {/if}
+  {#if showDropdown || isSearching}
+    <div class="dropdown">
+      {#if isSearching}
+        <div class="feedback">Searching...</div>
+      {:else if results.length === 0}
+        <div class="feedback">No results found</div>
+      {:else}
+        {#each results as { name, id }}
+          <div on:mousedown={() => selectName({ id, name })}>{name}</div>
+        {/each}
+      {/if}
+    </div>
   {/if}
 </div>
-
-{#if showDropdown || isSearching}
-  <div class="dropdown">
-    {#if isSearching}
-      <div class="feedback">Searching...</div>
-    {:else if results.length === 0}
-      <div class="feedback">No results found</div>
-    {:else}
-      {#each results as { name, id }}
-        <div on:mousedown={() => selectName({ id, name })}>{name}</div>
-      {/each}
-    {/if}
-  </div>
-{/if}
 
 <style>
   .floating-search {
@@ -97,6 +99,7 @@
   }
 
   .dropdown {
+    z-index: 10;
     border: 1px solid #ccc;
     background: white;
     max-height: 200px;

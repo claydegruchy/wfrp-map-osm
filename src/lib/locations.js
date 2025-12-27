@@ -54,10 +54,10 @@ const selectedStyle = (feature) => new Style({
 		})
 	}),
 	text: new Text({   // ✅ must be a Text instance
-		text: feature.get('name'),
+		text: feature.get('name') || "Unnamed",
 		offsetY: -12,
 		fill: new Fill({ color: '#fff' }),
-		stroke: new Stroke({ color: '#000', width: 2 })
+		stroke: new Stroke({ color: '#000', width: 10 })
 	})
 
 })
@@ -74,12 +74,14 @@ export const locationsLayer = new VectorLayer({
 
 	}),
 	source: new VectorSource({
-		features: locations.map(p =>
-			new Feature({
+		features: locations.map(p => {
+			let f = new Feature({
 				geometry: new Point(p.coordinates),
 				...p
 			})
-		)
+			f.setId(p.id)
+			return f
+		})
 	})
 });
 
@@ -112,11 +114,40 @@ export function setupLocations(map, standardClickCallback = (a) => { }) {
 		} else {
 			// clicked background: clear selection
 			selectedFeatures.clear();
-			console.log('no feature selected');
 			standardClickCallback(null)
 		}
 	});
 
+
+	function selectFeatureById(id) {
+		const feature = locationsLayer.getSource().getFeatureById(id);
+		if (!feature) return;
+
+		const selectedFeatures = selectInteraction.getFeatures();
+		selectedFeatures.clear();    // deselect previous
+		selectedFeatures.push(feature); // select new
+	}
+
+
+	function zoomToLocationById(id) {
+		console.log("zoomToLocationById", id);
+
+		const feature = locationsLayer.getSource().getFeatureById(id);
+		if (!feature) return;
+		const geometry = feature.getGeometry();
+		const coordinates = geometry.getCoordinates();
+		console.log("zoom to", coordinates);
+
+		// pan/zoom the map view
+		map.getView().animate({
+			center: coordinates,
+			zoom: 8,       // desired zoom level
+			duration: 500   // animation in ms
+		});
+
+	}
+
+	return [selectFeatureById, zoomToLocationById]
 
 }
 

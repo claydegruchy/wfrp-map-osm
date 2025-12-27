@@ -24,9 +24,11 @@
   let zoom = 5;
 
   export let locationSelected;
-  onMount(() => {
-    console.log(locations);
 
+  export let selectLocationById;
+  export let zoomToLocationById;
+
+  onMount(() => {
     $map = new Map({
       target: "map",
       controls: [], // no zoom, no attribution, nothing
@@ -48,7 +50,10 @@
       view: new View({ center, zoom }),
     });
 
-    setupLocations($map, locationSelected);
+    [selectLocationById, zoomToLocationById] = setupLocations(
+      $map,
+      locationSelected
+    );
   });
 
   $: if ($map) {
