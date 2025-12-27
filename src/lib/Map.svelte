@@ -2,11 +2,8 @@
   import { onMount } from "svelte";
   import Map from "ol/Map.js";
   import View from "ol/View.js";
-  import TileLayer from "ol/layer/Tile.js";
-  import { XYZ } from "ol/source";
   import { map } from "./stores";
   import "ol/ol.css";
-  import { TileGrid } from "ol/tilegrid";
   import {
     Marienburg,
     AltdorfMap,
@@ -21,12 +18,19 @@
     world,
   } from "./maps";
 
+  import { locations, locationsLayer, setupLocations } from "./locations";
+
   let center = [-3247495.2505356777, 4704319.403427397];
   let zoom = 5;
 
+  export let locationSelected;
   onMount(() => {
+    console.log(locations);
+
     $map = new Map({
       target: "map",
+      controls: [], // no zoom, no attribution, nothing
+
       layers: [
         world,
         Marienburg,
@@ -39,9 +43,12 @@
         Praag,
         Sartosa,
         Ubersreik,
+        locationsLayer,
       ],
       view: new View({ center, zoom }),
     });
+
+    setupLocations($map, locationSelected);
   });
 
   $: if ($map) {

@@ -5,11 +5,13 @@
   import Search from "./lib/Blocks/Search.svelte";
   import Map from "./lib/Map.svelte";
 
-  let locations = {};
-  onMount(async () => {});
+  let selected;
+  function locationSelected({ name, coordinates, tags }) {
+    console.log("locationSelected", { name, coordinates, tags });
+  }
 </script>
 
-<!-- <Search></Search> -->
+<Search></Search>
 <nav class="bottom right">
   <Dialog>
     <div slot="button">What is this?</div>
@@ -17,7 +19,9 @@
   </Dialog>
 </nav>
 
-<Map></Map>
+<Map {locationSelected}></Map>
+
+<nav class="bottom left"></nav>
 
 <style>
   :global(.map) {

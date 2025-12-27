@@ -47,9 +47,6 @@ export const Marienburg = layerGenerator({
 })
 
 
-
-
-
 export const AltdorfMap = layerGenerator({
 	folderName: 'altdorf/',
 	TileGridData: {
