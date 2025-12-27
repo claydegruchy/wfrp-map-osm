@@ -4,7 +4,7 @@ import { Point } from "ol/geom";
 import Style from "ol/style/Style";
 import Fill from "ol/style/Fill";
 import CircleStyle from 'ol/style/Circle.js';
-
+import Text from 'ol/style/Text.js';
 import Stroke from "ol/style/Stroke";
 import VectorLayer from "ol/layer/Vector";
 import VectorSource from "ol/source/Vector";
@@ -20,6 +20,9 @@ export const locations = rawLocatons.points.map(e => ({
 
 }))
 
+
+
+let dashOffset = 0
 
 
 
@@ -41,12 +44,22 @@ const cityStyle = new Style({
 })
 
 
-const selectedStyle = new Style({
+const selectedStyle = (feature) => new Style({
 	image: new CircleStyle({
 		radius: 6,
 		fill: new Fill({ color: 'transparent' }),
-		stroke: new Stroke({ color: 'white', width: 2 })
+		stroke: new Stroke({
+			color: 'white', width: 2, lineDash: [4, 4],
+			lineDashOffset: dashOffset
+		})
 	}),
+	text: new Text({   // ✅ must be a Text instance
+		text: feature.get('name'),
+		offsetY: -12,
+		fill: new Fill({ color: '#fff' }),
+		stroke: new Stroke({ color: '#000', width: 2 })
+	})
+
 })
 
 
@@ -103,6 +116,7 @@ export function setupLocations(map, standardClickCallback = (a) => { }) {
 			standardClickCallback(null)
 		}
 	});
+
 
 }
 
