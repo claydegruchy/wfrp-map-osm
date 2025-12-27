@@ -33,12 +33,6 @@
     returnSelection(obj.id);
   }
 
-  function startSearch(option) {
-    console.log("Running search for:", option);
-    // replace with actual search logic
-    returnSelection(selectedName);
-  }
-
   function clearSearch() {
     selectedName = null;
     query = null;
@@ -79,6 +73,7 @@
     top: 10px;
     left: 0;
     width: calc(100% - 40px);
+    max-width: 400px;
     margin: 0 20px;
     z-index: 1000;
     display: flex;
