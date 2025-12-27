@@ -6,8 +6,8 @@
   import Map from "./lib/Map.svelte";
 
   let selected;
-  function locationSelected({ name, coordinates, tags }) {
-    console.log("locationSelected", { name, coordinates, tags });
+  function locationSelected(s) {
+    selected = s;
   }
 </script>
 
@@ -21,7 +21,11 @@
 
 <Map {locationSelected}></Map>
 
-<nav class="bottom left"></nav>
+{#if selected}
+  <nav class="bottom left">
+    {selected.name}
+  </nav>
+{/if}
 
 <style>
   :global(.map) {
