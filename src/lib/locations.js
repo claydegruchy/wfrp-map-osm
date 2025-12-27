@@ -26,27 +26,27 @@ let dashOffset = 0
 
 
 
-const defaultStyle = new Style({
+const defaultStyle = (feature, zoom) => new Style({
 	image: new CircleStyle({
-		radius: 6,
+		radius: Math.abs(zoom / 550 - 12),
 		fill: new Fill({ color: 'transparent' }),
 		stroke: new Stroke({ color: 'blue', width: 2 })
 	}),
 })
 
 
-const cityStyle = new Style({
+const cityStyle = (feature, zoom) => new Style({
 	image: new CircleStyle({
-		radius: 6,
+		radius: Math.abs(zoom / 550 - 12),
 		fill: new Fill({ color: 'transparent' }),
 		stroke: new Stroke({ color: 'red', width: 2 })
 	}),
 })
 
 
-const selectedStyle = (feature) => new Style({
+const selectedStyle = (feature, zoom) => new Style({
 	image: new CircleStyle({
-		radius: 6,
+		radius: Math.abs(zoom / 550 - 12),
 		fill: new Fill({ color: 'transparent' }),
 		stroke: new Stroke({
 			color: 'white', width: 2, lineDash: [4, 4],
@@ -56,8 +56,9 @@ const selectedStyle = (feature) => new Style({
 	text: new Text({   // ✅ must be a Text instance
 		text: feature.get('name') || "Unnamed",
 		offsetY: -12,
+		scale: 2,
 		fill: new Fill({ color: '#fff' }),
-		stroke: new Stroke({ color: '#000', width: 10 })
+		stroke: new Stroke({ color: '#000', width: 20 })
 	})
 
 })
@@ -66,11 +67,16 @@ const selectedStyle = (feature) => new Style({
 
 
 export const locationsLayer = new VectorLayer({
-	style: ((feature) => {
+	style: ((feature, zoom) => {
+
+		if (zoom >= 3000) return null
+
+
+
 		let tags = feature.get('tags');
-		if (!tags) return defaultStyle
-		if (tags.includes("city")) return cityStyle
-		return defaultStyle
+		if (!tags) return defaultStyle(feature, zoom)
+		if (tags.includes("city")) return cityStyle(feature, zoom)
+		return defaultStyle(feature, zoom)
 
 	}),
 	source: new VectorSource({
