@@ -17,6 +17,9 @@ export const locations = rawLocatons.points.map(e => ({
 	coordinates: e.coordinates,
 	tags: e.tags,
 	id: e.id,
+	art: e.images?.map((_, i) => `images/${e.id}/${e.id}_${i}.jpg`) || []
+
+
 
 }))
 
@@ -46,7 +49,7 @@ const cityStyle = (feature, zoom) => new Style({
 
 const selectedStyle = (feature, zoom) => new Style({
 	image: new CircleStyle({
-		radius: Math.abs(zoom / 550 - 12),
+		radius: Math.abs(zoom / 550 - 13),
 		fill: new Fill({ color: 'transparent' }),
 		stroke: new Stroke({
 			color: 'white', width: 2, lineDash: [4, 4],
@@ -105,7 +108,8 @@ export function setupLocations(map, standardClickCallback = (a) => { }) {
 		const selectedFeatures = selectInteraction.getFeatures();
 
 		if (evt.selected.length > 0) {
-			// clicked a feature: keep it selected
+
+
 			selectedFeatures.clear();
 			evt.selected.forEach(f => selectedFeatures.push(f));
 
@@ -113,8 +117,9 @@ export function setupLocations(map, standardClickCallback = (a) => { }) {
 			const id = f.getId();
 			const name = f.get('name');
 			const tags = f.get('tags');
+			const art = f.get('art');
 			const coordinates = f.getGeometry().getCoordinates();
-			standardClickCallback({ id, name, coordinates, tags })
+			standardClickCallback({ id, name, coordinates, tags, art })
 
 
 		} else {

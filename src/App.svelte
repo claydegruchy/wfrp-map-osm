@@ -5,6 +5,7 @@
   import Search from "./lib/Blocks/Search.svelte";
   import Map from "./lib/Map.svelte";
   import { locations } from "./lib/locations";
+  import SelectedLocation from "./lib/SelectedLocation.svelte";
 
   let selected;
   let selectLocationById;
@@ -47,7 +48,9 @@
 
 {#if selected}
   <nav class="bottom left">
-    {selected.name}
+    {#key selected}
+      <SelectedLocation location={selected}></SelectedLocation>
+    {/key}
   </nav>
 {/if}
 
