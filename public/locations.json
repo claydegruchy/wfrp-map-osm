@@ -99,7 +99,9 @@
 			646409.9999452658,
 			5264806.457212581
 		],
-		"tags": [],
+		"tags": [
+			"state:ostland"
+		],
 		"id": "0MxbeKXu257p0j2j2tH9",
 		"art": []
 	},
@@ -393,7 +395,8 @@
 			6084726.340743238
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:ostland"
 		],
 		"id": "2CqvIUp1vlgXplRDhpRE",
 		"art": []
@@ -531,7 +534,8 @@
 			5422863.462300729
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:ostland"
 		],
 		"id": "2yYg4rvSyi9EuFUuZu6y",
 		"art": []
@@ -837,7 +841,8 @@
 			5047157.702207269
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:ostland"
 		],
 		"id": "4jyPkIbu7c6G1Yp1VXlm",
 		"art": []
@@ -1937,7 +1942,8 @@
 			5329594.95351684
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:ostland"
 		],
 		"id": "ADRzHSVLiopwtB9bB0yu",
 		"art": []
@@ -2392,7 +2398,8 @@
 			6223287.025318302
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:ostland"
 		],
 		"id": "CttpUGJgJGf95fWp1wlM",
 		"art": []
@@ -2599,7 +2606,8 @@
 			5482579.741256619
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:ostland"
 		],
 		"id": "Eantpp8QFSTJoti1CFW9",
 		"art": []
@@ -2711,7 +2719,8 @@
 			5554310.9020949
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:ostland"
 		],
 		"id": "EyXqbavhxbMMpqukHVoT",
 		"art": []
@@ -2821,7 +2830,8 @@
 			6207168.026561489
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:ostland"
 		],
 		"id": "FZSKQcsi3VkPWziaV2M6",
 		"art": []
@@ -3253,7 +3263,8 @@
 			6114074.964743445
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:ostland"
 		],
 		"id": "IX67QYTT8bTnNmKH4EdH",
 		"art": []
@@ -3686,7 +3697,8 @@
 			5698758.446705006
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:ostland"
 		],
 		"id": "KTs5DDZsok9fl9vyHcwt",
 		"art": []
@@ -3769,7 +3781,8 @@
 			5428723.529347099
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:ostland"
 		],
 		"id": "L9gHjkaSdzwcQi8BeddC",
 		"art": []
@@ -3866,7 +3879,8 @@
 			5896845.975426519
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:ostland"
 		],
 		"id": "LuSiEmcHWFZmpmS3jNcd",
 		"art": []
@@ -4284,7 +4298,8 @@
 			5321463.477558985
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:ostland"
 		],
 		"id": "NgeqsFMK0mTgGXZSIAPh",
 		"art": []
@@ -4454,7 +4469,8 @@
 			5409872.709050172
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:ostland"
 		],
 		"id": "PCkh8kO8YCJqR1gt850e",
 		"art": []
@@ -4467,7 +4483,8 @@
 			6060603.011878325
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:ostland"
 		],
 		"id": "PDF3ygpGyRlFNXyZmxRW",
 		"art": []
@@ -5018,7 +5035,8 @@
 			5921979.779977694
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:ostland"
 		],
 		"id": "THWKprNs7fezeWHXaHjS",
 		"art": []
@@ -5332,7 +5350,8 @@
 			6096016.698422337
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:ostland"
 		],
 		"id": "VgjCgxpnWHynnoqW3dIt",
 		"art": []
@@ -5414,7 +5433,8 @@
 			5038318.456032114
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:ostland"
 		],
 		"id": "WOWGqowpYeD60VJYpG0v",
 		"art": []
@@ -5471,7 +5491,8 @@
 			6218963.29554611
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:ostland"
 		],
 		"id": "WZ04WKXXNvkwQTlVtXRc",
 		"art": []
@@ -5749,7 +5770,8 @@
 			5448489.533688636
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:ostland"
 		],
 		"id": "YH6JVHS7lp9UUTiBKB97",
 		"art": []
@@ -6591,7 +6613,8 @@
 			5749662.883407538
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:ostland"
 		],
 		"id": "eK3HleG2B7mkcJ7S96U9",
 		"art": []
@@ -6715,7 +6738,8 @@
 			5164000.664522127
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:ostland"
 		],
 		"id": "foeKUKcuCcpfznOv7mly",
 		"art": []
@@ -6936,7 +6960,8 @@
 			5088734.919540897
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:ostland"
 		],
 		"id": "h92pTp8ZodH4IW6tOpFl",
 		"art": []
@@ -7447,7 +7472,8 @@
 			5895794.5737419035
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:ostland"
 		],
 		"id": "kXjYFbp5NgFU5PhTcxP1",
 		"art": []
@@ -7621,7 +7647,8 @@
 			5802002.3094555745
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:ostland"
 		],
 		"id": "lkQuBXPl2n2s04aB5iBr",
 		"art": []
@@ -8537,7 +8564,8 @@
 			5827135.405630439
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:ostland"
 		],
 		"id": "rAvepB5VsoxWRfkjo0ae",
 		"art": []
@@ -8747,7 +8775,8 @@
 			5191015.1364970915
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:ostland"
 		],
 		"id": "tRE9ZIXXVwLQOjWVpsNU",
 		"art": []
@@ -8984,7 +9013,8 @@
 			5970824.735103725
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:ostland"
 		],
 		"id": "uqcMszGDdrIOPF9nj7RG",
 		"art": []
@@ -9037,7 +9067,8 @@
 			5167095.206991427
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:ostland"
 		],
 		"id": "v5VGlIs58Z4aR4McwM5O",
 		"art": []
@@ -9582,7 +9613,8 @@
 			6098321.6982833985
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:ostland"
 		],
 		"id": "y5T6FxvgbtyRirrZfYhb",
 		"art": []
@@ -9621,7 +9653,8 @@
 			5970316.291551376
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:ostland"
 		],
 		"id": "yOVjGOYhywmQpob4z8ta",
 		"art": []
@@ -9703,7 +9736,8 @@
 			6242634.807685812
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:ostland"
 		],
 		"id": "ypiVWakOMveg3Yl0GPZl",
 		"art": []
