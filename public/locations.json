@@ -6,7 +6,9 @@
 			-2658395.073541827,
 			3605777.1818699515
 		],
-		"tags": [],
+		"tags": [
+			"state:reikland"
+		],
 		"id": "0A4UnWnmQqPqqRezis5O",
 		"art": []
 	},
@@ -31,7 +33,9 @@
 			-3121453.810151525,
 			4371531.027942977
 		],
-		"tags": [],
+		"tags": [
+			"country:wasteland"
+		],
 		"id": "0FJpIKTjtPN5YZrLmMMb",
 		"art": []
 	},
@@ -42,7 +46,9 @@
 			-554272.0932534379,
 			6185312.154203371
 		],
-		"tags": [],
+		"tags": [
+			"state:nordland"
+		],
 		"id": "0GgptP1u76PuCkScbKHr",
 		"art": []
 	},
@@ -104,7 +110,8 @@
 		],
 		"tags": [
 			"city",
-			"city:altdorf"
+			"city:altdorf",
+			"state:reikland"
 		],
 		"id": "0RLC7carRvWDY9K7K0Wp",
 		"art": [
@@ -119,7 +126,8 @@
 			4502675.538231255
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"country:wasteland"
 		],
 		"id": "0bNZu2mRAQfikH3XzbUu",
 		"art": []
@@ -132,7 +140,8 @@
 			5222381.274986415
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:middenland"
 		],
 		"id": "0hTOgJuL8oLShot5xKBD",
 		"art": []
@@ -159,7 +168,8 @@
 			6248923.202005465
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:nordland"
 		],
 		"id": "0uAOalOhagVR25A24zx7",
 		"art": []
@@ -187,7 +197,8 @@
 			4945978.59320585
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:middenland"
 		],
 		"id": "1DawucuuyvMHLfbPcTA5",
 		"art": []
@@ -213,7 +224,8 @@
 			2978188.901688178
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:sylvania"
 		],
 		"id": "1H4dBkU3KLQblA9XVjPq",
 		"art": []
@@ -226,7 +238,8 @@
 			5256738.465563087
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:middenland"
 		],
 		"id": "1LqbiRLZuTBZqynZ2jz6",
 		"art": []
@@ -239,7 +252,8 @@
 			3042865.7027251623
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:sylvania"
 		],
 		"id": "1ObMx9toCOGFw9W0AC5g",
 		"art": []
@@ -252,7 +266,8 @@
 			4471305.643983418
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:middenland"
 		],
 		"id": "1XGblE729IuyIjnqF0Dn",
 		"art": []
@@ -278,7 +293,8 @@
 			5253037.300643038
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:middenland"
 		],
 		"id": "1drbsiqD68xGpB0rOgt8",
 		"art": []
@@ -330,7 +346,8 @@
 			5048352.720868965
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:hochland"
 		],
 		"id": "1nbDUc4dalCYNh2lLDd8",
 		"art": []
@@ -343,7 +360,8 @@
 			2945316.5149236307
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:sylvania"
 		],
 		"id": "1tPmFd1L0MRzvpEgXvmh",
 		"art": []
@@ -356,7 +374,8 @@
 			4849074.414399579
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:middenland"
 		],
 		"id": "28KWHum2OZsvoERgOI62",
 		"art": []
@@ -382,7 +401,8 @@
 			6091670.401651594
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:nordland"
 		],
 		"id": "2ImkAErrOAdfAXYGLLP1",
 		"art": []
@@ -395,7 +415,8 @@
 			4305861.536122007
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:reikland"
 		],
 		"id": "2Oe3lKz0hBY53og1ilxs",
 		"art": []
@@ -474,7 +495,9 @@
 			-3273582.2430479303,
 			4010228.032164721
 		],
-		"tags": [],
+		"tags": [
+			"country:wasteland"
+		],
 		"id": "2ZRh57Rq2pKLq54ScvIU",
 		"art": [
 			"images/2ZRh57Rq2pKLq54ScvIU/2ZRh57Rq2pKLq54ScvIU_0.jpg",
@@ -542,7 +565,8 @@
 			3339115.859740015
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:reikland"
 		],
 		"id": "3Bqxyi0W2N9azKlF4EGh",
 		"art": []
@@ -555,7 +579,8 @@
 			3312187.1411304316
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:sylvania"
 		],
 		"id": "3KgyWr8XzoUQ8TVgZmTt",
 		"art": []
@@ -581,7 +606,8 @@
 			3262049.9084634106
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:sylvania"
 		],
 		"id": "3VL5VFys0ej8mX6ZV0vD",
 		"art": []
@@ -608,7 +634,8 @@
 			6170619.23802867
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:nordland"
 		],
 		"id": "3fCqZIb84Q2KXpQZAfck",
 		"art": []
@@ -637,7 +664,8 @@
 			3345259.031878729
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:sylvania"
 		],
 		"id": "3kEexwfP6EFKHzrSBaai",
 		"art": []
@@ -664,7 +692,8 @@
 			4610060.116061429
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:ostermark"
 		],
 		"id": "3modX7xM6UGxkM5PgPun",
 		"art": []
@@ -677,7 +706,8 @@
 			5030976.568658966
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:middenland"
 		],
 		"id": "41yhBxSeztsyr08rvu21",
 		"art": []
@@ -690,7 +720,8 @@
 			4453628.679309941
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:ostermark"
 		],
 		"id": "443uh0tFpYbLgOBxvUuZ",
 		"art": []
@@ -703,7 +734,8 @@
 			4261274.686563164
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"country:wasteland"
 		],
 		"id": "4Kzfk5DnxUxpg57jmO3o",
 		"art": []
@@ -716,7 +748,8 @@
 			2850866.181705511
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:sylvania"
 		],
 		"id": "4LyZ5zVC7jaOr63ygbya",
 		"art": []
@@ -755,7 +788,8 @@
 			4162340.6518484536
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"country:wasteland"
 		],
 		"id": "4Xvu7O6DrcJ19UOqCM4I",
 		"art": []
@@ -822,7 +856,8 @@
 		],
 		"tags": [
 			"city",
-			"city:altdorf"
+			"city:altdorf",
+			"state:reikland"
 		],
 		"id": "4q9ByqX5HFjyzM1Hrzmd",
 		"art": []
@@ -861,7 +896,8 @@
 			6318633.771801545
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:nordland"
 		],
 		"id": "4xKNw4Hjrmw7xxiHlSWm",
 		"art": []
@@ -913,6 +949,7 @@
 			4727226.352716166
 		],
 		"tags": [
+			"country:wasteland",
 			"country:wasteland"
 		],
 		"id": "5FuqAr2xDzm2e4SiP3vr",
@@ -926,7 +963,8 @@
 			3178429.3959458857
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:sylvania"
 		],
 		"id": "5Nv1Ilt5BGWDnUkguiBo",
 		"art": []
@@ -952,7 +990,8 @@
 			6019013.745393484
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:nordland"
 		],
 		"id": "5QRa8dJ6cvRLk6RorGgT",
 		"art": []
@@ -965,7 +1004,8 @@
 			3755414.353437911
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:sylvania"
 		],
 		"id": "5XjIzeBGhm8LRIAe0kTi",
 		"art": []
@@ -991,7 +1031,8 @@
 			4595622.964626029
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"country:wasteland"
 		],
 		"id": "5iGmOG0LuHyMKE9eJ4eF",
 		"art": []
@@ -1004,7 +1045,8 @@
 			4716344.391886334
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:hochland"
 		],
 		"id": "5nHtXsyCcs1rgrdhb0RL",
 		"art": []
@@ -1030,7 +1072,8 @@
 			5612535.462244293
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:middenland"
 		],
 		"id": "5s4t75fQGVwzUyPjoOx4",
 		"art": []
@@ -1069,7 +1112,8 @@
 			4675258.9945767
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:hochland"
 		],
 		"id": "5ywl5wqD7206ENi7RWYY",
 		"art": []
@@ -1095,7 +1139,8 @@
 			3268164.2051301203
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:sylvania"
 		],
 		"id": "65MHo6R0YfXX41Ea17Qn",
 		"art": []
@@ -1134,7 +1179,8 @@
 			5250064.2625692235
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:hochland"
 		],
 		"id": "6DSt0QGh3J44cH7whgj8",
 		"art": []
@@ -1147,7 +1193,8 @@
 			4854527.496553977
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:hochland"
 		],
 		"id": "6EJt4S9RAt4c1iNNeF3M",
 		"art": []
@@ -1200,7 +1247,8 @@
 			2831298.302464506
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:sylvania"
 		],
 		"id": "6M4mysoyT87Tyg3LcAMj",
 		"art": []
@@ -1214,6 +1262,7 @@
 		],
 		"tags": [
 			"country:the empire",
+			"country:wasteland",
 			"country:wasteland"
 		],
 		"id": "6PSeOaOO38LA969BGSqt",
@@ -1255,6 +1304,7 @@
 		"tags": [
 			"city",
 			"city:marienburg",
+			"country:wasteland",
 			"country:wasteland"
 		],
 		"id": "6fY700YwhXq7hDoZuiH5",
@@ -1284,7 +1334,8 @@
 			5862101.341825584
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:nordland"
 		],
 		"id": "6mr8c1Ejkef9DmptPCuK",
 		"art": []
@@ -1366,7 +1417,8 @@
 			4430718.852478134
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"country:wasteland"
 		],
 		"id": "7GzSgLmhdZJurOYJPYBG",
 		"art": []
@@ -1405,7 +1457,8 @@
 			6133975.035934389
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:nordland"
 		],
 		"id": "7UWzjdtmu6norfp3NjIo",
 		"art": []
@@ -1418,7 +1471,8 @@
 			5434176.337078975
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:middenland"
 		],
 		"id": "7W8yJeSuJRz3A8yp8IYm",
 		"art": []
@@ -1431,7 +1485,8 @@
 			3840129.5916538513
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:sylvania"
 		],
 		"id": "7cAAVAqR5hJcIKLKbx92",
 		"art": []
@@ -1457,7 +1512,8 @@
 			5665619.454514566
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:middenland"
 		],
 		"id": "7xakvUjaczeFMPlaUVlN",
 		"art": []
@@ -1484,7 +1540,8 @@
 			4635450.625513223
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:middenland"
 		],
 		"id": "85ZlXUVMWTrMLaZxlta9",
 		"art": []
@@ -1497,7 +1554,8 @@
 			3436545.9884799463
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:reikland"
 		],
 		"id": "8BdRQaUHPWupwOuMEQhk",
 		"art": []
@@ -1576,7 +1634,8 @@
 			5225667.324203551
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:hochland"
 		],
 		"id": "8fAWVXMNJwdXtBdG5Pju",
 		"art": []
@@ -1668,7 +1727,8 @@
 			4549851.678813104
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:middenland"
 		],
 		"id": "93ULlnoQk0yL40d2QiFa",
 		"art": []
@@ -1681,7 +1741,8 @@
 			2927407.571500404
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:sylvania"
 		],
 		"id": "9LbrDr101LkrHojlddMc",
 		"art": []
@@ -1710,7 +1771,8 @@
 			4696519.08695964
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:middenland"
 		],
 		"id": "9RkXDZ8qnNA8humwXvzD",
 		"art": []
@@ -1737,7 +1799,8 @@
 			3182886.733688079
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:reikland"
 		],
 		"id": "9X3Kd0ufB893646WL7Xt",
 		"art": []
@@ -1750,7 +1813,8 @@
 			4276844.659154714
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"country:wasteland"
 		],
 		"id": "9bc81CFSsYRNRq4Y0MGe",
 		"art": []
@@ -1872,7 +1936,8 @@
 			2772430.905381283
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:sylvania"
 		],
 		"id": "AJpGfRc4g01A6kryBYbb",
 		"art": []
@@ -1885,7 +1950,8 @@
 			4907721.877554352
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:hochland"
 		],
 		"id": "AKZIy5a2aI0XRgqW1jQR",
 		"art": []
@@ -1925,7 +1991,8 @@
 			3445143.9150687107
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:sylvania"
 		],
 		"id": "AX6Hi3gy3kCBooihx615",
 		"art": []
@@ -2047,6 +2114,7 @@
 			4986163.672661037
 		],
 		"tags": [
+			"country:wasteland",
 			"country:wasteland"
 		],
 		"id": "BLzvtSdZ708LpHN23IdT",
@@ -2073,7 +2141,8 @@
 			4152776.9849702036
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:reikland"
 		],
 		"id": "BSIjQqbOEnUY95xMlkot",
 		"art": []
@@ -2099,7 +2168,8 @@
 			2953609.8736691065
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:sylvania"
 		],
 		"id": "BVR9dO0TWpSvAXVOTDrS",
 		"art": []
@@ -2139,7 +2209,8 @@
 			4194853.116074198
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:reikland"
 		],
 		"id": "Bt2fcb2oEkfSD4yxAL4m",
 		"art": []
@@ -2165,7 +2236,8 @@
 			3240720.9808718935
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:ostermark"
 		],
 		"id": "C3SYZERFVemRLBrH0MZN",
 		"art": []
@@ -2178,7 +2250,8 @@
 			5786159.552410579
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:nordland"
 		],
 		"id": "C8lRZqSuQYpgrGKXJ0ZZ",
 		"art": []
@@ -2218,7 +2291,8 @@
 			3772715.651644776
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:reikland"
 		],
 		"id": "CLWwEpSn8JdMZYhE4svu",
 		"art": []
@@ -2245,7 +2319,8 @@
 			4466415.722938476
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"country:wasteland"
 		],
 		"id": "COPVobEQLOlm7VDSpDUL",
 		"art": []
@@ -2258,7 +2333,8 @@
 			5156889.237536732
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:middenland"
 		],
 		"id": "CV96mMYdCPxPayTpkFfz",
 		"art": []
@@ -2271,7 +2347,8 @@
 			2853476.901497374
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:sylvania"
 		],
 		"id": "CYxIsiLepBs2hk84Eokl",
 		"art": []
@@ -2323,6 +2400,7 @@
 			5596220.060455012
 		],
 		"tags": [
+			"country:wasteland",
 			"country:wasteland"
 		],
 		"id": "CzkuUlxEv5Vpjk3yFeaC",
@@ -2336,7 +2414,8 @@
 			3133732.9479242903
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:sylvania"
 		],
 		"id": "D1toBniAwYGkcONlvrn8",
 		"art": []
@@ -2363,7 +2442,8 @@
 		],
 		"tags": [
 			"city",
-			"city:altdorf"
+			"city:altdorf",
+			"state:reikland"
 		],
 		"id": "DCMEAo6clwzWU6CwWHdt",
 		"art": [
@@ -2378,7 +2458,8 @@
 			5016885.787111442
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:hochland"
 		],
 		"id": "DLWTfhYPRFicfqrIfZXS",
 		"art": []
@@ -2391,7 +2472,8 @@
 			4668398.77744763
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:middenland"
 		],
 		"id": "DRQ2mGX062jlf9ZUY5Eu",
 		"art": []
@@ -2404,7 +2486,8 @@
 			5229651.599773537
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:middenland"
 		],
 		"id": "DuJrZ83eLzUk2UTQGxye",
 		"art": []
@@ -2443,7 +2526,8 @@
 			4606314.770481394
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:hochland"
 		],
 		"id": "EKmYKuIrInVxgFjxJnyC",
 		"art": []
@@ -2521,7 +2605,8 @@
 			5160728.275498109
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:middenland"
 		],
 		"id": "EhX94O55bghp4qEETylV",
 		"art": []
@@ -2589,7 +2674,8 @@
 			4834066.8819875335
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:hochland"
 		],
 		"id": "ExyJNEex3GwdHiXuf4dt",
 		"art": []
@@ -2739,7 +2825,8 @@
 			3119788.9629857563
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:sylvania"
 		],
 		"id": "FvPAxPPutUq9LfDmmRKW",
 		"art": []
@@ -2752,7 +2839,8 @@
 			4413793.044287694
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:ostermark"
 		],
 		"id": "FxGEFDHGEGnFWJrVsQE0",
 		"art": []
@@ -2765,6 +2853,7 @@
 			4831792.463181416
 		],
 		"tags": [
+			"country:wasteland",
 			"country:wasteland"
 		],
 		"id": "G1iG3yf2LaBSZt59VrLZ",
@@ -2778,7 +2867,8 @@
 			3100834.643318956
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:sylvania"
 		],
 		"id": "G467zCeVbDXMY67CipH8",
 		"art": []
@@ -2833,7 +2923,8 @@
 			3624697.1159862163
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:ostermark"
 		],
 		"id": "GWB3u84ivHgYE7aSS5rg",
 		"art": []
@@ -2873,6 +2964,7 @@
 		],
 		"tags": [
 			"art",
+			"country:wasteland",
 			"country:wasteland"
 		],
 		"id": "H2StLA3kcvHVz7QFIqZW",
@@ -2888,7 +2980,8 @@
 			4998263.685292737
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:middenland"
 		],
 		"id": "H74zohzy0F6hOgj6ejNO",
 		"art": []
@@ -2914,7 +3007,8 @@
 			4341087.416816538
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:middenland"
 		],
 		"id": "HCLKB9Hxv6BHsWF3mAgs",
 		"art": []
@@ -2940,7 +3034,8 @@
 			3210180.01894105
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:sylvania"
 		],
 		"id": "HL6J1mv7ARUfs4ci31Oe",
 		"art": []
@@ -2953,7 +3048,8 @@
 			4715762.822871596
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:hochland"
 		],
 		"id": "HRvUrG75M9i3xH7EAFWa",
 		"art": []
@@ -3009,7 +3105,8 @@
 			4368919.652765751
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"country:wasteland"
 		],
 		"id": "HkfUMrydTwSHiSr0aeTu",
 		"art": []
@@ -3049,7 +3146,8 @@
 			5688323.84545436
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:nordland"
 		],
 		"id": "HxOvbi3Q8qvnzLXR2CYS",
 		"art": []
@@ -3062,7 +3160,8 @@
 			6070879.529958026
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:nordland"
 		],
 		"id": "I46W7q3TfOg72SkgaeKh",
 		"art": []
@@ -3088,7 +3187,8 @@
 			6191455.6812048415
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:nordland"
 		],
 		"id": "IIkEE19XEFQFjF1AUzTd",
 		"art": []
@@ -3171,6 +3271,7 @@
 		"tags": [
 			"city",
 			"city:marienburg",
+			"country:wasteland",
 			"country:wasteland"
 		],
 		"id": "Ic9u88VSchtHRkervDwd",
@@ -3186,7 +3287,8 @@
 			5293272.037008035
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:middenland"
 		],
 		"id": "IgQS97AOYR4r82RFRKLh",
 		"art": []
@@ -3199,7 +3301,8 @@
 			5799304.787971574
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:nordland"
 		],
 		"id": "IlGCn8KMs76NuYcb9pDI",
 		"art": []
@@ -3225,7 +3328,8 @@
 			5497680.265945436
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:middenland"
 		],
 		"id": "J6ioIpjb3Z5FuWVYAlBD",
 		"art": []
@@ -3251,7 +3355,8 @@
 			5174011.131872611
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:middenland"
 		],
 		"id": "JAio1qq9TuGyOQPfVXzD",
 		"art": []
@@ -3277,7 +3382,8 @@
 			4539409.205672061
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:ostermark"
 		],
 		"id": "JKcbSJFE7WhWxW0enM4p",
 		"art": []
@@ -3303,7 +3409,8 @@
 			3895700.096548047
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:reikland"
 		],
 		"id": "JPbqkgOpSiOO4VO8Mj2u",
 		"art": []
@@ -3316,7 +3423,8 @@
 			4386715.06807941
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:ostermark"
 		],
 		"id": "JVVwJXCeYAaTey3KP4mM",
 		"art": []
@@ -3329,7 +3437,8 @@
 			4596045.756938732
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"country:wasteland"
 		],
 		"id": "JYitvWOnoNNeg2mbCD7u",
 		"art": []
@@ -3356,7 +3465,8 @@
 			4165664.4693494374
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:reikland"
 		],
 		"id": "JfwYXQoWJgwtO6dzfSRo",
 		"art": []
@@ -3382,7 +3492,8 @@
 			3906123.6739984346
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:ostermark"
 		],
 		"id": "JmIdYdTmlyeDXOTSAm1G",
 		"art": []
@@ -3409,7 +3520,8 @@
 			3554814.887638977
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:reikland"
 		],
 		"id": "JoiR2dNtvgq0zaQ7goVp",
 		"art": []
@@ -3449,6 +3561,7 @@
 		],
 		"tags": [
 			"art",
+			"country:wasteland",
 			"country:wasteland"
 		],
 		"id": "K7iI48eAsVor1gcUpqEY",
@@ -3504,7 +3617,8 @@
 			3872146.280734362
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:reikland"
 		],
 		"id": "KGvJjDNb3xMuMptGH5mg",
 		"art": []
@@ -3517,7 +3631,8 @@
 			5365889.278235494
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:middenland"
 		],
 		"id": "KP06k7P8eThKDEWju4zx",
 		"art": []
@@ -3530,7 +3645,8 @@
 			3514031.990332398
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:sylvania"
 		],
 		"id": "KPjSSyy3hX50Cgj66oZz",
 		"art": []
@@ -3611,7 +3727,8 @@
 			4412570.051835124
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:ostermark"
 		],
 		"id": "L8kYoxQPKp9HBRz4sMa6",
 		"art": []
@@ -3637,7 +3754,8 @@
 			3323804.30479718
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:sylvania"
 		],
 		"id": "L9mTS96HFmdHKIElJ0tN",
 		"art": []
@@ -3663,7 +3781,8 @@
 			4501121.504609926
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:middenland"
 		],
 		"id": "LKICb6I84CnYroXqZWIy",
 		"art": []
@@ -3676,7 +3795,8 @@
 			4055595.148618784
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:reikland"
 		],
 		"id": "LZUTU4v9JPNzK4rnCFhB",
 		"art": []
@@ -3689,7 +3809,8 @@
 			5619182.2214833
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:nordland"
 		],
 		"id": "Lo8n4ksh7gASjUnFZ1sd",
 		"art": []
@@ -3702,7 +3823,8 @@
 			4582841.220108653
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:hochland"
 		],
 		"id": "LtvpGFQOeIGmML8wD2ne",
 		"art": []
@@ -3741,7 +3863,8 @@
 			4222122.339562716
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"country:wasteland"
 		],
 		"id": "LxJdRESKNczpYouz20Vh",
 		"art": []
@@ -3754,7 +3877,8 @@
 			6610821.657703547
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:nordland"
 		],
 		"id": "M4Nk0d7u9JIV6WdQnDvu",
 		"art": []
@@ -3767,7 +3891,8 @@
 			3133178.675201061
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:sylvania"
 		],
 		"id": "MBoGPXGqXZqynEzmu2vx",
 		"art": []
@@ -3780,7 +3905,8 @@
 			3853787.877968092
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:reikland"
 		],
 		"id": "MG1waHRQ7AcCASzKDdf6",
 		"art": []
@@ -3820,7 +3946,8 @@
 			4479607.26093299
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:middenland"
 		],
 		"id": "Ma0qqCrZlieagWKKs4n0",
 		"art": []
@@ -3846,7 +3973,8 @@
 			2976932.924338861
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:sylvania"
 		],
 		"id": "Mc1XvBdAOGmHLjukelfo",
 		"art": []
@@ -3859,6 +3987,7 @@
 			4648823.136312512
 		],
 		"tags": [
+			"country:wasteland",
 			"country:wasteland"
 		],
 		"id": "MhUE7ubN3tqPysxBErTQ",
@@ -3872,7 +4001,8 @@
 			6441028.711671301
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:nordland"
 		],
 		"id": "MkxnBPPHDAYjxaQxlOZY",
 		"art": []
@@ -3898,7 +4028,8 @@
 			3516651.606889438
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:reikland"
 		],
 		"id": "Mx9m6Z4OJgrKWypq74Jj",
 		"art": []
@@ -3941,6 +4072,7 @@
 		],
 		"tags": [
 			"art",
+			"country:wasteland",
 			"country:wasteland"
 		],
 		"id": "NA7ozVmfVJHkJhWw8b7w",
@@ -3956,7 +4088,8 @@
 			6137615.448553421
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:nordland"
 		],
 		"id": "NALKxwuRfqvKz8Q42Q9F",
 		"art": []
@@ -4035,7 +4168,8 @@
 			4123688.035649847
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"country:wasteland"
 		],
 		"id": "NWgFTWFA57WFsRMNDrXT",
 		"art": []
@@ -4048,7 +4182,8 @@
 			4604419.826859522
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:ostermark"
 		],
 		"id": "NaUzf5vv6piWVydsjbtg",
 		"art": []
@@ -4074,7 +4209,8 @@
 			4447637.477437175
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:hochland"
 		],
 		"id": "NdwngitGX0z60TBw4zRK",
 		"art": []
@@ -4087,7 +4223,8 @@
 			3553377.9506421904
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:sylvania"
 		],
 		"id": "NeQkuk55lbDoQVCp3OSx",
 		"art": []
@@ -4101,6 +4238,7 @@
 		],
 		"tags": [
 			"art",
+			"country:wasteland",
 			"country:wasteland"
 		],
 		"id": "NfdHein822t3QQ8sQHfy",
@@ -4129,7 +4267,8 @@
 			3884007.964827995
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:reikland"
 		],
 		"id": "NrshmieZI59feQFBP8mi",
 		"art": []
@@ -4142,7 +4281,8 @@
 			6646704.06516917
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:nordland"
 		],
 		"id": "OIanNUAY7sCYhkg4eoqL",
 		"art": []
@@ -4182,7 +4322,8 @@
 			4094355.2049925253
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:reikland"
 		],
 		"id": "OjuLstttFlNbnZNCjdtH",
 		"art": []
@@ -4195,6 +4336,7 @@
 			4867870.740532021
 		],
 		"tags": [
+			"country:wasteland",
 			"country:wasteland"
 		],
 		"id": "OnSx6iwIdshOf9SQ1vJs",
@@ -4224,7 +4366,8 @@
 			3045505.5367592066
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:reikland"
 		],
 		"id": "Oy2MtVGTgxWi0JOdJANS",
 		"art": []
@@ -4251,7 +4394,8 @@
 		],
 		"tags": [
 			"city",
-			"city:altdorf"
+			"city:altdorf",
+			"state:reikland"
 		],
 		"id": "P4wedXH8QF7BHipqOM0J",
 		"art": [
@@ -4266,7 +4410,8 @@
 			3111907.415082045
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:reikland"
 		],
 		"id": "P7t3UdbClq3ZxcUSHm1W",
 		"art": []
@@ -4307,6 +4452,7 @@
 		"tags": [
 			"city",
 			"city:marienburg",
+			"country:wasteland",
 			"country:wasteland"
 		],
 		"id": "PNeBSLg7BD6abRKE12zg",
@@ -4338,7 +4484,8 @@
 			4584991.499727918
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:ostermark"
 		],
 		"id": "PTZyLVMNpKNd6ts97BEt",
 		"art": []
@@ -4352,7 +4499,8 @@
 		],
 		"tags": [
 			"city",
-			"country:the empire"
+			"country:the empire",
+			"state:reikland"
 		],
 		"id": "PgqCJ1dBWn5zpdWki0SF",
 		"art": []
@@ -4391,7 +4539,8 @@
 			5012276.350555091
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:hochland"
 		],
 		"id": "Q0YBYctWPeJop1BGlJTm",
 		"art": []
@@ -4404,7 +4553,8 @@
 			4049295.2441331223
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:ostermark"
 		],
 		"id": "Q5KTIG04dWT3Fd9zOny8",
 		"art": []
@@ -4430,7 +4580,8 @@
 			5408690.19529631
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:middenland"
 		],
 		"id": "Q9jrLufLMnLxd1X2XwrU",
 		"art": []
@@ -4443,7 +4594,8 @@
 			4627712.780485708
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:middenland"
 		],
 		"id": "QEp6DnnD7EiOSbIGbJLI",
 		"art": []
@@ -4456,7 +4608,8 @@
 			6245030.971208298
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:nordland"
 		],
 		"id": "QIuneivwg1rGXjlzSifX",
 		"art": []
@@ -4469,7 +4622,8 @@
 			3173047.7554419697
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:sylvania"
 		],
 		"id": "QN0DAQYJQ4pGRJvasknO",
 		"art": []
@@ -4550,6 +4704,7 @@
 			5299106.942853393
 		],
 		"tags": [
+			"country:wasteland",
 			"country:wasteland"
 		],
 		"id": "QlD1e9IXjvz67omn0IX3",
@@ -4590,7 +4745,9 @@
 			5151834.675193463
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:middenland",
+			"state:middenland"
 		],
 		"id": "RGTeOER8aBYClenGJEV6",
 		"art": []
@@ -4603,7 +4760,8 @@
 			6327290.413582959
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:nordland"
 		],
 		"id": "RX6uAfRUlgXChBf1RgFE",
 		"art": []
@@ -4629,7 +4787,8 @@
 			5756463.124283477
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:nordland"
 		],
 		"id": "RgjFqZTeOdAwrEPzQqtL",
 		"art": []
@@ -4642,7 +4801,8 @@
 			3574486.721011246
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:sylvania"
 		],
 		"id": "Rj8PVb3IrEQdxvBxUJMN",
 		"art": []
@@ -4655,7 +4815,8 @@
 			4638480.250922676
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"country:wasteland"
 		],
 		"id": "Rl24Tgv7GVpmSQOJKoNw",
 		"art": []
@@ -4682,7 +4843,8 @@
 			4858995.156753481
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:middenland"
 		],
 		"id": "Rs1i8Synm5fp4fzm0rOA",
 		"art": []
@@ -4708,7 +4870,8 @@
 			4061685.984503953
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:ostermark"
 		],
 		"id": "S1bIb2UbvK7JFVnZeniY",
 		"art": []
@@ -4812,7 +4975,8 @@
 			4024875.6687396644
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:reikland"
 		],
 		"id": "THTIuqO2VlVs0fTrxmOi",
 		"art": []
@@ -4838,7 +5002,8 @@
 			5057383.041436467
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:hochland"
 		],
 		"id": "TKUfE5XFCZc0BvnR69yD",
 		"art": []
@@ -4853,6 +5018,7 @@
 		"tags": [
 			"city",
 			"city:marienburg",
+			"country:wasteland",
 			"country:wasteland"
 		],
 		"id": "TOZ55xXevo4lJ64jg6Ch",
@@ -4868,7 +5034,8 @@
 			4522922.80156538
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:hochland"
 		],
 		"id": "TcoMHXRRtWJlhMI5r7hz",
 		"art": []
@@ -4881,7 +5048,8 @@
 			4595903.419683544
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:middenland"
 		],
 		"id": "Tgq6y7qI7b9qaRRu4vkT",
 		"art": []
@@ -4946,7 +5114,8 @@
 			3359949.7658727355
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:ostermark"
 		],
 		"id": "Ub8LXTkTAIFeWA0fAUTY",
 		"art": []
@@ -4959,7 +5128,8 @@
 			3150217.8695765245
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:sylvania"
 		],
 		"id": "UlGQ5WaiQHpVvJp5QrN7",
 		"art": []
@@ -4985,7 +5155,8 @@
 			3109838.262934862
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:sylvania"
 		],
 		"id": "UtEKVOT7afkjSF6xYD77",
 		"art": []
@@ -4998,7 +5169,8 @@
 			6352877.560473304
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:nordland"
 		],
 		"id": "UtSHwuGq3RM4igEPhhwR",
 		"art": []
@@ -5024,7 +5196,8 @@
 			5812146.208723484
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:nordland"
 		],
 		"id": "V2W4UwKmACG45sMmDb3x",
 		"art": []
@@ -5037,7 +5210,8 @@
 			3919834.3018362843
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:ostermark"
 		],
 		"id": "V6XSmsQ4MJIYkKSVloX0",
 		"art": []
@@ -5052,6 +5226,7 @@
 		"tags": [
 			"city",
 			"city:marienburg",
+			"country:wasteland",
 			"country:wasteland"
 		],
 		"id": "VD0AOiK0ebLNDxUokYlz",
@@ -5068,7 +5243,8 @@
 		],
 		"tags": [
 			"city",
-			"city:altdorf"
+			"city:altdorf",
+			"state:reikland"
 		],
 		"id": "VJz02BhnvP0RGodhollu",
 		"art": [
@@ -5083,7 +5259,8 @@
 			5377952.380167861
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:middenland"
 		],
 		"id": "VQabrJJGIDXcy7CX1Lfc",
 		"art": []
@@ -5138,7 +5315,8 @@
 			4027193.664478338
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:ostermark"
 		],
 		"id": "VhZ2GI9A2dpHyJZ2D7CS",
 		"art": []
@@ -5191,7 +5369,8 @@
 			3816989.5820715297
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:reikland"
 		],
 		"id": "WO5ervfD2vKma30DgDms",
 		"art": []
@@ -5231,7 +5410,8 @@
 			4425801.450265944
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:middenland"
 		],
 		"id": "WXQThGRZBRQOP6JgutK6",
 		"art": []
@@ -5273,7 +5453,8 @@
 			3110704.5710437563
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:ostermark"
 		],
 		"id": "WZKQVQKLyKqZouWeFLxB",
 		"art": []
@@ -5302,7 +5483,8 @@
 			3576440.1011435855
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:sylvania"
 		],
 		"id": "WlX93MFaLStGb0iLM5qM",
 		"art": []
@@ -5329,7 +5511,8 @@
 			4891695.894473644
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:middenland"
 		],
 		"id": "WoJDLStD8cui0QK5wpZe",
 		"art": []
@@ -5342,7 +5525,8 @@
 			3413412.6512332065
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:reikland"
 		],
 		"id": "X4QxPqSjmAYsUltwbZpj",
 		"art": []
@@ -5368,7 +5552,8 @@
 			5488359.930653053
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:middenland"
 		],
 		"id": "XDx2rnVW57CdBhxsPgdA",
 		"art": []
@@ -5381,7 +5566,8 @@
 			4178978.493395626
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:ostermark"
 		],
 		"id": "XQ4RQ3LrYFKYgqjJ9ukP",
 		"art": []
@@ -5394,7 +5580,8 @@
 			4156474.2791479044
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:reikland"
 		],
 		"id": "XWpzc4XtaQvXt7i7bbyB",
 		"art": []
@@ -5420,7 +5607,8 @@
 			5470648.742856667
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:middenland"
 		],
 		"id": "Xcumj8ZAWhKswLUi8F2Z",
 		"art": []
@@ -5446,7 +5634,8 @@
 			3894641.149738745
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:reikland"
 		],
 		"id": "Xn05W9LDnU6SVAX7py5j",
 		"art": []
@@ -5472,7 +5661,8 @@
 			4651856.736927823
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:middenland"
 		],
 		"id": "Xub7zzt54ZYycOSLWzmM",
 		"art": []
@@ -5554,7 +5744,8 @@
 			5162078.638869768
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:hochland"
 		],
 		"id": "YOp0azBiIJ0bchdn5RGr",
 		"art": []
@@ -5580,7 +5771,8 @@
 			3588013.0315410127
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:ostermark"
 		],
 		"id": "YbhxYn6pABefXVsGlZgU",
 		"art": []
@@ -5620,7 +5812,8 @@
 			3079292.0282426905
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:sylvania"
 		],
 		"id": "YvV3Kws7q8evS568hztM",
 		"art": []
@@ -5633,7 +5826,8 @@
 			3542361.2320693973
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:sylvania"
 		],
 		"id": "Z8IfXmwbEQYDk8t1TA5i",
 		"art": []
@@ -5646,7 +5840,8 @@
 			6328513.406035522
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:nordland"
 		],
 		"id": "ZG628Pd2wOqby52DcHzN",
 		"art": []
@@ -5686,7 +5881,8 @@
 			4933401.923554534
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:hochland"
 		],
 		"id": "ZO4w5WLq5MGCm4nIQUHG",
 		"art": []
@@ -5770,7 +5966,8 @@
 			5265222.095390029
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:middenland"
 		],
 		"id": "ZzxEIjTJwDVY4UHpXGzd",
 		"art": []
@@ -5797,7 +5994,8 @@
 			3507819.9334430452
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:reikland"
 		],
 		"id": "a8zgeNhmh98VatvVHFjs",
 		"art": []
@@ -5810,7 +6008,8 @@
 			4788493.09255351
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:hochland"
 		],
 		"id": "aJgNCjBmdDIBGkXpFVSZ",
 		"art": []
@@ -5836,7 +6035,8 @@
 			6660233.4191756435
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:nordland"
 		],
 		"id": "aZEhzwnlJYdbpopJefiA",
 		"art": []
@@ -5862,7 +6062,8 @@
 			3064370.174390852
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:sylvania"
 		],
 		"id": "aqHj0T6kiDO7ecEVY3wx",
 		"art": []
@@ -5875,7 +6076,8 @@
 			4911926.394250555
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:middenland"
 		],
 		"id": "asuuisxKIGWltnAdlRsF",
 		"art": []
@@ -5888,7 +6090,8 @@
 			3020190.536515569
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:sylvania"
 		],
 		"id": "axD6ZiKKmPYRTnQYek25",
 		"art": []
@@ -5914,7 +6117,8 @@
 			3189984.477258021
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:sylvania"
 		],
 		"id": "b8xBWiQKSeJcZjxhD1tM",
 		"art": []
@@ -5927,7 +6131,8 @@
 			3903207.811025062
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:reikland"
 		],
 		"id": "bBKjn00r0arguo0Dm5By",
 		"art": []
@@ -5940,7 +6145,8 @@
 			3195682.398082598
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:reikland"
 		],
 		"id": "bdhBr2nxEx2USUcs1SJ3",
 		"art": []
@@ -5992,7 +6198,8 @@
 			4612217.5048135435
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:middenland"
 		],
 		"id": "bkC6m2vx8rCZDtipAPRF",
 		"art": []
@@ -6019,7 +6226,8 @@
 			3656899.6090833056
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:reikland"
 		],
 		"id": "c2X81JJnWWtIyGX2KuwS",
 		"art": []
@@ -6032,7 +6240,8 @@
 			4130197.6882251156
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:reikland"
 		],
 		"id": "c61hzxw4houxQDKlbhiI",
 		"art": []
@@ -6072,7 +6281,8 @@
 			6256285.073716732
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:nordland"
 		],
 		"id": "cHulqVjh4EAz1wAvvIdJ",
 		"art": []
@@ -6085,7 +6295,8 @@
 			5416814.872178128
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:middenland"
 		],
 		"id": "cL30w9UailtiheDMkqTR",
 		"art": []
@@ -6098,7 +6309,8 @@
 			2817233.8892600336
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:sylvania"
 		],
 		"id": "cNPOgABVFZuVeDduKBkh",
 		"art": []
@@ -6111,7 +6323,8 @@
 			5958975.720548527
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:nordland"
 		],
 		"id": "cUFTBLoLQ8K1tPFSGGkU",
 		"art": []
@@ -6137,7 +6350,8 @@
 			3022636.400357893
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:sylvania"
 		],
 		"id": "cxoqyGhPgzNNen5r0KRk",
 		"art": []
@@ -6204,7 +6418,8 @@
 			4648505.559537787
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:hochland"
 		],
 		"id": "dS8uM77H4TS5XP5GbjqK",
 		"art": []
@@ -6217,7 +6432,8 @@
 			5951267.859234457
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:nordland"
 		],
 		"id": "dZOJzHzYbwNr6D9ZIxW9",
 		"art": []
@@ -6270,7 +6486,8 @@
 			2865221.982023595
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:sylvania"
 		],
 		"id": "dlDMRboeVRfSWITZuLJp",
 		"art": []
@@ -6283,7 +6500,8 @@
 			4554956.126015731
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:hochland"
 		],
 		"id": "dmqG9PCVMUXInM1CizSp",
 		"art": []
@@ -6324,6 +6542,9 @@
 		"id": "e9IO0egqk5Xylfte53jB",
 		"art": [
 			"images/e9IO0egqk5Xylfte53jB/e9IO0egqk5Xylfte53jB_0.jpg"
+		],
+		"tags": [
+			"state:reikland"
 		]
 	},
 	{
@@ -6374,7 +6595,8 @@
 			4032358.2920200913
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:reikland"
 		],
 		"id": "esSbvT5rZkKHq1Bkbrhd",
 		"art": []
@@ -6441,7 +6663,8 @@
 			4338655.445483359
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:ostermark"
 		],
 		"id": "fjd0YcaoiNHveipZxouP",
 		"art": []
@@ -6467,7 +6690,8 @@
 			6025017.31298692
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:nordland"
 		],
 		"id": "fq2q2E9vdgCyTYhOYShQ",
 		"art": []
@@ -6480,7 +6704,9 @@
 			5222156.741215825
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:middenland",
+			"state:middenland"
 		],
 		"id": "ftXTfXED2PmDY8wOkLRL",
 		"art": []
@@ -6493,7 +6719,8 @@
 			3092996.788424711
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:reikland"
 		],
 		"id": "g46HjeqAoNZ6P6fO7bVt",
 		"art": []
@@ -6533,7 +6760,8 @@
 			6124939.570739791
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:nordland"
 		],
 		"id": "gCHmrbctdARvENDCNdBu",
 		"art": []
@@ -6615,7 +6843,8 @@
 			6209787.4435234545
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:nordland"
 		],
 		"id": "gX3aFS0cfDBVgTMH85LB",
 		"art": []
@@ -6641,7 +6870,8 @@
 			4703101.732218848
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:hochland"
 		],
 		"id": "guPrgBkVtQcjpzzRgjZj",
 		"art": []
@@ -6681,7 +6911,8 @@
 			4585526.747721483
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:hochland"
 		],
 		"id": "h9DIKriPg0SVRilhpmwG",
 		"art": []
@@ -6694,7 +6925,8 @@
 			3843616.296078412
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:ostermark"
 		],
 		"id": "h9MSyzC2w7KjRocmjU5w",
 		"art": []
@@ -6721,7 +6953,8 @@
 			3670884.2020206456
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:sylvania"
 		],
 		"id": "hKXXXh9qHOkOUndJOtl4",
 		"art": []
@@ -6747,7 +6980,8 @@
 			3376387.256130885
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:sylvania"
 		],
 		"id": "hQO1i8AD49P4WXjbMMJP",
 		"art": []
@@ -6773,7 +7007,8 @@
 			3150433.4909256934
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:sylvania"
 		],
 		"id": "hi95fwSm4CcKmGzb4Fur",
 		"art": []
@@ -6786,7 +7021,8 @@
 			4119390.9735474396
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"country:wasteland"
 		],
 		"id": "hozmuye58GIkvXdlyYa2",
 		"art": []
@@ -6799,7 +7035,8 @@
 			5777566.464634431
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:nordland"
 		],
 		"id": "hxifRlMQcjDgy7kX5r3F",
 		"art": []
@@ -6812,7 +7049,8 @@
 			5048275.209918178
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:hochland"
 		],
 		"id": "i52Uy6r9BJRqav23pYJS",
 		"art": []
@@ -6854,7 +7092,8 @@
 			4326960.580155733
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:ostermark"
 		],
 		"id": "iEwBUZrpfrjpgKZ0dZET",
 		"art": []
@@ -6869,6 +7108,7 @@
 		"tags": [
 			"city",
 			"city:marienburg",
+			"country:wasteland",
 			"country:wasteland"
 		],
 		"id": "iL4AbCKIxO84U2il3TDT",
@@ -6909,7 +7149,8 @@
 			3049474.551318593
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:sylvania"
 		],
 		"id": "iVAJwk9m7DEYo8yX6HSw",
 		"art": []
@@ -6948,7 +7189,8 @@
 			2923646.5585813173
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:sylvania"
 		],
 		"id": "j6MYNAZzlZkRV9xsZSzS",
 		"art": []
@@ -6974,7 +7216,8 @@
 			5999334.471483101
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:nordland"
 		],
 		"id": "jEOwfaoN7Vp6u8kIXMEa",
 		"art": []
@@ -7015,7 +7258,8 @@
 			5165557.9955778355
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:middenland"
 		],
 		"id": "jPTK157TMxu001E9x8s7",
 		"art": []
@@ -7135,7 +7379,8 @@
 			4311286.133438731
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:reikland"
 		],
 		"id": "kOU96gw3zcyoFOxZ7akQ",
 		"art": []
@@ -7148,7 +7393,8 @@
 			5646775.523577868
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:middenland"
 		],
 		"id": "kXQSCb5Ho4HZSdaAbKUa",
 		"art": []
@@ -7188,7 +7434,8 @@
 			5151072.904869691
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:hochland"
 		],
 		"id": "kkx9X0eKDap7GmeBQu0l",
 		"art": []
@@ -7281,7 +7528,8 @@
 			4158187.6217020582
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:ostermark"
 		],
 		"id": "l9edISsn6TR0u8Hk4NWK",
 		"art": []
@@ -7360,7 +7608,8 @@
 			4536126.292734557
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"country:wasteland"
 		],
 		"id": "m2AShItSvfUz0wNYKuYR",
 		"art": []
@@ -7387,7 +7636,8 @@
 			5136015.367085466
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:hochland"
 		],
 		"id": "m8xoRFZMz6VwiJhL44Y0",
 		"art": []
@@ -7441,7 +7691,8 @@
 			5300577.441107372
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:middenland"
 		],
 		"id": "mHhB5KMrFoeOvrcVq8X6",
 		"art": []
@@ -7486,7 +7737,8 @@
 			2817845.385486315
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:sylvania"
 		],
 		"id": "mUZAYurlUXBgRCzEfyTk",
 		"art": []
@@ -7499,7 +7751,9 @@
 			5229494.695931202
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:middenland",
+			"state:middenland"
 		],
 		"id": "mdQAq1t9VbUdyaYpwTJA",
 		"art": []
@@ -7525,7 +7779,8 @@
 			5806605.814838551
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:nordland"
 		],
 		"id": "meZ2EoQ1iWgzQIh5oHyu",
 		"art": []
@@ -7538,7 +7793,8 @@
 			4383242.491896878
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:hochland"
 		],
 		"id": "mikLYdeaquRZIeLdq7HM",
 		"art": []
@@ -7551,7 +7807,8 @@
 			6261248.821144567
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:nordland"
 		],
 		"id": "moVVZj26pyOMNy2Esf53",
 		"art": []
@@ -7592,7 +7849,8 @@
 			4496588.109313421
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"country:wasteland"
 		],
 		"id": "n0NNAVaLRXg7tYWf3pRb",
 		"art": []
@@ -7605,7 +7863,8 @@
 			4340443.621508826
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:hochland"
 		],
 		"id": "nBAYyoSqw9T0551cLAvG",
 		"art": []
@@ -7632,7 +7891,8 @@
 			3536219.873363816
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:reikland"
 		],
 		"id": "nLf1OniQKQxJStxkGyXL",
 		"art": []
@@ -7658,7 +7918,8 @@
 			3391398.7870870745
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:reikland"
 		],
 		"id": "ng6ovO7fVRQHOFzOLAR5",
 		"art": []
@@ -7671,7 +7932,8 @@
 			4360676.06758248
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:ostermark"
 		],
 		"id": "ngBM01fMypNdsrBQk7Jd",
 		"art": []
@@ -7713,7 +7975,8 @@
 			6417791.855072608
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:nordland"
 		],
 		"id": "oFDOj3rYOpswvtCRUukd",
 		"art": []
@@ -7753,6 +8016,7 @@
 			4640851.68708113
 		],
 		"tags": [
+			"country:wasteland",
 			"country:wasteland"
 		],
 		"id": "oXaPepXyY9NVlEBs6YDq",
@@ -7779,7 +8043,8 @@
 			3698336.8357982016
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:reikland"
 		],
 		"id": "oaGc8CbPw6XDw43gyXQH",
 		"art": []
@@ -7818,7 +8083,8 @@
 			5715563.92357598
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:nordland"
 		],
 		"id": "oi4Xwo522NBlUfmKIull",
 		"art": []
@@ -7863,7 +8129,8 @@
 			5925599.349673442
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:nordland"
 		],
 		"id": "opP8dmuYxrHjFXUJBg5y",
 		"art": []
@@ -7902,7 +8169,8 @@
 			5092909.575585169
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:middenland"
 		],
 		"id": "p2QzgQpFuPAz4HzmDfNQ",
 		"art": []
@@ -7928,7 +8196,8 @@
 			4093967.221073486
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:reikland"
 		],
 		"id": "pEvy2FWwvDDDwSWT1XPf",
 		"art": []
@@ -7981,7 +8250,8 @@
 			4429935.020648748
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"country:wasteland"
 		],
 		"id": "pQsYXSmD7S1bp5XNe3RI",
 		"art": []
@@ -7994,7 +8264,8 @@
 			4473101.563949316
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:hochland"
 		],
 		"id": "pkbktfF7GGwCGcuOziDu",
 		"art": []
@@ -8049,6 +8320,7 @@
 		"tags": [
 			"city",
 			"city:marienburg",
+			"country:wasteland",
 			"country:wasteland"
 		],
 		"id": "q3juCtLCIjIt7LTZu0yO",
@@ -8064,7 +8336,8 @@
 			4112809.4575196602
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"country:wasteland"
 		],
 		"id": "q6ghetkcaXDSJekWoBfL",
 		"art": []
@@ -8077,7 +8350,8 @@
 			3636241.1173450155
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:sylvania"
 		],
 		"id": "qFHQvomKsOsGm1kdEofI",
 		"art": []
@@ -8173,7 +8447,9 @@
 			3992467.717883763
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:reikland",
+			"country:wasteland"
 		],
 		"id": "quqPak1lH0KOOr05u22D",
 		"art": []
@@ -8200,6 +8476,7 @@
 		],
 		"tags": [
 			"art",
+			"country:wasteland",
 			"country:wasteland"
 		],
 		"id": "qzciyOAHyYhzQm7WRw9N",
@@ -8228,7 +8505,8 @@
 			5181348.65610653
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:middenland"
 		],
 		"id": "rD0N7tbHc4D6BSG48IcP",
 		"art": []
@@ -8241,7 +8519,8 @@
 			5972327.422347588
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:nordland"
 		],
 		"id": "rNCUlpYCtoG1feWUiUYF",
 		"art": []
@@ -8254,7 +8533,8 @@
 			3078680.5985760195
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:sylvania"
 		],
 		"id": "rVkPGUTTDE1BXv4UoKdn",
 		"art": []
@@ -8267,7 +8547,8 @@
 			3024405.9349850826
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:sylvania"
 		],
 		"id": "rZBMURxifwulLGlloj81",
 		"art": []
@@ -8280,7 +8561,8 @@
 			4460096.090724899
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:middenland"
 		],
 		"id": "rdN2JmreAgz9SEiDbE4G",
 		"art": []
@@ -8322,7 +8604,8 @@
 			3686036.4488027617
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:reikland"
 		],
 		"id": "rqzJmX99H4a812rBImS4",
 		"art": []
@@ -8349,7 +8632,8 @@
 		],
 		"tags": [
 			"city",
-			"city:altdorf"
+			"city:altdorf",
+			"state:reikland"
 		],
 		"id": "sVG78lHVEqPJ5XIwgaLD",
 		"art": [
@@ -8404,7 +8688,8 @@
 			4175973.6767318817
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:hochland"
 		],
 		"id": "tIwb9dYvtAbgJnSeCcXQ",
 		"art": []
@@ -8471,6 +8756,7 @@
 		],
 		"tags": [
 			"country:the empire",
+			"country:wasteland",
 			"country:wasteland"
 		],
 		"id": "tkU0BzNhanEky8wKWNdx",
@@ -8513,7 +8799,8 @@
 		],
 		"tags": [
 			"city",
-			"city:altdorf"
+			"city:altdorf",
+			"state:reikland"
 		],
 		"id": "u9xJIs9pGDcsGNnQHm7d",
 		"art": [
@@ -8541,7 +8828,8 @@
 			4499391.34639398
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:ostermark"
 		],
 		"id": "uEL2P65diW5nrB90JX3y",
 		"art": []
@@ -8581,7 +8869,8 @@
 			4751591.051924403
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:hochland"
 		],
 		"id": "uOAaxMM1laG6pELx5ZNA",
 		"art": []
@@ -8594,7 +8883,8 @@
 			3457133.474791968
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:reikland"
 		],
 		"id": "uQZGyJR0rgQoWvVmtwiF",
 		"art": []
@@ -8607,7 +8897,8 @@
 			4271375.286898016
 		],
 		"tags": [
-			"art"
+			"art",
+			"country:wasteland"
 		],
 		"id": "uR1TDs5ulhCBdSoCWQpu",
 		"art": [
@@ -8662,6 +8953,7 @@
 			5412756.860627783
 		],
 		"tags": [
+			"country:wasteland",
 			"country:wasteland"
 		],
 		"id": "utyq4Q6JRK50BIL3qokk",
@@ -8675,7 +8967,8 @@
 			3381948.8054556134
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:sylvania"
 		],
 		"id": "v4N5BRAv1gFas9X6XxcY",
 		"art": []
@@ -8793,7 +9086,8 @@
 			5872100.933381282
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:nordland"
 		],
 		"id": "vbsaa3ZjYnaS1Ti4Iz96",
 		"art": []
@@ -8888,7 +9182,8 @@
 			4831761.295059023
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:hochland"
 		],
 		"id": "wDEK6901Cf87SkXFy8YH",
 		"art": []
@@ -8901,7 +9196,8 @@
 			3976685.24096896
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:reikland"
 		],
 		"id": "wG10VueLksN4yZAqN6YN",
 		"art": []
@@ -8914,7 +9210,8 @@
 			6075271.398211374
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:nordland"
 		],
 		"id": "wNuhAVUs1Rw8fddtykup",
 		"art": []
@@ -9010,7 +9307,8 @@
 			4211249.723344936
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:ostermark"
 		],
 		"id": "x7a8ckf8owKy5BaPrBPh",
 		"art": []
@@ -9039,6 +9337,7 @@
 			5664887.549235083
 		],
 		"tags": [
+			"country:wasteland",
 			"country:wasteland"
 		],
 		"id": "xANwhpQGBUWrB9B6r33c",
@@ -9079,7 +9378,8 @@
 			4579152.134005675
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:ostermark"
 		],
 		"id": "xKCxsjhIkB44v9ACz4Xb",
 		"art": []
@@ -9092,7 +9392,8 @@
 			3459653.1244011205
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:ostermark"
 		],
 		"id": "xRR8VXR7paQt4KWSSbW4",
 		"art": []
@@ -9119,7 +9420,8 @@
 		],
 		"tags": [
 			"city",
-			"city:altdorf"
+			"city:altdorf",
+			"state:reikland"
 		],
 		"id": "xakWs2CzqVY6C30iH3Lp",
 		"art": [
@@ -9150,6 +9452,7 @@
 			5135980.769864294
 		],
 		"tags": [
+			"country:wasteland",
 			"country:wasteland"
 		],
 		"id": "xgs38lSQ6gL7UC53aBRo",
@@ -9163,7 +9466,8 @@
 			4661102.011675377
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:hochland"
 		],
 		"id": "xjbj81hnFz88WjpT7546",
 		"art": []
@@ -9202,7 +9506,8 @@
 			3878261.242997176
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:reikland"
 		],
 		"id": "xxTdJfb71GiJgbRngIeM",
 		"art": []
@@ -9215,7 +9520,8 @@
 			6295561.15695477
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:nordland"
 		],
 		"id": "y4RGDVtPiexh2t1Z3ZJI",
 		"art": []
@@ -9280,7 +9586,8 @@
 			4419833.586558161
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:hochland"
 		],
 		"id": "yRpzw2x67hkwBRjbg6Re",
 		"art": []
@@ -9293,7 +9600,8 @@
 			5033447.586595833
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:hochland"
 		],
 		"id": "yZtMkDyMxNiuOn4nElnH",
 		"art": []
@@ -9334,6 +9642,9 @@
 		"id": "ynF0mGiE6DY5knqKV52H",
 		"art": [
 			"images/ynF0mGiE6DY5knqKV52H/ynF0mGiE6DY5knqKV52H_0.jpg"
+		],
+		"tags": [
+			"state:middenland"
 		]
 	},
 	{
@@ -9357,7 +9668,8 @@
 			4327444.632944437
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"country:wasteland"
 		],
 		"id": "yqCSlnhlJe23mzU9YyXb",
 		"art": []
@@ -9386,7 +9698,8 @@
 			3242216.117529545
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:sylvania"
 		],
 		"id": "yxGEmuxxOhvJnakxOBYV",
 		"art": []
@@ -9399,7 +9712,8 @@
 			3335947.4235970112
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:reikland"
 		],
 		"id": "z5RgXEZQp941W7zzC70b",
 		"art": []
@@ -9412,7 +9726,8 @@
 			6395777.990926477
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:nordland"
 		],
 		"id": "zAMpICXe6kxqtSRkc6dD",
 		"art": []
@@ -9439,7 +9754,8 @@
 			6166355.7711886475
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:nordland"
 		],
 		"id": "zH1btOJWepc5JN7MFt3G",
 		"art": []
@@ -9452,7 +9768,8 @@
 			4909288.819628965
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:middenland"
 		],
 		"id": "zN49YRyYcgQElX5WhKRo",
 		"art": []
@@ -9478,7 +9795,8 @@
 			4968941.7567620445
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:hochland"
 		],
 		"id": "zPiqW2tKmZ4Phwn538Mk",
 		"art": []
@@ -9531,7 +9849,8 @@
 			4506665.1792518785
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:hochland"
 		],
 		"id": "zYDCNI06RU4Ocliz7VkN",
 		"art": []
@@ -9558,7 +9877,8 @@
 			5535819.913080983
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:middenland"
 		],
 		"id": "zfumkhcF6YpFEwgKoEhw",
 		"art": []
@@ -9571,7 +9891,8 @@
 			6395280.1396897035
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:nordland"
 		],
 		"id": "zlrfTxGOYhgYRAK15ved",
 		"art": []
