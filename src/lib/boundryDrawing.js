@@ -79,10 +79,7 @@ function generateHullLayer(coordinates, color) {
 
 	if (hull) {
 		// Convert hull coordinates to Openstatelayers Polygon
-		var smoothed = turf.polygonSmooth(hull, { iterations: 3 });
-
-
-		const coords = smoothed.features[0].geometry.coordinates; // [[ [x, y], [x, y], ... ]]
+		const coords = hull.geometry.coordinates; // [[ [x, y], [x, y], ... ]]
 		const polygonFeature = new Feature({
 			geometry: new Polygon(coords)
 		});
@@ -129,7 +126,11 @@ function generateConcaveHullLayer(coordinates, color, maxEdge = 20000) {
 }
 
 
+function delaunay(coordinates) {
+}
 
+function voronoi(coordinates) {
+}
 
 
 function randomColor(alpha = 0.2) {
