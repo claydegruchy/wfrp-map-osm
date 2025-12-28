@@ -70,7 +70,7 @@ export const locationsLayer = new VectorLayer({
 		if (!tags) return defaultStyle(feature, zoom)
 		if (tags.includes("city")) return cityStyle(feature, zoom)
 		for (const tag of tags) {
-			if (tag.includes("state:")) return cityStyle(feature, zoom)
+			// if (tag.includes("state:")) return cityStyle(feature, zoom)
 
 		}
 		return defaultStyle(feature, zoom)
@@ -97,13 +97,15 @@ const selectedFeaturesCollection = new Collection();
 
 import { shiftKeyOnly } from 'ol/events/condition';
 import { getIntersection } from 'ol/extent';
-export function setupLocations(map, standardClickCallback = (a) => { }) {
+export function setupLocations(map) {
 	const selectInteraction = new Select({
 		condition: click,
 		toggleCondition: () => false,
 		multi: true,
 		style: selectedStyle,
 		features: selectedFeaturesCollection,
+		filter: feature => feature.getGeometry().getType() === 'Point' // only points
+
 	});
 
 	const dragBox = new DragBox({
@@ -124,11 +126,15 @@ export function setupLocations(map, standardClickCallback = (a) => { }) {
 	dragBox.on('boxend', () => {
 		const extent = dragBox.getGeometry().getExtent();
 
+
 		map.getLayers().forEach(layer => {
 			const source = layer.getSource?.();
 			if (!source?.forEachFeatureIntersectingExtent) return;
 
+
 			source.forEachFeatureIntersectingExtent(extent, feature => {
+				if (feature.getGeometry().getType() !== 'Point') return; // skip non-points
+
 				if (!selectedFeaturesCollection.getArray().includes(feature)) {
 					selectedFeaturesCollection.push(feature);
 				}
@@ -137,7 +143,10 @@ export function setupLocations(map, standardClickCallback = (a) => { }) {
 	});
 
 	map.on('click', (evt) => {
-		const hit = map.hasFeatureAtPixel(evt.pixel);
+		const hit = map.hasFeatureAtPixel(evt.pixel, {
+			layerFilter: layer => layer === locationsLayer
+
+		});
 		if (!hit && !platformModifierKeyOnly(evt)) {
 			console.log("unselect");
 

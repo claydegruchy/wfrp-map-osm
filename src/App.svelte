@@ -9,6 +9,7 @@
   import Diagnostics from "./lib/Diagnostics.svelte";
   import { locations, locationsObject } from "./lib/locations";
   import { selectedLocations } from "./lib/stores";
+  import { toggleCountries, toggleStates } from "./lib/boundryDrawing";
 
   let selected;
   let selectLocationById;
@@ -41,8 +42,10 @@
 </script>
 
 <Search lookUpName={findLocation} returnSelection={selectSearchResult}></Search>
-<nav class="bottom right flex">
-  <Diagnostics></Diagnostics>
+<nav class="bottom right flex vertical">
+  <button on:click={toggleCountries}>Toggle Countries</button>
+  <button on:click={toggleStates}>Toggle States</button>
+  <!-- <Diagnostics></Diagnostics> -->
   <Dialog>
     <div slot="button">What is this?</div>
     <div slot="content"></div>
@@ -64,6 +67,4 @@
     height: 100%;
     width: 100%;
   }
-
-
 </style>

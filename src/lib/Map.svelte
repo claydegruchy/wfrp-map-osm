@@ -19,6 +19,7 @@
   } from "./maps";
 
   import { locationsLayer, setupLocations } from "./locations";
+  import { calculateBoundries } from "./boundryDrawing";
 
   let center = [-3247495.2505356777, 4704319.403427397];
   let zoom = 5;
@@ -50,7 +51,7 @@
       view: new View({
         center,
         zoom,
-        // rotation: 45, 
+        // rotation: 45,
       }),
     });
 
@@ -58,6 +59,8 @@
       $map,
       locationSelected
     );
+
+    calculateBoundries($map);
   });
 
   $: if ($map) {
