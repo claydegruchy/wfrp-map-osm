@@ -42,7 +42,7 @@
 
 <Search lookUpName={findLocation} returnSelection={selectSearchResult}></Search>
 <nav class="bottom right flex">
-  <!-- <Diagnostics></Diagnostics> -->
+  <Diagnostics></Diagnostics>
   <Dialog>
     <div slot="button">What is this?</div>
     <div slot="content"></div>
