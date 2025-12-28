@@ -49,13 +49,13 @@ const selectedStyle = (feature, zoom) => new Style({
 			color: 'white', width: 2,
 		})
 	}),
-	text: new Text({   // ✅ must be a Text instance
-		text: feature.get('name') || "Unnamed",
-		offsetY: -50,
-		scale: 2,
-		fill: new Fill({ color: '#fff' }),
-		stroke: new Stroke({ color: '#000', width: 20 })
-	})
+	// text: new Text({   
+	// 	text: feature.get('name') || "Unnamed",
+	// 	offsetY: -50,
+	// 	scale: 2,
+	// 	fill: new Fill({ color: '#fff' }),
+	// 	stroke: new Stroke({ color: '#000', width: 20 })
+	// })
 
 })
 
@@ -69,6 +69,10 @@ export const locationsLayer = new VectorLayer({
 		let tags = feature.get('tags');
 		if (!tags) return defaultStyle(feature, zoom)
 		if (tags.includes("city")) return cityStyle(feature, zoom)
+		for (const tag of tags) {
+			if (tag.includes("state:")) return cityStyle(feature, zoom)
+
+		}
 		return defaultStyle(feature, zoom)
 
 	}),
@@ -91,7 +95,6 @@ export const locationsLayer = new VectorLayer({
 
 const selectedFeaturesCollection = new Collection();
 
-
 import { shiftKeyOnly } from 'ol/events/condition';
 import { getIntersection } from 'ol/extent';
 export function setupLocations(map, standardClickCallback = (a) => { }) {
@@ -110,8 +113,12 @@ export function setupLocations(map, standardClickCallback = (a) => { }) {
 	map.addInteraction(dragBox);
 	map.addInteraction(selectInteraction);
 
-	dragBox.on('boxstart', () => {
-		selectedFeaturesCollection.clear();
+	dragBox.on('boxstart', (evt) => {
+
+		if (!platformModifierKeyOnly(evt.mapBrowserEvent)) {
+
+			selectedFeaturesCollection.clear();
+		}
 	});
 
 	dragBox.on('boxend', () => {
@@ -131,7 +138,9 @@ export function setupLocations(map, standardClickCallback = (a) => { }) {
 
 	map.on('click', (evt) => {
 		const hit = map.hasFeatureAtPixel(evt.pixel);
-		if (!hit) {
+		if (!hit && !platformModifierKeyOnly(evt)) {
+			console.log("unselect");
+
 			selectedFeaturesCollection.clear()
 		}
 	});
@@ -140,8 +149,8 @@ export function setupLocations(map, standardClickCallback = (a) => { }) {
 
 	function updateSelectionStore() {
 		console.log("update updateSelectionStore", selectedFeaturesCollection
-				.getArray());
-		
+			.getArray());
+
 		clearTimeout(selectionDebounce);
 		selectionDebounce = setTimeout(() => {
 			const newSelection = selectedFeaturesCollection
