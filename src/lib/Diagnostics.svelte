@@ -1,29 +1,43 @@
 <script>
   import { locations, locationsObject } from "./locations";
-  import { diagnosticFeatures } from "./stores";
+  import { selectedLocations } from "./stores";
+  let newLocations = "nothing";
 
-  //   function copyToClipboard() {
-  //     navigator.clipboard
-  //       .writeText(text)
-  //       .then(() => {
-  //         console.log("Copied:", text);
-  //       })
-  //       .catch((err) => {
-  //         console.error("Failed to copy:", err);
-  //       });
-  //     ready = false;
-  //   }
+  function copyToClipboard() {
+    // clean locations
+
+    newLocations = newLocations.map((l) => ({
+      ...l,
+      tags: [...new Set([...l.tags])],
+    }));
+
+    navigator.clipboard
+      .writeText(JSON.stringify(newLocations, null, 2))
+      .then(() => {
+        console.log("Copied:");
+      })
+      .catch((err) => {
+        console.error("Failed to copy:", err);
+      });
+    ready = false;
+  }
 
   function startOperation() {
-    for (const f of $diagnosticFeatures) {
-      let id = f.getId();
+    for (const id of $selectedLocations) {
       let location = locationsObject[id];
       if (!location) alert("location not found" + id);
+      console.log(location);
+      if (!location.tags) location.tags = [];
       location.tags.push(newTag);
       locationsObject[id] = location;
     }
-    let newLocations = Object.values(locationsObject);
-    console.log({ newLocations });
+
+    newLocations = Object.values(locationsObject);
+
+    newLocations = newLocations.map((l) => ({
+      ...l,
+      tags: [...new Set([...(l.tags || [])])],
+    }));
 
     ready = true;
   }
@@ -32,19 +46,15 @@
 </script>
 
 <main>
-  {#each $diagnosticFeatures as f}
-    <div>
-      {f.getId()}
-    </div>
-  {/each}
-
   <label>
     <input bind:value={newTag} type="text" />
   </label>
-  <button on:click={startOperation}
-    >Add {newTag} to {$diagnosticFeatures.length} locations</button
-  >
-  <button>copy</button>
+  {#if $selectedLocations.length > 0}
+    <button on:click={startOperation}
+      >Add {newTag} to {$selectedLocations.length} locations</button
+    >
+  {/if}
+  <button on:click={copyToClipboard}>copy</button>
 </main>
 
 <style>
