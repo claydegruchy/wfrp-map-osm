@@ -18,7 +18,7 @@
     world,
   } from "./maps";
 
-  import { locations, locationsLayer, setupLocations } from "./locations";
+  import { locationsLayer, setupLocations } from "./locations";
 
   let center = [-3247495.2505356777, 4704319.403427397];
   let zoom = 5;
@@ -47,7 +47,11 @@
         Ubersreik,
         locationsLayer,
       ],
-      view: new View({ center, zoom }),
+      view: new View({
+        center,
+        zoom,
+        // rotation: 45, 
+      }),
     });
 
     [selectLocationById, zoomToLocationById] = setupLocations(

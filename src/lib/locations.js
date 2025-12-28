@@ -1,5 +1,4 @@
-import { Feature } from "ol";
-import rawLocatons from "../../public/data.json";
+import { Collection, Feature } from "ol";
 import { Point } from "ol/geom";
 import Style from "ol/style/Style";
 import Fill from "ol/style/Fill";
@@ -8,30 +7,24 @@ import Text from 'ol/style/Text.js';
 import Stroke from "ol/style/Stroke";
 import VectorLayer from "ol/layer/Vector";
 import VectorSource from "ol/source/Vector";
-import { click } from 'ol/events/condition.js';
+import { click, platformModifierKeyOnly } from 'ol/events/condition.js';
 import Select from 'ol/interaction/Select.js';
 
-export const locations = rawLocatons.points.map(e => ({
-	name: e.name,
-	credit: e.credit,
-	coordinates: e.coordinates,
-	tags: e.tags,
-	id: e.id,
-	art: e.images?.map((_, i) => `images/${e.id}/${e.id}_${i}.jpg`) || []
+import locationsRaw from "../../public/locations.json"
 
 
+import DragBox from 'ol/interaction/DragBox.js';
+import { selectedLocations } from "./stores";
 
-}))
 
-
-
-let dashOffset = 0
+export const locations = locationsRaw
+export const locationsObject = Object.fromEntries(locations.map(location => [location.id, location]));
 
 
 
 const defaultStyle = (feature, zoom) => new Style({
 	image: new CircleStyle({
-		radius: Math.abs(zoom / 550 - 12),
+		radius: Math.max(zoom / -550 + 12, 0),
 		fill: new Fill({ color: 'transparent' }),
 		stroke: new Stroke({ color: 'blue', width: 2 })
 	}),
@@ -40,25 +33,25 @@ const defaultStyle = (feature, zoom) => new Style({
 
 const cityStyle = (feature, zoom) => new Style({
 	image: new CircleStyle({
-		radius: Math.abs(zoom / 550 - 12),
-		fill: new Fill({ color: 'transparent' }),
-		stroke: new Stroke({ color: 'red', width: 2 })
+		radius: Math.max(zoom / -550 + 12, 0),
+		fill: new Fill({ color: 'rgba(255, 0, 0, 0.2)' }), // slight red tint
+
+		stroke: new Stroke({ color: "red", width: 2 })
 	}),
 })
 
 
 const selectedStyle = (feature, zoom) => new Style({
 	image: new CircleStyle({
-		radius: Math.abs(zoom / 550 - 13),
+		radius: Math.max(zoom / -550 + 12, 0),
 		fill: new Fill({ color: 'transparent' }),
 		stroke: new Stroke({
-			color: 'white', width: 2, lineDash: [4, 4],
-			lineDashOffset: dashOffset
+			color: 'white', width: 2,
 		})
 	}),
 	text: new Text({   // ✅ must be a Text instance
 		text: feature.get('name') || "Unnamed",
-		offsetY: -12,
+		offsetY: -50,
 		scale: 2,
 		fill: new Fill({ color: '#fff' }),
 		stroke: new Stroke({ color: '#000', width: 20 })
@@ -72,10 +65,7 @@ const selectedStyle = (feature, zoom) => new Style({
 export const locationsLayer = new VectorLayer({
 	style: ((feature, zoom) => {
 
-		if (zoom >= 3000) return null
-
-
-
+		// if (zoom >= 3000) return null
 		let tags = feature.get('tags');
 		if (!tags) return defaultStyle(feature, zoom)
 		if (tags.includes("city")) return cityStyle(feature, zoom)
@@ -95,39 +85,75 @@ export const locationsLayer = new VectorLayer({
 });
 
 
+
+
+
+
+const selectedFeaturesCollection = new Collection();
+
+
+import { shiftKeyOnly } from 'ol/events/condition';
+import { getIntersection } from 'ol/extent';
 export function setupLocations(map, standardClickCallback = (a) => { }) {
 	const selectInteraction = new Select({
 		condition: click,
 		toggleCondition: () => false,
-		multi: false,
-		style: selectedStyle
+		multi: true,
+		style: selectedStyle,
+		features: selectedFeaturesCollection,
 	});
 
+	const dragBox = new DragBox({
+		condition: platformModifierKeyOnly
+	});
+
+	map.addInteraction(dragBox);
 	map.addInteraction(selectInteraction);
-	selectInteraction.on('select', (evt) => {
-		const selectedFeatures = selectInteraction.getFeatures();
 
-		if (evt.selected.length > 0) {
+	dragBox.on('boxstart', () => {
+		selectedFeaturesCollection.clear();
+	});
 
+	dragBox.on('boxend', () => {
+		const extent = dragBox.getGeometry().getExtent();
 
-			selectedFeatures.clear();
-			evt.selected.forEach(f => selectedFeatures.push(f));
+		map.getLayers().forEach(layer => {
+			const source = layer.getSource?.();
+			if (!source?.forEachFeatureIntersectingExtent) return;
 
-			const f = evt.selected[0];
-			const id = f.getId();
-			const name = f.get('name');
-			const tags = f.get('tags');
-			const art = f.get('art');
-			const coordinates = f.getGeometry().getCoordinates();
-			standardClickCallback({ id, name, coordinates, tags, art })
+			source.forEachFeatureIntersectingExtent(extent, feature => {
+				if (!selectedFeaturesCollection.getArray().includes(feature)) {
+					selectedFeaturesCollection.push(feature);
+				}
+			});
+		});
+	});
 
-
-		} else {
-			// clicked background: clear selection
-			selectedFeatures.clear();
-			standardClickCallback(null)
+	map.on('click', (evt) => {
+		const hit = map.hasFeatureAtPixel(evt.pixel);
+		if (!hit) {
+			selectedFeaturesCollection.clear()
 		}
 	});
+
+	let selectionDebounce = null;
+
+	function updateSelectionStore() {
+		console.log("update updateSelectionStore", selectedFeaturesCollection
+				.getArray());
+		
+		clearTimeout(selectionDebounce);
+		selectionDebounce = setTimeout(() => {
+			const newSelection = selectedFeaturesCollection
+				.getArray()
+				.map(f => f.getId());
+			selectedLocations.set(newSelection)
+		}, 1);
+	}
+
+	selectedFeaturesCollection.on('change:length', updateSelectionStore);
+	selectedFeaturesCollection.on('add', updateSelectionStore);
+
 
 
 	function selectFeatureById(id) {
@@ -138,7 +164,6 @@ export function setupLocations(map, standardClickCallback = (a) => { }) {
 		selectedFeatures.clear();    // deselect previous
 		selectedFeatures.push(feature); // select new
 	}
-
 
 	function zoomToLocationById(id) {
 		console.log("zoomToLocationById", id);

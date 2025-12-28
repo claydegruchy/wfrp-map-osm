@@ -4,8 +4,11 @@
   import Dialog from "./lib/Blocks/Dialog.svelte";
   import Search from "./lib/Blocks/Search.svelte";
   import Map from "./lib/Map.svelte";
-  import { locations } from "./lib/locations";
+
   import SelectedLocation from "./lib/SelectedLocation.svelte";
+  import Diagnostics from "./lib/Diagnostics.svelte";
+  import { locations, locationsObject } from "./lib/locations";
+  import { selectedLocations } from "./lib/stores";
 
   let selected;
   let selectLocationById;
@@ -34,10 +37,12 @@
     selectLocationById(id);
     zoomToLocationById(id);
   }
+  locationsObject;
 </script>
 
 <Search lookUpName={findLocation} returnSelection={selectSearchResult}></Search>
-<nav class="bottom right">
+<nav class="bottom right flex">
+  <!-- <Diagnostics></Diagnostics> -->
   <Dialog>
     <div slot="button">What is this?</div>
     <div slot="content"></div>
@@ -46,17 +51,19 @@
 
 <Map {locationSelected} bind:selectLocationById bind:zoomToLocationById></Map>
 
-{#if selected}
-  <nav class="bottom left">
-    {#key selected}
-      <SelectedLocation location={selected}></SelectedLocation>
-    {/key}
-  </nav>
-{/if}
+<nav class="bottom left">
+  {#if $selectedLocations.length > 0}
+    <SelectedLocation
+      locations={$selectedLocations.map((id) => locationsObject[id])}
+    ></SelectedLocation>
+  {/if}
+</nav>
 
 <style>
   :global(.map) {
     height: 100%;
     width: 100%;
   }
+
+
 </style>
