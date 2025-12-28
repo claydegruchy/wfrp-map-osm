@@ -211,7 +211,8 @@
 			3159215.554582807
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:stirland"
 		],
 		"id": "1DqyVcHYkS8lw0qCbVvL",
 		"art": []
@@ -280,7 +281,8 @@
 			2936117.526460083
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:stirland"
 		],
 		"id": "1bAXEPzBy1VVYHneabI1",
 		"art": []
@@ -333,7 +335,8 @@
 			2606358.300941757
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:stirland"
 		],
 		"id": "1nGLlQcJEch2UTGpiPLm",
 		"art": []
@@ -552,7 +555,8 @@
 			2904285.441695838
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:stirland"
 		],
 		"id": "336dPEPGgJKylBsoug2z",
 		"art": []
@@ -883,7 +887,8 @@
 			2760320.162692236
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:stirland"
 		],
 		"id": "4vxLmlAsX60ELHnPHFLj",
 		"art": []
@@ -949,7 +954,6 @@
 			4727226.352716166
 		],
 		"tags": [
-			"country:wasteland",
 			"country:wasteland"
 		],
 		"id": "5FuqAr2xDzm2e4SiP3vr",
@@ -1153,7 +1157,8 @@
 			2701524.298367469
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:stirland"
 		],
 		"id": "65tXePG3Tl6tFEXv9Djm",
 		"art": []
@@ -1262,7 +1267,6 @@
 		],
 		"tags": [
 			"country:the empire",
-			"country:wasteland",
 			"country:wasteland"
 		],
 		"id": "6PSeOaOO38LA969BGSqt",
@@ -1304,7 +1308,6 @@
 		"tags": [
 			"city",
 			"city:marienburg",
-			"country:wasteland",
 			"country:wasteland"
 		],
 		"id": "6fY700YwhXq7hDoZuiH5",
@@ -1674,7 +1677,8 @@
 			2618874.560849691
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:stirland"
 		],
 		"id": "8vnUZ3LMaFLQh1usKRnQ",
 		"art": []
@@ -2101,7 +2105,8 @@
 			2770793.6785382116
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:stirland"
 		],
 		"id": "BJwUETmvWQgzxc02L9M0",
 		"art": []
@@ -2114,7 +2119,6 @@
 			4986163.672661037
 		],
 		"tags": [
-			"country:wasteland",
 			"country:wasteland"
 		],
 		"id": "BLzvtSdZ708LpHN23IdT",
@@ -2128,7 +2132,8 @@
 			2625387.9670744385
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:stirland"
 		],
 		"id": "BNmuTESWiSrgZ3piVmHm",
 		"art": []
@@ -2400,7 +2405,6 @@
 			5596220.060455012
 		],
 		"tags": [
-			"country:wasteland",
 			"country:wasteland"
 		],
 		"id": "CzkuUlxEv5Vpjk3yFeaC",
@@ -2553,7 +2557,8 @@
 			2957454.8999279635
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:stirland"
 		],
 		"id": "ENaH2BG4EIESWWNLjho8",
 		"art": []
@@ -2566,7 +2571,8 @@
 			2823380.489142475
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:stirland"
 		],
 		"id": "EOvnU0waH3ZFlqNA7HQF",
 		"art": []
@@ -2619,7 +2625,8 @@
 			2655080.591254927
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:stirland"
 		],
 		"id": "EjqFW9NRpOSwo0fm5r2v",
 		"art": []
@@ -2632,7 +2639,8 @@
 			3123752.6339158895
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:stirland"
 		],
 		"id": "Em8Eq7pdWi43RhkBYdd1",
 		"art": []
@@ -2645,7 +2653,8 @@
 			2827066.761308764
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:stirland"
 		],
 		"id": "EpNQfmhuJRmKKqej8zWA",
 		"art": []
@@ -2853,7 +2862,6 @@
 			4831792.463181416
 		],
 		"tags": [
-			"country:wasteland",
 			"country:wasteland"
 		],
 		"id": "G1iG3yf2LaBSZt59VrLZ",
@@ -2964,7 +2972,6 @@
 		],
 		"tags": [
 			"art",
-			"country:wasteland",
 			"country:wasteland"
 		],
 		"id": "H2StLA3kcvHVz7QFIqZW",
@@ -3092,7 +3099,8 @@
 			2665055.5489421715
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:stirland"
 		],
 		"id": "Hjuhn1G6E9orW6K9fOE2",
 		"art": []
@@ -3133,7 +3141,8 @@
 			2938563.245126767
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:stirland"
 		],
 		"id": "HwKcDiYvGiH4pPp8T8Qp",
 		"art": []
@@ -3174,7 +3183,8 @@
 			2761543.155144799
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:stirland"
 		],
 		"id": "IF3QmQT1b3SDGuD05Nul",
 		"art": []
@@ -3271,7 +3281,6 @@
 		"tags": [
 			"city",
 			"city:marienburg",
-			"country:wasteland",
 			"country:wasteland"
 		],
 		"id": "Ic9u88VSchtHRkervDwd",
@@ -3534,7 +3543,8 @@
 			2976471.884460368
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:stirland"
 		],
 		"id": "Jt0cSaDIlvKUJrb2t3iP",
 		"art": []
@@ -3547,7 +3557,8 @@
 			2749313.2306191707
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:stirland"
 		],
 		"id": "Jy3542v8mpiuQHCQF5yT",
 		"art": []
@@ -3561,7 +3572,6 @@
 		],
 		"tags": [
 			"art",
-			"country:wasteland",
 			"country:wasteland"
 		],
 		"id": "K7iI48eAsVor1gcUpqEY",
@@ -3688,7 +3698,8 @@
 			2892235.7172703776
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:stirland"
 		],
 		"id": "KUFxt5MJescfFNk0e9xW",
 		"art": []
@@ -3768,7 +3779,8 @@
 			3091663.489890827
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:stirland"
 		],
 		"id": "LDtCQyiQecrGBIWwvThB",
 		"art": []
@@ -3933,7 +3945,8 @@
 			2856418.580170272
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:stirland"
 		],
 		"id": "MRQY73yDByir5JZIxx98",
 		"art": []
@@ -3987,7 +4000,6 @@
 			4648823.136312512
 		],
 		"tags": [
-			"country:wasteland",
 			"country:wasteland"
 		],
 		"id": "MhUE7ubN3tqPysxBErTQ",
@@ -4072,7 +4084,6 @@
 		],
 		"tags": [
 			"art",
-			"country:wasteland",
 			"country:wasteland"
 		],
 		"id": "NA7ozVmfVJHkJhWw8b7w",
@@ -4238,7 +4249,6 @@
 		],
 		"tags": [
 			"art",
-			"country:wasteland",
 			"country:wasteland"
 		],
 		"id": "NfdHein822t3QQ8sQHfy",
@@ -4336,7 +4346,6 @@
 			4867870.740532021
 		],
 		"tags": [
-			"country:wasteland",
 			"country:wasteland"
 		],
 		"id": "OnSx6iwIdshOf9SQ1vJs",
@@ -4452,7 +4461,6 @@
 		"tags": [
 			"city",
 			"city:marienburg",
-			"country:wasteland",
 			"country:wasteland"
 		],
 		"id": "PNeBSLg7BD6abRKE12zg",
@@ -4704,7 +4712,6 @@
 			5299106.942853393
 		],
 		"tags": [
-			"country:wasteland",
 			"country:wasteland"
 		],
 		"id": "QlD1e9IXjvz67omn0IX3",
@@ -4746,7 +4753,6 @@
 		],
 		"tags": [
 			"country:the empire",
-			"state:middenland",
 			"state:middenland"
 		],
 		"id": "RGTeOER8aBYClenGJEV6",
@@ -4910,7 +4916,8 @@
 			2901174.974155505
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:stirland"
 		],
 		"id": "SVrw8Q92Y7x7d8qF1rWY",
 		"art": []
@@ -4923,7 +4930,8 @@
 			2497306.78969936
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:stirland"
 		],
 		"id": "SVzauOSllnElzLcWZmUa",
 		"art": []
@@ -5018,7 +5026,6 @@
 		"tags": [
 			"city",
 			"city:marienburg",
-			"country:wasteland",
 			"country:wasteland"
 		],
 		"id": "TOZ55xXevo4lJ64jg6Ch",
@@ -5062,7 +5069,8 @@
 			2880261.3790580775
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:stirland"
 		],
 		"id": "UCHk8QaPhmCyGJA1mgAu",
 		"art": []
@@ -5183,7 +5191,8 @@
 			3025869.2573956465
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:stirland"
 		],
 		"id": "V05AV7FZQq5p0X4suvGt",
 		"art": []
@@ -5226,7 +5235,6 @@
 		"tags": [
 			"city",
 			"city:marienburg",
-			"country:wasteland",
 			"country:wasteland"
 		],
 		"id": "VD0AOiK0ebLNDxUokYlz",
@@ -6172,7 +6180,8 @@
 			2514259.9035974722
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:stirland"
 		],
 		"id": "bfsEsO090WdMwBI50O3c",
 		"art": []
@@ -6185,7 +6194,8 @@
 			2501694.988071034
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:stirland"
 		],
 		"id": "bhFoMnc5v6Zw8DAdIvNI",
 		"art": []
@@ -6568,7 +6578,8 @@
 			3155251.8509320524
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:stirland"
 		],
 		"id": "ePhgOokZlyacp0pcZHwN",
 		"art": []
@@ -6705,7 +6716,6 @@
 		],
 		"tags": [
 			"country:the empire",
-			"state:middenland",
 			"state:middenland"
 		],
 		"id": "ftXTfXED2PmDY8wOkLRL",
@@ -6801,7 +6811,8 @@
 			2598804.1143667437
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:stirland"
 		],
 		"id": "gKSnv4l9GbGHLVWBX7LA",
 		"art": []
@@ -7108,7 +7119,6 @@
 		"tags": [
 			"city",
 			"city:marienburg",
-			"country:wasteland",
 			"country:wasteland"
 		],
 		"id": "iL4AbCKIxO84U2il3TDT",
@@ -7752,7 +7762,6 @@
 		],
 		"tags": [
 			"country:the empire",
-			"state:middenland",
 			"state:middenland"
 		],
 		"id": "mdQAq1t9VbUdyaYpwTJA",
@@ -7766,7 +7775,8 @@
 			2606166.217921248
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:stirland"
 		],
 		"id": "mdXpQyJk1HmopKFq03gF",
 		"art": []
@@ -7946,7 +7956,8 @@
 			2594205.054074218
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:stirland"
 		],
 		"id": "nv3f9I4BLyWCe1H9bxTN",
 		"art": []
@@ -8003,7 +8014,8 @@
 			2519211.5251823203
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:stirland"
 		],
 		"id": "oWQhdoTR26AUnwagc9ju",
 		"art": []
@@ -8016,7 +8028,6 @@
 			4640851.68708113
 		],
 		"tags": [
-			"country:wasteland",
 			"country:wasteland"
 		],
 		"id": "oXaPepXyY9NVlEBs6YDq",
@@ -8057,7 +8068,8 @@
 			3033930.9700006153
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:stirland"
 		],
 		"id": "odRPcK4HyGXuqUMa26Wb",
 		"art": []
@@ -8156,7 +8168,8 @@
 			2862516.2476244844
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:stirland"
 		],
 		"id": "oxRPOv0rzz24MgOaf42y",
 		"art": []
@@ -8320,7 +8333,6 @@
 		"tags": [
 			"city",
 			"city:marienburg",
-			"country:wasteland",
 			"country:wasteland"
 		],
 		"id": "q3juCtLCIjIt7LTZu0yO",
@@ -8434,7 +8446,8 @@
 			3139360.195540777
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:stirland"
 		],
 		"id": "qmcdTya0UEYinSnG4VWo",
 		"art": []
@@ -8476,7 +8489,6 @@
 		],
 		"tags": [
 			"art",
-			"country:wasteland",
 			"country:wasteland"
 		],
 		"id": "qzciyOAHyYhzQm7WRw9N",
@@ -8756,7 +8768,6 @@
 		],
 		"tags": [
 			"country:the empire",
-			"country:wasteland",
 			"country:wasteland"
 		],
 		"id": "tkU0BzNhanEky8wKWNdx",
@@ -8953,7 +8964,6 @@
 			5412756.860627783
 		],
 		"tags": [
-			"country:wasteland",
 			"country:wasteland"
 		],
 		"id": "utyq4Q6JRK50BIL3qokk",
@@ -9240,7 +9250,8 @@
 			3055588.815264682
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:stirland"
 		],
 		"id": "wYDGmEB8Ur4jDmT26BjD",
 		"art": []
@@ -9253,7 +9264,8 @@
 			2897506.3961554794
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:stirland"
 		],
 		"id": "wjNoq2A5Yefv6LroduAd",
 		"art": []
@@ -9337,7 +9349,6 @@
 			5664887.549235083
 		],
 		"tags": [
-			"country:wasteland",
 			"country:wasteland"
 		],
 		"id": "xANwhpQGBUWrB9B6r33c",
@@ -9452,7 +9463,6 @@
 			5135980.769864294
 		],
 		"tags": [
-			"country:wasteland",
 			"country:wasteland"
 		],
 		"id": "xgs38lSQ6gL7UC53aBRo",
@@ -9782,7 +9792,8 @@
 			2720650.9879831364
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:stirland"
 		],
 		"id": "zPZpTFDukMGNqQTmI3CW",
 		"art": []
@@ -9823,7 +9834,8 @@
 			2780544.115683149
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:stirland"
 		],
 		"id": "zR00q9ozjWAPXCbPGJws",
 		"art": []
@@ -9836,7 +9848,8 @@
 			2902151.56735296
 		],
 		"tags": [
-			"country:the empire"
+			"country:the empire",
+			"state:stirland"
 		],
 		"id": "zUftVO0uZHYppU9g5q2j",
 		"art": []
@@ -9911,6 +9924,7 @@
 			"images/ztqKc3YZETuy9FDKisKL/ztqKc3YZETuy9FDKisKL_2.jpg",
 			"images/ztqKc3YZETuy9FDKisKL/ztqKc3YZETuy9FDKisKL_3.jpg",
 			"images/ztqKc3YZETuy9FDKisKL/ztqKc3YZETuy9FDKisKL_4.jpg"
-		]
+		],
+		"tags": []
 	}
 ]
