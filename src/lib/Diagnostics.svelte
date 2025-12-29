@@ -1,6 +1,9 @@
 <script>
+  import DragBox from "ol/interaction/DragBox";
   import { locations, locationsObject } from "./locations";
-  import { selectedLocations } from "./stores";
+  import { map, selectedLocations } from "./stores";
+  import { routeSource } from "./routes";
+  import { platformModifierKeyOnly } from "ol/events/condition";
   let newLocations = "nothing";
 
   function copyToClipboard() {
@@ -33,7 +36,6 @@
     }
 
     newLocations = Object.values(locationsObject);
-
     newLocations = newLocations.map((l) => ({
       ...l,
       tags: [...new Set([...(l.tags || [])])],

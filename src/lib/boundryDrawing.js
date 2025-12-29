@@ -91,7 +91,7 @@ function generateHullLayer(coordinates, color) {
 
 
 		return new VectorLayer({
-			// visible: false,
+			visible: false,
 			source: new VectorSource({ features: [polygonFeature] })
 		});
 	}
