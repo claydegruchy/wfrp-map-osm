@@ -23,6 +23,12 @@
     at gitzmansgallery. I didn't make any of these maps, just put them together.
   </p>
 
+  <p>
+    The distances are pulled from <i
+      >Travel Distances in the Empire (and beyond) by Jackdays</i
+    > also from gitzmansgallery
+  </p>
+
   <h4>Credits</h4>
 
   <p>

@@ -57,12 +57,12 @@
     setPath({ pathRouteIds: [] });
   }
 
-  onMount(() =>
-    setTimeout(() => {
-      selectSearchResult("cL30w9UailtiheDMkqTR");
-      startPathFinder("UlGQ5WaiQHpVvJp5QrN7");
-    }, 1)
-  );
+  // onMount(() =>
+  //   setTimeout(() => {
+  //     selectSearchResult("cL30w9UailtiheDMkqTR");
+  //     startPathFinder("UlGQ5WaiQHpVvJp5QrN7");
+  //   }, 1)
+  // );
 </script>
 
 <nav class="top left search flex vertical">
