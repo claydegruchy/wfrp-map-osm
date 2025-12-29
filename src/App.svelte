@@ -73,7 +73,7 @@
       lookUpName={findLocation}
       returnSelection={startPathFinder}
     />
-  {/if}
+  {:else}{/if}
 
   {#if pathFinderOrigin && pathFinderDestination}
     <PathDisplay

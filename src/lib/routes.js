@@ -119,78 +119,83 @@ setRoutes()
 export function setupRoutes(map) {
 	console.log("setupRoutes");
 
-	const dragBox = new DragBox({
-		condition: platformModifierKeyOnly, // Ctrl on Windows/Linux, Cmd on macOS
-	});
 
-	map.addInteraction(dragBox);
-
-	dragBox.on("boxend", () => {
-		const extent = dragBox.getGeometry().getExtent();
-
-		const toRemove = [];
-		routeSource.forEachFeatureIntersectingExtent(extent, (feature) => {
-			toRemove.push(feature.getId());
+	if (false) {
+		const dragBox = new DragBox({
+			condition: platformModifierKeyOnly, // Ctrl on Windows/Linux, Cmd on macOS
 		});
 
-		for (const id of toRemove) {
-			if (routesObject[id]) routesObject[id].enabled = false
-		}
-		routes = Object.values(routesObject)
-		setRoutes()
-		console.log(routes);
+		map.addInteraction(dragBox);
 
+		dragBox.on("boxend", () => {
+			const extent = dragBox.getGeometry().getExtent();
 
-	});
+			const toRemove = [];
+			routeSource.forEachFeatureIntersectingExtent(extent, (feature) => {
+				toRemove.push(feature.getId());
+			});
 
-
-
-	let pendingId = null
-	map.on('singleclick', evt => {
-		if (!platformModifierKeyOnly(evt)) return
-
-		const feature = map.forEachFeatureAtPixel(
-			evt.pixel,
-			f => f,
-			{
-				layerFilter: layer => layer !== routesLayer
+			for (const id of toRemove) {
+				if (routesObject[id]) routesObject[id].enabled = false
 			}
-		)
-
-		if (!feature) return
-		console.log(feature);
-
-		const id = feature.getId()
-
-		if (!pendingId) {
-			pendingId = id
-			return
-		}
+			routes = Object.values(routesObject)
+			setRoutes()
+			console.log(routes);
 
 
-		console.log("id path from",
-			id, "to",
-			pendingId);
-
-		console.log("path from",
-			locationsObject[id].name, "to",
-			locationsObject[pendingId].name);
-
-		const r = {
-			source_id: id,
-			destination_id: pendingId,
-			enabled: true,
-			type: 'road',
-		}
-		console.log(r);
-
-		routes = [...routes, r]
-		setRoutes()
-		console.log(routes);
+		});
 
 
-		pendingId = null
-	})
+		let pendingId = null
+		map.on('singleclick', evt => {
+			if (!platformModifierKeyOnly(evt)) return
+
+			const feature = map.forEachFeatureAtPixel(
+				evt.pixel,
+				f => f,
+				{
+					layerFilter: layer => layer !== routesLayer
+				}
+			)
+
+			if (!feature) return
+			console.log(feature);
+
+			const id = feature.getId()
+
+			if (!pendingId) {
+				pendingId = id
+				return
+			}
+
+
+			console.log("id path from",
+				id, "to",
+				pendingId);
+
+			console.log("path from",
+				locationsObject[id].name, "to",
+				locationsObject[pendingId].name);
+
+			const r = {
+				source_id: id,
+				destination_id: pendingId,
+				enabled: true,
+				type: 'road',
+			}
+			console.log(r);
+
+			routes = [...routes, r]
+			setRoutes()
+			console.log(routes);
+
+
+			pendingId = null
+		})
+	}
+
+
+
 
 
 

@@ -7,6 +7,7 @@
 
   export let placeholder = "Find a location...";
   export let lookUpName;
+  export let disabled = false;
 
   export let returnSelection = (n) => console.log("returnSelection", n);
   async function handleInput() {
@@ -42,6 +43,7 @@
 
 <div class="floating-search">
   <input
+    {disabled}
     type="text"
     bind:value={query}
     on:input={handleInput}
