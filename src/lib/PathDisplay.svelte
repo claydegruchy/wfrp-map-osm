@@ -1,6 +1,6 @@
 <script>
   import { locationsObject } from "./locations";
-  import { meterConv, routesObject } from "./routes";
+  import { getCardinalDirection, meterConv, routesObject } from "./routes";
 
   export let path;
   export let pathFinderOrigin;
@@ -18,17 +18,22 @@
   let steps = [];
   let { pathRouteIds, pathNodes } = path;
 
-  pathNodes.forEach((pathId, i) => {
-    steps.push({ kind: "locaton", data: locationsObject[pathId] });
+  pathNodes.forEach((nodeId, i) => {
+    let data = locationsObject[nodeId];
+    steps.push({ kind: "locaton", data });
     let nextRoute = pathRouteIds.shift();
     if (nextRoute) {
-      steps.push({ kind: "path", data: routesObject[nextRoute] });
+      let next = locationsObject[pathNodes[i + 1]];
+      steps.push({
+        kind: "path",
+        data: {
+          ...routesObject[nextRoute],
+          cardinal: getCardinalDirection(data.coordinates, next.coordinates),
+        },
+      });
       distance += routesObject[nextRoute].length;
     }
   });
-  console.log(steps);
-
-  //   pathNodes, pathRouteIds;
 
   let hidden = false;
 </script>
@@ -36,7 +41,7 @@
 <main>
   <div>
     <div class="flex horizontal">
-      {origin.name} to {destination.name}
+      {origin.name} to {destination.name} ({meterConv(distance)}mi)
       <div>
         <button on:click={clearPath}>Clear</button>
         <button class="hidden" on:click={() => (hidden = !hidden)}
@@ -50,11 +55,13 @@
         <div class="flex vertical">
           This route covers {meterConv(distance)} miles, spanning {path
             .pathNodes.length} locations
-          <div class="flex vertical">
+          <div class="flex vertical steps">
             {#each steps as { kind, data }}
-              <div>
+              <section
+                class="step {kind} {data?.kind || ''} {data?.tags?.join(' ')}"
+              >
                 {#if kind == "locaton"}
-                  {data.name}
+                  Visit {data.name}
                 {:else}
                   {#if data.type == "road"}
                     Walk
@@ -62,10 +69,11 @@
                   {#if data.type == "water"}
                     Sail or swim
                   {/if}
-                  ~ {meterConv(data.length)} miles
+                  ~{meterConv(data.length)} miles {data.cardinal}
                 {/if}
-              </div>
+              </section>
             {/each}
+            <br />
           </div>
         </div>
       {:else}{/if}
@@ -85,5 +93,25 @@
     max-height: 50vh;
     display: flex;
     overflow-y: scroll;
+  }
+
+  .steps {
+  }
+
+  .step {
+  }
+
+  .location {
+  }
+
+  .location.city {
+  }
+
+  .path {
+  }
+
+  .path.road {
+  }
+  .path.water {
   }
 </style>
