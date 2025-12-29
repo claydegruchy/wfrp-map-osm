@@ -129,13 +129,14 @@
   .gutter {
     display: flex;
     align-items: flex-end; /* keeps both at the bottom */
-    justify-content: flex-end; /* pushes buttons to the right */
+    justify-content: space-between; /* pushes buttons to the right */
     gap: 10px; /* optional space between selected and buttons */
     pointer-events: none;
   }
 
   .selected {
     pointer-events: all;
+    max-width: 500px;
 
     flex: 1; /* takes remaining space next to buttons */
     margin-top: 0; /* remove auto so it aligns at bottom */
@@ -144,6 +145,10 @@
   .buttons {
     pointer-events: all;
 
-    width: 30%; /* stays on the right */
+    max-width: 30%; /* stays on the right */
+  }
+
+  .buttons > button {
+    padding: 2px;
   }
 </style>

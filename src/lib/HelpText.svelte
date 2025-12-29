@@ -1,4 +1,7 @@
 <main>
+  <i>
+    Made by <a href="https://github.com/claydegruchy/">Clay D</a>
+  </i>
   <h4>Updates</h4>
   <ul>
     <li>
@@ -13,7 +16,6 @@
     </li>
     <li>2025/10: Added a search function</li>
   </ul>
-
   <h4>What is this?</h4>
 
   <p>
@@ -47,7 +49,7 @@
     {" "} for the free listed assets on their deviantart. Amazing stuff and inspired
     me to make this. Multiple maps are used from here.
   </p>
-
+  <h4>Who are you?</h4>
   <h4>Why did you make this?</h4>
 
   <p>
