@@ -85,26 +85,29 @@
   {/if}
 </nav>
 
-<nav class="bottom right flex">
-  <button on:click={toggleCountries}>Countries</button>
-  <button on:click={toggleStates}>States</button>
-  <button on:click={toggleRoutes}>Routes</button>
-  <!-- <Diagnostics></Diagnostics> -->
-  <Dialog>
-    <div slot="button">?</div>
-    <div slot="content"><HelpText></HelpText></div>
-  </Dialog>
+<nav class="bottom gutter">
+  <div class="selected">
+    {#if $selectedLocations.length > 0}
+      <SelectedLocation
+        locations={$selectedLocations.map((id) => locationsObject[id])}
+      ></SelectedLocation>
+    {/if}
+  </div>
+  <div class="flex vertical buttons">
+    <button on:click={toggleCountries}>Countries</button>
+    <button on:click={toggleStates}>States</button>
+    <button on:click={toggleRoutes}>Routes</button>
+    <!-- <Diagnostics></Diagnostics> -->
+    <Dialog>
+      <div slot="button">?</div>
+      <div slot="content"><HelpText></HelpText></div>
+    </Dialog>
+  </div>
 </nav>
 
 <Map bind:selectLocationById bind:zoomToLocationById bind:zoomToEncompass></Map>
 
-<nav class="bottom left">
-  {#if $selectedLocations.length > 0}
-    <SelectedLocation
-      locations={$selectedLocations.map((id) => locationsObject[id])}
-    ></SelectedLocation>
-  {/if}
-</nav>
+<nav class="bottom left"></nav>
 
 <style>
   :global(.map) {
@@ -116,5 +119,31 @@
     width: calc(100% - 40px);
     max-width: 400px;
     margin: 0 20px;
+  }
+
+  nav {
+    width: calc(100% - 10px); /* full width minus 10px gap each side */
+    left: 5px; /* left gap */
+    right: 5px; /* right gap */
+  }
+  .gutter {
+    display: flex;
+    align-items: flex-end; /* keeps both at the bottom */
+    justify-content: flex-end; /* pushes buttons to the right */
+    gap: 10px; /* optional space between selected and buttons */
+    pointer-events: none;
+  }
+
+  .selected {
+    pointer-events: all;
+
+    flex: 1; /* takes remaining space next to buttons */
+    margin-top: 0; /* remove auto so it aligns at bottom */
+  }
+
+  .buttons {
+    pointer-events: all;
+
+    width: 30%; /* stays on the right */
   }
 </style>

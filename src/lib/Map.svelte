@@ -53,6 +53,8 @@
       view: new View({
         center,
         zoom,
+        enableRotation: false,
+
         // rotation: 45,
       }),
     });

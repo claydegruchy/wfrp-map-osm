@@ -5,9 +5,9 @@
 <main>
   {#if locations.length == 1}
     <div>
-      <h3>
+      <b>
         {locations[0].name}
-      </h3>
+      </b>
       <small>
         <i>{locations[0].id}</i>
       </small>
@@ -58,13 +58,10 @@
 
 <style>
   main {
-    width: calc(100% - 40px);
-    max-width: 400px;
-    border: 2px solid black;
+    border: 1px solid black;
     border-radius: 5px;
     padding: 10px;
     background-color: grey;
-    max-height: 50vh;
     overflow: scroll;
   }
 
