@@ -6429,8 +6429,7 @@
 			2089936.511206961,
 			1849096.2720967818
 		],
-		"tags": [
-		],
+		"tags": [],
 		"id": "cneajdqVHJqzHJbGExeV",
 		"art": []
 	},
@@ -10048,6 +10047,18 @@
 			"images/ztqKc3YZETuy9FDKisKL/ztqKc3YZETuy9FDKisKL_2.jpg",
 			"images/ztqKc3YZETuy9FDKisKL/ztqKc3YZETuy9FDKisKL_3.jpg",
 			"images/ztqKc3YZETuy9FDKisKL/ztqKc3YZETuy9FDKisKL_4.jpg"
+		],
+		"tags": []
+	},
+	{
+		"name": "Stoodhof",
+		"credit": "GeDruchy",
+		"coordinates": [
+			1312897.58922411,
+			2082618.182918729
+		],
+		"id": "hubuulfcuvurcttlhdnvjllfbithtrdf",
+		"art": [
 		],
 		"tags": []
 	}

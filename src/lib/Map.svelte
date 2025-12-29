@@ -20,6 +20,7 @@
 
   import { locationsLayer, setupLocations } from "./locations";
   import { calculateBoundries } from "./boundryDrawing";
+  import { routesLayer, setupRoutes } from "./routes";
 
   let center = [-3247495.2505356777, 4704319.403427397];
   let zoom = 5;
@@ -47,6 +48,7 @@
         Sartosa,
         Ubersreik,
         locationsLayer,
+        routesLayer,
       ],
       view: new View({
         center,
@@ -61,6 +63,7 @@
     );
 
     calculateBoundries($map);
+    setupRoutes($map);
   });
 
   $: if ($map) {
