@@ -10,14 +10,16 @@
   import { locations, locationsObject } from "./lib/locations";
   import { selectedLocations } from "./lib/stores";
   import { toggleCountries, toggleStates } from "./lib/boundryDrawing";
+  import { findPath, setPath } from "./lib/routes";
+  import PathDisplay from "./lib/PathDisplay.svelte";
 
-  let selected;
+  let pathFinderOrigin;
+  let pathFinderDestination;
+  let path;
+
   let selectLocationById;
   let zoomToLocationById;
-
-  function locationSelected(s) {
-    selected = s;
-  }
+  let zoomToEncompass;
 
   function findLocation(value) {
     console.log("findLocation", value, locations);
@@ -37,14 +39,56 @@
   function selectSearchResult(id) {
     selectLocationById(id);
     zoomToLocationById(id);
+    pathFinderOrigin = id;
   }
-  locationsObject;
+
+  function startPathFinder(id) {
+    pathFinderDestination = id;
+    path = findPath(pathFinderOrigin, pathFinderDestination);
+    setPath(path);
+    zoomToEncompass(path);
+  }
+
+  function clearPath() {
+    path = null;
+    pathFinderDestination = null;
+    pathFinderOrigin = null;
+    setPath({ pathRouteIds: [] });
+  }
+
+  onMount(() =>
+    setTimeout(() => {
+      selectSearchResult("ZzxEIjTJwDVY4UHpXGzd");
+      startPathFinder("UlGQ5WaiQHpVvJp5QrN7");
+    }, 1)
+  );
 </script>
 
-<Search lookUpName={findLocation} returnSelection={selectSearchResult}></Search>
-<nav class="bottom right flex vertical">
+<nav class="top left search flex vertical">
+  <Search lookUpName={findLocation} returnSelection={selectSearchResult} />
+  {#if pathFinderOrigin}
+    <Search
+      placeholder={"Find a route..."}
+      lookUpName={findLocation}
+      returnSelection={startPathFinder}
+    />
+  {/if}
+
+  {#if pathFinderOrigin && pathFinderDestination}
+    <PathDisplay
+      {clearPath}
+      {pathFinderOrigin}
+      {pathFinderDestination}
+      bind:path
+    ></PathDisplay>
+  {/if}
+</nav>
+
+<nav class="bottom right flex">
+  <button on:click={() => zoomToEncompass(path)}>test</button>
   <button on:click={toggleCountries}>Toggle Countries</button>
   <button on:click={toggleStates}>Toggle States</button>
+  <button on:click={null}>Toggle Routes</button>
   <!-- <Diagnostics></Diagnostics> -->
   <Dialog>
     <div slot="button">What is this?</div>
@@ -52,7 +96,7 @@
   </Dialog>
 </nav>
 
-<Map {locationSelected} bind:selectLocationById bind:zoomToLocationById></Map>
+<Map bind:selectLocationById bind:zoomToLocationById bind:zoomToEncompass></Map>
 
 <nav class="bottom left">
   {#if $selectedLocations.length > 0}
@@ -66,5 +110,11 @@
   :global(.map) {
     height: 100%;
     width: 100%;
+  }
+
+  .search {
+    width: calc(100% - 40px);
+    max-width: 400px;
+    margin: 0 20px;
   }
 </style>

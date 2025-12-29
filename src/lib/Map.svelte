@@ -25,10 +25,9 @@
   let center = [-3247495.2505356777, 4704319.403427397];
   let zoom = 5;
 
-  export let locationSelected;
-
   export let selectLocationById;
   export let zoomToLocationById;
+  export let zoomToEncompass;
 
   onMount(() => {
     $map = new Map({
@@ -58,13 +57,10 @@
       }),
     });
 
-    [selectLocationById, zoomToLocationById] = setupLocations(
-      $map,
-      locationSelected
-    );
+    [selectLocationById, zoomToLocationById] = setupLocations($map);
 
     calculateBoundries($map);
-    setupRoutes($map);
+    zoomToEncompass = setupRoutes($map);
   });
 
   $: if ($map) {

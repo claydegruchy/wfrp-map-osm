@@ -11,6 +11,7 @@ import { locationsObject } from "./locations"
 import routesRaw from "../../public/routes.json"
 import DragBox from "ol/interaction/DragBox"
 import { platformModifierKeyOnly } from "ol/events/condition"
+import { extend } from "ol/extent"
 
 export let routes = routesRaw
 export let routesObject = Object.fromEntries(routes.map(route => [route.source_id + ":" + route.destination_id, route]))
@@ -78,13 +79,12 @@ export function setRoutes() {
 }
 
 
-export function setPath({ pathNodes, pathRouteIds }) {
+export function setPath({ pathRouteIds }) {
 	pathSource.clear()
-	console.log("setpath", pathRouteIds);
 
 	let path = []
 	for (const pathId of pathRouteIds) {
-		console.log(routesObject[pathId], routesObject);
+		// console.log(routesObject[pathId], routesObject);
 		path.push(routesObject[pathId])
 	}
 
@@ -104,6 +104,7 @@ export function setPath({ pathNodes, pathRouteIds }) {
 
 }
 setRoutes()
+
 
 
 export function setupRoutes(map) {
@@ -182,139 +183,132 @@ export function setupRoutes(map) {
 		pendingId = null
 	})
 
+
+
+
+	return function zoomToEncompass({ pathNodes, pathRouteIds }, padding = 100) {
+
+		console.log(pathNodes, pathRouteIds);
+
+		let coordsArray = pathNodes.map(n => locationsObject[n].coordinates)
+
+
+		if (!coordsArray || coordsArray.length === 0) return
+
+		const projected = coordsArray//.map(c => fromLonLat(c))
+		console.log(projected);
+
+
+
+		// compute extent
+		let extent = [projected[0][0], projected[0][1], projected[0][0], projected[0][1]]
+		for (let i = 1; i < projected.length; i++) {
+			extent = extend(extent, [projected[i][0], projected[i][1], projected[i][0], projected[i][1]])
+		}
+
+		console.log(extent);
+
+
+		// fit view
+			map.getView().fit(extent, { padding: [padding, padding, padding, padding], duration:1000 })
+
+	}
+
+
 }
 
 
 
-export function findShortestPath(startId, endId) {
-	const graph = {}
-	const nameGraph = {}
-
-	// build adjacency with distances
-	for (const key in routesObject) {
-		const { source_id, destination_id, enabled } = routesObject[key]
-		if (!enabled) continue
 
 
-		let distance = computeDistance(locationsObject[source_id].coordinates, locationsObject[destination_id].coordinates,)
 
-		graph[source_id] ??= []
-		graph[destination_id] ??= []
 
-		graph[source_id].push({ node: destination_id, weight: distance, routeId: key })
-		graph[destination_id].push({ node: source_id, weight: distance, routeId: key }) // undirected
-
-		nameGraph[source_id + destination_id] = key
-		nameGraph[destination_id + source_id] = key
-	}
-
-	// Dijkstra
-	const distances = {}
-	const previous = {}
-	const routeUsed = {}
-	const visited = new Set()
-	const queue = new Set(Object.keys(graph))
-
-	for (const node of queue) distances[node] = Infinity
-	distances[startId] = 0
-
-	while (queue.size) {
-		// pick node with smallest distance
-		let current = null
-		for (const n of queue) {
-			if (current === null || distances[n] < distances[current]) current = n
-		}
-		queue.delete(current)
-		visited.add(current)
-
-		if (current === endId) break
-
-		for (const { node: neighbor, weight, routeId } of graph[current]) {
-			if (visited.has(neighbor)) continue
-			const alt = distances[current] + weight
-			if (alt < distances[neighbor]) {
-				distances[neighbor] = alt
-				previous[neighbor] = current
-				routeUsed[neighbor] = routeId
-			}
-		}
-	}
-
-	// reconstruct path
-	if (!previous[endId]) return { pathNodes: null, pathRouteIds: null }
-
-	const pathNodes = []
-	const pathRouteIds = []
-	let current = endId
-	while (current !== startId) {
-		pathNodes.unshift(current)
-		pathRouteIds.unshift(routeUsed[current])
-		current = previous[current]
-	}
-	pathNodes.unshift(startId)
-
-	return { pathNodes, pathRouteIds }
-}
 
 export function findPath(startId, endId) {
-	const graph = {}
-	const nameGraph = {}
+	{
+		const graph = {}
+		const nameGraph = {}
 
-	// build adjacency from routesObject
-	for (const key in routesObject) {
-		const { source_id, destination_id, enabled } = routesObject[key]
-		if (!enabled) continue
 
-		graph[source_id] ??= []
-		graph[destination_id] ??= []
+		// build adjacency with weights
+		for (const key in routesObject) {
+			const { source_id, destination_id, enabled } = routesObject[key]
+			if (!enabled) continue
 
-		graph[source_id].push(destination_id)
-		graph[destination_id].push(source_id)
+			// compute weight (currently distance, can change later)
+			const weight = computeDistance(
+				locationsObject[source_id].coordinates,
+				locationsObject[destination_id].coordinates
+			)
 
-		// build a bidirectional namegraph for later
-		nameGraph[source_id + destination_id] = key
-		nameGraph[destination_id + source_id] = key
-	}
+			graph[source_id] ??= []
+			graph[destination_id] ??= []
 
-	const queue = [[startId]]
-	const visited = new Set([startId])
+			graph[source_id].push({ node: destination_id, weight, routeId: key })
+			graph[destination_id].push({ node: source_id, weight, routeId: key }) // undirected
 
-	while (queue.length) {
-		const path = queue.shift()
-		const node = path[path.length - 1]
-
-		if (node === endId) {
-			// reconstruct route IDs from routesObject
-			const pathRouteIds = []
-			for (let i = 1; i < path.length; i++) {
-				const key = path[i - 1] + path[i]
-				pathRouteIds.push(nameGraph[key])
-			}
-			return { pathNodes: path, pathRouteIds }
+			nameGraph[source_id + destination_id] = key
+			nameGraph[destination_id + source_id] = key
 		}
 
-		for (const neighbor of graph[node] ?? []) {
-			if (!visited.has(neighbor)) {
-				visited.add(neighbor)
-				queue.push([...path, neighbor])
+		// Dijkstra
+		const distances = {}
+		const previous = {}
+		const routeUsed = {}
+		const visited = new Set()
+		const queue = new Set(Object.keys(graph))
+
+		for (const node of queue) distances[node] = Infinity
+		distances[startId] = 0
+
+		while (queue.size) {
+			// pick node with smallest distance (weight)
+			let current = null
+			for (const n of queue) {
+				if (current === null || distances[n] < distances[current]) current = n
+			}
+			queue.delete(current)
+			visited.add(current)
+
+			if (current === endId) break
+
+			for (const { node: neighbor, weight, routeId } of graph[current]) {
+				if (visited.has(neighbor)) continue
+				const alt = distances[current] + weight
+				if (alt < distances[neighbor]) {
+					distances[neighbor] = alt
+					previous[neighbor] = current
+					routeUsed[neighbor] = routeId
+				}
 			}
 		}
+
+		// reconstruct path
+		if (!previous[endId]) return { pathNodes: null, pathRouteIds: null }
+
+		const pathNodes = []
+		const pathRouteIds = []
+		let current = endId
+		while (current !== startId) {
+			pathNodes.unshift(current)
+			pathRouteIds.unshift(routeUsed[current])
+			current = previous[current]
+		}
+		pathNodes.unshift(startId)
+
+		return { pathNodes, pathRouteIds }
 	}
 
-	return { pathNodes: null, pathRouteIds: null }
 }
-
-
 
 
 // let re = findPath(routes, "ZzxEIjTJwDVY4UHpXGzd", "i5xZQabC5G69fLeA8Nm6")
 // let path = findPath("ZzxEIjTJwDVY4UHpXGzd", "cL30w9UailtiheDMkqTR")
-let path = findPath("ZzxEIjTJwDVY4UHpXGzd", "UlGQ5WaiQHpVvJp5QrN7")
 
 
-setPath(path)
 
-console.log(path);
+
+
 
 
 

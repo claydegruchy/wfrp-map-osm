@@ -5,6 +5,7 @@
   let selectedName = null;
   let isSearching = false;
 
+  export let placeholder = "Find a location...";
   export let lookUpName;
 
   export let returnSelection = (n) => console.log("returnSelection", n);
@@ -44,7 +45,7 @@
     type="text"
     bind:value={query}
     on:input={handleInput}
-    placeholder="Search name..."
+    {placeholder}
     on:focus={handleInput}
     on:blur={() => setTimeout(() => (showDropdown = false), 100)}
   />
@@ -69,12 +70,6 @@
 
 <style>
   .floating-search {
-    position: absolute;
-    top: 10px;
-    left: 0;
-    width: calc(100% - 40px);
-    max-width: 400px;
-    margin: 0 20px;
     z-index: 1000;
     display: flex;
     gap: 8px;

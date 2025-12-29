@@ -203,7 +203,7 @@ export function setupLocations(map) {
 		if (!feature) return;
 		const geometry = feature.getGeometry();
 		const coordinates = geometry.getCoordinates();
-		console.log("zoom to", coordinates);
+
 
 		// pan/zoom the map view
 		map.getView().animate({

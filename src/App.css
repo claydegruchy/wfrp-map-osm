@@ -211,6 +211,10 @@ section {
   flex-direction: row;
 }
 
+.flex.vertical {
+  flex-direction: column;
+}
+
 
 
 
