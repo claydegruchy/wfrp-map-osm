@@ -8,6 +8,9 @@
       <h3>
         {locations[0].name}
       </h3>
+      <small>
+        <i>{locations[0].id}</i>
+      </small>
 
       <div>
         {#each locations[0].art as image}
