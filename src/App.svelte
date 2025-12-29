@@ -12,6 +12,7 @@
   import { toggleCountries, toggleStates } from "./lib/boundryDrawing";
   import { findPath, setPath, toggleRoutes } from "./lib/routes";
   import PathDisplay from "./lib/PathDisplay.svelte";
+  import HelpText from "./lib/HelpText.svelte";
 
   let pathFinderOrigin;
   let pathFinderDestination;
@@ -85,14 +86,13 @@
 </nav>
 
 <nav class="bottom right flex">
-  <button on:click={() => zoomToEncompass(path)}>test</button>
-  <button on:click={toggleCountries}>Toggle Countries</button>
-  <button on:click={toggleStates}>Toggle States</button>
-  <button on:click={toggleRoutes}>Toggle Routes</button>
+  <button on:click={toggleCountries}>Countries</button>
+  <button on:click={toggleStates}>States</button>
+  <button on:click={toggleRoutes}>Routes</button>
   <!-- <Diagnostics></Diagnostics> -->
   <Dialog>
-    <div slot="button">What is this?</div>
-    <div slot="content"></div>
+    <div slot="button">?</div>
+    <div slot="content"><HelpText></HelpText></div>
   </Dialog>
 </nav>
 
