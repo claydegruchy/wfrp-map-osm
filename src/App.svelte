@@ -10,7 +10,7 @@
   import { locations, locationsObject } from "./lib/locations";
   import { selectedLocations } from "./lib/stores";
   import { toggleCountries, toggleStates } from "./lib/boundryDrawing";
-  import { findPath, setPath } from "./lib/routes";
+  import { findPath, setPath, toggleRoutes } from "./lib/routes";
   import PathDisplay from "./lib/PathDisplay.svelte";
 
   let pathFinderOrigin;
@@ -58,7 +58,7 @@
 
   onMount(() =>
     setTimeout(() => {
-      selectSearchResult("ZzxEIjTJwDVY4UHpXGzd");
+      selectSearchResult("cL30w9UailtiheDMkqTR");
       startPathFinder("UlGQ5WaiQHpVvJp5QrN7");
     }, 1)
   );
@@ -88,7 +88,7 @@
   <button on:click={() => zoomToEncompass(path)}>test</button>
   <button on:click={toggleCountries}>Toggle Countries</button>
   <button on:click={toggleStates}>Toggle States</button>
-  <button on:click={null}>Toggle Routes</button>
+  <button on:click={toggleRoutes}>Toggle Routes</button>
   <!-- <Diagnostics></Diagnostics> -->
   <Dialog>
     <div slot="button">What is this?</div>

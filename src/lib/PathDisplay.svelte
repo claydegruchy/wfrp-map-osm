@@ -20,7 +20,7 @@
 
   pathNodes.forEach((nodeId, i) => {
     let data = locationsObject[nodeId];
-    steps.push({ kind: "locaton", data });
+    steps.push({ kind: "location", data });
     let nextRoute = pathRouteIds.shift();
     if (nextRoute) {
       let next = locationsObject[pathNodes[i + 1]];
@@ -55,23 +55,31 @@
         <div class="flex vertical">
           This route covers {meterConv(distance)} miles, spanning {path
             .pathNodes.length} locations
-          <div class="flex vertical steps">
-            {#each steps as { kind, data }}
-              <section
-                class="step {kind} {data?.kind || ''} {data?.tags?.join(' ')}"
+          <div class=" steps">
+            {#each steps as { kind, data }, i}
+              <div
+                class="step {kind} {data?.kind || ''} {data?.type ||
+                  ''} {data?.tags?.join(' ')}"
               >
-                {#if kind == "locaton"}
-                  Visit {data.name}
+                {#if kind == "location"}
+                  {#if i == 0}
+                    Start at
+                  {:else if i === steps.length - 1}
+                    Finish at
+                  {:else}
+                    Visit
+                  {/if}
+                  <b>
+                    {data.name}
+                  </b>
                 {:else}
-                  {#if data.type == "road"}
-                    Walk
-                  {/if}
-                  {#if data.type == "water"}
-                    Sail or swim
-                  {/if}
-                  ~{meterConv(data.length)} miles {data.cardinal}
+                  <i>
+                    {#if data.type == "road"}Walk{/if}
+                    {#if data.type == "water"}Sail or swim{/if}
+                    ~{meterConv(data.length)} miles {data.cardinal}
+                  </i>
                 {/if}
-              </section>
+              </div>
             {/each}
             <br />
           </div>
@@ -96,22 +104,35 @@
   }
 
   .steps {
+    gap: 3px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
   }
 
   .step {
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 10px;
   }
 
   .location {
+    border-color: blue;
   }
 
   .location.city {
+    border-color: gold;
   }
 
   .path {
+    text-align: center;
+    max-width: 90%;
   }
 
   .path.road {
+    border-color: brown;
   }
   .path.water {
+    border-color: blue;
   }
 </style>

@@ -6389,7 +6389,8 @@
 		],
 		"tags": [
 			"country:the empire",
-			"state:middenland"
+			"state:middenland",
+			"city"
 		],
 		"id": "cL30w9UailtiheDMkqTR",
 		"art": []
@@ -10058,8 +10059,7 @@
 			2082618.182918729
 		],
 		"id": "hubuulfcuvurcttlhdnvjllfbithtrdf",
-		"art": [
-		],
+		"art": [],
 		"tags": []
 	}
 ]

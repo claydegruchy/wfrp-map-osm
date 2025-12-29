@@ -62,6 +62,11 @@ export const pathLayer = new VectorLayer({
 })
 
 
+export function toggleRoutes() {
+	routesLayer.setVisible(!routesLayer.getVisible())
+}
+toggleRoutes()
+
 
 export function setRoutes() {
 	routeSource.clear()
