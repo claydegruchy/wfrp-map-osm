@@ -153,6 +153,19 @@ export function setupLocations(map) {
 			selectedFeaturesCollection.clear()
 		}
 	});
+	// for adding new locations
+	// map.getViewport().addEventListener('contextmenu', e => {
+	// 	console.log("menu");
+
+	// 	e.preventDefault()
+
+	// 	const pixel = map.getEventPixel(e)
+	// 	const coordinate = map.getCoordinateFromPixel(pixel)
+	// 	console.log(coordinate);
+
+	// 	// coordinate is in map projection
+	// })
+
 
 	let selectionDebounce = null;
 
