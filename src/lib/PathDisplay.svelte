@@ -1,16 +1,35 @@
 <script>
   import { locationsObject } from "./locations";
+  import { meterConv, routesObject } from "./routes";
 
   export let path;
   export let pathFinderOrigin;
   export let pathFinderDestination;
 
   export let clearPath;
-  $: valid = path && path?.pathNodes?.length > 0;
+  let valid = path && path?.pathNodes?.length > 0;
   console.log("pd", path, valid);
 
-  $: origin = locationsObject[pathFinderOrigin];
-  $: destination = locationsObject[pathFinderDestination];
+  let origin = locationsObject[pathFinderOrigin];
+  let destination = locationsObject[pathFinderDestination];
+
+  let distance = 0;
+
+  let steps = [];
+  let { pathRouteIds, pathNodes } = path;
+
+  pathNodes.forEach((pathId, i) => {
+    steps.push({ kind: "locaton", data: locationsObject[pathId] });
+    let nextRoute = pathRouteIds.shift();
+    if (nextRoute) {
+      steps.push({ kind: "path", data: routesObject[nextRoute] });
+      distance += routesObject[nextRoute].length;
+    }
+  });
+  console.log(steps);
+
+  //   pathNodes, pathRouteIds;
+
   let hidden = false;
 </script>
 
@@ -19,20 +38,32 @@
     <div class="flex horizontal">
       {origin.name} to {destination.name}
       <div>
+        <button on:click={clearPath}>Clear</button>
         <button class="hidden" on:click={() => (hidden = !hidden)}
           >{hidden ? "v" : "^"}</button
         >
-        <button on:click={clearPath}>Clear</button>
       </div>
     </div>
 
     {#if valid}
       {#if !hidden}
         <div class="flex vertical">
+          This route covers {meterConv(distance)} miles, spanning {path
+            .pathNodes.length} locations
           <div class="flex vertical">
-            {#each path.pathNodes as id}
+            {#each steps as { kind, data }}
               <div>
-                {locationsObject[id].name}
+                {#if kind == "locaton"}
+                  {data.name}
+                {:else}
+                  {#if data.type == "road"}
+                    Walk
+                  {/if}
+                  {#if data.type == "water"}
+                    Sail or swim
+                  {/if}
+                  ~ {meterConv(data.length)} miles
+                {/if}
               </div>
             {/each}
           </div>

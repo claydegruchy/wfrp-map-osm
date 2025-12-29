@@ -13,8 +13,12 @@ import DragBox from "ol/interaction/DragBox"
 import { platformModifierKeyOnly } from "ol/events/condition"
 import { extend } from "ol/extent"
 
-export let routes = routesRaw
+export let routes = routesRaw.map(routes => ({
+	...routes,
+	length: computeDistance(locationsObject[routes.source_id].coordinates, locationsObject[routes.destination_id].coordinates)
+}))
 export let routesObject = Object.fromEntries(routes.map(route => [route.source_id + ":" + route.destination_id, route]))
+
 
 export let routeSource = new VectorSource()
 export let pathSource = new VectorSource()
@@ -188,29 +192,20 @@ export function setupRoutes(map) {
 
 	return function zoomToEncompass({ pathNodes, pathRouteIds }, padding = 100) {
 
-		console.log(pathNodes, pathRouteIds);
-
 		let coordsArray = pathNodes.map(n => locationsObject[n].coordinates)
 
 
 		if (!coordsArray || coordsArray.length === 0) return
 
 		const projected = coordsArray//.map(c => fromLonLat(c))
-		console.log(projected);
-
-
-
 		// compute extent
 		let extent = [projected[0][0], projected[0][1], projected[0][0], projected[0][1]]
 		for (let i = 1; i < projected.length; i++) {
 			extent = extend(extent, [projected[i][0], projected[i][1], projected[i][0], projected[i][1]])
 		}
 
-		console.log(extent);
-
-
 		// fit view
-			map.getView().fit(extent, { padding: [padding, padding, padding, padding], duration:1000 })
+		map.getView().fit(extent, { padding: [padding, padding, padding, padding], duration: 1000 })
 
 	}
 
@@ -232,14 +227,11 @@ export function findPath(startId, endId) {
 
 		// build adjacency with weights
 		for (const key in routesObject) {
-			const { source_id, destination_id, enabled } = routesObject[key]
+			const { source_id, destination_id, enabled, ...rest } = routesObject[key]
 			if (!enabled) continue
 
 			// compute weight (currently distance, can change later)
-			const weight = computeDistance(
-				locationsObject[source_id].coordinates,
-				locationsObject[destination_id].coordinates
-			)
+			const weight = rest.length
 
 			graph[source_id] ??= []
 			graph[destination_id] ??= []
@@ -295,6 +287,7 @@ export function findPath(startId, endId) {
 			current = previous[current]
 		}
 		pathNodes.unshift(startId)
+		console.log({ pathRouteIds });
 
 		return { pathNodes, pathRouteIds }
 	}
@@ -310,7 +303,13 @@ export function findPath(startId, endId) {
 
 
 
+export function meterConv(m) {
+	return Math.round(m * 0.0006213712 * 0.2355808286)
+	1231
 
+	// 320 (290 / 350) miles Road
+
+}
 
 function computeDistance(a, b) {
 	const [x1, y1] = a
@@ -318,4 +317,22 @@ function computeDistance(a, b) {
 	const dx = x2 - x1
 	const dy = y2 - y1
 	return Math.sqrt(dx * dx + dy * dy)
+}
+
+
+export function getCardinalDirection(a, b) {
+	const dx = b[0] - a[0]
+	const dy = b[1] - a[1]
+
+	const angle = Math.atan2(dy, dx) * (180 / Math.PI) // convert to degrees
+	// angle: -180..180, 0 = east
+
+	if (angle >= -22.5 && angle < 22.5) return 'E'
+	if (angle >= 22.5 && angle < 67.5) return 'NE'
+	if (angle >= 67.5 && angle < 112.5) return 'N'
+	if (angle >= 112.5 && angle < 157.5) return 'NW'
+	if (angle >= 157.5 || angle < -157.5) return 'W'
+	if (angle >= -157.5 && angle < -112.5) return 'SW'
+	if (angle >= -112.5 && angle < -67.5) return 'S'
+	if (angle >= -67.5 && angle < -22.5) return 'SE'
 }
