@@ -1,7 +1,13 @@
 <main>
-  <i>
-    Made by <a href="https://github.com/claydegruchy/">Clay D</a>
-  </i>
+  <span>
+    <h2>Hammermap</h2>
+    <p>
+      A Warhammer mapping system <i>
+        by <a href="https://github.com/claydegruchy/">Clay D</a>
+      </i>
+    </p>
+  </span>
+
   <h4>Updates</h4>
   <ul>
     <li>
@@ -17,7 +23,6 @@
     <li>2025/10: Added a search function</li>
   </ul>
   <h4>What is this?</h4>
-
   <p>
     This is a searchable Warhammer world map inspired by the amazing maps over
     at gitzmansgallery. I didn't make any of these maps, just put them together.
@@ -55,7 +60,6 @@
     {" "} for the free listed assets on their deviantart. Amazing stuff and inspired
     me to make this. Multiple maps are used from here.
   </p>
-  <h4>Who are you?</h4>
   <h4>Why did you make this?</h4>
 
   <p>
@@ -93,10 +97,19 @@
     <a href="https://forms.gle/5RRtzuv3Um5xN9Eh9"> Google Form</a>
     and I'll try to add it for you
   </p>
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
 </main>
 
 <style>
   main {
     text-align: left;
+  }
+
+  span {
+    display: inline;
   }
 </style>

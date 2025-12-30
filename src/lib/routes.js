@@ -329,18 +329,35 @@ function computeDistance(a, b) {
 	return Math.sqrt(dx * dx + dy * dy)
 }
 
-export function getCardinalDirection(a, b) {
+export function getCardinalDirection(a, b, short = true) {
 	const dx = b[0] - a[0]
 	const dy = b[1] - a[1]
 
 	const angle = Math.atan2(dy, dx) * (180 / Math.PI) // convert to degrees
 
-	if (angle >= -22.5 && angle < 22.5) return 'East'
-	if (angle >= 22.5 && angle < 67.5) return 'Northeast'
-	if (angle >= 67.5 && angle < 112.5) return 'North'
-	if (angle >= 112.5 && angle < 157.5) return 'Northwest'
-	if (angle >= 157.5 || angle < -157.5) return 'West'
-	if (angle >= -157.5 && angle < -112.5) return 'Southwest'
-	if (angle >= -112.5 && angle < -67.5) return 'South'
-	if (angle >= -67.5 && angle < -22.5) return 'Southeast'
+	if (short) {
+
+
+		if (angle >= -22.5 && angle < 22.5) return 'E'
+		if (angle >= 22.5 && angle < 67.5) return 'NE'
+		if (angle >= 67.5 && angle < 112.5) return 'N'
+		if (angle >= 112.5 && angle < 157.5) return 'NW'
+		if (angle >= 157.5 || angle < -157.5) return 'W'
+		if (angle >= -157.5 && angle < -112.5) return 'SW'
+		if (angle >= -112.5 && angle < -67.5) return 'S'
+		if (angle >= -67.5 && angle < -22.5) return 'SE'
+
+	}
+	else {
+
+		if (angle >= -22.5 && angle < 22.5) return 'East'
+		if (angle >= 22.5 && angle < 67.5) return 'Northeast'
+		if (angle >= 67.5 && angle < 112.5) return 'North'
+		if (angle >= 112.5 && angle < 157.5) return 'Northwest'
+		if (angle >= 157.5 || angle < -157.5) return 'West'
+		if (angle >= -157.5 && angle < -112.5) return 'Southwest'
+		if (angle >= -112.5 && angle < -67.5) return 'South'
+		if (angle >= -67.5 && angle < -22.5) return 'Southeast'
+	}
+
 }

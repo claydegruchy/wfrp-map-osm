@@ -266,3 +266,9 @@ dialog {
   top: 1rem;
   padding: 10px;
 }
+
+
+.capitalise {
+  text-transform: capitalize;
+
+}

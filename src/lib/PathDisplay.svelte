@@ -7,41 +7,86 @@
   export let pathFinderDestination;
 
   export let clearPath;
+
   let valid = path && path?.pathNodes?.length > 0;
-  console.log("pd", path, valid);
 
   let origin = locationsObject[pathFinderOrigin];
   let destination = locationsObject[pathFinderDestination];
 
   let distance = 0;
+  let waterDistance = 0;
+  let roadDistance = 0;
 
   let steps = [];
   let { pathRouteIds, pathNodes } = path;
 
-  if (pathRouteIds && pathNodes)
+  if (pathRouteIds && pathNodes) {
+    let last;
     pathNodes.forEach((nodeId, i) => {
-      let data = locationsObject[nodeId];
-      steps.push({ kind: "location", data });
-      let nextRoute = pathRouteIds.shift();
-      if (nextRoute) {
-        let next = locationsObject[pathNodes[i + 1]];
-        steps.push({
-          kind: "path",
-          data: {
-            ...routesObject[nextRoute],
-            cardinal: getCardinalDirection(data.coordinates, next.coordinates),
-          },
-        });
-        distance += routesObject[nextRoute].length;
-      }
-    });
+      let locationData = { ...locationsObject[nodeId] };
 
+      if (i == 0) locationData.tags.push("start");
+      if (i == pathNodes.length - 1) locationData.tags.push("end");
+
+      if (i != 0) {
+        let nextRoute = pathRouteIds.shift();
+        if (nextRoute) {
+          let routeData = {
+            ...routesObject[nextRoute],
+            cardinal: getCardinalDirection(
+              last.coordinates,
+              locationData.coordinates
+            ),
+          };
+          locationData.route = routeData;
+
+          distance += routeData.length;
+
+          if (routeData.type == "water") waterDistance += routeData.length;
+          if (routeData.type == "road") roadDistance += routeData.length;
+        }
+      }
+      last = locationData;
+      steps.push(locationData);
+    });
+    console.log("bah");
+  }
+
+  const milesPerH = {
+    walk: 3.5,
+    cart: 1.75,
+    ride: 7,
+    //
+    skiff: 1,
+    barge: 2,
+    warship: 4,
+  };
+
+  console.log(steps);
+  let roadMethod = "walk";
+  let waterMethod = "skiff";
   let hidden = false;
+
+  function distanceToTime(dis, method) {
+    return Math.round(meterConv(dis) / milesPerH[method]);
+  }
 </script>
 
 <main>
   <div class="header flex horizontal">
     {origin.name} to {destination.name} ({meterConv(distance)}mi)
+    <div>
+      <select class="road" bind:value={roadMethod}>
+        <option value="walk">Walk</option>
+        <option value="cart">Ox Cart</option>
+        <option value="ride">Horse</option>
+      </select>
+      <select class="water" bind:value={waterMethod}>
+        <option value="skiff">Skiff</option>
+        <option value="barge">Barge</option>
+        <option value="warship">Warship</option>
+      </select>
+    </div>
     <button on:click={clearPath}>Clear</button>
     <button class="hidden" on:click={() => (hidden = !hidden)}
       >{hidden ? "v" : "^"}</button
@@ -51,34 +96,39 @@
   <div class="flex vertical steps-container">
     {#if valid}
       {#if !hidden}
-        This route covers {meterConv(distance)} miles, spanning {path.pathNodes
-          .length} locations
+        <small>
+          This route covers {steps.length} locations, and will take ~{distanceToTime(
+            roadDistance,
+            roadMethod
+          ) + distanceToTime(waterDistance, waterMethod)}h of travel
+        </small>
         <div class=" steps">
-          {#each steps as { kind, data }, i}
+          {#each steps as { name, tags, type, route }, i}
             <div
-              class="step {kind} {data?.kind || ''} {data?.type ||
-                ''} {data?.tags?.join(' ')}"
+              class="step {type || ''} {tags?.join(' ')} {route?.type} {i == 0
+                ? ''
+                : ''}"
             >
-              {#if kind == "location"}
-                {#if i == 0}
-                  Start at
-                {:else if i === steps.length - 1}
-                  Finish at
-                {:else}
-                  Visit
-                {/if}
-                <b>
-                  {data.name}
-                  {#if data.tags.includes("city")}
-                    City
-                  {/if}
-                </b>
+              {#if !route}
+                Start at
               {:else}
-                <i>
-                  {#if data.type == "road"}Walk{/if}
-                  {#if data.type == "water"}Sail or swim{/if}
-                  ~{meterConv(data.length)} miles {data.cardinal}
+                <i class="capitalise">
+                  {#if route.type == "road"}
+                    {roadMethod}
+                  {/if}
+
+                  {#if route.type == "water"}
+                    {waterMethod}
+                  {/if}
                 </i>
+                {meterConv(route.length)}
+                <small> miles {route.cardinal} to</small>
+              {/if}
+              <b>
+                {name}
+              </b>
+              {#if route}
+                ({distanceToTime(route.length, roadMethod)}h)
               {/if}
             </div>
           {/each}
@@ -131,6 +181,10 @@
     font-weight: bold;
   }
 
+  select {
+    border: 1px solid var(--border-start);
+  }
+
   .steps-container {
     flex: 1 1 auto; /* take remaining space */
     overflow-y: auto; /* scroll internally */
@@ -146,27 +200,29 @@
   }
 
   .step {
-    border: 1px solid black;
+    --border-start: black;
+    --border-end: black;
+
+    border: 1px solid;
+    border-image: linear-gradient(90deg, var(--border-start), var(--border-end))
+      1;
     border-radius: 5px;
-    padding: 10px;
+    padding: 5px;
   }
 
-  .location {
-    border-color: black;
+  .step.city {
+    --border-end: gold;
   }
 
-  .location.city {
-    border-color: gold;
+  .road {
+    --border-start: brown;
+  }
+  .water {
+    --border-start: blue;
   }
 
-  .path {
-    text-align: center;
-  }
-
-  .path.road {
-    border-color: brown;
-  }
-  .path.water {
-    border-color: blue;
+  .start,
+  .end {
+    --border-start: green;
   }
 </style>
