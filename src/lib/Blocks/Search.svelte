@@ -62,8 +62,28 @@
       {:else if results.length === 0}
         <div class="feedback">No results found</div>
       {:else}
-        {#each results as { name, id }}
-          <div on:mousedown={() => selectName({ id, name })}>{name}</div>
+        {#each results as { name, id, tags }}
+          <!-- svelte-ignore a11y-no-static-element-interactions -->
+          <div
+            class={tags.join(" ")}
+            on:mousedown={() => selectName({ id, name })}
+          >
+            {name}
+
+            <small>
+              {#each tags as tag}
+                {#if tag.includes("city:")}
+                  - <i>{tag.replace("city:", "")}</i>
+                {/if}
+                {#if tag.includes("state:")}
+                  - <i>{tag.replace("state:", "")}</i>
+                {/if}
+                {#if tag.includes("country:")}
+                  - <i>{tag.replace("country:", "")}</i>
+                {/if}
+              {/each}
+            </small>
+          </div>
         {/each}
       {/if}
     </div>
@@ -71,6 +91,10 @@
 </div>
 
 <style>
+  i {
+    text-transform: capitalize;
+  }
+
   .floating-search {
     z-index: 1000;
     display: flex;
@@ -116,5 +140,9 @@
     padding: 8px;
     font-style: italic;
     color: #666;
+  }
+
+  .city {
+    border: 1px solid gold;
   }
 </style>
