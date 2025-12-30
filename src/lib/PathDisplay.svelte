@@ -6,6 +6,8 @@
   export let pathFinderOrigin;
   export let pathFinderDestination;
 
+  export let zoomToLocationById;
+
   export let clearPath;
 
   let valid = path && path?.pathNodes?.length > 0;
@@ -104,7 +106,7 @@
           ) + distanceToTime(waterDistance, waterMethod)}h of travel
         </small>
         <div class=" steps">
-          {#each steps as { name, tags, type, route }, i}
+          {#each steps as { id, name, tags, type, route }, i}
             <div
               class="step {type || ''} {tags?.join(' ')} {route?.type} {i == 0
                 ? ''
@@ -125,7 +127,7 @@
                 {meterConv(route.length)}
                 <small> miles {route.cardinal} to</small>
               {/if}
-              <b>
+              <b class="hover-pointer" on:click={() => zoomToLocationById(id)}>
                 {name}
               </b>
               {#if route}
@@ -186,6 +188,9 @@
     border: 1px solid var(--border-start);
   }
 
+  .hover-pointer {
+    cursor: pointer;
+  }
   .steps-container {
     flex: 1 1 auto; /* take remaining space */
     overflow-y: auto; /* scroll internally */
