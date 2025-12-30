@@ -1,0 +1,5 @@
+node_modules
+dist
+public/ONS/
+.DS_Store
+android
