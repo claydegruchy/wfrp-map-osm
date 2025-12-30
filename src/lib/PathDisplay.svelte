@@ -131,7 +131,13 @@
                 {name}
               </b>
               {#if route}
-                ({distanceToTime(route.length, roadMethod)}h)
+                {#if route.type == "road"}
+                  ({distanceToTime(route.length, roadMethod)}h)
+                {/if}
+
+                {#if route.type == "water"}
+                  ({distanceToTime(route.length, waterMethod)}h)
+                {/if}
               {/if}
             </div>
           {/each}
