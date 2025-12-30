@@ -1,0 +1,13 @@
+{
+  "appId": "com.captain-sonar.app",
+  "appName": "captain-sonar",
+  "webDir": "dist",
+  "plugins": {
+    "FirebaseAuthentication": {
+      "skipNativeAuth": false,
+      "providers": [
+        "google.com"
+      ]
+    }
+  }
+}
