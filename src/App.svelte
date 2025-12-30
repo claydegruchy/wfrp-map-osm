@@ -93,6 +93,7 @@
       {clearPath}
       {pathFinderOrigin}
       {pathFinderDestination}
+      {zoomToLocationById}
       bind:path
     ></PathDisplay>
   {/if}
