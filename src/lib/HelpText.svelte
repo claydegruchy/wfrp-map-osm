@@ -79,15 +79,11 @@
 
   <p>Now I mostly use it as a personal tool for my campaigns.</p>
 
-  <h4>>I think this looks like shit</h4>
+  <h4 class="green">>I think this looks like shit</h4>
 
-  <p>
-    That's just like your opinion, man. Put in a commit if you want to change
-    something, its open source.
-  </p>
+  <p>That's just like your opinion, man.</p>
 
   <h4>Why is there really bad looking AI art in here?</h4>
-
   <p>
     I used AI art in some games with my group in 2023, and loaded it into the
     map for easier finding. It was a different time.
@@ -115,5 +111,9 @@
 
   span {
     display: inline;
+  }
+
+  .green {
+    color: #789922;
   }
 </style>
