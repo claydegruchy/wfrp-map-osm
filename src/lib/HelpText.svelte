@@ -11,6 +11,10 @@
   <h4>Updates</h4>
   <ul>
     <li>
+      2025/12: Added route display with selectable transport methods for time
+      calculation
+    </li>
+    <li>
       2025/12: Added route plotting with lore accurate distances (from my other
       project <a href="https://map.weylandyutani.company/">
         Alien RPG Startmap
