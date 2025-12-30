@@ -6,9 +6,13 @@ const imageStorageURL = "https://claydegruchy.github.io/wfrp-map-storage";
 const mainMapUrl = imageStorageURL + "/world-map/{z}/{z}_{x}_{y}.jpg";
 
 export const world = new TileLayer({
+	preload: 1,
 	source: new XYZ({
+
 		url: mainMapUrl,
 		maxZoom: 7,
+
+
 	}),
 })
 

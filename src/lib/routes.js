@@ -214,7 +214,7 @@ export function setupRoutes(map) {
 
 
 
-	return function zoomToEncompass({ pathNodes, pathRouteIds }, padding = 100) {
+	return function zoomToEncompass({ pathNodes }, padding = 100, duration = 1000) {
 
 		let coordsArray = pathNodes.map(n => locationsObject[n].coordinates)
 
@@ -229,7 +229,7 @@ export function setupRoutes(map) {
 		}
 
 		// fit view
-		map.getView().fit(extent, { padding: [padding, padding, padding, padding], duration: 1000 })
+		map.getView().fit(extent, { padding: [padding, padding, padding, padding], duration })
 
 	}
 
