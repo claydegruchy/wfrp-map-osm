@@ -1106,7 +1106,6 @@
 			6427026.740165698
 		],
 		"tags": [
-			"country:the empire"
 		],
 		"id": "5vexUcgJP4bkyIWAUJ3A",
 		"art": []
@@ -3297,7 +3296,6 @@
 			3939373.8403406003
 		],
 		"tags": [
-			"country:the empire"
 		],
 		"id": "IZPvqJro0zc5yrL5HY53",
 		"art": []
@@ -3425,7 +3423,6 @@
 			5361304.831158172
 		],
 		"tags": [
-			"country:the empire"
 		],
 		"id": "JBBo3L1X7k7kRIuQT5Ai",
 		"art": []
@@ -10060,6 +10057,34 @@
 		],
 		"id": "hubuulfcuvurcttlhdnvjllfbithtrdf",
 		"art": [],
-		"tags": []
+		"tags": [
+			"country:the empire"
+		]
+	},
+	{
+		"name": "Bergendorf",
+		"credit": "GeDruchy",
+		"coordinates": [
+			-611305.597340323,
+			4765232.082798285
+		],
+		"id": "iruntjrrrdknefhcejuctddtbgjtjhfr",
+		"art": [],
+		"tags": [
+			"country:the empire"
+		]
+	},
+	{
+		"name": "Heedendorf",
+		"credit": "GeDruchy",
+		"coordinates": [
+    -541138.2918820784,
+    4729139.890282766
+],
+		"id": "thnkbuuvbddetkhegdeunbghtdjkkitf",
+		"art": [],
+		"tags": [
+			"country:the empire"
+		]
 	}
 ]

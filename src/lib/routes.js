@@ -12,6 +12,9 @@ import routesRaw from "../../public/routes.json"
 import DragBox from "ol/interaction/DragBox"
 import { platformModifierKeyOnly } from "ol/events/condition"
 import { extend } from "ol/extent"
+import { isDev } from "./stores"
+
+
 
 export let routes = routesRaw.map(routes => ({
 	...routes,
@@ -71,15 +74,17 @@ toggleRoutes()
 export function setRoutes() {
 	routeSource.clear()
 
-	const features = routes.filter(r => r.enabled).map(({ source_id, destination_id, ...rest }) => {
-		let f = new Feature({
-			geometry: new LineString([locationsObject[source_id].coordinates, locationsObject[destination_id].coordinates]),
-			...rest
-		})
-		f.setId(source_id + destination_id)
-		return f
-	}
-	)
+	const features = routes
+		.filter(r => r.enabled)
+		.map(({ source_id, destination_id, ...rest }) => {
+			let f = new Feature({
+				geometry: new LineString([locationsObject[source_id].coordinates, locationsObject[destination_id].coordinates]),
+				...rest
+			})
+			f.setId(source_id + ":" + destination_id)
+			return f
+		}
+		)
 
 
 
@@ -120,7 +125,7 @@ export function setupRoutes(map) {
 	console.log("setupRoutes");
 
 
-	if (false) {
+	if (isDev) {
 		const dragBox = new DragBox({
 			condition: platformModifierKeyOnly, // Ctrl on Windows/Linux, Cmd on macOS
 		});
@@ -130,17 +135,26 @@ export function setupRoutes(map) {
 		dragBox.on("boxend", () => {
 			const extent = dragBox.getGeometry().getExtent();
 
-			const toRemove = [];
+			const toUpdate = [];
 			routeSource.forEachFeatureIntersectingExtent(extent, (feature) => {
-				toRemove.push(feature.getId());
+				toUpdate.push(feature.getId());
 			});
 
-			for (const id of toRemove) {
-				if (routesObject[id]) routesObject[id].enabled = false
+			for (const id of toUpdate) {
+				if (routesObject[id]) {
+					// make water
+					// routesObject[id].type = "water"
+					// remove
+					routesObject[id].enabled = false
+				}
 			}
+			// console.log(toUpdate.length, toUpdate);
+
 			routes = Object.values(routesObject)
 			setRoutes()
 			console.log(routes);
+
+
 
 
 		});

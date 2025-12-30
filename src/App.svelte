@@ -8,7 +8,7 @@
   import SelectedLocation from "./lib/SelectedLocation.svelte";
   import Diagnostics from "./lib/Diagnostics.svelte";
   import { locations, locationsObject } from "./lib/locations";
-  import { selectedLocations } from "./lib/stores";
+  import { isDev, selectedLocations } from "./lib/stores";
   import { toggleCountries, toggleStates } from "./lib/boundryDrawing";
   import { findPath, setPath, toggleRoutes } from "./lib/routes";
   import PathDisplay from "./lib/PathDisplay.svelte";
@@ -24,6 +24,7 @@
 
   function findLocation(value) {
     console.log("findLocation", value, locations);
+
     const filtered = locations
       .filter(
         (loc) =>
@@ -31,9 +32,19 @@
           (loc.tags &&
             loc.tags.join(" ").toLowerCase().includes(value.toLowerCase()))
       )
-      .slice(0, 10);
-    console.log(filtered);
+      .sort((a, b) => {
+        const valLower = value.toLowerCase();
+        const aName = a.name.toLowerCase();
+        const bName = b.name.toLowerCase();
 
+        const aStarts = aName.startsWith(valLower) ? 0 : 1;
+        const bStarts = bName.startsWith(valLower) ? 0 : 1;
+
+        return aStarts - bStarts; // items starting with value come first
+      })
+      .slice(0, 10);
+
+    console.log(filtered);
     return filtered;
   }
 
@@ -57,11 +68,13 @@
     setPath({ pathRouteIds: [] });
   }
 
-  onMount(() =>
-    setTimeout(() => {
-      selectSearchResult("cL30w9UailtiheDMkqTR");
-      startPathFinder("UlGQ5WaiQHpVvJp5QrN7");
-    }, 1)
+  onMount(
+    () =>
+      isDev &&
+      setTimeout(() => {
+        selectSearchResult("cL30w9UailtiheDMkqTR");
+        startPathFinder("UlGQ5WaiQHpVvJp5QrN7");
+      }, 1)
   );
 </script>
 

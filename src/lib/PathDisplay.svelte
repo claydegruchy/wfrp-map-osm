@@ -25,8 +25,9 @@
     pathNodes.forEach((nodeId, i) => {
       let locationData = { ...locationsObject[nodeId] };
 
-      if (i == 0) locationData.tags.push("start");
-      if (i == pathNodes.length - 1) locationData.tags.push("end");
+      if (i == 0) locationData.tags = [...locationData.tags, "start"];
+      if (i == pathNodes.length - 1)
+        locationData.tags = [...locationData.tags, "end"];
 
       if (i != 0) {
         let nextRoute = pathRouteIds.shift();
