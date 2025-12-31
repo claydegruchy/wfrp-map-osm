@@ -7,7 +7,7 @@ import { LineString } from "ol/geom"
 import VectorLayer from "ol/layer/Vector"
 import VectorSource from "ol/source/Vector"
 import { Stroke, Style } from "ol/style"
-import { locationsObject } from "./locations"
+import { locations, locationsObject } from "./locations"
 import routesRaw from "../../public/routes.json"
 import DragBox from "ol/interaction/DragBox"
 import { platformModifierKeyOnly } from "ol/events/condition"
@@ -15,6 +15,17 @@ import { extend } from "ol/extent"
 import { isDev } from "./stores"
 
 
+console.log(routesRaw.filter(routes => {
+	if (!locationsObject[routes.source_id]) {
+		console.log(routes.source_id, "missing");
+		return true
+	}
+	if (!locationsObject[routes.destination_id]) {
+		console.log(routes.destination_id, "missing");
+		return true
+	}
+
+}));
 
 
 export let routes = routesRaw.map(routes => ({
@@ -154,7 +165,7 @@ export function setupRoutes(map) {
 
 			routes = Object.values(routesObject)
 			setRoutes()
-			console.log(routes);
+			console.log(locations, routes);
 
 
 
@@ -203,7 +214,7 @@ export function setupRoutes(map) {
 
 			routes = [...routes, r]
 			setRoutes()
-			console.log(routes);
+			console.log(locations,routes);
 
 
 			pendingId = null
