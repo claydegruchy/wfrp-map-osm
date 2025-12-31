@@ -16,11 +16,13 @@ import { isDev } from "./stores"
 
 
 
+
 export let routes = routesRaw.map(routes => ({
 	...routes,
 	length: computeDistance(locationsObject[routes.source_id].coordinates, locationsObject[routes.destination_id].coordinates)
 }))
 export let routesObject = Object.fromEntries(routes.map(route => [route.source_id + ":" + route.destination_id, route]))
+
 
 
 export let routeSource = new VectorSource()
@@ -227,6 +229,8 @@ export function setupRoutes(map) {
 		}
 		routes.push(newRoute)
 		setRoutes()
+
+		return newRoute
 
 	}
 

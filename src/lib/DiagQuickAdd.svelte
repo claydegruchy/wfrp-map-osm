@@ -29,6 +29,9 @@
     });
   });
 
+  let newLocationsAdded = [];
+  let newRoutesAdded = [];
+
   function handleSubmit() {
     console.log("sub");
     let requiredTags = ["source:quickadd", "added_by:" + addId];
@@ -48,18 +51,35 @@
       };
       console.log(route);
 
-      addRoute({ source_id: newLocation.id, destination_id: lastLocation.id });
+      let newRoute = addRoute({
+        source_id: newLocation.id,
+        destination_id: lastLocation.id,
+      });
+      newRoutesAdded = [...newRoutesAdded, newRoute];
     }
     lastLocation = newLocation;
-    console.log(locations, routes);
+
+    newLocationsAdded = [...newLocationsAdded, newLocation];
 
     coordinates = null;
     newLocationName = "";
   }
-  let input;
 
   function focus(node) {
     queueMicrotask(() => node.focus());
+  }
+
+  function downloadJSON(obj, filename = "data.json") {
+    const blob = new Blob([JSON.stringify(obj, null, "\t")], {
+      type: "application/json",
+    });
+
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = filename;
+    a.click();
+
+    URL.revokeObjectURL(a.href);
   }
 </script>
 
@@ -78,7 +98,6 @@
             }
           }}
           type="text"
-          bind:this={input}
           bind:value={newLocationName}
         />
       {/key}
@@ -90,11 +109,22 @@
       />
       <div>
         <label for="">
-          Auto add path to last location ({lastLocation?.name||"none"})
+          Auto add path to last location ({lastLocation?.name || "none"})
           <input bind:checked={connectRoute} type="checkbox" />
         </label>
       </div>
     {/if}
+    <div class="flex">
+      <button
+        on:click={() => downloadJSON(newRoutesAdded, addId + "_routes.json")}
+        >Download ({newRoutesAdded.length}) new routes
+      </button>
+      <button
+        on:click={() =>
+          downloadJSON(newLocationsAdded, addId + "_locations.json")}
+        >Download ({newLocationsAdded.length}) new locations
+      </button>
+    </div>
   </main>
 {/if}
 
