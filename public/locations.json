@@ -10187,21 +10187,6 @@
         "id": "adnNjKgTS2C1bs"
     },
     {
-        "name": "1",
-        "coordinates": [
-            -3918143.98373062,
-            5353844.159573772
-        ],
-        "tags": [
-            "source:quickadd",
-            "idvlflfbugiggjfefdhucrhhrtdurvntlc",
-            "country:brettonia"
-        ],
-        "credit": "GeDruchy",
-        "art": [],
-        "id": "vCeb5xKaSVVfMPx"
-    },
-    {
         "name": "Carette",
         "coordinates": [
             -5452251.545741741,
@@ -10291,5 +10276,1039 @@
         "credit": "GeDruchy",
         "art": [],
         "id": "ERSCT2fmQR"
+    },
+    {
+        "name": "Skajadholm",
+        "coordinates": [
+            -6155275.048394766,
+            5471321.240982065
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "A4qeZSmGEu"
+    },
+    {
+        "name": "Erguy",
+        "coordinates": [
+            -6347111.438547204,
+            5491446.649848988
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "TztTeIzxUda"
+    },
+    {
+        "name": "Soreil",
+        "coordinates": [
+            -6866135.134299983,
+            5377778.374651996
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "h6gqZC5pVI"
+    },
+    {
+        "name": "",
+        "coordinates": [
+            -6805852.363044791,
+            5251352.007158468
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "lHFFLaOAFg"
+    },
+    {
+        "name": "Barley Motte",
+        "coordinates": [
+            -6454202.864056166,
+            5232095.010785281
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "9LO9ATt9qnRI7"
+    },
+    {
+        "name": "Nez",
+        "coordinates": [
+            -6991929.266812531,
+            5004213.728817682
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "RKS0kh5ruPq"
+    },
+    {
+        "name": "Lyonesse",
+        "coordinates": [
+            -7094348.788322851,
+            4767419.795085821
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "SCGZ68CNl6a8CMf"
+    },
+    {
+        "name": "Merton",
+        "coordinates": [
+            -6800305.515990311,
+            4211196.284189105
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "stG1qZH89yv"
+    },
+    {
+        "name": "Chatlon",
+        "coordinates": [
+            -6031826.435774788,
+            4499740.920040622
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "7mPam9JRgr0iA"
+    },
+    {
+        "name": "Larret",
+        "coordinates": [
+            -5880104.766734313,
+            4228979.368865494
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "UHocUaG97K"
+    },
+    {
+        "name": "Portsall",
+        "coordinates": [
+            -6404977.719952785,
+            3724848.82418942
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "mgPjW7fg"
+    },
+    {
+        "name": "Martel",
+        "coordinates": [
+            -6221214.667495719,
+            3445107.61694586
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "R5XFffTU5MBwD3"
+    },
+    {
+        "name": "",
+        "coordinates": [
+            -5911238.201744273,
+            3439572.4681175174
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "4i2dHuXRk0"
+    },
+    {
+        "name": "Naizon",
+        "coordinates": [
+            -5725134.218682658,
+            3623335.520574584
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "wFMvqGj7Qd"
+    },
+    {
+        "name": "",
+        "coordinates": [
+            -5581166.9865029175,
+            3782518.8016838906
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "gFtn8U4W4"
+    },
+    {
+        "name": "Sigmarsheim",
+        "coordinates": [
+            -5818771.442864602,
+            3926486.0338636306
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "eG0Gd889"
+    },
+    {
+        "name": "",
+        "coordinates": [
+            -5663899.680427348,
+            4244203.353609888
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "ViQRhJEwtMRMnmg"
+    },
+    {
+        "name": "Uesin",
+        "coordinates": [
+            -5372453.820161045,
+            4330817.785978187
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "ZPGQYhq6"
+    },
+    {
+        "name": "Castle Rachard",
+        "coordinates": [
+            -5571362.356654704,
+            3470840.9519657996
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "vzx3kiG1TgYH96ON"
+    },
+    {
+        "name": "",
+        "coordinates": [
+            -5655869.445997526,
+            3322607.2050857674
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "07TfTrec9"
+    },
+    {
+        "name": "Mousilon",
+        "coordinates": [
+            -5528416.130923105,
+            3106490.7143074027
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "bBPuTdAWP"
+    },
+    {
+        "name": "Yremy",
+        "coordinates": [
+            -5099103.080937155,
+            3626913.7007069564
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "wjUApaUtkYtqp"
+    },
+    {
+        "name": "",
+        "coordinates": [
+            -5150341.393283124,
+            3412763.831158419
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "V9HnVyFtstxPb"
+    },
+    {
+        "name": "Turris Vilans",
+        "coordinates": [
+            -5452516.055836274,
+            3054095.644736636
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "BIbtTWoGNggxl3"
+    },
+    {
+        "name": "The Hymble Chapel",
+        "coordinates": [
+            -4828151.7649698295,
+            2903598.49834786
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "mex3umhjVhKusgf"
+    },
+    {
+        "name": "Bordeleaux",
+        "coordinates": [
+            -5484565.661265016,
+            2430978.4401983237
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia",
+            "city"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "R1aN2ib8hsaI"
+    },
+    {
+        "name": "Chateau D'Epee",
+        "coordinates": [
+            -5206186.920883564,
+            2116577.2183150863
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "zWVkzHOz"
+    },
+    {
+        "name": "Derrevin Libre",
+        "coordinates": [
+            -4653188.277769544,
+            2440889.7519347803
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "9qfTPIjYqBDyn21G"
+    },
+    {
+        "name": "The Crossroads",
+        "coordinates": [
+            -4574891.42587537,
+            2041133.1213007458
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "d2JbSJpNM"
+    },
+    {
+        "name": "Castle Artois",
+        "coordinates": [
+            -5577672.696575237,
+            4560773.483978249
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "IEnZMWfhQO9TPh2R"
+    },
+    {
+        "name": "",
+        "coordinates": [
+            -5746268.351098761,
+            4423789.514677886
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "445bdOTvKcesN1X"
+    },
+    {
+        "name": "Hendaye",
+        "coordinates": [
+            -5581665.63566674,
+            5752664.775040541
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "j4tXZPYHWbhemM"
+    },
+    {
+        "name": "Chantillon",
+        "coordinates": [
+            -4769175.668047257,
+            5643092.998664317
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "vYkgRga8C8tM4"
+    },
+    {
+        "name": "Euresbourgh",
+        "coordinates": [
+            -4587707.127453794,
+            5637843.28212002
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "GryObpavIOnF"
+    },
+    {
+        "name": "",
+        "coordinates": [
+            -3671098.996939362,
+            5602578.562305272
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "zKJKaFnzr8"
+    },
+    {
+        "name": "Ferragus",
+        "coordinates": [
+            -5150959.871537969,
+            5434383.254374597
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "BBxCj37aUes"
+    },
+    {
+        "name": "Savuile",
+        "coordinates": [
+            -5165446.115990643,
+            5320102.881470174
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "etCOJIfUBvV"
+    },
+    {
+        "coordinates": [
+            -5176923.107571915,
+            4876511.589322687
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "afzAU55HQNyu"
+    },
+    {
+        "name": "Hautmont",
+        "coordinates": [
+            -4682919.741626172,
+            4875083.83392978
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "vVTFghdqYDdE"
+    },
+    {
+        "name": "Gisoreux",
+        "coordinates": [
+            -4456109.605837306,
+            3877965.7095097573
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "IwRT7dF3FIzJN"
+    },
+    {
+        "name": "Soude",
+        "coordinates": [
+            -4150362.9074161868,
+            3641421.5322841057
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "4YClbrtBdXsjrnA"
+    },
+    {
+        "name": "Castle Bastonne",
+        "coordinates": [
+            -4478564.131749584,
+            3226041.5020524315
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "iajvT1d6"
+    },
+    {
+        "name": "Poussenc",
+        "coordinates": [
+            -3768829.4990807553,
+            3460244.03895207
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "hMp9ZPLIsyJk"
+    },
+    {
+        "name": "",
+        "coordinates": [
+            -3990222.6936843973,
+            3683437.178227286
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "tVUFmfcN3E"
+    },
+    {
+        "name": "Tharravil",
+        "coordinates": [
+            -3963775.459769838,
+            3800131.2474230644
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "ag0PWQUYzrdQfYKv"
+    },
+    {
+        "name": "",
+        "coordinates": [
+            -4193268.4053955646,
+            3859529.421585017
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "dU4PRlu1OD"
+    },
+    {
+        "name": "Grisoreux Gap",
+        "coordinates": [
+            -3942200.7323295027,
+            4031543.6652962132
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "aI4NtiK7Xc"
+    },
+    {
+        "name": "Castle Desfleuve",
+        "coordinates": [
+            -4015998.46386405,
+            4090041.8671223787
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "atpx302Qt"
+    },
+    {
+        "name": "Montford",
+        "coordinates": [
+            -3486892.082926808,
+            3142290.988762088
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "2XxXyW3qpiQNI05Y"
+    },
+    {
+        "name": "Jouinard",
+        "coordinates": [
+            -3377148.162443926,
+            2967678.783021197
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "i5Gb6nmUYF"
+    },
+    {
+        "name": "Hemmerle",
+        "coordinates": [
+            -3269216.173544946,
+            2850026.4455572367
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "zIh0cMSy1"
+    },
+    {
+        "name": "Vingtiennes",
+        "coordinates": [
+            -3170913.0906092087,
+            2828128.2285055066
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "BbnXzubf"
+    },
+    {
+        "name": "Parravon",
+        "coordinates": [
+            -2857023.1238436215,
+            2639010.5169757563
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "awidYcmLU58q9tD"
+    },
+    {
+        "name": "Grey Lady Pass",
+        "coordinates": [
+            -2371216.6464905804,
+            2748187.2235665885
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "74FVaqaLIoiCnmH3"
+    },
+    {
+        "name": "Axe Bite Path",
+        "coordinates": [
+            -3023393.228723618,
+            3297613.049799393
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "2Pt9jnVecWPco"
+    },
+    {
+        "name": "Hochpointe",
+        "coordinates": [
+            -3198562.1301798066,
+            3277405.546331985
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "2fpvs9GOrUr2M"
+    },
+    {
+        "coordinates": [
+            -5146504.384425407,
+            6302217.437017192
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "7C4c6JOX"
+    },
+    {
+        "name": "The Dragon's Maw",
+        "coordinates": [
+            -6216688.294452079,
+            5785219.790307502
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "3KYCdsX7Yv8VT"
+    },
+    {
+        "name": "The Silent Isle",
+        "coordinates": [
+            -5824378.709038422,
+            2459617.0739956903
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "Xa68AxA5xWiJB"
+    },
+    {
+        "name": "Brionne",
+        "coordinates": [
+            -5648039.42282845,
+            1552464.4541932533
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "jiusiDSke8"
+    },
+    {
+        "name": "Castle Gransette",
+        "coordinates": [
+            -5233125.876642385,
+            1653568.16640744
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "66Xh4JNn4jP"
+    },
+    {
+        "name": "Sibourne",
+        "coordinates": [
+            -5348287.390888578,
+            1315704.6062292694
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "a4a5RcrrEuQO"
+    },
+    {
+        "name": "Ferignac",
+        "coordinates": [
+            -5060228.965533741,
+            1364015.2293984084
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "Ocjl1CZbDA"
+    },
+    {
+        "name": "Muret",
+        "coordinates": [
+            -4818051.075280717,
+            1292886.058834583
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "FgAdIKaRoSpv"
+    },
+    {
+        "name": "Laguiller",
+        "coordinates": [
+            -4375190.618655026,
+            1250600.1903223093
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "rWuRLaQaDAZF8"
+    },
+    {
+        "name": "",
+        "coordinates": [
+            -4082907.414241805,
+            1232275.4319088235
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "Fs4y4ijed1vsvc7"
+    },
+    {
+        "name": "Brusse",
+        "coordinates": [
+            -3980447.5375962947,
+            1299170.7232724212
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "hjw9kirX"
+    },
+    {
+        "name": "",
+        "coordinates": [
+            -3219030.6714890962,
+            1019635.4645136361
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "wd6KdZ0eAdMsz"
+    },
+    {
+        "name": "Castle Carrard",
+        "coordinates": [
+            -3116570.7948435857,
+            1037417.7571545924
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "hv5VJRZlb"
     }
 ]
