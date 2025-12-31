@@ -18,7 +18,7 @@ import { selectedLocations } from "./stores";
 
 
 export const locations = locationsRaw
-export const locationsObject = Object.fromEntries(locations.map(location => [location.id, location]));
+export let locationsObject = Object.fromEntries(locations.map(location => [location.id, location]));
 
 
 
@@ -59,8 +59,13 @@ const selectedStyle = (feature, zoom) => new Style({
 
 })
 
+export let addLocation = function ({ name, coordinates, tags, credit }) {
 
 
+}
+
+
+export let locationsSource = new VectorSource()
 
 export const locationsLayer = new VectorLayer({
 	style: ((feature, zoom) => {
@@ -76,18 +81,27 @@ export const locationsLayer = new VectorLayer({
 		return defaultStyle(feature, zoom)
 
 	}),
-	source: new VectorSource({
-		features: locations.map(p => {
-			let f = new Feature({
-				geometry: new Point(p.coordinates),
-				...p
-			})
-			f.setId(p.id)
-			return f
-		})
-	})
+	source: locationsSource
 });
 
+
+export function setLocations() {
+	console.log("setLocations");
+
+	locationsSource.clear()
+	const features = locations.map(p => {
+		let f = new Feature({
+			geometry: new Point(p.coordinates),
+			...p
+		})
+		f.setId(p.id)
+		return f
+	})
+
+	locationsSource.addFeatures(features)
+}
+
+setLocations()
 
 
 
@@ -153,18 +167,7 @@ export function setupLocations(map) {
 			selectedFeaturesCollection.clear()
 		}
 	});
-	// for adding new locations
-	// map.getViewport().addEventListener('contextmenu', e => {
-	// 	console.log("menu");
 
-	// 	e.preventDefault()
-
-	// 	const pixel = map.getEventPixel(e)
-	// 	const coordinate = map.getCoordinateFromPixel(pixel)
-	// 	console.log(coordinate);
-
-	// 	// coordinate is in map projection
-	// })
 
 
 	let selectionDebounce = null;
@@ -214,8 +217,38 @@ export function setupLocations(map) {
 
 	}
 
+
+	addLocation = function ({ name, coordinates, tags, credit }) {
+
+		let loc = {
+			name,
+			coordinates,
+			tags,
+			credit,
+			art: [],
+			id: randomString()
+
+		}
+		locations.push(loc)
+
+		locationsObject = Object.fromEntries(locations.map(location => [location.id, location]));
+		console.log(locations);
+		setLocations()
+		return loc
+
+	}
+
+
 	return [selectFeatureById, zoomToLocationById]
 
 }
 
 
+
+
+function randomString() {
+	const len = Math.floor(Math.random() * 9) + 8; // 8–16
+	const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+	const bytes = crypto.getRandomValues(new Uint8Array(len));
+	return [...bytes].map(b => chars[b % chars.length]).join('');
+}

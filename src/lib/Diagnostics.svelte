@@ -1,7 +1,7 @@
 <script>
   import DragBox from "ol/interaction/DragBox";
   import { locations, locationsObject } from "./locations";
-  import { map, selectedLocations } from "./stores";
+  import { isAddMode, map, selectedLocations } from "./stores";
   import { routeSource } from "./routes";
   import { platformModifierKeyOnly } from "ol/events/condition";
   let newLocations = "nothing";
@@ -43,11 +43,13 @@
 
     ready = true;
   }
+
+
   let ready = false;
   let newTag;
 </script>
 
-<main>
+{#if false}
   <label>
     <input bind:value={newTag} type="text" />
   </label>
@@ -57,7 +59,12 @@
     >
   {/if}
   <button on:click={copyToClipboard}>copy</button>
-</main>
+{/if}
+
+{#if isAddMode}
+  <main>Add mode</main>
+  <input type="text">
+{/if}
 
 <style>
   main {

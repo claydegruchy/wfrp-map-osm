@@ -13,6 +13,7 @@
   import { findPath, setPath, toggleRoutes } from "./lib/routes";
   import PathDisplay from "./lib/PathDisplay.svelte";
   import HelpText from "./lib/HelpText.svelte";
+  import DiagQuickAdd from "./lib/DiagQuickAdd.svelte";
 
   let pathFinderOrigin;
   let pathFinderDestination;
@@ -107,11 +108,13 @@
       ></SelectedLocation>
     {/if}
   </div>
+  r
+
   <div class="flex vertical buttons">
+    <DiagQuickAdd></DiagQuickAdd>
     <button on:click={toggleCountries}>Countries</button>
     <button on:click={toggleStates}>States</button>
     <button on:click={toggleRoutes}>Routes</button>
-    <!-- <Diagnostics></Diagnostics> -->
     <Dialog>
       <div slot="button">?</div>
       <div slot="content"><HelpText></HelpText></div>

@@ -210,6 +210,25 @@ export function setupRoutes(map) {
 
 
 
+	addRoute = ({ source_id, destination_id, enabled = true, type = "road" }) => {
+		if (!locationsObject[source_id] || !locationsObject[destination_id]) {
+			console.error("location add error",
+				"source_id:",
+				locationsObject[source_id],
+				"destination_id:",
+				locationsObject[destination_id]
+			)
+			return
+		}
+		let newRoute = {
+			source_id, destination_id, enabled, type,
+			length: computeDistance(locationsObject[source_id].coordinates, locationsObject[destination_id].coordinates)
+
+		}
+		routes.push(newRoute)
+		setRoutes()
+
+	}
 
 
 
@@ -238,7 +257,9 @@ export function setupRoutes(map) {
 
 
 
+export let addRoute = ({ source_id, destination_id, enabled = true, type = "road" }) => {
 
+}
 
 
 
