@@ -29,9 +29,10 @@
     const filtered = locations
       .filter(
         (loc) =>
-          loc.name.toLowerCase().includes(value.toLowerCase()) ||
-          (loc.tags &&
-            loc.tags.join(" ").toLowerCase().includes(value.toLowerCase()))
+          loc?.name?.length > 0 &&
+          (loc.name.toLowerCase().includes(value.toLowerCase()) ||
+            (loc.tags &&
+              loc.tags.join(" ").toLowerCase().includes(value.toLowerCase())))
       )
       .sort((a, b) => {
         const valLower = value.toLowerCase();
@@ -69,14 +70,14 @@
     setPath({ pathRouteIds: [] });
   }
 
-  onMount(
-    () =>
-      isDev &&
-      setTimeout(() => {
-        selectSearchResult("cL30w9UailtiheDMkqTR");
-        startPathFinder("UlGQ5WaiQHpVvJp5QrN7");
-      }, 1)
-  );
+  // onMount(
+  //   () =>
+  //     isDev &&
+  //     setTimeout(() => {
+  //       selectSearchResult("cL30w9UailtiheDMkqTR");
+  //       startPathFinder("UlGQ5WaiQHpVvJp5QrN7");
+  //     }, 1)
+  // );
 </script>
 
 <nav class="top left search flex vertical">

@@ -63,6 +63,8 @@
 
     coordinates = null;
     newLocationName = "";
+	console.log(locations,routes);
+	
   }
 
   function focus(node) {
