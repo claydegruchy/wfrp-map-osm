@@ -1,3 +1,12 @@
+<script>
+  let name = "";
+  function turnOnEditMode() {
+    const url = new URL(window.location.href);
+    url.searchParams.set("edit", name);
+    window.location.href = url.toString();
+  }
+</script>
+
 <main>
   <span>
     <h2>Hammermap</h2>
@@ -8,6 +17,28 @@
     </p>
   </span>
 
+  <section>
+    <h3>If you want to customise the map</h3>
+    <p>
+      If you want to make your own locations or contribute to the master map:
+    </p>
+    <p>
+      Enter a name below that you want to use as your signature on newly added
+      locations (can be whatever), then hit start.
+    </p>
+    <p>This will redirect you to this page again but with edit mode active.</p>
+    <div class="flex">
+      <input placeholder="Enter name" bind:value={name} type="text" />
+      <button on:click={turnOnEditMode} disabled={name.length < 1}
+        >Turn on edit mode</button
+      >
+    </div>
+    <p>You can bookmark the URL if you want to go there directly later</p>
+    <p>
+      Alternatively, go there directly by adding ?edit=your_name_here to the end
+      of the URL in the browser.
+    </p>
+  </section>
   <h4>Updates</h4>
   <ul>
     <li>
