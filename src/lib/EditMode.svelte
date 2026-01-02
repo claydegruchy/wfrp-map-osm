@@ -137,15 +137,15 @@
           </ol>
 
           <p>
-            You can also have locations automatically join to each other by road
-            with the `Auto add route` option. This will let you add long chains
-            of locations easily
+            You can also have locations automatically add a route between them
+            using the `Auto add route` checkbox. This will let you add long
+            chains of connected locations easily.
           </p>
           <p>
             Tagging a location with "city" will highlight it red as a major
             settlement
           </p>
-          <h4>Adding a manual route</h4>
+          <h4>Adding a route</h4>
           <ol>
             <li>Hold CMD (MacOS) or CTRL (Windows)</li>
             <li>Click the starting location of the route</li>
@@ -160,7 +160,7 @@
           <h4>Backup/Share</h4>
           <p>
             Personal locations are saved locally, so be sure to export a backup
-            now and then to avoid disapointment. You can also share these files
+            now and then to avoid losing them. You can also share these files
             with others or between your devices.
           </p>
           <h2>Contributing to the master map</h2>
@@ -171,9 +171,9 @@
           <h4>Sharing changes</h4>
           <p>
             Add locations to the map as you would for a personal map above, and
-            then export and share your backup with me. I might need to change
-            submissions to ensure they fit into the map properly and work with
-            the pathfinding.
+            then export and share your backup with me (by email or discord both
+            work). I might need to change submissions to ensure they fit into
+            the map properly and work with the pathfinding.
           </p>
           <p>A few high level recommendations:</p>
           <ul>
