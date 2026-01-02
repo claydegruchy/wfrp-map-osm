@@ -6,9 +6,23 @@ const urlParams = new URLSearchParams(window.location.search);
 export const isDev = urlParams.get("dev") === "true";
 export const isEditMode = urlParams.get("edit") && urlParams.get("edit") != "";
 export const editId = isEditMode && urlParams.get("edit")
-
-
 export const isOpMode = urlParams.get("opmode") && urlParams.get("opmode") != "";
+export const isHardReset = urlParams.get("reset") && urlParams.get("reset") != "";
+
+if (isHardReset) {
+	localStorage.clear()
+	const url = new URL(window.location.href);
+	url.searchParams.delete("reset")
+	window.location.href = url.toString();
+
+}
+
+
+export const isMobile =
+	'ontouchstart' in window ||
+	navigator.maxTouchPoints > 0 ||
+	/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)
+
 
 
 export const map = writable();
@@ -69,13 +83,3 @@ export function clearLocalFeatures() {
 
 }
 
-
-export function clearAll() {
-	localStorage.clear()
-	window.location.reload();
-}
-
-
-function importFeatures(file) {
-
-}
