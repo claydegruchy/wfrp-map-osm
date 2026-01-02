@@ -30,8 +30,6 @@
   let path;
 
   function findLocation(value) {
-    console.log("findLocation", value, locations);
-
     const filtered = locations
       .filter(
         (loc) =>
