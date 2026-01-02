@@ -90,12 +90,15 @@ export const pathLayer = new VectorLayer({
 })
 
 
-export function toggleRoutes(force = null) {
-	routesLayer.setVisible(force == null ? !routesLayer.getVisible() : force)
+export function toggleRoutesDisplay() {
+	routesLayer.setVisible(!routesLayer.getVisible())
 }
-toggleRoutes()
 
 
+export function setRoutesDisplay(enabled) {
+	routesLayer.setVisible(enabled)
+}
+setRoutesDisplay(false)
 
 
 export function setRoutes(override) {
@@ -118,7 +121,7 @@ export function setRoutes(override) {
 
 	routeSource.addFeatures(features)
 	routesObject = Object.fromEntries(routes.map(route => [route.source_id + ":" + route.destination_id, route]))
-	toggleRoutes(true)
+	// setRoutesDisplay(true)
 }
 
 

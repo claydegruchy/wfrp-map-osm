@@ -18,7 +18,7 @@
   import {
     findPath,
     setPath,
-    toggleRoutes,
+    toggleRoutesDisplay,
     zoomToEncompass,
   } from "./lib/routes";
   import PathDisplay from "./lib/PathDisplay.svelte";
@@ -122,7 +122,7 @@
     <EditMode></EditMode>
     <button on:click={toggleCountries}>Countries</button>
     <button on:click={toggleStates}>States</button>
-    <button on:click={toggleRoutes}>Routes</button>
+    <button on:click={toggleRoutesDisplay}>Routes</button>
     <Dialog>
       <div slot="button">?</div>
       <div slot="content"><HelpText></HelpText></div>

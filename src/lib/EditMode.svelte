@@ -1,7 +1,13 @@
 <script>
   import { onMount } from "svelte";
   import { addLocation, locations, locationsObject } from "./locations";
-  import { addRoute, routes, routesLayer, toggleRoutes } from "./routes";
+  import {
+    addRoute,
+    routes,
+    routesLayer,
+    setRoutesDisplay,
+    toggleRoutesDisplay,
+  } from "./routes";
   import {
     editId,
     addLocationTags,
@@ -16,8 +22,6 @@
   import LoadAndSave from "./LoadAndSave.svelte";
 
   console.log("isEditMode", isEditMode);
-
-  toggleRoutes(true);
 
   let addOpen = false;
 
@@ -113,6 +117,8 @@
     for (const route of $localRoutes) {
       addRoute(route);
     }
+
+    isEditMode && setRoutesDisplay(true);
   });
 </script>
 
@@ -176,7 +182,8 @@
           </p>
           <ul>
             <li>
-              By email - <a href="mailto:hammermap@claydegruchy.com?subject=hammermap contribution"
+              By email - <a
+                href="mailto:hammermap@claydegruchy.com?subject=hammermap contribution"
                 >hammermap@claydegruchy.com</a
               >
             </li>

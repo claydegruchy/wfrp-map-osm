@@ -25,9 +25,6 @@
   let center = [-3247495.2505356777, 4704319.403427397];
   let zoom = 5;
 
-  export let selectLocationById;
-  export let zoomToLocationById;
-
   onMount(() => {
     $map = new Map({
       target: "map",

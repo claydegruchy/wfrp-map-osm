@@ -66,7 +66,8 @@
         clearLocalFeatures();
         confirmDelete = false;
       }}
-      >Confirm delete of {$localRoutes.length} and {$localLocations.length} locations?</button
+      >Confirm delete of {$localRoutes.length} routes and {$localLocations.length}
+      locations?</button
     >
   {:else}
     <button
