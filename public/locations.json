@@ -11310,5 +11310,456 @@
         "credit": "GeDruchy",
         "art": [],
         "id": "hv5VJRZlb"
+    },
+    {
+        "name": "Quenelles",
+        "coordinates": [
+            -3175816.765098343,
+            1152274.9545251657
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "w3Q4VaJEgJJq3"
+    },
+    {
+        "name": "Perrache",
+        "coordinates": [
+            -3190397.5176883633,
+            1353531.0514784255
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "wResbhaoJthnW"
+    },
+    {
+        "name": "Montlac",
+        "coordinates": [
+            -3244613.101494627,
+            2012613.7224065033
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "BSMMIoul9R7i"
+    },
+    {
+        "name": "Merceaux Descloux",
+        "coordinates": [
+            -3015747.9509300413,
+            2415005.3966278094
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "6el31iNzE6"
+    },
+    {
+        "name": "Chambonnay",
+        "coordinates": [
+            -2973296.9816716462,
+            2489581.286906158
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "hATFQKpkEDo3ztoW"
+    },
+    {
+        "name": "Emilion",
+        "coordinates": [
+            -2941953.65922049,
+            2551271.380025778
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "W59TBgtK"
+    },
+    {
+        "name": "Lesevre",
+        "coordinates": [
+            -3050648.2066831496,
+            2552647.260373406
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "VyeVFlnGzTfBaT0H"
+    },
+    {
+        "name": "Grunere",
+        "coordinates": [
+            -2536815.0622295793,
+            2598464.715689233
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "URDBPq7cxaSw"
+    },
+    {
+        "name": "Vettard",
+        "coordinates": [
+            -2594775.9251481355,
+            2506693.349401519
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "4F3RlMFdOuW0N6"
+    },
+    {
+        "name": "Clemenceau",
+        "coordinates": [
+            -2398054.2658967273,
+            2476662.6288680877
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "KHy4eyXGe"
+    },
+    {
+        "name": "Frugelhofen",
+        "coordinates": [
+            -2123798.7485982627,
+            2601226.7119893143
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "M0O2qCFKoH0vUNX"
+    },
+    {
+        "name": "La Maisontaal",
+        "coordinates": [
+            -2328027.67782624,
+            2602424.53562115
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "ofY0J04c"
+    },
+    {
+        "name": "Mondidier Pass",
+        "coordinates": [
+            -1635310.2740708482,
+            536159.3055692547
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "nbuGjUo9kAg16Q"
+    },
+    {
+        "name": "",
+        "coordinates": [
+            -1783082.9572366988,
+            536159.3055692547
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "435AxMLfDPLQl5R"
+    },
+    {
+        "name": "Zhazid Algskarag",
+        "coordinates": [
+            -1879456.4462579058,
+            410516.830993459
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "ikpo0ziThtJyzmp"
+    },
+    {
+        "name": "Salignac La Rouge",
+        "coordinates": [
+            -2848584.4593798993,
+            447911.75251470844
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "T497MbJVmeZGV8b"
+    },
+    {
+        "name": "Castle Carcassonne",
+        "coordinates": [
+            -4747186.0980767915,
+            1056232.3278398304
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "Qh5jEvp9FMVbaF"
+    },
+    {
+        "name": "Embrun",
+        "coordinates": [
+            -3964941.149261278,
+            865250.6798214897
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "of4A4RUqdIBzfO"
+    },
+    {
+        "name": "Summersfall Fort",
+        "coordinates": [
+            -3580911.059924004,
+            738039.027817936
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "aFV4lNia"
+    },
+    {
+        "name": "Marguilles",
+        "coordinates": [
+            -3285430.5640723063,
+            688854.0382164295
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "SC6dslf1h2wj"
+    },
+    {
+        "name": "Paillole",
+        "coordinates": [
+            -3154465.820916717,
+            511982.7017901186
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "hbZWQAGQ"
+    },
+    {
+        "name": "Chinon",
+        "coordinates": [
+            -4017611.094995761,
+            2325462.175562816
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "jd9pl3ck"
+    },
+    {
+        "name": "Gien",
+        "coordinates": [
+            -4212422.519231428,
+            2219201.3987069973
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "YeUDlYn3y"
+    },
+    {
+        "name": "Aquitaine",
+        "coordinates": [
+            -4923348.43581638,
+            1985884.7867658043
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "DtIUpfDjc2"
+    },
+    {
+        "name": "Black Chasm",
+        "coordinates": [
+            -4184217.7112162826,
+            2901422.221373352
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia",
+            "skaven"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "B7O8q6WJIpyHq"
+    },
+    {
+        "name": "Bad Axes",
+        "coordinates": [
+            -4214502.779198261,
+            4725864.943277406
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "orc"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "uEPeKwG01g9xhnVy"
+    },
+    {
+        "name": "Forest of Arden",
+        "coordinates": [
+            -5415877.8088631295,
+            4030493.6158881383
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "LcN2emcivSUkJ7c"
+    },
+    {
+        "name": "Guerac Circle",
+        "coordinates": [
+            -5368033.889358398,
+            3665261.559106271
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "hvVTtleDGsWcwvmJ"
+    },
+    {
+        "name": "Barrows of Cuileux",
+        "coordinates": [
+            -4061206.3817572687,
+            2460169.8831782723
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "x6uDjauUqEMr"
+    },
+    {
+        "name": "Grave of Cuileux",
+        "coordinates": [
+            -4272356.569527836,
+            1522363.71658836
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "BqaJnudbP"
     }
 ]
