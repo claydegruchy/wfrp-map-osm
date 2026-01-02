@@ -10,7 +10,7 @@
   import {
     locations,
     locationsObject,
-    selectFeatureById,
+    selectLocationById,
     zoomToLocationById,
   } from "./lib/locations";
   import { isDev, selectedLocations } from "./lib/stores";
@@ -23,7 +23,7 @@
   } from "./lib/routes";
   import PathDisplay from "./lib/PathDisplay.svelte";
   import HelpText from "./lib/HelpText.svelte";
-  import DiagQuickAdd from "./lib/DiagQuickAdd.svelte";
+  import EditMode from "./lib/EditMode.svelte";
 
   let pathFinderOrigin;
   let pathFinderDestination;
@@ -118,7 +118,7 @@
   r
 
   <div class="flex vertical buttons">
-    <DiagQuickAdd></DiagQuickAdd>
+    <EditMode></EditMode>
     <button on:click={toggleCountries}>Countries</button>
     <button on:click={toggleStates}>States</button>
     <button on:click={toggleRoutes}>Routes</button>
