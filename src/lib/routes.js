@@ -103,6 +103,7 @@ export function setRoutes() {
 
 	routeSource.addFeatures(features)
 	routesObject = Object.fromEntries(routes.map(route => [route.source_id + ":" + route.destination_id, route]))
+	toggleRoutes(true)
 }
 
 

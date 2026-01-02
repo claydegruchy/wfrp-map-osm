@@ -1,15 +1,22 @@
 <script>
   import { addLocation, locations } from "./locations";
   import { addRoute, routes, toggleRoutes } from "./routes";
-  import { addId, isAddMode, map } from "./stores";
+  import {
+    addId,
+    addLocationTags,
+    isAddMode,
+    localLocations,
+    localRoutes,
+    map,
+  } from "./stores";
 
   console.log("isAddMode", isAddMode);
 
-  toggleRoutes();
+  toggleRoutes(true);
 
   let addOpen = false;
 
-  let tags = "country:brettonia";
+  // let tags = "country:brettonia";
   let lastLocation;
   let coordinates;
   let newLocationName;
@@ -29,9 +36,6 @@
     });
   });
 
-  let newLocationsAdded = [];
-  let newRoutesAdded = [];
-
   function handleSubmit() {
     console.log("sub");
     let requiredTags = ["source:quickadd", "added_by:" + addId];
@@ -39,7 +43,7 @@
     let location = {
       name: newLocationName,
       coordinates,
-      tags: [...requiredTags, ...(tags?.split(",") || [])],
+      tags: [...requiredTags, ...($addLocationTags?.split(",") || [])],
       credit: addId,
     };
 
@@ -55,16 +59,15 @@
         source_id: newLocation.id,
         destination_id: lastLocation.id,
       });
-      newRoutesAdded = [...newRoutesAdded, newRoute];
+      $localRoutes = [...$localRoutes, newRoute];
     }
     lastLocation = newLocation;
 
-    newLocationsAdded = [...newLocationsAdded, newLocation];
+    $localLocations = [...$localLocations, newLocation];
 
     coordinates = null;
     newLocationName = "";
-	console.log(locations,routes);
-	
+    console.log(locations, routes);
   }
 
   function focus(node) {
@@ -107,7 +110,7 @@
       <input
         placeholder="tags seperated by commas"
         type="text"
-        bind:value={tags}
+        bind:value={$addLocationTags}
       />
       <div>
         <label for="">
@@ -118,13 +121,13 @@
     {/if}
     <div class="flex">
       <button
-        on:click={() => downloadJSON(newRoutesAdded, addId + "_routes.json")}
-        >Download ({newRoutesAdded.length}) new routes
+        on:click={() => downloadJSON($localRoutes, addId + "_routes.json")}
+        >Download ({$localRoutes.length}) new routes
       </button>
       <button
         on:click={() =>
-          downloadJSON(newLocationsAdded, addId + "_locations.json")}
-        >Download ({newLocationsAdded.length}) new locations
+          downloadJSON($localLocations, addId + "_locations.json")}
+        >Download ({$localLocations.length}) new locations
       </button>
     </div>
   </main>
