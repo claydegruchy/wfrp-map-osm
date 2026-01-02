@@ -11761,5 +11761,47 @@
         "credit": "GeDruchy",
         "art": [],
         "id": "BqaJnudbP"
+    },
+    {
+        "coordinates": [
+            -6028926.214122911,
+            3014256.6293490427
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "26uK6KdoRGyFF"
+    },
+    {
+        "art": [],
+        "coordinates": [
+            -6028926.214122911,
+            3014256.6293490427
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "id": "26uK6KdoRGyFF"
+    },
+    {
+        "art": [],
+        "coordinates": [
+            -6028926.214122911,
+            3014256.6293490427
+        ],
+        "tags": [
+            "source:quickadd",
+            "added_by:GeDruchy",
+            "country:brettonia"
+        ],
+        "credit": "GeDruchy",
+        "id": "26uK6KdoRGyFF"
     }
 ]
