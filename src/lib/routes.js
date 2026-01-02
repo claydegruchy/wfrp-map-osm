@@ -12,7 +12,7 @@ import routesRaw from "../../public/routes.json"
 import DragBox from "ol/interaction/DragBox"
 import { platformModifierKeyOnly } from "ol/events/condition"
 import { extend } from "ol/extent"
-import { isDev } from "./stores"
+import { isDev, map } from "./stores"
 
 
 console.log(routesRaw.filter(routes => {
@@ -78,8 +78,8 @@ export const pathLayer = new VectorLayer({
 })
 
 
-export function toggleRoutes() {
-	routesLayer.setVisible(!routesLayer.getVisible())
+export function toggleRoutes(force = null) {
+	routesLayer.setVisible(force == null ? !routesLayer.getVisible() : force)
 }
 toggleRoutes()
 
@@ -133,11 +133,14 @@ export function setPath({ pathRouteIds }) {
 setRoutes()
 
 
+export let zoomToEncompass = function ({ pathNodes }, padding = 100, duration = 1000) { }
+export let addRoute = ({ source_id, destination_id, enabled = true, type = "road" }) => {
 
-export function setupRoutes(map) {
-	console.log("setupRoutes");
+}
 
 
+map.subscribe(map => {
+	if (!map) return
 	if (isDev) {
 		const dragBox = new DragBox({
 			condition: platformModifierKeyOnly, // Ctrl on Windows/Linux, Cmd on macOS
@@ -214,7 +217,7 @@ export function setupRoutes(map) {
 
 			routes = [...routes, r]
 			setRoutes()
-			console.log(locations,routes);
+			console.log(locations, routes);
 
 
 			pendingId = null
@@ -245,38 +248,25 @@ export function setupRoutes(map) {
 
 	}
 
-
-
-
-	return function zoomToEncompass({ pathNodes }, padding = 100, duration = 1000) {
+	zoomToEncompass = function ({ pathNodes }, padding = 100, duration = 1000) {
 
 		let coordsArray = pathNodes.map(n => locationsObject[n].coordinates)
 
 
 		if (!coordsArray || coordsArray.length === 0) return
 
-		const projected = coordsArray//.map(c => fromLonLat(c))
-		// compute extent
+		const projected = coordsArray
 		let extent = [projected[0][0], projected[0][1], projected[0][0], projected[0][1]]
 		for (let i = 1; i < projected.length; i++) {
 			extent = extend(extent, [projected[i][0], projected[i][1], projected[i][0], projected[i][1]])
 		}
 
-		// fit view
 		map.getView().fit(extent, { padding: [padding, padding, padding, padding], duration })
 
 	}
 
 
-}
-
-
-
-export let addRoute = ({ source_id, destination_id, enabled = true, type = "road" }) => {
-
-}
-
-
+})
 
 
 export function findPath(startId, endId) {

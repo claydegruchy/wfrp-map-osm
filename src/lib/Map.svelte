@@ -18,16 +18,15 @@
     world,
   } from "./maps";
 
-  import { locationsLayer, setupLocations } from "./locations";
+  import { locationsLayer } from "./locations";
   import { calculateBoundries } from "./boundryDrawing";
-  import { pathLayer, routesLayer, setupRoutes } from "./routes";
+  import { pathLayer, routesLayer } from "./routes";
 
   let center = [-3247495.2505356777, 4704319.403427397];
   let zoom = 5;
 
   export let selectLocationById;
   export let zoomToLocationById;
-  export let zoomToEncompass;
 
   onMount(() => {
     $map = new Map({
@@ -59,10 +58,7 @@
       }),
     });
 
-    [selectLocationById, zoomToLocationById] = setupLocations($map);
-
     calculateBoundries($map);
-    zoomToEncompass = setupRoutes($map);
   });
 
   $: if ($map) {

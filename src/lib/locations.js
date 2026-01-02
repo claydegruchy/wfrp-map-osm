@@ -14,7 +14,7 @@ import locationsRaw from "../../public/locations.json"
 
 
 import DragBox from 'ol/interaction/DragBox.js';
-import { selectedLocations } from "./stores";
+import { map, selectedLocations } from "./stores";
 
 
 export const locations = locationsRaw
@@ -59,10 +59,9 @@ const selectedStyle = (feature, zoom) => new Style({
 
 })
 
-export let addLocation = function ({ name, coordinates, tags, credit }) {
-
-
-}
+export let addLocation = function ({ name, coordinates, tags, credit }) { }
+export let selectFeatureById = (id) => { }
+export let zoomToLocationById = (id) => { }
 
 
 export let locationsSource = new VectorSource()
@@ -109,9 +108,11 @@ setLocations()
 
 const selectedFeaturesCollection = new Collection();
 
-import { shiftKeyOnly } from 'ol/events/condition';
-import { getIntersection } from 'ol/extent';
-export function setupLocations(map) {
+
+map.subscribe(map => {
+	if (!map) return
+	console.log("locations", map);
+
 	const selectInteraction = new Select({
 		condition: click,
 		toggleCondition: () => false,
@@ -190,7 +191,7 @@ export function setupLocations(map) {
 
 
 
-	function selectFeatureById(id) {
+	selectFeatureById = function (id) {
 		const feature = locationsLayer.getSource().getFeatureById(id);
 		if (!feature) return;
 
@@ -199,7 +200,7 @@ export function setupLocations(map) {
 		selectedFeatures.push(feature); // select new
 	}
 
-	function zoomToLocationById(id) {
+	zoomToLocationById = function (id) {
 		console.log("zoomToLocationById", id);
 
 		const feature = locationsLayer.getSource().getFeatureById(id);
@@ -237,11 +238,7 @@ export function setupLocations(map) {
 		return loc
 
 	}
-
-
-	return [selectFeatureById, zoomToLocationById]
-
-}
+})
 
 
 

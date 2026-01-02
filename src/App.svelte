@@ -7,10 +7,20 @@
 
   import SelectedLocation from "./lib/SelectedLocation.svelte";
   import Diagnostics from "./lib/Diagnostics.svelte";
-  import { locations, locationsObject } from "./lib/locations";
+  import {
+    locations,
+    locationsObject,
+    selectFeatureById,
+    zoomToLocationById,
+  } from "./lib/locations";
   import { isDev, selectedLocations } from "./lib/stores";
   import { toggleCountries, toggleStates } from "./lib/boundryDrawing";
-  import { findPath, setPath, toggleRoutes } from "./lib/routes";
+  import {
+    findPath,
+    setPath,
+    toggleRoutes,
+    zoomToEncompass,
+  } from "./lib/routes";
   import PathDisplay from "./lib/PathDisplay.svelte";
   import HelpText from "./lib/HelpText.svelte";
   import DiagQuickAdd from "./lib/DiagQuickAdd.svelte";
@@ -18,10 +28,6 @@
   let pathFinderOrigin;
   let pathFinderDestination;
   let path;
-
-  let selectLocationById;
-  let zoomToLocationById;
-  let zoomToEncompass;
 
   function findLocation(value) {
     console.log("findLocation", value, locations);
@@ -123,7 +129,7 @@
   </div>
 </nav>
 
-<Map bind:selectLocationById bind:zoomToLocationById bind:zoomToEncompass></Map>
+<Map></Map>
 
 <nav class="bottom left"></nav>
 
