@@ -20,9 +20,9 @@
   </p>
   <p>
     You can also customise it by adding your own locations and routes, useful
-    when planing the TTRPG
+    when planing one of the Warhammer Fantasy TTRPGs.
   </p>
-  <p>It was made using the amazing maps over at gitzmansgallery.</p>
+  <p>This map was made using the amazing maps over at gitzmansgallery.</p>
 
   <h4>If you want to customise the map</h4>
   <p>
@@ -30,7 +30,9 @@
     locations (can be whatever, it'll show at the bottom of locations you've
     added) then hit "Turn on edit mode".
   </p>
-  <p>This will redirect you to this page again but with edit mode active.</p>
+  <p>
+    This will redirect you to this page again but with <b>edit mode</b> active.
+  </p>
   <div class="flex">
     <input placeholder="Enter name" bind:value={name} type="text" />
     <button on:click={turnOnEditMode} disabled={name.length < 1}
@@ -40,18 +42,22 @@
   <p>You can bookmark the edit URL if you want to go there directly later</p>
   <p>
     Note: This doesn't send anything to a server, it just redirects you. You can
-    active edit mode manually by adding <b>?edit=<i>your_name_here</i></b>
+    active <b>edit mode</b> manually by adding
+    <b>?edit=<i>your_name_here</i></b>
     to the end of this URL in the browser.
   </p>
   <h4>If you want to contribute to the master map</h4>
   <p>
-    If you want to add locations or routes to the master map, turn on Edit Mode
-    and hit >How do I add stuff? The process is pretty easily though, just add
-    custom points to a map and send me your backup file.
+    If you want to add locations or routes to the master map, turn on <b
+      >edit mode</b
+    >
+    and hit >How do I add stuff? The process is pretty easily though, just add custom
+    points to a map and send me your backup file.
   </p>
   <p>
     If you want to add artwork to the map or detailed town maps then I can add
-    maps for you if they're free to use or you own them. Hit me up on this
+    maps for you, assuming they're free to use or you own them. Hit me up on
+    this
     <a href="https://forms.gle/5RRtzuv3Um5xN9Eh9"> Google Form</a>
     and I'll try to add it for you
   </p>
