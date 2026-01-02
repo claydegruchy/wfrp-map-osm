@@ -38,6 +38,8 @@
     };
     reader.readAsText(file);
   }
+
+  let confirmDelete = false;
 </script>
 
 <section class="flex vertical">
@@ -54,11 +56,23 @@
     on:click={() =>
       downloadJSON(
         { routes: $localRoutes, locations: $localLocations },
-        editId + "_hammermap.json"
+        "hammermap_" + Date.now() + "_" + editId + ".json"
       )}
     >Export ({$localRoutes.length + $localLocations.length})
   </button>
-  <button on:click={clearLocalFeatures}
-    >Delete all ({$localRoutes.length + $localLocations.length})</button
-  >
+  {#if confirmDelete}
+    <button
+      on:click={() => {
+        clearLocalFeatures();
+        confirmDelete = false;
+      }}
+      >Confirm delete of {$localRoutes.length} and {$localLocations.length} locations?</button
+    >
+  {:else}
+    <button
+      on:click={() => {
+        confirmDelete = true;
+      }}>Delete all</button
+    >
+  {/if}
 </section>
