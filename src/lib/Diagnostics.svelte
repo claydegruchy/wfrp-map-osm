@@ -1,7 +1,7 @@
 <script>
   import DragBox from "ol/interaction/DragBox";
   import { locations, locationsObject } from "./locations";
-  import { isAddMode, map, selectedLocations } from "./stores";
+  import { isEditMode, map, selectedLocations } from "./stores";
   import { routeSource } from "./routes";
   import { platformModifierKeyOnly } from "ol/events/condition";
   let newLocations = "nothing";
@@ -61,7 +61,7 @@
   <button on:click={copyToClipboard}>copy</button>
 {/if}
 
-{#if isAddMode}
+{#if isEditMode}
   <main>Add mode</main>
   <input type="text">
 {/if}
