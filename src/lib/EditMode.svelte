@@ -32,6 +32,8 @@
   let newLocationName;
   let connectRoute = true;
 
+  let routeType = "road";
+
   map.subscribe((map) => {
     if (!map) return;
     // for adding new locations
@@ -260,33 +262,48 @@
 
     {#if addOpen}
       <section>
-        {#key coordinates}
+        <i>New location options</i>
+        <div>
+          {#key coordinates}
+            <input
+              placeholder="enter location name"
+              use:focus
+              on:keydown={(e) => {
+                if (e.key === "Enter") {
+                  handleAddLocation();
+                }
+              }}
+              type="text"
+              bind:value={newLocationName}
+            />
+          {/key}
+          <!-- <div><i>{coordinates}</i></div> -->
           <input
-            placeholder="enter location name"
-            use:focus
-            on:keydown={(e) => {
-              if (e.key === "Enter") {
-                handleAddLocation();
-              }
-            }}
+            placeholder="tags seperated by commas"
             type="text"
-            bind:value={newLocationName}
+            bind:value={$addLocationTags}
           />
-        {/key}
-        <!-- <div><i>{coordinates}</i></div> -->
-        <input
-          placeholder="tags seperated by commas"
-          type="text"
-          bind:value={$addLocationTags}
-        />
+        </div>
         <div>
           <label for="">
-            Auto add route ({lastLocation?.name || "none"})
+            Auto add {routeType} route ({lastLocation?.name || "none"})
             <input bind:checked={connectRoute} type="checkbox" />
           </label>
         </div>
       </section>
     {/if}
+    <section>
+      <i>Route settings</i>
+      <div>
+        <label>
+          New route type
+          <select bind:value={routeType}>
+            <option value="road">Road</option>
+            <option value="water">Water</option>
+          </select>
+        </label>
+      </div>
+    </section>
     <LoadAndSave></LoadAndSave>
   </main>
 {/if}

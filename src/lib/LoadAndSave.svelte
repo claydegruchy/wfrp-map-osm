@@ -27,7 +27,7 @@
   }
   function onFileChange(e) {
     console.log("filechange");
-    
+
     const file = e.target.files[0];
     if (!file) return;
 
@@ -56,38 +56,40 @@
   let confirmDelete = false;
 </script>
 
-<section class="flex vertical">
-  <input
-    type="file"
-    accept="application/json"
-    bind:this={fileInput}
-    on:change={onFileChange}
-    hidden
-  />
+<small>
+  <section class="flex vertical">
+    <input
+      type="file"
+      accept="application/json"
+      bind:this={fileInput}
+      on:change={onFileChange}
+      hidden
+    />
 
-  <button on:click={openPicker}>Import </button>
-  <button
-    on:click={() =>
-      downloadJSON(
-        { routes: $localRoutes, locations: $localLocations },
-        "hammermap_" + Date.now() + "_" + editId + ".json"
-      )}
-    >Export ({$localRoutes.length + $localLocations.length})
-  </button>
-  {#if confirmDelete}
+    <button on:click={openPicker}>Import </button>
     <button
-      on:click={() => {
-        clearLocalFeatures();
-        confirmDelete = false;
-      }}
-      >Confirm delete of {$localRoutes.length} routes and {$localLocations.length}
-      locations?</button
-    >
-  {:else}
-    <button
-      on:click={() => {
-        confirmDelete = true;
-      }}>Delete all</button
-    >
-  {/if}
-</section>
+      on:click={() =>
+        downloadJSON(
+          { routes: $localRoutes, locations: $localLocations },
+          "hammermap_" + Date.now() + "_" + editId + ".json"
+        )}
+      >Export ({$localRoutes.length + $localLocations.length})
+    </button>
+    {#if confirmDelete}
+      <button
+        on:click={() => {
+          clearLocalFeatures();
+          confirmDelete = false;
+        }}
+        >Confirm delete of {$localRoutes.length} routes and {$localLocations.length}
+        locations?</button
+      >
+    {:else}
+      <button
+        on:click={() => {
+          confirmDelete = true;
+        }}>Delete all</button
+      >
+    {/if}
+  </section>
+</small>
