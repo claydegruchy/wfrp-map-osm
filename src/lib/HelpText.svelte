@@ -110,6 +110,11 @@
   <h4>Updates</h4>
   <ul>
     <li>
+      2026/1: Added feature to let people make custom maps and share them, as
+      well as contribute to the master map
+    </li>
+    <li>2026/1: Added brettonia</li>
+    <li>
       2025/12: Added route display with selectable transport methods for time
       calculation
     </li>
