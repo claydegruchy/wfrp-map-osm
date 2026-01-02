@@ -86,10 +86,7 @@
 
       for (const id of toUpdate) {
         if (routesObject[id]) {
-          // make water
-          // routesObject[id].type = "water"
-          // remove
-          routesObject[id].enabled = false;
+          routesObject[id].type = newRouteType;
         }
       }
       // console.log(toUpdate.length, toUpdate);
@@ -102,6 +99,8 @@
 
   let ready = false;
   let newTag;
+
+  let newRouteType = "water";
 </script>
 
 {#if isOpMode}
@@ -125,11 +124,19 @@
       <section class="flex vertical">
         <b>routes</b>
         <small>enable drag update of routes</small>
+
         <input
           type="checkbox"
           on:change={toggleDragBox}
           bind:checked={dragUpdateEnabled}
         />
+        {#if dragUpdateEnabled}
+          <input
+            placeholder="route type"
+            bind:value={newRouteType}
+            type="text"
+          />
+        {/if}
       </section>
       <div class="flex">
         <button on:click={copyLocationsToClipboard}>Copy locations</button>

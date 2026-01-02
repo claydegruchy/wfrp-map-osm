@@ -8,6 +8,8 @@ export const isEditMode = urlParams.get("edit") && urlParams.get("edit") != "";
 export const editId = isEditMode && urlParams.get("edit")
 
 
+export const isOpMode = urlParams.get("opmode") && urlParams.get("opmode") != "";
+
 
 export const map = writable();
 export const selectedLocations = writable([])

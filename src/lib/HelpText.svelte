@@ -46,7 +46,8 @@
   <h4>If you want to contribute to the master map</h4>
   <p>
     If you want to add locations or routes to the master map, turn on Edit Mode
-    and hit >How do I add stuff?
+    and hit >How do I add stuff? The process is pretty easily though, just add
+    custom points to a map and send me your backup file.
   </p>
   <p>
     If you want to add artwork to the map or detailed town maps then I can add

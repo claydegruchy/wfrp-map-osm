@@ -171,9 +171,21 @@
           <h4>Sharing changes</h4>
           <p>
             Add locations to the map as you would for a personal map above, and
-            then export and share your backup with me (by email or discord both
-            work). I might need to change submissions to ensure they fit into
-            the map properly and work with the pathfinding.
+            then export and share your backup with me (by email or discord, both
+            work).
+          </p>
+          <ul>
+            <li>
+              By email - <a href="mailto:hammermap@claydegruchy.com?subject=hammermap contribution"
+                >hammermap@claydegruchy.com</a
+              >
+            </li>
+
+            <li>By discord @degruchy</li>
+          </ul>
+          <p>
+            I might need to change submissions to ensure they fit into the map
+            properly and work with the pathfinding.
           </p>
           <p>A few high level recommendations:</p>
           <ul>
@@ -184,7 +196,7 @@
             <li>
               Try to only add routes that have a direct road connection or
               direct river connection (a highway direct from Altdorf to
-              L'Anguille would be nice to have but not lore accurate!)
+              L'Anguille would be nice to have but not lore accurate)
             </li>
             <li>
               Try to only tag places as a city if they're a major capital, such

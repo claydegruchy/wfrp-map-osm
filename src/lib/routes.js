@@ -98,8 +98,9 @@ toggleRoutes()
 
 
 
-export function setRoutes() {
+export function setRoutes(override) {
 	routeSource.clear()
+	if (override) routes = override
 
 	const features = routes
 		.filter(r => r.enabled)
