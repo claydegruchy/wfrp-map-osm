@@ -10030,7 +10030,7 @@
     },
     {
         "name": "Château du Moulin à Vent",
-        "credit": "Bearworks, added by GeDruchy",
+        "credit": "GeDruchy, from Bearworks",
         "coordinates": [
             -5489259.525340404,
             5176623.801201499
@@ -10090,7 +10090,9 @@
             -5220028.272969539,
             5585237.032623519
         ],
-        "tags": [],
+        "tags": [
+            "country:brettonia"
+        ],
         "credit": "GeDruchy",
         "art": [],
         "id": "w7rC8KEOecog3K"
@@ -10193,7 +10195,6 @@
             5146661.671055013
         ],
         "tags": [
-            "source:quickadd",
             "added_by:vlflfbugiggjfefdhucrhhrtdurvntlc",
             "country:brettonia"
         ],
@@ -10208,7 +10209,6 @@
             5228783.765511452
         ],
         "tags": [
-            "source:quickadd",
             "added_by:vlflfbugiggjfefdhucrhhrtdurvntlc",
             "country:brettonia"
         ],
@@ -10223,7 +10223,6 @@
             5051823.514418328
         ],
         "tags": [
-            "source:quickadd",
             "added_by:vlflfbugiggjfefdhucrhhrtdurvntlc",
             "country:brettonia"
         ],
@@ -10238,7 +10237,6 @@
             5260204.659342524
         ],
         "tags": [
-            "source:quickadd",
             "added_by:vlflfbugiggjfefdhucrhhrtdurvntlc",
             "country:brettonia",
             "city"
@@ -10254,7 +10252,6 @@
             4969877.939682311
         ],
         "tags": [
-            "source:quickadd",
             "added_by:vlflfbugiggjfefdhucrhhrtdurvntlc",
             "country:brettonia"
         ],
@@ -10269,7 +10266,6 @@
             4856482.735120649
         ],
         "tags": [
-            "source:quickadd",
             "added_by:vlflfbugiggjfefdhucrhhrtdurvntlc",
             "country:brettonia"
         ],
@@ -10284,8 +10280,6 @@
             5471321.240982065
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -10299,8 +10293,6 @@
             5491446.649848988
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -10314,8 +10306,6 @@
             5377778.374651996
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -10329,8 +10319,6 @@
             5251352.007158468
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -10344,8 +10332,6 @@
             5232095.010785281
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -10359,8 +10345,6 @@
             5004213.728817682
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -10374,8 +10358,6 @@
             4767419.795085821
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -10389,8 +10371,6 @@
             4211196.284189105
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -10404,8 +10384,6 @@
             4499740.920040622
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -10419,8 +10397,6 @@
             4228979.368865494
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -10434,8 +10410,6 @@
             3724848.82418942
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -10449,8 +10423,6 @@
             3445107.61694586
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -10464,8 +10436,6 @@
             3439572.4681175174
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -10479,8 +10449,6 @@
             3623335.520574584
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -10494,8 +10462,6 @@
             3782518.8016838906
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -10509,8 +10475,6 @@
             3926486.0338636306
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -10524,8 +10488,6 @@
             4244203.353609888
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -10539,8 +10501,6 @@
             4330817.785978187
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -10554,8 +10514,6 @@
             3470840.9519657996
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -10569,8 +10527,6 @@
             3322607.2050857674
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -10584,8 +10540,6 @@
             3106490.7143074027
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -10599,8 +10553,6 @@
             3626913.7007069564
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -10614,8 +10566,6 @@
             3412763.831158419
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -10629,8 +10579,6 @@
             3054095.644736636
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -10644,8 +10592,6 @@
             2903598.49834786
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -10659,8 +10605,6 @@
             2430978.4401983237
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia",
             "city"
         ],
@@ -10675,8 +10619,6 @@
             2116577.2183150863
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -10690,8 +10632,6 @@
             2440889.7519347803
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -10705,8 +10645,6 @@
             2041133.1213007458
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -10720,8 +10658,6 @@
             4560773.483978249
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -10735,8 +10671,6 @@
             4423789.514677886
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -10750,8 +10684,6 @@
             5752664.775040541
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -10765,8 +10697,6 @@
             5643092.998664317
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -10780,8 +10710,6 @@
             5637843.28212002
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -10795,8 +10723,6 @@
             5602578.562305272
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -10810,8 +10736,6 @@
             5434383.254374597
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -10825,8 +10749,6 @@
             5320102.881470174
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -10839,8 +10761,6 @@
             4876511.589322687
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -10854,8 +10774,6 @@
             4875083.83392978
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -10869,8 +10787,6 @@
             3877965.7095097573
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -10884,8 +10800,6 @@
             3641421.5322841057
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -10899,8 +10813,6 @@
             3226041.5020524315
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -10914,8 +10826,6 @@
             3460244.03895207
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -10929,8 +10839,6 @@
             3683437.178227286
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -10944,8 +10852,6 @@
             3800131.2474230644
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -10959,8 +10865,6 @@
             3859529.421585017
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -10974,8 +10878,6 @@
             4031543.6652962132
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -10989,8 +10891,6 @@
             4090041.8671223787
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -11004,8 +10904,6 @@
             3142290.988762088
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -11019,8 +10917,6 @@
             2967678.783021197
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -11034,8 +10930,6 @@
             2850026.4455572367
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -11049,8 +10943,6 @@
             2828128.2285055066
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -11064,8 +10956,6 @@
             2639010.5169757563
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -11079,8 +10969,6 @@
             2748187.2235665885
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -11094,8 +10982,6 @@
             3297613.049799393
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -11109,8 +10995,6 @@
             3277405.546331985
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -11123,8 +11007,6 @@
             6302217.437017192
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -11138,8 +11020,6 @@
             5785219.790307502
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -11153,8 +11033,6 @@
             2459617.0739956903
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -11168,8 +11046,6 @@
             1552464.4541932533
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -11183,8 +11059,6 @@
             1653568.16640744
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -11198,8 +11072,6 @@
             1315704.6062292694
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -11213,8 +11085,6 @@
             1364015.2293984084
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -11228,8 +11098,6 @@
             1292886.058834583
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -11243,8 +11111,6 @@
             1250600.1903223093
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -11258,8 +11124,6 @@
             1232275.4319088235
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -11273,8 +11137,6 @@
             1299170.7232724212
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -11288,8 +11150,6 @@
             1019635.4645136361
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -11303,8 +11163,6 @@
             1037417.7571545924
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -11318,8 +11176,6 @@
             1152274.9545251657
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -11333,8 +11189,6 @@
             1353531.0514784255
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -11348,8 +11202,6 @@
             2012613.7224065033
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -11363,8 +11215,6 @@
             2415005.3966278094
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -11378,8 +11228,6 @@
             2489581.286906158
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -11393,8 +11241,6 @@
             2551271.380025778
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -11408,8 +11254,6 @@
             2552647.260373406
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -11423,8 +11267,6 @@
             2598464.715689233
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -11438,8 +11280,6 @@
             2506693.349401519
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -11453,8 +11293,6 @@
             2476662.6288680877
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -11468,8 +11306,6 @@
             2601226.7119893143
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -11483,8 +11319,6 @@
             2602424.53562115
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -11498,8 +11332,6 @@
             536159.3055692547
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -11513,8 +11345,6 @@
             536159.3055692547
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -11528,8 +11358,6 @@
             410516.830993459
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -11543,8 +11371,6 @@
             447911.75251470844
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -11558,8 +11384,6 @@
             1056232.3278398304
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -11573,8 +11397,6 @@
             865250.6798214897
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -11588,8 +11410,6 @@
             738039.027817936
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -11603,8 +11423,6 @@
             688854.0382164295
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -11618,8 +11436,6 @@
             511982.7017901186
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -11633,8 +11449,6 @@
             2325462.175562816
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -11648,8 +11462,6 @@
             2219201.3987069973
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -11663,8 +11475,6 @@
             1985884.7867658043
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -11678,8 +11488,6 @@
             2901422.221373352
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia",
             "skaven"
         ],
@@ -11694,8 +11502,6 @@
             4725864.943277406
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "orc"
         ],
         "credit": "GeDruchy",
@@ -11709,8 +11515,6 @@
             4030493.6158881383
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -11724,8 +11528,6 @@
             3665261.559106271
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -11739,8 +11541,6 @@
             2460169.8831782723
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -11754,8 +11554,6 @@
             1522363.71658836
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -11763,45 +11561,225 @@
         "id": "BqaJnudbP"
     },
     {
-        "coordinates": [
-            -6028926.214122911,
-            3014256.6293490427
-        ],
-        "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
-            "country:brettonia"
-        ],
-        "credit": "GeDruchy",
-        "art": [],
-        "id": "26uK6KdoRGyFF"
-    },
-    {
         "art": [],
         "coordinates": [
             -6028926.214122911,
             3014256.6293490427
         ],
         "tags": [
-            "source:quickadd",
-            "added_by:GeDruchy",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
         "id": "26uK6KdoRGyFF"
     },
     {
+        "name": "Tree of Woe",
+        "coordinates": [
+            -2974962.671930372,
+            2020372.8522744123
+        ],
+        "tags": [
+            "country:athel loren"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "EnLhO9IVbvW"
+    },
+    {
+        "name": "Halls of Anaereth",
+        "coordinates": [
+            -2938618.8064948698,
+            1762477.92053959
+        ],
+        "tags": [
+            "country:athel loren"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "KUJbwLfoE"
+    },
+    {
+        "name": "Feast Halls of the Wardance",
+        "coordinates": [
+            -2648108.7164692436,
+            1816948.562419395
+        ],
+        "tags": [
+            "country:athel loren"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "hlSMeOSl"
+    },
+    {
+        "name": "Deep forests of Durthu",
+        "coordinates": [
+            -2563696.392947587,
+            1595194.9658685573
+        ],
+        "tags": [
+            "country:athel loren"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "vR6Glq05cPXc"
+    },
+    {
+        "name": "Oak of Ages",
+        "coordinates": [
+            -2450009.6469877395,
+            1097330.9918678892
+        ],
+        "tags": [
+            "country:athel loren"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "3engq5pFgoL5X"
+    },
+    {
+        "name": "Hall of Equos",
+        "coordinates": [
+            -2574729.1547401203,
+            827483.3296400112
+        ],
+        "tags": [
+            "country:athel loren"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "QE5424B3USmXV7N"
+    },
+    {
+        "name": "King's Glade",
+        "coordinates": [
+            -2192633.9355350994,
+            906850.2891187988
+        ],
+        "tags": [
+            "country:athel loren"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "8KPmxf6MB"
+    },
+    {
+        "name": "Coeth-Mara",
+        "coordinates": [
+            -2254187.6187290843,
+            726644.7730879444
+        ],
+        "tags": [
+            "country:athel loren"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "36cPcn6e175myO1C"
+    },
+    {
+        "name": "The Windwoods",
+        "coordinates": [
+            -1890896.5697673596,
+            570848.9562881802
+        ],
+        "tags": [
+            "country:athel loren"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "QcLiRvbFf"
+    },
+    {
+        "name": "Glade of Eternal Moonlight",
+        "coordinates": [
+            -2551200.1985012535,
+            2002085.8921413613
+        ],
+        "tags": [
+            "country:athel loren"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "CnpxvAad7U5tZe"
+    },
+    {
+        "name": "Hills of the Dead",
+        "coordinates": [
+            -2165002.8064087387,
+            2451164.9251406975
+        ],
+        "tags": [
+            "country:athel loren"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "LN1SDeWMVGMnWr"
+    },
+    {
         "art": [],
         "coordinates": [
-            -6028926.214122911,
-            3014256.6293490427
+            -5745747.742835131,
+            2190175.277754419
+        ],
+        "tags": [
+            "country:athel loren"
+        ],
+        "credit": "GeDruchy",
+        "id": "1Kiv4Wgwkox7IQBG"
+    },
+    {
+        "coordinates": [
+            1846759.225152507,
+            2842910.3834097655
         ],
         "tags": [
             "source:quickadd",
-            "added_by:GeDruchy",
-            "country:brettonia"
+            "country:the empire"
         ],
         "credit": "GeDruchy",
-        "id": "26uK6KdoRGyFF"
+        "art": [],
+        "id": "e5gKH8s2Bi"
+    },
+    {
+        "name": "",
+        "coordinates": [
+            1702096.0354020097,
+            2576335.2572551426
+        ],
+        "tags": [
+            "source:quickadd",
+            "country:the empire"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "Sb7mDumYwSx7X"
+    },
+    {
+        "name": "",
+        "coordinates": [
+            1977303.244939329,
+            2407265.026647198
+        ],
+        "tags": [
+            "source:quickadd",
+            "country:the empire"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "MLTrJ05sy"
+    },
+    {
+        "name": "",
+        "coordinates": [
+            1715359.7280022255,
+            2081957.1530704342
+        ],
+        "tags": [
+            "source:quickadd",
+            "country:the empire"
+        ],
+        "credit": "GeDruchy",
+        "art": [],
+        "id": "EZEdXAgq"
     }
 ]
