@@ -1,4 +1,6 @@
 <script>
+  import { addLocation } from "./locations";
+  import { addRoute } from "./routes";
   import {
     clearLocalFeatures,
     editId,
@@ -24,14 +26,26 @@
     fileInput.click();
   }
   function onFileChange(e) {
+    console.log("filechange");
+    
     const file = e.target.files[0];
     if (!file) return;
 
     const reader = new FileReader();
     reader.onload = () => {
       try {
-        const data = JSON.parse(reader.result);
-        console.log(data);
+        const { routes, locations } = JSON.parse(reader.result);
+        console.log(routes, locations);
+
+        $localLocations = [...$localLocations, ...locations];
+        $localRoutes = [...$localRoutes, ...routes];
+
+        for (const location of locations) {
+          addLocation(location);
+        }
+        for (const route of routes) {
+          addRoute(route);
+        }
       } catch {
         console.error("Invalid JSON");
       }
