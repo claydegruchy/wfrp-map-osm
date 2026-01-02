@@ -118,6 +118,7 @@
   r
 
   <div class="flex vertical buttons">
+    <Diagnostics></Diagnostics>
     <EditMode></EditMode>
     <button on:click={toggleCountries}>Countries</button>
     <button on:click={toggleStates}>States</button>
