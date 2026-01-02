@@ -14,7 +14,7 @@ import locationsRaw from "../../public/locations.json"
 
 
 import DragBox from 'ol/interaction/DragBox.js';
-import { map, selectedLocations } from "./stores";
+import { localLocationsObjectNonStore, map, selectedLocations } from "./stores";
 
 
 export const locations = locationsRaw
@@ -40,6 +40,15 @@ const cityStyle = (feature, zoom) => new Style({
 	}),
 })
 
+const localStyle = (feature, zoom) => new Style({
+	image: new CircleStyle({
+		radius: Math.max(zoom / -550 + 12, 0),
+		fill: new Fill({
+			color: 'rgba(255, 255, 0, 0.2)' // slight yellow tint
+		}),
+		stroke: new Stroke({ color: "yellow", width: 2, lineDash: [4, 4] })
+	}),
+})
 
 const selectedStyle = (feature, zoom) => new Style({
 	image: new CircleStyle({
@@ -59,8 +68,27 @@ const selectedStyle = (feature, zoom) => new Style({
 
 })
 
-export let addLocation = function ({ name, coordinates, tags, credit }) { }
-export let selectFeatureById = (id) => { }
+export let addLocation = function ({ name, coordinates, tags, credit, id = randomString(), ...rest }) {
+	let loc = {
+		...rest,
+		name,
+		coordinates,
+		tags,
+		credit,
+		art: [],
+		id,
+
+	}
+	locations.push(loc)
+
+	locationsObject = Object.fromEntries(locations.map(location => [location.id, location]));
+	setLocations()
+	return loc
+
+}
+
+
+export let selectLocationById = (id) => { }
 export let zoomToLocationById = (id) => { }
 
 
@@ -69,8 +97,10 @@ export let locationsSource = new VectorSource()
 export const locationsLayer = new VectorLayer({
 	style: ((feature, zoom) => {
 
-		// if (zoom >= 3000) return null
 		let tags = feature.get('tags');
+		let id = feature.getId()
+		if (localLocationsObjectNonStore[id]) return localStyle(feature, zoom)
+
 		if (!tags) return defaultStyle(feature, zoom)
 		if (tags.includes("city")) return cityStyle(feature, zoom)
 		for (const tag of tags) {
@@ -191,7 +221,7 @@ map.subscribe(map => {
 
 
 
-	selectFeatureById = function (id) {
+	selectLocationById = function (id) {
 		const feature = locationsLayer.getSource().getFeatureById(id);
 		if (!feature) return;
 
@@ -219,25 +249,7 @@ map.subscribe(map => {
 	}
 
 
-	addLocation = function ({ name, coordinates, tags, credit }) {
 
-		let loc = {
-			name,
-			coordinates,
-			tags,
-			credit,
-			art: [],
-			id: randomString()
-
-		}
-		locations.push(loc)
-
-		locationsObject = Object.fromEntries(locations.map(location => [location.id, location]));
-		console.log(locations);
-		setLocations()
-		return loc
-
-	}
 })
 
 
