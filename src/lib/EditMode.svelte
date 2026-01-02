@@ -190,26 +190,26 @@
               Try to only tag places as a city if they're a major capital, such
               as Middenheim or Altdorf
             </li>
+          </ul>
+          <h4>Adding tags</h4>
+          There are a few different kinds of tags you can use to categorise locations.
+          These let us build state and country maps. These are totally optional though,
+          I don't mind adding them later.
+          <ul>
             <li>
-              There are a few different kinds of tags you can use to categorise
-              locations. These let us build state and country maps
-              <ul>
-                <li>
-                  <pre>"country:something" </pre>
-                  <small> ie "country:brettonia" or "country:the empire"</small>
-                </li>
-                <li>
-                  <pre>"state:something" </pre>
-                  <small> ie "state:middenland" or "state:averland"</small>
-                </li>
-                <li>
-                  <pre>"city" </pre>
-                  <small>
-                    if this is a capital or state capital city, such as altdorf
-                    or l'anguille
-                  </small>
-                </li>
-              </ul>
+              <pre>"country:something" </pre>
+              <small> ie "country:brettonia" or "country:the empire"</small>
+            </li>
+            <li>
+              <pre>"state:something" </pre>
+              <small> ie "state:middenland" or "state:averland"</small>
+            </li>
+            <li>
+              <pre>"city" </pre>
+              <small>
+                if this is a capital or state capital city, such as altdorf or
+                l'anguille
+              </small>
             </li>
           </ul>
 
