@@ -16,6 +16,7 @@
     localLocations,
     localRoutes,
     map,
+    isMobile,
   } from "./stores";
   import { platformModifierKeyOnly } from "ol/events/condition";
   import Dialog from "./Blocks/Dialog.svelte";
@@ -100,9 +101,9 @@
     lastLocation = newLocation;
     $localLocations = [...$localLocations, newLocation];
 
-    // reset it for the next
     coordinates = null;
     newLocationName = "";
+    addOpen = false;
     console.log(locations, routes);
   }
 
@@ -119,11 +120,20 @@
     }
 
     isEditMode && setRoutesDisplay(true);
+
+    isEditMode &&
+      isMobile &&
+      alert(
+        "Warning: Edit mode isn't designed to work on mobile and the experience will likely be bad.\n\nPlease open edit mode on a desktop browser."
+      );
   });
 </script>
 
 {#if isEditMode}
   <main>
+    {#if isMobile}
+      <b class="warning"></b>
+    {/if}
     <div>
       <big>
         <b>My map </b>
