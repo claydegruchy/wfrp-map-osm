@@ -14,11 +14,11 @@ import locationsRaw from "../../public/locations.json"
 
 
 import DragBox from 'ol/interaction/DragBox.js';
-import { selectedLocations } from "./stores";
+import { localLocationsObjectNonStore, map, selectedLocations } from "./stores";
 
 
 export const locations = locationsRaw
-export const locationsObject = Object.fromEntries(locations.map(location => [location.id, location]));
+export let locationsObject = Object.fromEntries(locations.map(location => [location.id, location]));
 
 
 
@@ -40,6 +40,15 @@ const cityStyle = (feature, zoom) => new Style({
 	}),
 })
 
+const localStyle = (feature, zoom) => new Style({
+	image: new CircleStyle({
+		radius: Math.max(zoom / -550 + 12, 0),
+		fill: new Fill({
+			color: 'rgba(255, 255, 0, 0.2)' // slight yellow tint
+		}),
+		stroke: new Stroke({ color: "yellow", width: 2, lineDash: [4, 4] })
+	}),
+})
 
 const selectedStyle = (feature, zoom) => new Style({
 	image: new CircleStyle({
@@ -59,14 +68,39 @@ const selectedStyle = (feature, zoom) => new Style({
 
 })
 
+export let addLocation = function ({ name, coordinates, tags, credit, id = randomString(), ...rest }) {
+	let loc = {
+		...rest,
+		name,
+		coordinates,
+		tags,
+		credit,
+		art: [],
+		id,
+
+	}
+	locations.push(loc)
+
+	locationsObject = Object.fromEntries(locations.map(location => [location.id, location]));
+	setLocations()
+	return loc
+
+}
 
 
+export let selectLocationById = (id) => { }
+export let zoomToLocationById = (id) => { }
+
+
+export let locationsSource = new VectorSource()
 
 export const locationsLayer = new VectorLayer({
 	style: ((feature, zoom) => {
 
-		// if (zoom >= 3000) return null
 		let tags = feature.get('tags');
+		let id = feature.getId()
+		if (localLocationsObjectNonStore[id]) return localStyle(feature, zoom)
+
 		if (!tags) return defaultStyle(feature, zoom)
 		if (tags.includes("city")) return cityStyle(feature, zoom)
 		for (const tag of tags) {
@@ -76,18 +110,27 @@ export const locationsLayer = new VectorLayer({
 		return defaultStyle(feature, zoom)
 
 	}),
-	source: new VectorSource({
-		features: locations.map(p => {
-			let f = new Feature({
-				geometry: new Point(p.coordinates),
-				...p
-			})
-			f.setId(p.id)
-			return f
-		})
-	})
+	source: locationsSource
 });
 
+
+export function setLocations() {
+	console.log("setLocations");
+
+	locationsSource.clear()
+	const features = locations.map(p => {
+		let f = new Feature({
+			geometry: new Point(p.coordinates),
+			...p
+		})
+		f.setId(p.id)
+		return f
+	})
+
+	locationsSource.addFeatures(features)
+}
+
+setLocations()
 
 
 
@@ -95,9 +138,11 @@ export const locationsLayer = new VectorLayer({
 
 const selectedFeaturesCollection = new Collection();
 
-import { shiftKeyOnly } from 'ol/events/condition';
-import { getIntersection } from 'ol/extent';
-export function setupLocations(map) {
+
+map.subscribe(map => {
+	if (!map) return
+	console.log("locations", map);
+
 	const selectInteraction = new Select({
 		condition: click,
 		toggleCondition: () => false,
@@ -153,18 +198,7 @@ export function setupLocations(map) {
 			selectedFeaturesCollection.clear()
 		}
 	});
-	// for adding new locations
-	// map.getViewport().addEventListener('contextmenu', e => {
-	// 	console.log("menu");
 
-	// 	e.preventDefault()
-
-	// 	const pixel = map.getEventPixel(e)
-	// 	const coordinate = map.getCoordinateFromPixel(pixel)
-	// 	console.log(coordinate);
-
-	// 	// coordinate is in map projection
-	// })
 
 
 	let selectionDebounce = null;
@@ -187,7 +221,7 @@ export function setupLocations(map) {
 
 
 
-	function selectFeatureById(id) {
+	selectLocationById = function (id) {
 		const feature = locationsLayer.getSource().getFeatureById(id);
 		if (!feature) return;
 
@@ -196,7 +230,7 @@ export function setupLocations(map) {
 		selectedFeatures.push(feature); // select new
 	}
 
-	function zoomToLocationById(id) {
+	zoomToLocationById = function (id) {
 		console.log("zoomToLocationById", id);
 
 		const feature = locationsLayer.getSource().getFeatureById(id);
@@ -214,8 +248,16 @@ export function setupLocations(map) {
 
 	}
 
-	return [selectFeatureById, zoomToLocationById]
 
+
+})
+
+
+
+
+function randomString() {
+	const len = Math.floor(Math.random() * 9) + 8; // 8–16
+	const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+	const bytes = crypto.getRandomValues(new Uint8Array(len));
+	return [...bytes].map(b => chars[b % chars.length]).join('');
 }
-
-

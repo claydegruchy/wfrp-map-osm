@@ -7,30 +7,36 @@
 
   import SelectedLocation from "./lib/SelectedLocation.svelte";
   import Diagnostics from "./lib/Diagnostics.svelte";
-  import { locations, locationsObject } from "./lib/locations";
+  import {
+    locations,
+    locationsObject,
+    selectLocationById,
+    zoomToLocationById,
+  } from "./lib/locations";
   import { isDev, selectedLocations } from "./lib/stores";
   import { toggleCountries, toggleStates } from "./lib/boundryDrawing";
-  import { findPath, setPath, toggleRoutes } from "./lib/routes";
+  import {
+    findPath,
+    setPath,
+    toggleRoutesDisplay,
+    zoomToEncompass,
+  } from "./lib/routes";
   import PathDisplay from "./lib/PathDisplay.svelte";
   import HelpText from "./lib/HelpText.svelte";
+  import EditMode from "./lib/EditMode.svelte";
 
   let pathFinderOrigin;
   let pathFinderDestination;
   let path;
 
-  let selectLocationById;
-  let zoomToLocationById;
-  let zoomToEncompass;
-
   function findLocation(value) {
-    console.log("findLocation", value, locations);
-
     const filtered = locations
       .filter(
         (loc) =>
-          loc.name.toLowerCase().includes(value.toLowerCase()) ||
-          (loc.tags &&
-            loc.tags.join(" ").toLowerCase().includes(value.toLowerCase()))
+          loc?.name?.length > 0 &&
+          (loc.name.toLowerCase().includes(value.toLowerCase()) ||
+            (loc.tags &&
+              loc.tags.join(" ").toLowerCase().includes(value.toLowerCase())))
       )
       .sort((a, b) => {
         const valLower = value.toLowerCase();
@@ -68,14 +74,14 @@
     setPath({ pathRouteIds: [] });
   }
 
-  onMount(
-    () =>
-      isDev &&
-      setTimeout(() => {
-        selectSearchResult("cL30w9UailtiheDMkqTR");
-        startPathFinder("UlGQ5WaiQHpVvJp5QrN7");
-      }, 1)
-  );
+  // onMount(
+  //   () =>
+  //     isDev &&
+  //     setTimeout(() => {
+  //       selectSearchResult("cL30w9UailtiheDMkqTR");
+  //       startPathFinder("UlGQ5WaiQHpVvJp5QrN7");
+  //     }, 1)
+  // );
 </script>
 
 <nav class="top left search flex vertical">
@@ -107,11 +113,14 @@
       ></SelectedLocation>
     {/if}
   </div>
+  r
+
   <div class="flex vertical buttons">
+    <Diagnostics></Diagnostics>
+    <EditMode></EditMode>
     <button on:click={toggleCountries}>Countries</button>
     <button on:click={toggleStates}>States</button>
-    <button on:click={toggleRoutes}>Routes</button>
-    <!-- <Diagnostics></Diagnostics> -->
+    <button on:click={toggleRoutesDisplay}>Routes</button>
     <Dialog>
       <div slot="button">?</div>
       <div slot="content"><HelpText></HelpText></div>
@@ -119,7 +128,7 @@
   </div>
 </nav>
 
-<Map bind:selectLocationById bind:zoomToLocationById bind:zoomToEncompass></Map>
+<Map></Map>
 
 <nav class="bottom left"></nav>
 

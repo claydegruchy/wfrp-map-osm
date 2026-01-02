@@ -6,12 +6,11 @@
   {#if locations.length == 1}
     <div>
       <b>
-        {locations[0].name}
+        {locations[0].name || "Unnamed"}
       </b>
-      <small>
-        <i>{locations[0].id}</i>
-      </small>
-
+      <div>
+        <i>Added by {locations[0].credit}</i>
+      </div>
       <div>
         {#each locations[0].art as image}
           <a href={image} target="_blank" rel="noopener noreferrer">
@@ -34,6 +33,9 @@
             <i class={tag.split(":").at(-1)}> {tag.split(":").at(-1)}</i>
           </div>
         {/each}
+        <small>
+          <i>({locations[0].id})</i>
+        </small>
       </div>
     </div>
   {:else}
@@ -47,7 +49,7 @@
       <tbody>
         {#each locations as { name, tags }, i}
           <tr>
-            <td>{name}</td>
+            <td>{name || "Unnamed"}</td>
             <td>{tags}</td>
           </tr>
         {/each}
@@ -62,7 +64,8 @@
     border-radius: 5px;
     padding: 10px;
     background-color: grey;
-    overflow: scroll;
+    overflow-y: scroll;
+    max-height: 50vh;
   }
 
   img {
