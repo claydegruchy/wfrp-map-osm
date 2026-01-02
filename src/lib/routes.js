@@ -12,7 +12,7 @@ import routesRaw from "../../public/routes.json"
 import DragBox from "ol/interaction/DragBox"
 import { platformModifierKeyOnly } from "ol/events/condition"
 import { extend } from "ol/extent"
-import { isDev, map } from "./stores"
+import { isEditMode, isDev, localRoutesObjectNonStore, map } from "./stores"
 
 
 console.log(routesRaw.filter(routes => {
@@ -52,6 +52,15 @@ const routeStyleWater = new Style({
 	})
 })
 
+const localStyle = new Style({
+	stroke: new Stroke({
+		width: 3,
+		color: 'yellow',
+		lineDash: [4, 4]
+	})
+})
+
+
 const pathStyle = new Style({
 	stroke: new Stroke({
 		width: 3,
@@ -65,6 +74,9 @@ export const routesLayer = new VectorLayer({
 
 	style: ((feature, zoom) => {
 		let type = feature.get('type');
+		let id = feature.getId()
+		if (localRoutesObjectNonStore[id]) return localStyle
+
 		if (type == "road") return routeStyleRoad
 		if (type == "water") return routeStyleWater
 		return routeStyleRoad
@@ -82,6 +94,8 @@ export function toggleRoutes(force = null) {
 	routesLayer.setVisible(force == null ? !routesLayer.getVisible() : force)
 }
 toggleRoutes()
+
+
 
 
 export function setRoutes() {
@@ -135,14 +149,35 @@ setRoutes()
 
 
 export let zoomToEncompass = function ({ pathNodes }, padding = 100, duration = 1000) { }
-export let addRoute = ({ source_id, destination_id, enabled = true, type = "road" }) => {
+
+export let addRoute = ({ source_id, destination_id, enabled = true, type = "road", ...rest }) => {
+	if (!locationsObject[source_id] || !locationsObject[destination_id]) {
+		console.error("location add error",
+			"source_id:",
+			locationsObject[source_id],
+			"destination_id:",
+			locationsObject[destination_id]
+		)
+		return
+	}
+	let newRoute = {
+		...rest,
+		source_id, destination_id, enabled, type,
+		length: computeDistance(locationsObject[source_id].coordinates, locationsObject[destination_id].coordinates)
+
+	}
+	routes.push(newRoute)
+	setRoutes()
+
+	return newRoute
 
 }
 
 
+
 map.subscribe(map => {
 	if (!map) return
-	if (isDev) {
+	if (isEditMode) {
 		const dragBox = new DragBox({
 			condition: platformModifierKeyOnly, // Ctrl on Windows/Linux, Cmd on macOS
 		});
@@ -177,77 +212,10 @@ map.subscribe(map => {
 		});
 
 
-		let pendingId = null
-		map.on('singleclick', evt => {
-			if (!platformModifierKeyOnly(evt)) return
-
-			const feature = map.forEachFeatureAtPixel(
-				evt.pixel,
-				f => f,
-				{
-					layerFilter: layer => layer !== routesLayer
-				}
-			)
-
-			if (!feature) return
-			console.log(feature);
-
-			const id = feature.getId()
-
-			if (!pendingId) {
-				pendingId = id
-				return
-			}
-
-
-			console.log("id path from",
-				id, "to",
-				pendingId);
-
-			console.log("path from",
-				locationsObject[id].name, "to",
-				locationsObject[pendingId].name);
-
-			const r = {
-				source_id: id,
-				destination_id: pendingId,
-				enabled: true,
-				type: 'road',
-			}
-			console.log(r);
-
-			routes = [...routes, r]
-			setRoutes()
-			console.log(locations, routes);
-
-
-			pendingId = null
-		})
 	}
 
 
 
-	addRoute = ({ source_id, destination_id, enabled = true, type = "road" }) => {
-		if (!locationsObject[source_id] || !locationsObject[destination_id]) {
-			console.error("location add error",
-				"source_id:",
-				locationsObject[source_id],
-				"destination_id:",
-				locationsObject[destination_id]
-			)
-			return
-		}
-		let newRoute = {
-			source_id, destination_id, enabled, type,
-			length: computeDistance(locationsObject[source_id].coordinates, locationsObject[destination_id].coordinates)
-
-		}
-		routes.push(newRoute)
-		setRoutes()
-
-		return newRoute
-
-	}
 
 	zoomToEncompass = function ({ pathNodes }, padding = 100, duration = 1000) {
 
