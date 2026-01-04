@@ -60,6 +60,14 @@ const localStyle = new Style({
 	})
 })
 
+const localStyleDisabled = new Style({
+	stroke: new Stroke({
+		width: 1,
+		color: 'grey',
+		lineDash: [4, 4]
+	})
+})
+
 
 const pathStyle = new Style({
 	stroke: new Stroke({
@@ -75,6 +83,7 @@ export const routesLayer = new VectorLayer({
 	style: ((feature, zoom) => {
 		let type = feature.get('type');
 		let id = feature.getId()
+		if (localRoutesObjectNonStore[id] && !localRoutesObjectNonStore[id]?.enabled) return localStyleDisabled
 		if (localRoutesObjectNonStore[id]) return localStyle
 
 		if (type == "road") return routeStyleRoad
@@ -181,42 +190,7 @@ export let addRoute = ({ source_id, destination_id, enabled = true, type = "road
 
 map.subscribe(map => {
 	if (!map) return
-	if (isEditMode) {
-		const dragBox = new DragBox({
-			condition: platformModifierKeyOnly, // Ctrl on Windows/Linux, Cmd on macOS
-		});
 
-		map.addInteraction(dragBox);
-
-		dragBox.on("boxend", () => {
-			const extent = dragBox.getGeometry().getExtent();
-
-			const toUpdate = [];
-			routeSource.forEachFeatureIntersectingExtent(extent, (feature) => {
-				toUpdate.push(feature.getId());
-			});
-
-			for (const id of toUpdate) {
-				if (routesObject[id]) {
-					// make water
-					// routesObject[id].type = "water"
-					// remove
-					routesObject[id].enabled = false
-				}
-			}
-			// console.log(toUpdate.length, toUpdate);
-
-			routes = Object.values(routesObject)
-			setRoutes()
-			console.log(locations, routes);
-
-
-
-
-		});
-
-
-	}
 
 
 

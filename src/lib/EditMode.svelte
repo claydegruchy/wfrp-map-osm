@@ -5,6 +5,8 @@
     addRoute,
     routes,
     routesLayer,
+    routesObject,
+    routeSource,
     setRoutesDisplay,
     toggleRoutesDisplay,
   } from "./routes";
@@ -21,6 +23,7 @@
   import { platformModifierKeyOnly } from "ol/events/condition";
   import Dialog from "./Blocks/Dialog.svelte";
   import LoadAndSave from "./LoadAndSave.svelte";
+  import DragBox from "ol/interaction/DragBox";
 
   console.log("isEditMode", isEditMode);
 
@@ -48,6 +51,7 @@
     });
 
     let pendingId = null;
+    // for adding routes
     map.on("singleclick", (evt) => {
       if (!platformModifierKeyOnly(evt)) return;
 
@@ -73,6 +77,36 @@
       console.log(locations, routes);
 
       pendingId = null;
+    });
+
+    // for removing routes
+    const dragBox = new DragBox({
+      condition: platformModifierKeyOnly, // Ctrl on Windows/Linux, Cmd on macOS
+    });
+
+    map.addInteraction(dragBox);
+
+    dragBox.on("boxend", () => {
+      const extent = dragBox.getGeometry().getExtent();
+
+      const toUpdate = [];
+      routeSource.forEachFeatureIntersectingExtent(extent, (feature) => {
+        toUpdate.push(feature.getId());
+      });
+
+      for (const id of toUpdate) {
+        if (routesObject[id]) {
+          let updatedRoute = { ...routesObject[id], enabled: false };
+
+          $localRoutes = [...$localRoutes, addRoute(updatedRoute)];
+          // make water
+          // routesObject[id].type = "water"
+          // remove
+        }
+      }
+      // routes = Object.values(routesObject);
+      // setRoutes();
+      // console.log(locations, routes);
     });
   });
 
