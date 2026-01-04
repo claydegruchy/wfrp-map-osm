@@ -67,12 +67,12 @@
         pendingId = id;
         return;
       }
-      const r = {
+
+      let newRoute = addRoute({
         source_id: id,
         destination_id: pendingId,
-      };
-
-      let newRoute = addRoute(r);
+        type: routeType,
+      });
       $localRoutes = [...$localRoutes, newRoute];
       console.log(locations, routes);
 
