@@ -125,7 +125,7 @@
                   {/if}
                 </i>
                 {meterConv(route.length)}
-                <small> miles {route.cardinal} to</small>
+                <small> miles {route.cardinal} {name ? "to" : ""}</small>
               {/if}
               <b class="hover-pointer" on:click={() => zoomToLocationById(id)}>
                 {name}
