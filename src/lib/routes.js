@@ -39,37 +39,43 @@ export let routesObject = Object.fromEntries(routes.map(route => [route.source_i
 export let routeSource = new VectorSource()
 export let pathSource = new VectorSource()
 
-const routeStyleRoad = new Style({
-	stroke: new Stroke({
-		width: 5,
-	})
-})
-
-const routeStyleWater = new Style({
+const routeStyleRoad = (local) => new Style({
 	stroke: new Stroke({
 		width: 3,
-		color: 'blue'
+		color: local ? "yellow" : null,
+		lineDash: local ? [4, 4] : null
+
 	})
 })
 
-const localStyle = new Style({
+const routeStyleWater = (local) => new Style({
+	stroke: new Stroke({
+		width: 3,
+		// color: 'blue',
+		color: local ? "cyan" : 'blue',
+		lineDash: local ? [4, 4] : null
+
+	})
+})
+
+const localRouteStyle = (local) => new Style({
 	stroke: new Stroke({
 		width: 3,
 		color: 'yellow',
-		lineDash: [4, 4]
+
 	})
 })
 
-const localStyleDisabled = new Style({
+const localRouteStyleDisabled = (local) => new Style({
 	stroke: new Stroke({
 		width: 1,
 		color: 'grey',
-		lineDash: [4, 4]
+		lineDash: [2, 8]
 	})
 })
 
 
-const pathStyle = new Style({
+const pathStyle = (local) => new Style({
 	stroke: new Stroke({
 		width: 3,
 		color: 'red'
@@ -83,12 +89,13 @@ export const routesLayer = new VectorLayer({
 	style: ((feature, zoom) => {
 		let type = feature.get('type');
 		let id = feature.getId()
-		if (localRoutesObjectNonStore[id] && !localRoutesObjectNonStore[id]?.enabled) return localStyleDisabled
-		if (localRoutesObjectNonStore[id]) return localStyle
+		const local = localRoutesObjectNonStore[id]
+		if (local && !localRoutesObjectNonStore[id]?.enabled) return localRouteStyleDisabled(local)
 
-		if (type == "road") return routeStyleRoad
-		if (type == "water") return routeStyleWater
-		return routeStyleRoad
+
+		if (type == "road") return routeStyleRoad(local)
+		if (type == "water") return routeStyleWater(local)
+		return routeStyleRoad(local)
 	})
 
 })
