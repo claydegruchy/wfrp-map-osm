@@ -26,7 +26,7 @@ const defaultStyle = (feature, zoom) => new Style({
 	image: new CircleStyle({
 		radius: Math.max(zoom / -550 + 12, 0),
 		fill: new Fill({ color: 'transparent' }),
-		stroke: new Stroke({ color: 'blue', width: 2 })
+		stroke: new Stroke({ color: 'blue', width: feature.get("name") == "" ? 1 : 2 })
 	}),
 })
 
