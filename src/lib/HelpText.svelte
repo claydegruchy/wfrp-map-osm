@@ -109,6 +109,7 @@
 
   <h4>Updates</h4>
   <ul>
+    <li>2026/1: Add way to remove master map routes locally</li>
     <li>
       2026/1: Added feature to let people make custom maps and share them, as
       well as contribute to the master map
