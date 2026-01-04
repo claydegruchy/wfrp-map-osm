@@ -206,8 +206,7 @@
           <h4>Removing routes</h4>
           <p>
             Hold CMD (MacOS) or CTRL (Windows) and drag a box over the routes
-            you wish to remove. Flagging master map routes for deletion
-            currently isn't possible.
+            you wish to remove.
           </p>
           <h4>Backup/Share</h4>
           <p>
