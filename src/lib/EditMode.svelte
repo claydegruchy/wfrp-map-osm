@@ -248,7 +248,12 @@
             <li>
               Try to only add routes that have a direct road connection or
               direct river connection (a highway direct from Altdorf to
-              L'Anguille would be nice to have but not lore accurate)
+              L'Anguille would be nice to have but not lore accurate).
+            </li>
+            <li>
+              If a route is long and adding a direct connection would make it
+              too much of a shortcut (or if it turns a lot of corners), add
+              nameless "junction" locations to better represent the route.
             </li>
             <li>
               Try to only tag places as a city if they're a major capital, such
