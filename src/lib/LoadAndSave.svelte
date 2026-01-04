@@ -9,6 +9,7 @@
   } from "./stores";
 
   function downloadJSON(obj, filename = "data.json") {
+    window.umami?.track("downloadJSON");
     const blob = new Blob([JSON.stringify(obj, null, "\t")], {
       type: "application/json",
     });
@@ -27,6 +28,7 @@
   }
   function onFileChange(e) {
     console.log("filechange");
+    window.umami?.track("uploadJSON");
 
     const file = e.target.files[0];
     if (!file) return;

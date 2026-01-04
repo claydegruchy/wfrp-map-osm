@@ -232,6 +232,8 @@ map.subscribe(map => {
 
 	zoomToLocationById = function (id) {
 		console.log("zoomToLocationById", id);
+		window.umami?.track("zoomToLocationById", id)
+
 
 		const feature = locationsLayer.getSource().getFeatureById(id);
 		if (!feature) return;

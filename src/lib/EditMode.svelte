@@ -112,6 +112,7 @@
 
   function handleAddLocation() {
     let requiredTags = ["source:quickadd", "added_by:" + editId];
+    window.umami?.track("handleAddLocation");
 
     let location = {
       name: newLocationName,
@@ -148,6 +149,7 @@
   }
 
   onMount(() => {
+    isEditMode && window.umami?.track("openEditMode", { editId });
     for (const location of $localLocations) {
       addLocation(location);
     }

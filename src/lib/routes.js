@@ -225,6 +225,7 @@ map.subscribe(map => {
 
 export function findPath(startId, endId) {
 	{
+		window.umami?.track("findPath", { startId, endId })
 		const graph = {}
 		const nameGraph = {}
 
