@@ -58,14 +58,16 @@ const selectedStyle = (feature, zoom) => new Style({
 			color: 'white', width: 2,
 		})
 	}),
-	// text: new Text({   
-	// 	text: feature.get('name') || "Unnamed",
-	// 	offsetY: -50,
-	// 	scale: 2,
-	// 	fill: new Fill({ color: '#fff' }),
-	// 	stroke: new Stroke({ color: '#000', width: 20 })
-	// })
 
+})
+
+const disabledLocalStyle = (feature, zoom) => new Style({
+	image: new CircleStyle({
+		radius: 5,
+		fill: new Fill({
+			color: 'rgba(1, 1, 1, .5)' // slight yellow tint
+		}),
+	}),
 })
 
 export let addLocation = function ({ name, coordinates, tags, credit, id = randomString(), ...rest }) {
@@ -77,6 +79,7 @@ export let addLocation = function ({ name, coordinates, tags, credit, id = rando
 		credit,
 		art: [],
 		id,
+		enabled: true,
 
 	}
 	locations.push(loc)
@@ -99,7 +102,12 @@ export const locationsLayer = new VectorLayer({
 
 		let tags = feature.get('tags');
 		let id = feature.getId()
+		let enabled = feature.get("enabled")
+
+
+		if (localLocationsObjectNonStore[id] && !enabled) return disabledLocalStyle(feature, zoom)
 		if (localLocationsObjectNonStore[id]) return localStyle(feature, zoom)
+
 
 		if (!tags) return defaultStyle(feature, zoom)
 		if (tags.includes("city")) return cityStyle(feature, zoom)
@@ -118,14 +126,16 @@ export function setLocations() {
 	console.log("setLocations");
 
 	locationsSource.clear()
-	const features = locations.map(p => {
-		let f = new Feature({
-			geometry: new Point(p.coordinates),
-			...p
+	const features = locations
+		// .filter(p => p.enabled)
+		.map(p => {
+			let f = new Feature({
+				geometry: new Point(p.coordinates),
+				...p
+			})
+			f.setId(p.id)
+			return f
 		})
-		f.setId(p.id)
-		return f
-	})
 
 	locationsSource.addFeatures(features)
 }
