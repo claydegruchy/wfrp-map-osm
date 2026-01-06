@@ -108,7 +108,6 @@ export const locationsLayer = new VectorLayer({
 		let id = feature.getId()
 		let enabled = feature.get("enabled")
 		let name = feature.get("name")
-		console.log("enabled", name, enabled);
 
 
 

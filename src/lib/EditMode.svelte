@@ -145,9 +145,16 @@
     let location = {
       name: newLocationName,
       coordinates,
-      tags: [...requiredTags, ...($addLocationTags?.split(",") || [])],
+      tags: [...requiredTags, ...($addLocationTags?.split(",") || [])].map(
+        (t) =>
+          t
+            .toLowerCase()
+            .trim()
+            .filter((t) => t != "")
+      ),
       credit: editId,
     };
+    console.log(location);
 
     let newLocation = addLocation(location);
     if (connectRoute && lastLocation) {
