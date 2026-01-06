@@ -1,6 +1,11 @@
 <script>
   import { onMount } from "svelte";
-  import { addLocation, locations, locationsObject } from "./locations";
+  import {
+    addLocation,
+    locations,
+    locationsObject,
+    locationsSource,
+  } from "./locations";
   import {
     addRoute,
     routes,
@@ -90,12 +95,17 @@
     dragBox.on("boxend", () => {
       const extent = dragBox.getGeometry().getExtent();
 
-      const toUpdate = [];
+      const routesToUpdate = [];
+      const locationsToUpdate = [];
       routeSource.forEachFeatureIntersectingExtent(extent, (feature) => {
-        toUpdate.push(feature.getId());
+        routesToUpdate.push(feature.getId());
       });
 
-      for (const id of toUpdate) {
+      locationsSource.forEachFeatureIntersectingExtent(extent, (feature) => {
+        locationsToUpdate.push(feature.getId());
+      });
+
+      for (const id of routesToUpdate) {
         if (routesObject[id]) {
           let updatedRoute = { ...routesObject[id], enabled: false };
 
@@ -105,6 +115,19 @@
           // remove
         }
       }
+
+      for (const id of locationsToUpdate) {
+        if (locationsObject[id]) {
+          let updatedLocation = { ...locationsObject[id], enabled: false };
+          console.log("disabling", updatedLocation);
+
+          $localLocations = [...$localRoutes, addLocation(updatedLocation)];
+          // make water
+          // routesObject[id].type = "water"
+          // remove
+        }
+      }
+
       // routes = Object.values(routesObject);
       // setRoutes();
       // console.log(locations, routes);
