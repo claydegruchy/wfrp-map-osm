@@ -119,18 +119,22 @@
       for (const id of locationsToUpdate) {
         if (locationsObject[id]) {
           let updatedLocation = { ...locationsObject[id], enabled: false };
-          console.log("disabling", updatedLocation);
-
-          $localLocations = [...$localRoutes, addLocation(updatedLocation)];
-          // make water
-          // routesObject[id].type = "water"
-          // remove
+          $localLocations = [...$localLocations, addLocation(updatedLocation)];
         }
       }
 
-      // routes = Object.values(routesObject);
-      // setRoutes();
-      // console.log(locations, routes);
+      for (const { enabled, id } of $localLocations) {
+        if (!enabled) {
+          const linkedRoutes = routes.filter(
+            (r) => r.destination_id == id || r.source_id == id
+          );
+          for (const route of linkedRoutes) {
+            let updatedRoute = { ...route, enabled: false };
+
+            $localRoutes = [...$localRoutes, addRoute(updatedRoute)];
+          }
+        }
+      }
     });
   });
 
