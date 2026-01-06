@@ -39,6 +39,7 @@
 
   map.subscribe((map) => {
     if (!map) return;
+    if (!isEditMode) return;
     // for adding new locations
     map.getViewport().addEventListener("contextmenu", (e) => {
       console.log("menu");
