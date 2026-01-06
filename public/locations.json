@@ -13710,7 +13710,6 @@
 			],
 			"tags": [
 				"country:kislev",
-				"city",
 				"state:western oblast"
 			],
 			"credit": "Sig",
@@ -13725,7 +13724,6 @@
 			],
 			"tags": [
 				"country:kislev",
-				"city",
 				"state:western oblast"
 			],
 			"credit": "Sig",
@@ -13804,8 +13802,7 @@
 				6827656.868519137
 			],
 			"tags": [
-				"country:kislev",
-				"city"
+				"country:kislev"
 			],
 			"credit": "Sig",
 			"art": [],
@@ -13818,8 +13815,7 @@
 				6630517.212893949
 			],
 			"tags": [
-				"country:kislev",
-				"city"
+				"country:kislev"
 			],
 			"credit": "Sig",
 			"art": [],
