@@ -170,7 +170,7 @@ setRoutes()
 
 export let zoomToEncompass = function ({ pathNodes }, padding = 100, duration = 1000) { }
 
-export let addRoute = ({ source_id, destination_id, enabled = true, type = "road", ...rest }) => {
+export let addRoute = ({ source_id, destination_id, enabled = true, type = "road", ...rest }, updateMap = true) => {
 	if (!locationsObject[source_id] || !locationsObject[destination_id]) {
 		console.error("location add error",
 			"source_id:",
@@ -187,7 +187,7 @@ export let addRoute = ({ source_id, destination_id, enabled = true, type = "road
 
 	}
 	routes.push(newRoute)
-	setRoutes()
+	updateMap && setRoutes()
 
 	return newRoute
 

@@ -70,7 +70,11 @@ const disabledLocalStyle = (feature, zoom) => new Style({
 	}),
 })
 
-export let addLocation = function ({ name, coordinates, tags, credit, id = randomString(), ...rest }) {
+
+
+
+
+export let addLocation = function ({ name, coordinates, tags, credit, id = randomString(), ...rest }, updateMap = true) {
 
 	let loc = {
 		name,
@@ -86,7 +90,7 @@ export let addLocation = function ({ name, coordinates, tags, credit, id = rando
 
 	locationsObject[id] = loc
 
-	setLocations()
+	updateMap && setLocations()
 
 	locations = Object.values(locationsObject)
 
@@ -127,6 +131,7 @@ export const locationsLayer = new VectorLayer({
 
 export function setLocations() {
 	console.log("setLocations");
+
 
 	locationsSource.clear()
 	const features = Object.values(locationsObject)
