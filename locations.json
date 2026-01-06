@@ -10195,7 +10195,6 @@
             5146661.671055013
         ],
         "tags": [
-            "added_by:vlflfbugiggjfefdhucrhhrtdurvntlc",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -10209,7 +10208,6 @@
             5228783.765511452
         ],
         "tags": [
-            "added_by:vlflfbugiggjfefdhucrhhrtdurvntlc",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -10223,7 +10221,6 @@
             5051823.514418328
         ],
         "tags": [
-            "added_by:vlflfbugiggjfefdhucrhhrtdurvntlc",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -10237,7 +10234,6 @@
             5260204.659342524
         ],
         "tags": [
-            "added_by:vlflfbugiggjfefdhucrhhrtdurvntlc",
             "country:brettonia",
             "city"
         ],
@@ -10252,7 +10248,6 @@
             4969877.939682311
         ],
         "tags": [
-            "added_by:vlflfbugiggjfefdhucrhhrtdurvntlc",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -10266,7 +10261,6 @@
             4856482.735120649
         ],
         "tags": [
-            "added_by:vlflfbugiggjfefdhucrhhrtdurvntlc",
             "country:brettonia"
         ],
         "credit": "GeDruchy",
@@ -11780,5 +11774,2122 @@
         "credit": "GeDruchy",
         "art": [],
         "id": "EZEdXAgq"
-    }
+    },
+
+		{
+			"name": "Emsk",
+			"coordinates": [
+				997637.6806632711,
+				5512287.984467159
+			],
+			"tags": [
+				"country:kislev"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "mzaHp201u"
+		},
+		{
+			"name": "Brzesc",
+			"coordinates": [
+				1143214.4650717496,
+				5422862.245473379
+			],
+			"tags": [
+				"country:kislev",
+				" western oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "J1Uk3rhe6"
+		},
+		{
+			"name": "Plowce",
+			"coordinates": [
+				1114099.108190054,
+				5592701.827283271
+			],
+			"tags": [
+				"country:kislev",
+				"state:western oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "HNlh238C"
+		},
+		{
+			"name": "Wojtaszyce",
+			"coordinates": [
+				1174409.490302138,
+				5712629.368724542
+			],
+			"tags": [
+				"country:kislev",
+				"state:western oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "WgQFxbaysMhF"
+		},
+		{
+			"name": "Krakjunov",
+			"coordinates": [
+				1295582.535637486,
+				5942136.480942013
+			],
+			"tags": [
+				"country:kislev",
+				"state:western oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "3EBIqzmlbw"
+		},
+		{
+			"name": "Schonsze",
+			"coordinates": [
+				1043942.6654456872,
+				6021857.100975227
+			],
+			"tags": [
+				"country:kislev",
+				"state:western oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "iNqtJm5DdK"
+		},
+		{
+			"name": "Ostrody",
+			"coordinates": [
+				1488858.9743560152,
+				5842963.470180058
+			],
+			"tags": [
+				"country:kislev",
+				"state:western oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "EedjOcvp"
+		},
+		{
+			"name": "Koniecpole",
+			"coordinates": [
+				1643939.279679016,
+				5948621.9094810765
+			],
+			"tags": [
+				"country:kislev",
+				"state:western oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "fapQm6kT"
+		},
+		{
+			"name": "Tczew",
+			"coordinates": [
+				1795797.5950041541,
+				6019048.954269546
+			],
+			"tags": [
+				"country:kislev",
+				"state:western oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "22NgPMW0"
+		},
+		{
+			"name": "Gorovny",
+			"coordinates": [
+				1829910.6948235692,
+				5894701.203314904
+			],
+			"tags": [
+				"country:kislev",
+				"state:western oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "4ibikJZ7Bf5fWJ"
+		},
+		{
+			"name": "",
+			"coordinates": [
+				961772.1338275921,
+				6121079.468326137
+			],
+			"tags": [
+				"added_by:Sig"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "9NUlyjJE1ob4v"
+		},
+		{
+			"name": "Chzovich",
+			"coordinates": [
+				1735369.2039259404,
+				5688613.39642194
+			],
+			"tags": [
+				"country:kislev",
+				"state:western oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "aYthfbvMtL0"
+		},
+		{
+			"name": "Kamysh",
+			"coordinates": [
+				1736469.6265007604,
+				5471830.149182431
+			],
+			"tags": [
+				"country:kislev",
+				"state:western oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "gdzzfNEvphAb"
+		},
+		{
+			"name": "Wizna",
+			"coordinates": [
+				1513083.8438123325,
+				5240741.408470267
+			],
+			"tags": [
+				"country:kislev",
+				"state:western oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "a2mEYXjzplgumiV"
+		},
+		{
+			"name": "Blotno",
+			"coordinates": [
+				1605519.3400971992,
+				5082280.55769621
+			],
+			"tags": [
+				"country:kislev",
+				"state:western oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "dhDhgdK2S"
+		},
+		{
+			"name": "Zabow",
+			"coordinates": [
+				1792591.1778165721,
+				5129598.728413464
+			],
+			"tags": [
+				"country:kislev",
+				"state:western oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "YUIMAO3tdqSyiMx"
+		},
+		{
+			"name": "Ptorsk",
+			"coordinates": [
+				1805796.2487144102,
+				4971137.877639407
+			],
+			"tags": [
+				"country:kislev",
+				"state:western oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "UlQGktsfJ5Ngm"
+		},
+		{
+			"name": "Irinasgrad",
+			"coordinates": [
+				2034684.1442769372,
+				5159310.1379336
+			],
+			"tags": [
+				"country:kislev",
+				"state:western oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "bbsfcIhYMYwygHF"
+		},
+		{
+			"name": "Sava",
+			"coordinates": [
+				2299885.984808519,
+				5189021.547453735
+			],
+			"tags": [
+				"country:kislev",
+				"state:western oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "2V27rKP9"
+		},
+		{
+			"name": "Inkodevna",
+			"coordinates": [
+				2298785.5622336995,
+				5325473.946731396
+			],
+			"tags": [
+				"country:kislev",
+				"state:western oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "kHgpPkYXh4"
+		},
+		{
+			"name": "",
+			"coordinates": [
+				1927806.6324346834,
+				5111790.587396385
+			],
+			"tags": [
+				"added_by:Sig"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "Sxg3Aiyc9p9KyA"
+		},
+		{
+			"name": "",
+			"coordinates": [
+				1168069.7432455064,
+				5002564.986894272
+			],
+			"tags": [
+				"added_by:Sig"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "G6XxfuBpQq"
+		},
+		{
+			"name": "",
+			"coordinates": [
+				1154075.7615814565,
+				5154499.644961098
+			],
+			"tags": [
+				"added_by:Sig"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "EEI1yYd4A"
+		},
+		{
+			"name": "",
+			"coordinates": [
+				1880578.5364166494,
+				5781933.828529048
+			],
+			"tags": [
+				"added_by:Sig"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "Qne3fCl5zXlW"
+		},
+		{
+			"name": "",
+			"coordinates": [
+				1980535.5483027184,
+				5671981.115454372
+			],
+			"tags": [
+				"added_by:Sig"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "WQa2s0Lhaq28EAva"
+		},
+		{
+			"name": "",
+			"coordinates": [
+				1996528.6702044895,
+				5559029.692023113
+			],
+			"tags": [
+				"added_by:Sig"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "DiloZFNG7DXoL"
+		},
+		{
+			"name": "",
+			"coordinates": [
+				2074495.1394756236,
+				5499055.484891472
+			],
+			"tags": [
+				"added_by:Sig"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "uNfnczeWCvXiF"
+		},
+		{
+			"name": "",
+			"coordinates": [
+				2144465.047795872,
+				5415091.594907174
+			],
+			"tags": [
+				"added_by:Sig"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "kdLoFsjkG3p"
+		},
+		{
+			"name": "",
+			"coordinates": [
+				1948759.6637238024,
+				5763879.522224096
+			],
+			"tags": [
+				"added_by:Sig"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "bHqBWoLyH"
+		},
+		{
+			"name": "",
+			"coordinates": [
+				1886786.3163544396,
+				5846843.842089534
+			],
+			"tags": [
+				"added_by:Sig"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "ai6pV8TTrn"
+		},
+		{
+			"name": "",
+			"coordinates": [
+				2056232.8777498752,
+				5545194.877068824
+			],
+			"tags": [
+				"added_by:Sig"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "dlrdVfyOy"
+		},
+		{
+			"name": "",
+			"coordinates": [
+				2091217.8319100004,
+				5445237.865182754
+			],
+			"tags": [
+				"added_by:Sig"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "bdZj82ok9"
+		},
+		{
+			"name": "Svatinevo",
+			"coordinates": [
+				1980583.1391444418,
+				5289295.089714626
+			],
+			"tags": [
+				"country:kislev",
+				"state:western oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "4yJAb5eLwUuhlh"
+		},
+		{
+			"name": "Resvynhaf",
+			"coordinates": [
+				2448304.7779088495,
+				4913212.670451982
+			],
+			"tags": [
+				"country:kislev",
+				"state:southern oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "re3i1BpdQX"
+		},
+		{
+			"name": "Rakhov",
+			"coordinates": [
+				2469295.7504049237,
+				4636331.74752757
+			],
+			"tags": [
+				"country:kislev",
+				"state:southern oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "STIj0RsvN6"
+		},
+		{
+			"name": "Vitevo",
+			"coordinates": [
+				2699196.8777428833,
+				4732290.478938197
+			],
+			"tags": [
+				"country:kislev",
+				"state:southern oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "fgTswMitFn"
+		},
+		{
+			"name": "Suzdal",
+			"coordinates": [
+				2688094.021495866,
+				5127019.515750577
+			],
+			"tags": [
+				"country:kislev",
+				"state:southern oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "dpfqJWhwuNKltVe"
+		},
+		{
+			"name": "Mirka",
+			"coordinates": [
+				2905000.737288636,
+				5116024.244443109
+			],
+			"tags": [
+				"country:kislev",
+				"state:southern oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "o0R172o686Aapo"
+		},
+		{
+			"name": "Smonya",
+			"coordinates": [
+				2927990.8500224324,
+				4989078.839347801
+			],
+			"tags": [
+				"country:kislev",
+				"state:southern oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "0KgOTzA1a"
+		},
+		{
+			"name": "",
+			"coordinates": [
+				824118.7559900403,
+				6231846.34751346
+			],
+			"tags": [
+				"added_by:Sig"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "IcePqfAksZStKF8"
+		},
+		{
+			"name": "",
+			"coordinates": [
+				632201.2931687873,
+				6445754.352949648
+			],
+			"tags": [
+				"added_by:Sig"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "UaQf8eY2Rd"
+		},
+		{
+			"name": "Maja Uvemny",
+			"coordinates": [
+				426289.8486834845,
+				6553707.925786603
+			],
+			"tags": [
+				"country:kislev",
+				"state:northern oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "ZghAv9jw0wQf"
+		},
+		{
+			"name": "Pradeshynya",
+			"coordinates": [
+				1011176.2124642166,
+				6743959.0834371485
+			],
+			"tags": [
+				"country:kislev",
+				"state:northern oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "NXDmciEFYCmj"
+		},
+		{
+			"name": "Ungalya",
+			"coordinates": [
+				856281.3230045312,
+				7275943.345378358
+			],
+			"tags": [
+				"country:kislev",
+				"state:northern oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "YuDzY9u4j0zN"
+		},
+		{
+			"name": "Zoishenk",
+			"coordinates": [
+				1275101.2028071617,
+				7105016.85505318
+			],
+			"tags": [
+				"country:kislev",
+				"state:northern oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "0w9N0ru4X"
+		},
+		{
+			"name": "Leblya",
+			"coordinates": [
+				1328715.8150366633,
+				7652419.105999868
+			],
+			"tags": [
+				"country:kislev",
+				"state:northern oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "DacABWHdlFpo"
+		},
+		{
+			"name": "Dhazhyn",
+			"coordinates": [
+				1771359.2817976035,
+				7769975.245229195
+			],
+			"tags": [
+				"country:kislev",
+				"state:northern oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "K0E8D6QbKk1ClY"
+		},
+		{
+			"name": "Fort Straghov",
+			"coordinates": [
+				2214784.554300934,
+				8068905.774868975
+			],
+			"tags": [
+				"country:kislev",
+				"state:northern oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "UuNiC7oYPLgr5t"
+		},
+		{
+			"name": "Fort Kaminski",
+			"coordinates": [
+				2210096.168470332,
+				7772365.371083322
+			],
+			"tags": [
+				"country:kislev",
+				"state:northern oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "a2K6XX80wG"
+		},
+		{
+			"name": "Fort Ostrosk",
+			"coordinates": [
+				2228949.1262854477,
+				7540771.383177212
+			],
+			"tags": [
+				"country:kislev",
+				"state:northern oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "NEjCIN8fRFcC"
+		},
+		{
+			"name": "Fortress of Zvenilev",
+			"coordinates": [
+				2633532.469435796,
+				7685878.661129741
+			],
+			"tags": [
+				"country:kislev",
+				"state:northern oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "sFekx1171i"
+		},
+		{
+			"name": "Svedora",
+			"coordinates": [
+				2969924.1527815773,
+				7723385.747774567
+			],
+			"tags": [
+				"country:kislev",
+				"state:northern oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "TPb33hJQwOhmhVU6"
+		},
+		{
+			"name": "Kacirk",
+			"coordinates": [
+				2981298.961395516,
+				7212188.476610365
+			],
+			"tags": [
+				"country:kislev",
+				"state:northern oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "y3BE74Kb"
+		},
+		{
+			"name": "Yetchitch",
+			"coordinates": [
+				3334485.895060395,
+				7476689.214913548
+			],
+			"tags": [
+				"country:kislev",
+				"state:eastern oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "vTycjmTjSsozujb"
+		},
+		{
+			"name": "Sepukzy",
+			"coordinates": [
+				3584130.1849838663,
+				7364212.11725572
+			],
+			"tags": [
+				"country:kislev",
+				"state:eastern oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "YS4Ux9LvLl9"
+		},
+		{
+			"name": "Ramaejk",
+			"coordinates": [
+				3342715.9265963333,
+				7194124.798846321
+			],
+			"tags": [
+				"country:kislev",
+				"state:eastern oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "isy4W0ahu"
+		},
+		{
+			"name": "Volksgrad",
+			"coordinates": [
+				3420901.2261877507,
+				7061072.622348648
+			],
+			"tags": [
+				"country:kislev",
+				"state:eastern oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "K4JVxuCNB"
+		},
+		{
+			"name": "Uskovic",
+			"coordinates": [
+				3196285.765905685,
+				6798820.867951924
+			],
+			"tags": [
+				"country:kislev",
+				"state:eastern oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "cadXr9HQemqw"
+		},
+		{
+			"name": "Moraveny",
+			"coordinates": [
+				3544690.4342604196,
+				6669883.70722222
+			],
+			"tags": [
+				"country:kislev",
+				"state:eastern oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "OvryR9Ct2AiT"
+		},
+		{
+			"name": "Novchozy",
+			"coordinates": [
+				4027518.951035486,
+				6866032.79216209
+			],
+			"tags": [
+				"country:kislev",
+				"state:eastern oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "kEPUhDEPxw"
+		},
+		{
+			"name": "Shatsk",
+			"coordinates": [
+				3526595.433475249,
+				6197973.222858926
+			],
+			"tags": [
+				"country:kislev",
+				"state:eastern oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "4FecFAWOI1ZKR"
+		},
+		{
+			"name": "Plesk",
+			"coordinates": [
+				3984733.8556424994,
+				6001824.137919056
+			],
+			"tags": [
+				"country:kislev",
+				"state:eastern oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "KJdK85BPlpUGeb"
+		},
+		{
+			"name": "Iaryn",
+			"coordinates": [
+				2202231.6533804527,
+				7203458.873116624
+			],
+			"tags": [
+				"country:kislev",
+				"state:northern oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "1bMZy868pSYLB6"
+		},
+		{
+			"name": "The Golinyi",
+			"coordinates": [
+				2394951.5585136795,
+				7013482.311828706
+			],
+			"tags": [
+				"country:kislev",
+				"state:northern oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "BTKVoL2Kb0BJg"
+		},
+		{
+			"name": "Dushyka",
+			"coordinates": [
+				2568468.056729719,
+				7028570.7029779265
+			],
+			"tags": [
+				"country:kislev",
+				"state:northern oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "8TPzX7RVEo4XX"
+		},
+		{
+			"name": "Chazask",
+			"coordinates": [
+				2723607.748844821,
+				6783145.785412901
+			],
+			"tags": [
+				"country:kislev",
+				"state:northern oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "oloVeltuO3bh8W"
+		},
+		{
+			"name": "Krovas",
+			"coordinates": [
+				1053172.2639878597,
+				6464492.369748166
+			],
+			"tags": [
+				"country:kislev",
+				"state:northern oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "AQlr4R5g"
+		},
+		{
+			"name": "Goranitch",
+			"coordinates": [
+				1630646.14342622,
+				6623606.312776314
+			],
+			"tags": [
+				"country:kislev",
+				"state:northern oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "v13ihadwe"
+		},
+		{
+			"name": "Vitzy",
+			"coordinates": [
+				1610071.0645863733,
+				6183299.625603598
+			],
+			"tags": [
+				"country:kislev",
+				"state:northern oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "8aB9n4xVojyUc"
+		},
+		{
+			"name": "Zhedevka",
+			"coordinates": [
+				2013897.2923521178,
+				6451657.507184572
+			],
+			"tags": [
+				"country:kislev",
+				"state:northern oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "Kkl2knp5J2E6p"
+		},
+		{
+			"name": "Jydske",
+			"coordinates": [
+				1893282.9275391442,
+				6070392.14721836
+			],
+			"tags": [
+				"country:kislev",
+				"state:western oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "WhxJK7qKg6nnthgq"
+		},
+		{
+			"name": "Choika",
+			"coordinates": [
+				2105892.0755508924,
+				6192470.948334782
+			],
+			"tags": [
+				"country:kislev",
+				"state:western oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "luz2lZppn6QC"
+		},
+		{
+			"name": "",
+			"coordinates": [
+				2359651.381242334,
+				6143090.75911915
+			],
+			"tags": [
+				"added_by:Sig"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "5uGHPff2fcqfu"
+		},
+		{
+			"name": "Bolgasgrad",
+			"coordinates": [
+				2436465.0089110914,
+				6211674.355251972
+			],
+			"tags": [
+				"country:kislev",
+				"state:eastern oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "DywXAHk9qVoFamh"
+		},
+		{
+			"name": "Ammatus",
+			"coordinates": [
+				2313802.758568914,
+				6345136.078691964
+			],
+			"tags": [
+				"country:kislev",
+				"state:northern oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "2BHczA6DNCbJ"
+		},
+		{
+			"name": "Dagnyper",
+			"coordinates": [
+				2253449.1939720307,
+				6501506.677874798
+			],
+			"tags": [
+				"country:kislev",
+				"state:northern oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "A3Jqc8Wt9PC"
+		},
+		{
+			"name": "Krasicyno",
+			"coordinates": [
+				2434509.8877626806,
+				6450754.81673651
+			],
+			"tags": [
+				"country:kislev",
+				"state:northern oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "VHmXdpXr88u0"
+		},
+		{
+			"name": "",
+			"coordinates": [
+				2349466.228557981,
+				6467214.879808387
+			],
+			"tags": [
+				"added_by:Sig"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "d2dHJNI3"
+		},
+		{
+			"name": "Yvegka",
+			"coordinates": [
+				2601853.8623267664,
+				6431551.409819319
+			],
+			"tags": [
+				"country:kislev",
+				"state:eastern oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "XjcDsaAqs0Wg"
+		},
+		{
+			"name": "Gutaidra",
+			"coordinates": [
+				2795259.603421324,
+				6565975.258239649
+			],
+			"tags": [
+				"country:kislev",
+				"state:eastern oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "dhMvQ1kj"
+		},
+		{
+			"name": "Chaglev",
+			"coordinates": [
+				3026144.8314824607,
+				6415110.66959384
+			],
+			"tags": [
+				"country:kislev",
+				"state:eastern oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "EgHCuVrsNNLZlc"
+		},
+		{
+			"name": "Tesov",
+			"coordinates": [
+				3251099.0267981165,
+				6496039.31303057
+			],
+			"tags": [
+				"country:kislev",
+				"state:eastern oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "3R8Fl3XFZ"
+		},
+		{
+			"name": "Sanyza",
+			"coordinates": [
+				3033231.8523356477,
+				6251005.274550347
+			],
+			"tags": [
+				"country:kislev",
+				"state:eastern oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "NM71fkTIM98g"
+		},
+		{
+			"name": "Gorodec",
+			"coordinates": [
+				2830224.407782495,
+				6120696.441897985
+			],
+			"tags": [
+				"country:kislev",
+				"state:eastern oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "IWGV6q5JEDYCiQBQ"
+		},
+		{
+			"name": "Baiyn",
+			"coordinates": [
+				2568235.070555115,
+				6120696.441897985
+			],
+			"tags": [
+				"country:kislev",
+				"state:eastern oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "WdtCoummOxc3d"
+		},
+		{
+			"name": "Vologda",
+			"coordinates": [
+				2738322.3889645133,
+				6094634.675367512
+			],
+			"tags": [
+				"country:kislev",
+				"state:eastern oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "tEuo93Gusnt7bZo"
+		},
+		{
+			"name": "Tartu",
+			"coordinates": [
+				2894692.9881473472,
+				5999989.312704219
+			],
+			"tags": [
+				"country:kislev",
+				"state:eastern oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "H342H2tOf6enV9q"
+		},
+		{
+			"name": "Kobrin",
+			"coordinates": [
+				3035975.1961809606,
+				6010962.688085469
+			],
+			"tags": [
+				"country:kislev",
+				"state:eastern oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "7h0aeSuOR"
+		},
+		{
+			"name": "Laaniste",
+			"coordinates": [
+				3348716.3945466285,
+				6009591.016162813
+			],
+			"tags": [
+				"country:kislev",
+				"state:eastern oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "KprpQsfGR"
+		},
+		{
+			"name": "Uvetsyn",
+			"coordinates": [
+				2963276.5842801696,
+				5834017.01006279
+			],
+			"tags": [
+				"country:kislev",
+				"state:eastern oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "tFFS4mHmzZ"
+		},
+		{
+			"name": "Vdovya",
+			"coordinates": [
+				2560573.204132666,
+				5875029.307768943
+			],
+			"tags": [
+				"country:kislev",
+				"state:eastern oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "KA9TxyhNF6dP"
+		},
+		{
+			"name": "Belava",
+			"coordinates": [
+				2553714.8445193837,
+				5685738.582442354
+			],
+			"tags": [
+				"country:kislev",
+				"state:eastern oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "Vkqcy32ey3ybxI"
+		},
+		{
+			"name": "Ardkha",
+			"coordinates": [
+				2473672.0965397926,
+				5413458.3814101545
+			],
+			"tags": [
+				"country:kislev",
+				"state:eastern oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "r9bzq0w2bmz"
+		},
+		{
+			"name": "Turov",
+			"coordinates": [
+				2635529.3834132524,
+				5381909.927189056
+			],
+			"tags": [
+				"country:kislev",
+				"state:eastern oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "bVKmPjISQ6nwz"
+		},
+		{
+			"name": "Gerslev",
+			"coordinates": [
+				3082358.8279887494,
+				5276513.451081778
+			],
+			"tags": [
+				"country:kislev",
+				"state:southern oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "0fdtea5f"
+		},
+		{
+			"name": "Kyrnoka",
+			"coordinates": [
+				3171517.5029614177,
+				5371158.813745072
+			],
+			"tags": [
+				"country:kislev",
+				"state:southern oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "ds9qumLh"
+		},
+		{
+			"name": "Deghov",
+			"coordinates": [
+				3423905.1367302025,
+				5550847.835613065
+			],
+			"tags": [
+				"country:kislev",
+				"state:southern oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "CKSZfrHLKaU"
+		},
+		{
+			"name": "Belev",
+			"coordinates": [
+				3658461.035504453,
+				5493237.614861495
+			],
+			"tags": [
+				"country:kislev",
+				"state:southern oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "0uzQCCLhd6"
+		},
+		{
+			"name": "Igerov",
+			"coordinates": [
+				3430763.496343484,
+				5313548.592993502
+			],
+			"tags": [
+				"country:kislev",
+				"state:southern oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "37oPAmHac"
+		},
+		{
+			"name": "Resov",
+			"coordinates": [
+				3292224.632155184,
+				5190098.119954422
+			],
+			"tags": [
+				"country:kislev",
+				"state:southern oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "peOXkvHBcOZV"
+		},
+		{
+			"name": "Voltsara",
+			"coordinates": [
+				3147714.0467944453,
+				4805310.200215353
+			],
+			"tags": [
+				"country:kislev",
+				"state:southern oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "uyiOlqWOvPi5nrT"
+		},
+		{
+			"name": "Chernigov",
+			"coordinates": [
+				3279394.551369463,
+				4684603.071021586
+			],
+			"tags": [
+				"country:kislev",
+				"state:southern oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "YyaT0nuRnnTOmM"
+		},
+		{
+			"name": "Kalinora",
+			"coordinates": [
+				3704612.847392959,
+				4776505.089839567
+			],
+			"tags": [
+				"country:kislev",
+				"state:southern oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "pOQEQ1RUrMaoxY"
+		},
+		{
+			"name": "Fort Jakova",
+			"coordinates": [
+				3608595.8128070086,
+				4626992.850270015
+			],
+			"tags": [
+				"country:kislev",
+				"state:southern oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "w0aSfNnZl85c4dG"
+		},
+		{
+			"name": "Polotsk",
+			"coordinates": [
+				3317555.8980426025,
+				4310192.322318904
+			],
+			"tags": [
+				"country:kislev",
+				"state:southern oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "9EfD2IMvCJV"
+		},
+		{
+			"name": "Vitebsk",
+			"coordinates": [
+				3029504.7942847502,
+				4366430.871147819
+			],
+			"tags": [
+				"country:kislev",
+				"state:southern oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "ewXKtWgYVbS"
+		},
+		{
+			"name": "",
+			"coordinates": [
+				3370333.719726744,
+				4745680.456298827
+			],
+			"tags": [
+				"added_by:Sig"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "pqzVcX7l"
+		},
+		{
+			"name": "",
+			"coordinates": [
+				3256068.0925182397,
+				4724181.555237867
+			],
+			"tags": [
+				"added_by:Sig"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "eARANVFojNub"
+		},
+		{
+			"name": "",
+			"coordinates": [
+				3127676.675608356,
+				5285237.100051272
+			],
+			"tags": [
+				"added_by:Sig"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "6uDyD2i9QJT5rmU"
+		},
+		{
+			"name": "",
+			"coordinates": [
+				3195820.8107679663,
+				5330666.523491012
+			],
+			"tags": [
+				"added_by:Sig"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "EwsQLI0mMKBu"
+		},
+		{
+			"name": "",
+			"coordinates": [
+				3245544.410364151,
+				5497160.2977982825
+			],
+			"tags": [
+				"added_by:Sig"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "tda9LX0G"
+		},
+		{
+			"name": "",
+			"coordinates": [
+				2524971.092754172,
+				5128401.373122148
+			],
+			"tags": [
+				"added_by:Sig"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "YmlUiqsGDKmU1"
+		},
+		{
+			"name": "",
+			"coordinates": [
+				2633675.5809976887,
+				6291730.818636369
+			],
+			"tags": [
+				"added_by:Sig"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "pClkhWGHwp"
+		},
+		{
+			"name": "",
+			"coordinates": [
+				2795126.77931845,
+				6054935.727765919
+			],
+			"tags": [
+				"added_by:Sig"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "PxO4uQ11ycsl5fS"
+		},
+		{
+			"name": "",
+			"coordinates": [
+				3025463.8222560696,
+				5945148.912907802
+			],
+			"tags": [
+				"added_by:Sig"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "JOnD8D7HBgdHi2Mg"
+		},
+		{
+			"name": "",
+			"coordinates": [
+				1290975.0020624893,
+				4714053.245132726
+			],
+			"tags": [
+				"added_by:Sig"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "tXc0hsKXjLl"
+		},
+		{
+			"name": "",
+			"coordinates": [
+				1738917.0930249435,
+				4986730.96780427
+			],
+			"tags": [
+				"added_by:Sig"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "86CaJwQxdy"
+		},
+		{
+			"name": "",
+			"coordinates": [
+				1696493.2503442601,
+				5149573.412549581
+			],
+			"tags": [
+				"added_by:Sig"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "a0xZesbMfwI"
+		},
+		{
+			"name": "",
+			"coordinates": [
+				1995716.1378987397,
+				5399284.599285673
+			],
+			"tags": [
+				"added_by:Sig"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "ShVvbcWYhMfgQ7k"
+		},
+		{
+			"name": "",
+			"coordinates": [
+				2188915.6125171836,
+				5539472.367436088
+			],
+			"tags": [
+				"added_by:Sig"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "ieAbvkRfW"
+		},
+		{
+			"name": "",
+			"coordinates": [
+				2304084.1339859935,
+				5605129.18808653
+			],
+			"tags": [
+				"added_by:Sig"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "Hfwu5kBNt"
+		},
+		{
+			"name": "",
+			"coordinates": [
+				787718.1477485925,
+				6094563.84260703
+			],
+			"tags": [
+				"added_by:Sig"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "zH6jgEztOgGgjpnx"
+		},
+		{
+			"name": "Erengrad",
+			"coordinates": [
+				756504.2494065756,
+				6228030.166552186
+			],
+			"tags": [
+				"country:kislev",
+				"state:western oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "9W0KjsIJkAka"
+		},
+		{
+			"name": "",
+			"coordinates": [
+				295176.4146111441,
+				7237343.555950978
+			],
+			"tags": [
+				"country:kislev",
+				"state:western oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "P1MVEzKsMZIp"
+		},
+		{
+			"name": "",
+			"coordinates": [
+				479230.78069681197,
+				7214740.388186071
+			],
+			"tags": [
+				"country:kislev",
+				"state:western oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "rxAhuNUfjkplD7"
+		},
+		{
+			"name": "",
+			"coordinates": [
+				584712.230266376,
+				7071586.992341663
+			],
+			"tags": [
+				"country:kislev",
+				"state:western oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "8nsQ69QFCm"
+		},
+		{
+			"name": "",
+			"coordinates": [
+				1108152.9075298915,
+				6773952.611210807
+			],
+			"tags": [
+				"country:kislev",
+				"state:western oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "mlhAmyAA"
+		},
+		{
+			"name": "",
+			"coordinates": [
+				1298665.32154839,
+				7002136.97150415
+			],
+			"tags": [
+				"country:kislev",
+				"state:western oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "FfDRvQgbJA"
+		},
+		{
+			"name": "",
+			"coordinates": [
+				1432616.9686500852,
+				7311578.915396505
+			],
+			"tags": [
+				"country:kislev",
+				"state:western oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "NWrmxDeqh72FX1a"
+		},
+		{
+			"name": "",
+			"coordinates": [
+				3044180.8488870533,
+				6733645.377822101
+			],
+			"tags": [
+				"country:kislev",
+				"state:western oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "9qP8cZedpgISREg5"
+		},
+		{
+			"name": "",
+			"coordinates": [
+				3029112.0703771156,
+				6808989.27037179
+			],
+			"tags": [
+				"country:kislev",
+				"state:western oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "IXJxl53Lq5"
+		},
+		{
+			"name": "",
+			"coordinates": [
+				3262678.1372811506,
+				7104983.133959852
+			],
+			"tags": [
+				"country:kislev",
+				"state:western oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "2OJytEFzfmMmSzHh"
+		},
+		{
+			"name": "",
+			"coordinates": [
+				2979600.369558749,
+				7312717.009132565
+			],
+			"tags": [
+				"country:kislev",
+				"state:western oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "bBFhiRYT9"
+		},
+		{
+			"name": "",
+			"coordinates": [
+				3067129.7805111506,
+				7487504.615669725
+			],
+			"tags": [
+				"country:kislev",
+				"state:western oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "BayNgcQC3"
+		},
+		{
+			"name": "",
+			"coordinates": [
+				2766229.9890843453,
+				7538103.315094003
+			],
+			"tags": [
+				"country:kislev",
+				"state:western oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "vHv019FQ"
+		},
+		{
+			"name": "",
+			"coordinates": [
+				2812512.665936297,
+				7630668.6687979065
+			],
+			"tags": [
+				"country:kislev",
+				"state:western oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "dXzXfktF"
+		},
+		{
+			"name": "",
+			"coordinates": [
+				2747932.1866079923,
+				7726463.046468225
+			],
+			"tags": [
+				"country:kislev",
+				"state:western oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "zKyqV4r1yNOwx"
+		},
+		{
+			"name": "",
+			"coordinates": [
+				2936291.9179822137,
+				7770593.0406759
+			],
+			"tags": [
+				"country:kislev",
+				"state:western oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "RvGCf0fde"
+		},
+		{
+			"name": "",
+			"coordinates": [
+				979385.0912670584,
+				6145808.423497938
+			],
+			"tags": [
+				"added_by:Sig"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "cY8i8pMBoqNX"
+		},
+		{
+			"name": "Erengrad",
+			"coordinates": [
+				755809.3732198171,
+				6229318.514116419
+			],
+			"tags": [
+				"country:kislev",
+				"city",
+				"state:western oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "xVjonNwmQi"
+		},
+		{
+			"name": "",
+			"coordinates": [
+				1968634.403669136,
+				6182824.9281170685
+			],
+			"tags": [
+				"country:kislev",
+				"city",
+				"state:western oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "2n4tovq8"
+		},
+		{
+			"name": "",
+			"coordinates": [
+				2335386.7140661934,
+				6182885.2525470415
+			],
+			"tags": [
+				"country:kislev",
+				"city",
+				"state:western oblast"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "zCzXvG7PmwELdVk"
+		},
+		{
+			"name": "",
+			"coordinates": [
+				2383582.6266561644,
+				6230429.869020932
+			],
+			"tags": [
+				"added_by:Sig"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "8B2jujF1AZW0bz5"
+		},
+		{
+			"name": "",
+			"coordinates": [
+				1515013.4300914735,
+				6135259.3078083275
+			],
+			"tags": [
+				"added_by:Sig"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "oTdguvwfarMbNBG"
+		},
+		{
+			"name": "",
+			"coordinates": [
+				1444611.1512512085,
+				6364064.100865651
+			],
+			"tags": [
+				"added_by:Sig"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "M2KSJcpex"
+		},
+		{
+			"name": "",
+			"coordinates": [
+				1258339.1084463904,
+				6483869.027074917
+			],
+			"tags": [
+				"added_by:Sig"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "Rca5DU5l"
+		},
+		{
+			"name": "",
+			"coordinates": [
+				1163777.250431687,
+				6488219.96031873
+			],
+			"tags": [
+				"added_by:Sig"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "tsh0B9IyUCP"
+		},
+		{
+			"name": "",
+			"coordinates": [
+				3260291.7778484486,
+				6827656.868519137
+			],
+			"tags": [
+				"country:kislev",
+				"city"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "8vrcaSNLS4pFm"
+		},
+		{
+			"name": "",
+			"coordinates": [
+				3679891.7788121495,
+				6630517.212893949
+			],
+			"tags": [
+				"country:kislev",
+				"city"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "DIzVZHWL"
+		},
+		{
+			"name": "",
+			"coordinates": [
+				3679288.9052475467,
+				6632325.833587758
+			],
+			"tags": [
+				"added_by:Sig"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "LOPEcmI6B"
+		},
+		{
+			"name": "",
+			"coordinates": [
+				3836036.0320443315,
+				6662469.51181791
+			],
+			"tags": [
+				"added_by:Sig"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "9DJQtshGggK"
+		},
+		{
+			"name": "",
+			"coordinates": [
+				2494854.9019315015,
+				5104546.156606189
+			],
+			"tags": [
+				"added_by:Sig"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "PB5j6vcks"
+		},
+		{
+			"coordinates": [
+				3172789.177891911,
+				4388992.967741953
+			],
+			"tags": [
+				"added_by:Sig"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "HwcLk4pv"
+		},
+		{
+			"name": "Kislev",
+			"coordinates": [
+				2496710.7009390187,
+				5250564.489871775
+			],
+			"tags": [
+				"country:kislev",
+				"city"
+			],
+			"credit": "Sig",
+			"art": [],
+			"id": "sntri0VgmQ3AqlES",
+			"enabled": true
+		}
+	
 ]
