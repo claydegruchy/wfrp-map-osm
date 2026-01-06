@@ -5,6 +5,7 @@
     locations,
     locationsObject,
     locationsSource,
+    setLocations,
   } from "./locations";
   import {
     addRoute,
@@ -12,6 +13,7 @@
     routesLayer,
     routesObject,
     routeSource,
+    setRoutes,
     setRoutesDisplay,
     toggleRoutesDisplay,
   } from "./routes";
@@ -145,13 +147,9 @@
     let location = {
       name: newLocationName,
       coordinates,
-      tags: [...requiredTags, ...($addLocationTags?.split(",") || [])].map(
-        (t) =>
-          t
-            .toLowerCase()
-            .trim()
-            .filter((t) => t != "")
-      ),
+      tags: [...requiredTags, ...($addLocationTags?.split(",") || [])]
+        .map((t) => t.toLowerCase().trim())
+        .filter((t) => t != ""),
       credit: editId,
     };
     console.log(location);
@@ -186,11 +184,15 @@
   onMount(() => {
     isEditMode && window.umami?.track("openEditMode", { editId });
     for (const location of $localLocations) {
-      addLocation(location);
+      addLocation(location, false);
     }
+
     for (const route of $localRoutes) {
-      addRoute(route);
+      addRoute(route, false);
     }
+
+    setLocations();
+    setRoutes();
 
     isEditMode && setRoutesDisplay(true);
 

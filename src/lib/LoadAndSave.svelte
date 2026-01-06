@@ -1,6 +1,6 @@
 <script>
-  import { addLocation } from "./locations";
-  import { addRoute } from "./routes";
+  import { addLocation, setLocations } from "./locations";
+  import { addRoute, setRoutes } from "./routes";
   import {
     clearLocalFeatures,
     editId,
@@ -43,11 +43,13 @@
         $localRoutes = [...$localRoutes, ...routes];
 
         for (const location of locations) {
-          addLocation(location);
+          addLocation(location, false);
         }
         for (const route of routes) {
-          addRoute(route);
+          addRoute(route, false);
         }
+        setLocations();
+        setRoutes();
       } catch {
         console.error("Invalid JSON");
       }
