@@ -44,13 +44,15 @@
         <tr>
           <th>Name</th>
           <th>Tags</th>
+          <th>Id</th>
         </tr>
       </thead>
       <tbody>
-        {#each locations as { name, tags }, i}
+        {#each locations as { name, tags, id }, i}
           <tr>
             <td>{name || "Unnamed"}</td>
             <td>{tags}</td>
+            <td><small>{id}</small></td>
           </tr>
         {/each}
       </tbody>
