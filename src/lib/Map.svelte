@@ -19,7 +19,6 @@
   } from "./maps";
 
   import { locationsLayer } from "./locations";
-  import { calculateBoundries } from "./boundryDrawing";
   import { pathLayer, routesLayer } from "./routes";
 
   let center = [-3247495.2505356777, 4704319.403427397];
@@ -54,8 +53,6 @@
         // rotation: 45,
       }),
     });
-
-    calculateBoundries($map);
   });
 
   $: if ($map) {
