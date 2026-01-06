@@ -233,10 +233,10 @@
             <li>Click the starting location of the route</li>
             <li>Click the ending location of the route</li>
           </ol>
-          <h4>Removing routes</h4>
+          <h4>Removing routes and locations</h4>
           <p>
-            Hold CMD (MacOS) or CTRL (Windows) and drag a box over the routes
-            you wish to remove.
+            Hold CMD (MacOS) or CTRL (Windows) and drag a box over the
+            routes/locations you wish to remove.
           </p>
           <h4>Backup/Share</h4>
           <p>
