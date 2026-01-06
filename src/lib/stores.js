@@ -46,7 +46,6 @@ function loadLocalStorage(key) {
 	try {
 		const raw = localStorage.getItem(key)
 		if (raw === null) return null
-		console.log(raw);
 
 		return JSON.parse(raw)
 	} catch {
@@ -68,7 +67,6 @@ localLocations.subscribe(locations => {
 
 
 export const addLocationTags = writable(loadLocalStorage("addLocationTags"))
-console.log(loadLocalStorage("addLocationTags"));
 addLocationTags.subscribe(
 	lut => {
 		saveLocalStorage("addLocationTags", lut)
