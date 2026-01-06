@@ -13,7 +13,12 @@
     selectLocationById,
     zoomToLocationById,
   } from "./lib/locations";
-  import { isDev, selectedLocations } from "./lib/stores";
+  import {
+    isDev,
+    localLocations,
+    localLocationsObjectNonStore,
+    selectedLocations,
+  } from "./lib/stores";
   import { toggleCountries, toggleStates } from "./lib/boundryDrawing";
   import {
     findPath,
@@ -30,7 +35,8 @@
   let path;
 
   function findLocation(value) {
-    const filtered = locations
+    let filtered = Object.values(locationsObject)
+      .filter((e) => e.enabled != false)
       .filter(
         (loc) =>
           loc?.name?.length > 0 &&
