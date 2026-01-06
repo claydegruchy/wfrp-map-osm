@@ -17,7 +17,7 @@ import DragBox from 'ol/interaction/DragBox.js';
 import { localLocationsObjectNonStore, map, selectedLocations } from "./stores";
 
 
-export const locations = locationsRaw
+export let locations = locationsRaw
 export let locationsObject = Object.fromEntries(locations.map(location => [location.id, location]));
 
 
@@ -71,8 +71,8 @@ const disabledLocalStyle = (feature, zoom) => new Style({
 })
 
 export let addLocation = function ({ name, coordinates, tags, credit, id = randomString(), ...rest }) {
+
 	let loc = {
-		...rest,
 		name,
 		coordinates,
 		tags,
@@ -80,12 +80,16 @@ export let addLocation = function ({ name, coordinates, tags, credit, id = rando
 		art: [],
 		id,
 		enabled: true,
+		...rest,
 
 	}
-	locations.push(loc)
 
-	locationsObject = Object.fromEntries(locations.map(location => [location.id, location]));
+	locationsObject[id] = loc
+
 	setLocations()
+
+	locations = Object.values(locationsObject)
+
 	return loc
 
 }
@@ -103,18 +107,18 @@ export const locationsLayer = new VectorLayer({
 		let tags = feature.get('tags');
 		let id = feature.getId()
 		let enabled = feature.get("enabled")
+		let name = feature.get("name")
+		console.log("enabled", name, enabled);
 
 
-		if (localLocationsObjectNonStore[id] && !enabled) return disabledLocalStyle(feature, zoom)
+
+
+		if (localLocationsObjectNonStore[id] && enabled == false) return disabledLocalStyle(feature, zoom)
 		if (localLocationsObjectNonStore[id]) return localStyle(feature, zoom)
 
 
 		if (!tags) return defaultStyle(feature, zoom)
 		if (tags.includes("city")) return cityStyle(feature, zoom)
-		for (const tag of tags) {
-			// if (tag.includes("state:")) return cityStyle(feature, zoom)
-
-		}
 		return defaultStyle(feature, zoom)
 
 	}),
@@ -126,8 +130,7 @@ export function setLocations() {
 	console.log("setLocations");
 
 	locationsSource.clear()
-	const features = locations
-		// .filter(p => p.enabled)
+	const features = Object.values(locationsObject)
 		.map(p => {
 			let f = new Feature({
 				geometry: new Point(p.coordinates),
@@ -138,6 +141,7 @@ export function setLocations() {
 		})
 
 	locationsSource.addFeatures(features)
+
 }
 
 setLocations()
@@ -222,6 +226,8 @@ map.subscribe(map => {
 			const newSelection = selectedFeaturesCollection
 				.getArray()
 				.map(f => f.getId());
+			console.log(newSelection);
+
 			selectedLocations.set(newSelection)
 		}, 1);
 	}
@@ -264,6 +270,8 @@ map.subscribe(map => {
 
 })
 
+
+console.log(locations);
 
 
 
