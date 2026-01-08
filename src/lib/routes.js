@@ -39,32 +39,16 @@ export let routesObject = Object.fromEntries(routes.map(route => [route.source_i
 export let routeSource = new VectorSource()
 export let pathSource = new VectorSource()
 
-const routeStyleRoad = (local) => new Style({
-	stroke: new Stroke({
-		width: 3,
-		color: local ? "yellow" : null,
-		lineDash: local ? [4, 4] : null
-
+const routeStyleGen = (colour, lineDash, lineDashOffset) =>
+	new Style({
+		stroke: new Stroke({
+			color: colour,
+			width: 4,
+			lineDash,
+			lineDashOffset,
+		})
 	})
-})
 
-const routeStyleWater = (local) => new Style({
-	stroke: new Stroke({
-		width: 3,
-		// color: 'blue',
-		color: local ? "cyan" : 'blue',
-		lineDash: local ? [4, 4] : null
-
-	})
-})
-
-const localRouteStyle = (local) => new Style({
-	stroke: new Stroke({
-		width: 3,
-		color: 'yellow',
-
-	})
-})
 
 const localRouteStyleDisabled = (local) => new Style({
 	stroke: new Stroke({
@@ -83,19 +67,38 @@ const pathStyle = (local) => new Style({
 })
 
 
+const colourMap = {
+	"road": "black",
+	"water": "blue",
+	"underground": "orange",
+	"local": "yellow",
+}
+
+
+
+
 export const routesLayer = new VectorLayer({
 	source: routeSource,
 
 	style: ((feature, zoom) => {
-		let type = feature.get('type');
+		let tags = feature.get('tags');
 		let id = feature.getId()
 		const local = localRoutesObjectNonStore[id]
 		if (local && !localRoutesObjectNonStore[id]?.enabled) return localRouteStyleDisabled(local)
 
 
-		if (type == "road") return routeStyleRoad(local)
-		if (type == "water") return routeStyleWater(local)
-		return routeStyleRoad(local)
+		let length = 20
+		tags.length > 1 && console.log(id);
+		let styles = tags
+			.filter(t => colourMap[t])
+			.map((t, i, a) => {
+				let on = length / a.length;
+				let off = length - on;      // ensures total cycle = length
+				return routeStyleGen(colourMap[t], [on, off], i * on);
+			});
+
+		return styles
+
 	})
 
 })
