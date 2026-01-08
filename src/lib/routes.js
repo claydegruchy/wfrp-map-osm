@@ -189,8 +189,17 @@ export let addRoute = ({ source_id, destination_id, enabled = true, tags = ["roa
 		length: computeDistance(locationsObject[source_id].coordinates, locationsObject[destination_id].coordinates)
 
 	}
-	routes.push(newRoute)
+
+	const id = source_id + ":" + destination_id
+	routesObject[id] = newRoute
+	// console.log(newRoute);
+
+	routes = Object.values(routesObject)
 	updateMap && setRoutes()
+
+
+	// routesObject = Object.fromEntries(routes.map(route => [route.source_id + ":" + route.destination_id, route]))
+
 
 	return newRoute
 
