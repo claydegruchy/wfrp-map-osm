@@ -13,6 +13,7 @@
     routesLayer,
     routesObject,
     routeSource,
+    routeTagMap,
     setRoutes,
     setRoutesDisplay,
     toggleRoutesDisplay,
@@ -37,11 +38,12 @@
 
   let addOpen = false;
 
-  // let tags = "country:brettonia";
   let lastLocation;
   let coordinates;
   let newLocationName;
   let connectRoute = true;
+
+  const allowedRouteTags = Object.keys(routeTagMap).filter((t) => t != "local");
 
   let routeTags = ["road"];
   const formatter = new Intl.ListFormat(navigator.language, {
@@ -378,7 +380,7 @@
         <MultiSelect
           placeholder={"Select route tags"}
           bind:selected={routeTags}
-          options={["road", "river", "sea", "underway"]}
+          options={allowedRouteTags}
         ></MultiSelect>
       </div>
     </section>
