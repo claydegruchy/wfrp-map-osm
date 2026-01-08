@@ -31,6 +31,7 @@
   import Dialog from "./Blocks/Dialog.svelte";
   import LoadAndSave from "./LoadAndSave.svelte";
   import DragBox from "ol/interaction/DragBox";
+  import MultiSelect from "./Blocks/MultiSelect.svelte";
 
   console.log("isEditMode", isEditMode);
 
@@ -42,7 +43,11 @@
   let newLocationName;
   let connectRoute = true;
 
-  let routeType = "road";
+  let routeTags = ["road"];
+  const formatter = new Intl.ListFormat(navigator.language, {
+    style: "long",
+    type: "conjunction",
+  });
 
   map.subscribe((map) => {
     if (!map) return;
@@ -79,10 +84,10 @@
       let newRoute = addRoute({
         source_id: id,
         destination_id: pendingId,
-        type: routeType,
+        tags: [...routeTags, "local"],
       });
       $localRoutes = [...$localRoutes, newRoute];
-      console.log(locations, routes);
+      console.log(locations, routes, newRoute);
 
       pendingId = null;
     });
@@ -156,14 +161,10 @@
 
     let newLocation = addLocation(location);
     if (connectRoute && lastLocation) {
-      let route = {
-        source_id: newLocation.id,
-        destination_id: lastLocation.id,
-      };
-
       let newRoute = addRoute({
         source_id: newLocation.id,
         destination_id: lastLocation.id,
+        tags: [...routeTags, "local"],
       });
       $localRoutes = [...$localRoutes, newRoute];
     }
@@ -363,7 +364,8 @@
         </div>
         <div>
           <label for="">
-            Auto add {routeType} route ({lastLocation?.name || "none"})
+            Auto add a {formatter.format(routeTags)} route ({lastLocation?.name ||
+              "none"})
             <input bind:checked={connectRoute} type="checkbox" />
           </label>
         </div>
@@ -372,13 +374,12 @@
     <section>
       <i>Route settings</i>
       <div>
-        <label>
-          New route type
-          <select bind:value={routeType}>
-            <option value="road">Road</option>
-            <option value="water">Water</option>
-          </select>
-        </label>
+        <div>Route tags</div>
+        <MultiSelect
+          placeholder={"Select route tags"}
+          bind:selected={routeTags}
+          options={["road", "river", "sea", "underway"]}
+        ></MultiSelect>
       </div>
     </section>
     <LoadAndSave></LoadAndSave>
