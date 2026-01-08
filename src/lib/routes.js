@@ -67,10 +67,11 @@ const pathStyle = (local) => new Style({
 })
 
 
-const colourMap = {
+export const routeTagMap = {
 	"road": "black",
-	"water": "blue",
-	"underground": "orange",
+	"river": "RoyalBlue",
+	"sea": "blue",
+	"underway": "orange",
 	"local": "yellow",
 }
 
@@ -88,13 +89,13 @@ export const routesLayer = new VectorLayer({
 
 
 		let length = 20
-		tags.length > 1 && console.log(id);
+		// tags.length > 1 && console.log(id);
 		let styles = tags
-			.filter(t => colourMap[t])
+			.filter(t => routeTagMap[t])
 			.map((t, i, a) => {
 				let on = length / a.length;
 				let off = length - on;      // ensures total cycle = length
-				return routeStyleGen(colourMap[t], [on, off], i * on);
+				return routeStyleGen(routeTagMap[t], [on, off], i * on);
 			});
 
 		return styles
@@ -139,7 +140,7 @@ export function setRoutes(override) {
 
 
 	routeSource.addFeatures(features)
-	routesObject = Object.fromEntries(routes.map(route => [route.source_id + ":" + route.destination_id, route]))
+	console.log(routes)
 	// setRoutesDisplay(true)
 }
 
