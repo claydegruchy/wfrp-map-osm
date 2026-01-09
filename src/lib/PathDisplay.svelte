@@ -55,16 +55,6 @@
     console.log("bah");
   }
 
-  const milesPerH = {
-    walk: 3.5,
-    cart: 1.75,
-    ride: 7,
-    //
-    skiff: 1,
-    barge: 2,
-    warship: 4,
-  };
-
   console.log(steps);
   let roadMethod = "walk";
   let waterMethod = "skiff";

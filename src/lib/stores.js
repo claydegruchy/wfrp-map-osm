@@ -18,6 +18,7 @@ if (isHardReset) {
 }
 
 
+
 export const isMobile =
 	'ontouchstart' in window ||
 	navigator.maxTouchPoints > 0 ||
@@ -28,6 +29,40 @@ export const isMobile =
 export const map = writable();
 export const selectedLocations = writable([])
 export const diagnosticFeatures = writable([]);
+
+
+export const speeds = {
+	road: {
+		// road
+		walk: 3.5,
+		cart: 1.75,
+		ride: 7,
+	},
+	river: {
+		// river
+		skiff: 1,
+		barge: 2,
+		warship: 4,
+	},
+	sea: {
+		// sea
+		sailship: 4,
+		steamship: 6,
+	},
+	underway: {
+		// underway
+		walk: 3.5,
+
+	}
+};
+
+export const roadMode = writable(Object.keys(speeds.road)[0])
+export const riverMode = writable(Object.keys(speeds.river)[0])
+export const seaMode = writable(Object.keys(speeds.sea)[0])
+export const underwayMode = writable(Object.keys(speeds.underway)[0])
+
+
+
 
 const r = loadLocalStorage("routes")
 export const localRoutes = writable(r ? Object.values(r) : [])
@@ -80,4 +115,6 @@ export function clearLocalFeatures() {
 	window.location.reload();
 
 }
+
+
 
