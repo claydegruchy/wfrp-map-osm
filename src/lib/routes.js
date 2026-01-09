@@ -78,6 +78,7 @@ export const routeTagMap = {
 
 
 
+
 export const routesLayer = new VectorLayer({
 	source: routeSource,
 
@@ -236,8 +237,11 @@ map.subscribe(map => {
 })
 
 
-export function findPath(startId, endId) {
+
+export function _findPath(startId, endId, methods, speeds) {
 	{
+		console.log("findPath", startId, endId, methods, speeds);
+
 		window.umami?.track("findPath", { start: locationsObject[startId]?.name, end: locationsObject[endId]?.name })
 		const graph = {}
 		const nameGraph = {}
@@ -245,20 +249,26 @@ export function findPath(startId, endId) {
 
 		// build adjacency with weights
 		for (const key in routesObject) {
-			const { source_id, destination_id, enabled, ...rest } = routesObject[key]
+			const { source_id, destination_id, enabled, tags, ...rest } = routesObject[key]
 			if (!enabled) continue
 
+
 			// compute weight (currently distance, can change later)
-			const weight = rest.length
+			for (const tag of tags) {
+				if (!methods[tag] || !speeds[tag]) continue
 
-			graph[source_id] ??= []
-			graph[destination_id] ??= []
+				let weight = rest.length
+				weight /= speeds[tag][methods[tag]]
 
-			graph[source_id].push({ node: destination_id, weight, routeId: key })
-			graph[destination_id].push({ node: source_id, weight, routeId: key }) // undirected
+				graph[source_id] ??= []
+				graph[destination_id] ??= []
 
-			nameGraph[source_id + destination_id] = key
-			nameGraph[destination_id + source_id] = key
+				graph[source_id].push({ node: destination_id, weight, routeId: key, method: tag })
+				graph[destination_id].push({ node: source_id, weight, routeId: key, method: tag }) // undirected
+
+				nameGraph[source_id + destination_id] = key
+				nameGraph[destination_id + source_id] = key
+			}
 		}
 
 		// Dijkstra
@@ -305,12 +315,165 @@ export function findPath(startId, endId) {
 			current = previous[current]
 		}
 		pathNodes.unshift(startId)
-		console.log({ pathRouteIds });
+		console.log(pathNodes, pathRouteIds,);
 
 		return { pathNodes, pathRouteIds }
 	}
 
 }
+
+
+export function findPath(startId, endId, methods, speeds, K_PATHS = 3, TRANSFER_PENALTY = 0.2) {
+
+	const graph = {}
+
+	// build graph (unchanged logic, just store method)
+	for (const key in routesObject) {
+		const { source_id, destination_id, enabled, tags, ...rest } = routesObject[key]
+		if (!enabled) continue
+
+		for (const tag of tags) {
+			if (!methods[tag] || !speeds[tag]) continue
+
+			let weight = rest.length
+			weight /= speeds[tag][methods[tag]]
+
+			graph[source_id] ??= []
+			graph[destination_id] ??= []
+
+			graph[source_id].push({
+				node: destination_id,
+				weight,
+				routeId: key,
+				method: tag
+			})
+
+			graph[destination_id].push({
+				node: source_id,
+				weight,
+				routeId: key,
+				method: tag
+			})
+		}
+	}
+
+	// --- DIJKSTRA (with transport state) ---
+	function dijkstra(bannedRouteIds = new Set()) {
+		const dist = {}
+		const prev = {}
+		const queue = new Set()
+
+		for (const n in graph) {
+			dist[n] = {}
+			prev[n] = {}
+		}
+
+		dist[startId][null] = 0
+		queue.add(`${startId}|null`)
+
+		while (queue.size) {
+			let bestKey = null
+			let bestVal = Infinity
+
+			for (const k of queue) {
+				const [n, m] = k.split("|")
+				const mm = m === "null" ? null : m
+				if (dist[n][mm] < bestVal) {
+					bestVal = dist[n][mm]
+					bestKey = k
+				}
+			}
+
+			queue.delete(bestKey)
+			const [current, m] = bestKey.split("|")
+			const currentMethod = m === "null" ? null : m
+
+			if (current === endId) break
+
+			for (const edge of graph[current]) {
+				if (bannedRouteIds.has(edge.routeId)) continue
+
+				const penalty =
+					currentMethod && currentMethod !== edge.method
+						? TRANSFER_PENALTY
+						: 0
+
+				const alt = dist[current][currentMethod] + edge.weight + penalty
+
+				if (
+					dist[edge.node][edge.method] === undefined ||
+					alt < dist[edge.node][edge.method]
+				) {
+					dist[edge.node][edge.method] = alt
+					prev[edge.node][edge.method] = {
+						node: current,
+						method: currentMethod,
+						routeId: edge.routeId
+					}
+					queue.add(`${edge.node}|${edge.method}`)
+				}
+			}
+		}
+
+		let bestMethod = null
+		let bestDist = Infinity
+		for (const m in dist[endId]) {
+			if (dist[endId][m] < bestDist) {
+				bestDist = dist[endId][m]
+				bestMethod = m === "null" ? null : m
+			}
+		}
+
+		if (bestMethod === null) return null
+
+		const pathNodes = []
+		const pathRouteIds = []
+		const pathRouteTags = []
+
+		let node = endId
+		let method = bestMethod
+
+		while (node !== startId) {
+			pathNodes.unshift(node)
+			const p = prev[node][method]
+			pathRouteIds.unshift(p.routeId)
+			pathRouteTags.unshift(p.method)
+			node = p.node
+			method = p.method
+		}
+
+		pathNodes.unshift(startId)
+
+		return { pathNodes, pathRouteIds, pathRouteTags, cost: bestDist }
+	}
+
+	// --- YEN: TOP K PATHS ---
+	const results = []
+	const candidates = []
+
+	const first = dijkstra()
+	if (!first) return []
+
+	results.push(first)
+
+	for (let k = 1; k < K_PATHS; k++) {
+		const prevPath = results[k - 1]
+
+		for (const rid of prevPath.pathRouteIds) {
+			const banned = new Set([rid])
+			const candidate = dijkstra(banned)
+			if (candidate) candidates.push(candidate)
+		}
+
+		if (!candidates.length) break
+
+		candidates.sort((a, b) => a.cost - b.cost)
+		results.push(candidates.shift())
+	}
+
+	return results
+}
+
 
 
 // let re = findPath(routes, "ZzxEIjTJwDVY4UHpXGzd", "i5xZQabC5G69fLeA8Nm6")
