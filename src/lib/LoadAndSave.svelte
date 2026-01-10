@@ -42,11 +42,18 @@
         $localLocations = [...$localLocations, ...locations];
         $localRoutes = [...$localRoutes, ...routes];
 
-        for (const location of locations) {
+        for (let location of locations) {
+          if (!location?.tags && location?.tags != [] && location?.type) {
+            location.tags = [location.type];
+          }
           addLocation(location, false);
         }
-        for (const route of routes) {
-          addRoute(route, false);
+        for (let route of routes) {
+          if (!route?.tags && route?.tags != [] && route?.type) {
+            if (route.type == "water") route.type = "river";
+            route.tags = [route.type];
+          }
+          addRoute({ ...route, tags: [...route.tags, "local"] }, false);
         }
         setLocations();
         setRoutes();
