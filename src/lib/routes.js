@@ -271,7 +271,9 @@ export let addRoute = ({ source_id, destination_id, enabled = true, tags = ["roa
 
 
 function updatePathStyles(index) {
+
 	pathLayers.forEach((layer, i) => {
+		if (index == -1) return layer.setStyle(null)
 		layer.setStyle(i == index ? mainPathStyle : secondaryPathStyle)
 	})
 
