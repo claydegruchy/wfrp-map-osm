@@ -45,7 +45,6 @@ export function calculateBoundries(map) {
 				if (!states[tag]) {
 					states[tag] = []
 					stateLayers[tag] = null
-					console.log({ tag });
 
 				}
 

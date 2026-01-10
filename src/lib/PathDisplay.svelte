@@ -1,26 +1,34 @@
 <script>
   import { locationsObject } from "./locations";
-  import { getCardinalDirection, meterConv, routesObject } from "./routes";
-
+  import {
+    distanceToTime,
+    getCardinalDirection,
+    meterConv,
+    routesObject,
+  } from "./routes";
+  import {
+    pathFinderDestination,
+    pathFinderOrigin,
+    riverMode,
+    roadMode,
+    seaMode,
+    speeds,
+    underwayMode,
+  } from "./stores";
   export let path;
-  export let pathFinderOrigin;
-  export let pathFinderDestination;
-
   export let zoomToLocationById;
-
   export let clearPath;
 
   let valid = path && path?.pathNodes?.length > 0;
 
-  let origin = locationsObject[pathFinderOrigin];
-  let destination = locationsObject[pathFinderDestination];
+  let origin = locationsObject[$pathFinderOrigin];
+  let destination = locationsObject[$pathFinderDestination];
 
   let distance = 0;
-  let waterDistance = 0;
-  let roadDistance = 0;
+  let duration = 0;
 
   let steps = [];
-  let { pathRouteIds, pathNodes } = path;
+  let { pathRouteIds, pathNodes, pathRouteTags } = path;
 
   if (pathRouteIds && pathNodes) {
     let last;
@@ -33,6 +41,7 @@
 
       if (i != 0) {
         let nextRoute = pathRouteIds.shift();
+        let method = pathRouteTags.shift();
         if (nextRoute) {
           let routeData = {
             ...routesObject[nextRoute],
@@ -44,40 +53,63 @@
           locationData.route = routeData;
 
           distance += routeData.length;
-
-          if (routeData.type == "water") waterDistance += routeData.length;
-          if (routeData.type == "road") roadDistance += routeData.length;
+          if (speeds[method]) {
+            if (method == "road") {
+              duration += distanceToTime(
+                routeData.length,
+                speeds[method][$roadMode]
+              );
+            }
+            if (method == "river") {
+              duration += distanceToTime(
+                routeData.length,
+                speeds[method][$riverMode]
+              );
+            }
+            if (method == "sea") {
+              duration += distanceToTime(
+                routeData.length,
+                speeds[method][$seaMode]
+              );
+            }
+            if (method == "underway") {
+              duration += distanceToTime(
+                routeData.length,
+                speeds[method][$underwayMode]
+              );
+            }
+          }
         }
       }
       last = locationData;
       steps.push(locationData);
     });
-    console.log("bah");
   }
+  console.log({ path });
 
-  console.log(steps);
-  let roadMethod = "walk";
-  let waterMethod = "skiff";
   let hidden = false;
-
-  function distanceToTime(dis, method) {
-    return Math.round(meterConv(dis) / milesPerH[method]);
-  }
 </script>
 
 <main>
   <div class="header flex horizontal">
     {origin.name} to {destination.name} ({meterConv(distance)}mi)
     <div>
-      <select class="road" bind:value={roadMethod}>
-        <option value="walk">Walk</option>
-        <option value="cart">Ox Cart</option>
-        <option value="ride">Horse</option>
+      <select class="road" bind:value={$roadMode}>
+        {#each Object.keys(speeds.road) as val}
+          <option value={val}>{val}</option>
+        {/each}
       </select>
-      <select class="water" bind:value={waterMethod}>
-        <option value="skiff">Skiff</option>
-        <option value="barge">Barge</option>
-        <option value="warship">Warship</option>
+
+      <select class="river" bind:value={$riverMode}>
+        {#each Object.keys(speeds.river) as val}
+          <option value={val}>{val}</option>
+        {/each}
+      </select>
+
+      <select class="sea" bind:value={$seaMode}>
+        {#each Object.keys(speeds.sea) as val}
+          <option value={val}>{val}</option>
+        {/each}
       </select>
     </div>
     <button on:click={clearPath}>Clear</button>
@@ -90,15 +122,13 @@
     {#if valid}
       {#if !hidden}
         <small>
-          This route covers {steps.length} locations, and will take ~{distanceToTime(
-            roadDistance,
-            roadMethod
-          ) + distanceToTime(waterDistance, waterMethod)}h of travel
+          This route covers {steps.length} locations, and will take ~{duration}h
+          of travel
         </small>
         <div class=" steps">
           {#each steps as { id, name, tags, type, route }, i}
             <div
-              class="step {type || ''} {tags?.join(' ')} {route?.type} {i == 0
+              class="step {type || ''} {tags?.join(' ')} {route?.tags} {i == 0
                 ? ''
                 : ''}"
             >
@@ -106,12 +136,16 @@
                 Start at
               {:else}
                 <i class="capitalise">
-                  {#if route.type == "road"}
-                    {roadMethod}
+                  {#if route.tags.includes("road")}
+                    {$roadMode}
                   {/if}
 
-                  {#if route.type == "water"}
-                    {waterMethod}
+                  {#if route.tags.includes("river")}
+                    {$riverMode}
+                  {/if}
+
+                  {#if route.tags.includes("sea")}
+                    {$seaMode}
                   {/if}
                 </i>
                 {meterConv(route.length)}
@@ -121,12 +155,16 @@
                 {name}
               </b>
               {#if route}
-                {#if route.type == "road"}
-                  ({distanceToTime(route.length, roadMethod)}h)
+                {#if route.tags.includes("road")}
+                  ({distanceToTime(route.length, speeds.road[$roadMode])}h)
                 {/if}
 
-                {#if route.type == "water"}
-                  ({distanceToTime(route.length, waterMethod)}h)
+                {#if route.tags.includes("river")}
+                  ({distanceToTime(route.length, speeds.river[$riverMode])}h)
+                {/if}
+
+                {#if route.tags.includes("sea")}
+                  ({distanceToTime(route.length, speeds.sea[$seaMode])}h)
                 {/if}
               {/if}
             </div>
@@ -170,6 +208,10 @@
     color: white;
     cursor: pointer;
     transition: background-color 0.2s;
+  }
+
+  option {
+    text-transform: capitalize;
   }
 
   .header > button:hover {
@@ -219,7 +261,7 @@
   .road {
     --border-start: brown;
   }
-  .water {
+  .river {
     --border-start: blue;
   }
 

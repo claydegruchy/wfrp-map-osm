@@ -17,22 +17,31 @@
     isDev,
     localLocations,
     localLocationsObjectNonStore,
+    pathFinderDestination,
+    pathFinderOrigin,
+    riverMode,
+    roadMode,
+    seaMode,
     selectedLocations,
+    selectedPathIndex,
+    speeds,
+    underwayMode,
   } from "./lib/stores";
   import { toggleCountries, toggleStates } from "./lib/boundryDrawing";
   import {
-    findPath,
+    findPaths,
+    pathSources,
     setPath,
+    setPaths,
     toggleRoutesDisplay,
     zoomToEncompass,
   } from "./lib/routes";
   import PathDisplay from "./lib/PathDisplay.svelte";
   import HelpText from "./lib/HelpText.svelte";
   import EditMode from "./lib/EditMode.svelte";
+  import PathSelector from "./lib/PathSelector.svelte";
 
-  let pathFinderOrigin;
-  let pathFinderDestination;
-  let path;
+  let paths = [];
 
   function findLocation(value) {
     let filtered = Object.values(locationsObject)
@@ -63,31 +72,54 @@
   function selectSearchResult(id) {
     selectLocationById(id);
     zoomToLocationById(id);
-    pathFinderOrigin = id;
+    $pathFinderOrigin = id;
+  }
+
+  function updatePathFinder() {
+    // { pathNodes, pathRouteIds, pathRouteTags, cost: bestDist }
+    paths = findPaths(
+      $pathFinderOrigin,
+      $pathFinderDestination,
+      {
+        road: $roadMode,
+        river: $riverMode,
+        sea: $seaMode,
+        underway: $underwayMode,
+      },
+      speeds
+    );
+  }
+
+  function updatePathDisplay(paths) {
+    pathSources.forEach((discard, i) => {
+      if (paths[i]) setPaths(i, i == $selectedPathIndex, paths[i]);
+    });
   }
 
   function startPathFinder(id) {
-    pathFinderDestination = id;
-    path = findPath(pathFinderOrigin, pathFinderDestination);
-    setPath(path);
-    zoomToEncompass(path);
+    $pathFinderDestination = id;
+    updatePathFinder();
+    updatePathDisplay(paths);
+    if (paths.length > 0) $selectedPathIndex = 0;
+    zoomToEncompass(paths[$selectedPathIndex]);
   }
 
   function clearPath() {
-    path = null;
-    pathFinderDestination = null;
-    pathFinderOrigin = null;
-    setPath({ pathRouteIds: [] });
+    paths = [];
+    $pathFinderDestination = null;
+    $pathFinderOrigin = null;
+    $selectedPathIndex = -1;
+    updatePathDisplay(paths);
   }
 
-  // onMount(
-  //   () =>
-  //     isDev &&
-  //     setTimeout(() => {
-  //       selectSearchResult("cL30w9UailtiheDMkqTR");
-  //       startPathFinder("UlGQ5WaiQHpVvJp5QrN7");
-  //     }, 1)
-  // );
+  onMount(
+    () =>
+      isDev &&
+      setTimeout(() => {
+        selectSearchResult("a6jaSzZq6Fnd");
+        startPathFinder("UlGQ5WaiQHpVvJp5QrN7");
+      }, 1)
+  );
 </script>
 
 <nav class="top left search flex vertical">
@@ -100,14 +132,8 @@
     />
   {:else}{/if}
 
-  {#if pathFinderOrigin && pathFinderDestination}
-    <PathDisplay
-      {clearPath}
-      {pathFinderOrigin}
-      {pathFinderDestination}
-      {zoomToLocationById}
-      bind:path
-    ></PathDisplay>
+  {#if paths.length > 0}
+    <PathSelector {clearPath} {paths} />
   {/if}
 </nav>
 
@@ -119,7 +145,6 @@
       ></SelectedLocation>
     {/if}
   </div>
-  r
 
   <div class="flex vertical buttons">
     <Diagnostics></Diagnostics>

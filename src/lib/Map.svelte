@@ -19,7 +19,7 @@
   } from "./maps";
 
   import { locationsLayer } from "./locations";
-  import { pathLayer, routesLayer } from "./routes";
+  import { pathLayer, pathLayers, routesLayer } from "./routes";
 
   let center = [-3247495.2505356777, 4704319.403427397];
   let zoom = 5;
@@ -43,7 +43,7 @@
         Ubersreik,
         locationsLayer,
         routesLayer,
-        pathLayer,
+        ...pathLayers,
       ],
       view: new View({
         center,

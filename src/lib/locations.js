@@ -130,7 +130,7 @@ export const locationsLayer = new VectorLayer({
 
 
 export function setLocations() {
-	console.log("setLocations");
+	// console.log("setLocations");
 
 
 	locationsSource.clear()
@@ -159,7 +159,7 @@ const selectedFeaturesCollection = new Collection();
 
 map.subscribe(map => {
 	if (!map) return
-	console.log("locations", map);
+	// console.log("locations", map);
 
 	const selectInteraction = new Select({
 		condition: click,
@@ -230,7 +230,7 @@ map.subscribe(map => {
 			const newSelection = selectedFeaturesCollection
 				.getArray()
 				.map(f => f.getId());
-			console.log(newSelection);
+			// console.log(newSelection);
 
 			selectedLocations.set(newSelection)
 		}, 1);
@@ -275,7 +275,7 @@ map.subscribe(map => {
 })
 
 
-console.log(locations);
+// console.log(locations);
 
 
 

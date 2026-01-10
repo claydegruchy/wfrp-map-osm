@@ -12,20 +12,20 @@ import routesRaw from "../../public/routes.json"
 import DragBox from "ol/interaction/DragBox"
 import { platformModifierKeyOnly } from "ol/events/condition"
 import { extend } from "ol/extent"
-import { isEditMode, isDev, localRoutesObjectNonStore, map } from "./stores"
+import { isEditMode, isDev, localRoutesObjectNonStore, map, selectedPathIndex } from "./stores"
 
 
-console.log(routesRaw.filter(routes => {
-	if (!locationsObject[routes.source_id]) {
-		console.log(routes.source_id, "missing");
-		return true
-	}
-	if (!locationsObject[routes.destination_id]) {
-		console.log(routes.destination_id, "missing");
-		return true
-	}
+// console.log(routesRaw.filter(routes => {
+// 	if (!locationsObject[routes.source_id]) {
+// 		console.log(routes.source_id, "missing");
+// 		return true
+// 	}
+// 	if (!locationsObject[routes.destination_id]) {
+// 		console.log(routes.destination_id, "missing");
+// 		return true
+// 	}
 
-}));
+// }));
 
 
 export let routes = routesRaw.map(routes => ({
@@ -37,6 +37,18 @@ export let routesObject = Object.fromEntries(routes.map(route => [route.source_i
 
 
 export let routeSource = new VectorSource()
+
+export const pathSources = [
+	new VectorSource(),
+	new VectorSource(),
+	new VectorSource(),
+]
+
+
+
+
+
+
 export let pathSource = new VectorSource()
 
 const routeStyleGen = (colour, lineDash, lineDashOffset) =>
@@ -59,10 +71,19 @@ const localRouteStyleDisabled = (local) => new Style({
 })
 
 
-const pathStyle = (local) => new Style({
+const mainPathStyle = (feature) => new Style({
+	zIndex: 10,
 	stroke: new Stroke({
-		width: 3,
+		width: 4,
 		color: 'red'
+	})
+})
+
+const secondaryPathStyle = (feature) => new Style({
+	zIndex: 100,
+	stroke: new Stroke({
+		width: 2,
+		color: 'brown'
 	})
 })
 
@@ -77,6 +98,23 @@ export const routeTagMap = {
 
 
 
+
+export const pathLayers =
+	[
+		new VectorLayer({
+			source: pathSources[0],
+			style: null
+		}),
+		new VectorLayer({
+			source: pathSources[1],
+			style: null
+		}),
+		new VectorLayer({
+			source: pathSources[2],
+			style: null
+		}),
+
+	]
 
 
 export const routesLayer = new VectorLayer({
@@ -107,7 +145,7 @@ export const routesLayer = new VectorLayer({
 
 export const pathLayer = new VectorLayer({
 	source: pathSource,
-	style: pathStyle
+	style: mainPathStyle
 })
 
 
@@ -146,7 +184,35 @@ export function setRoutes(override) {
 }
 
 
-export function setPath({ pathRouteIds }) {
+
+
+export function setPaths(index, selected, { pathNodes, pathRouteIds, pathRouteTags }) {
+	console.log("setPaths", index, selected, pathRouteTags);
+
+	pathSources[index].clear()
+
+	let path = []
+	for (const routeId of pathRouteIds) {
+		path.push(routesObject[routeId])
+	}
+
+
+	const features = path.map(({ source_id, destination_id, ...rest }) => {
+		let f = new Feature({
+			geometry: new LineString([locationsObject[source_id].coordinates, locationsObject[destination_id].coordinates]),
+			...rest
+		})
+		f.setId(index + source_id + destination_id)
+		return f
+	})
+	pathSources[index].addFeatures(features)
+
+	pathLayers[index].setStyle(selected ? mainPathStyle : secondaryPathStyle)
+
+}
+
+
+export function setPath({ pathRouteIds, id }) {
 	pathSource.clear()
 
 	let path = []
@@ -161,14 +227,10 @@ export function setPath({ pathRouteIds }) {
 			geometry: new LineString([locationsObject[source_id].coordinates, locationsObject[destination_id].coordinates]),
 			...rest
 		})
-		f.setId("path:" + source_id + destination_id)
+		f.setId(id + source_id + destination_id)
 		return f
-	}
-	)
-
+	})
 	pathSource.addFeatures(features)
-
-
 }
 setRoutes()
 
@@ -208,13 +270,15 @@ export let addRoute = ({ source_id, destination_id, enabled = true, tags = ["roa
 }
 
 
+function updatePathStyles(index) {
+	pathLayers.forEach((layer, i) => {
+		layer.setStyle(i == index ? mainPathStyle : secondaryPathStyle)
+	})
+
+}
 
 map.subscribe(map => {
 	if (!map) return
-
-
-
-
 
 	zoomToEncompass = function ({ pathNodes }, padding = 100, duration = 1000) {
 
@@ -232,6 +296,23 @@ map.subscribe(map => {
 		map.getView().fit(extent, { padding: [padding, padding, padding, padding], duration })
 
 	}
+
+	selectedPathIndex.subscribe(updatePathStyles)
+
+	pathLayers.forEach((layer, i) => {
+		map.on("singleclick", (evt) => {
+			map.forEachFeatureAtPixel(evt.pixel, (f) => {
+				selectedPathIndex.set(i)
+			}, {
+				hitTolerance: 6,
+				layerFilter: (clickedLayer) => clickedLayer == layer,
+			});
+
+
+
+		})
+	})
+
 
 
 })
@@ -323,11 +404,10 @@ export function _findPath(startId, endId, methods, speeds) {
 }
 
 
-export function findPath(startId, endId, methods, speeds, K_PATHS = 3, TRANSFER_PENALTY = 0.2) {
-
+export function findPaths(startId, endId, methods, speeds, K_PATHS = 3, TRANSFER_PENALTY = 0.2) {
 	const graph = {}
 
-	// build graph (unchanged logic, just store method)
+	// Build graph
 	for (const key in routesObject) {
 		const { source_id, destination_id, enabled, tags, ...rest } = routesObject[key]
 		if (!enabled) continue
@@ -347,7 +427,6 @@ export function findPath(startId, endId, methods, speeds, K_PATHS = 3, TRANSFER_
 				routeId: key,
 				method: tag
 			})
-
 			graph[destination_id].push({
 				node: source_id,
 				weight,
@@ -357,8 +436,8 @@ export function findPath(startId, endId, methods, speeds, K_PATHS = 3, TRANSFER_
 		}
 	}
 
-	// --- DIJKSTRA (with transport state) ---
-	function dijkstra(bannedRouteIds = new Set()) {
+	// Dijkstra with transport-change penalty
+	function dijkstra(bannedRouteIds = new Set(), startOverride = startId) {
 		const dist = {}
 		const prev = {}
 		const queue = new Set()
@@ -368,8 +447,8 @@ export function findPath(startId, endId, methods, speeds, K_PATHS = 3, TRANSFER_
 			prev[n] = {}
 		}
 
-		dist[startId][null] = 0
-		queue.add(`${startId}|null`)
+		dist[startOverride][null] = 0
+		queue.add(`${startOverride}|null`)
 
 		while (queue.size) {
 			let bestKey = null
@@ -377,9 +456,9 @@ export function findPath(startId, endId, methods, speeds, K_PATHS = 3, TRANSFER_
 
 			for (const k of queue) {
 				const [n, m] = k.split("|")
-				const mm = m === "null" ? null : m
-				if (dist[n][mm] < bestVal) {
-					bestVal = dist[n][mm]
+				const method = m === "null" ? null : m
+				if (dist[n][method] < bestVal) {
+					bestVal = dist[n][method]
 					bestKey = k
 				}
 			}
@@ -433,7 +512,7 @@ export function findPath(startId, endId, methods, speeds, K_PATHS = 3, TRANSFER_
 		let node = endId
 		let method = bestMethod
 
-		while (node !== startId) {
+		while (node !== startOverride) {
 			pathNodes.unshift(node)
 			const p = prev[node][method]
 			pathRouteIds.unshift(p.routeId)
@@ -442,12 +521,12 @@ export function findPath(startId, endId, methods, speeds, K_PATHS = 3, TRANSFER_
 			method = p.method
 		}
 
-		pathNodes.unshift(startId)
+		pathNodes.unshift(startOverride)
 
 		return { pathNodes, pathRouteIds, pathRouteTags, cost: bestDist }
 	}
 
-	// --- YEN: TOP K PATHS ---
+	// --- Yen-style TOP K paths ---
 	const results = []
 	const candidates = []
 
@@ -459,20 +538,53 @@ export function findPath(startId, endId, methods, speeds, K_PATHS = 3, TRANSFER_
 	for (let k = 1; k < K_PATHS; k++) {
 		const prevPath = results[k - 1]
 
-		for (const rid of prevPath.pathRouteIds) {
-			const banned = new Set([rid])
-			const candidate = dijkstra(banned)
-			if (candidate) candidates.push(candidate)
+		for (let i = 0; i < prevPath.pathNodes.length - 1; i++) {
+			const rootPathNodes = prevPath.pathNodes.slice(0, i + 1)
+			const rootPathRouteIds = prevPath.pathRouteIds.slice(0, i)
+			const rootPathTags = prevPath.pathRouteTags.slice(0, i)
+			const spurNode = prevPath.pathNodes[i]
+
+			// Ban **all edges after the spur node** in previous paths sharing the same root
+			const banned = new Set()
+			for (const p of results) {
+				if (p.pathNodes.slice(0, i + 1).join() === rootPathNodes.join()) {
+					for (let j = i; j < p.pathRouteIds.length; j++) banned.add(p.pathRouteIds[j])
+				}
+			}
+
+			// Run Dijkstra from spur node
+			const spurPath = dijkstra(banned, spurNode)
+			if (!spurPath) continue
+
+			// Combine root + spur
+			const totalPathNodes = rootPathNodes.slice(0, -1).concat(spurPath.pathNodes)
+			const totalPathRouteIds = rootPathRouteIds.concat(spurPath.pathRouteIds)
+			const totalPathTags = rootPathTags.concat(spurPath.pathRouteTags)
+			const totalCost =
+				rootPathRouteIds.reduce((acc, rid, idx) => {
+					const edge = graph[rootPathNodes[idx]].find(e => e.routeId === rid)
+					return acc + (edge ? edge.weight : 0)
+				}, 0) + spurPath.cost
+
+			candidates.push({
+				pathNodes: totalPathNodes,
+				pathRouteIds: totalPathRouteIds,
+				pathRouteTags: totalPathTags,
+				cost: totalCost
+			})
 		}
+
 
 		if (!candidates.length) break
 
+		// pick lowest-cost candidate
 		candidates.sort((a, b) => a.cost - b.cost)
 		results.push(candidates.shift())
 	}
 
 	return results
 }
+
 
 
 
@@ -490,6 +602,10 @@ export function meterConv(m) {
 
 	// 320 (290 / 350) miles Road
 
+}
+
+export function distanceToTime(dis, speed) {
+	return Math.round(meterConv(dis) / speed);
 }
 
 function computeDistance(a, b) {

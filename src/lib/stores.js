@@ -30,6 +30,12 @@ export const map = writable();
 export const selectedLocations = writable([])
 export const diagnosticFeatures = writable([]);
 
+export const selectedPathIndex = writable(0)
+
+export const pathFinderOrigin = writable()
+export const pathFinderDestination = writable()
+
+
 
 export const speeds = {
 	road: {
@@ -61,7 +67,12 @@ export const riverMode = writable(Object.keys(speeds.river)[0])
 export const seaMode = writable(Object.keys(speeds.sea)[0])
 export const underwayMode = writable(Object.keys(speeds.underway)[0])
 
-
+export const speedMethodMap = {
+	road: roadMode,
+	river: riverMode,
+	sea: seaMode,
+	underway: underwayMode,
+}
 
 
 const r = loadLocalStorage("routes")
