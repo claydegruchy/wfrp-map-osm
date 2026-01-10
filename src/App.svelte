@@ -137,7 +137,7 @@
 
 <nav class="top left search flex vertical">
   <Search lookUpName={findLocation} returnSelection={selectSearchResult} />
-  {#if pathFinderOrigin}
+  {#if $pathFinderOrigin}
     <Search
       placeholder={"Find a route..."}
       lookUpName={findLocation}
