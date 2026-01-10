@@ -24,6 +24,7 @@
     seaMode,
     selectedLocations,
     selectedPathIndex,
+    speedMethodMap,
     speeds,
     underwayMode,
   } from "./lib/stores";
@@ -112,14 +113,26 @@
     updatePathDisplay(paths);
   }
 
-  onMount(
-    () =>
-      isDev &&
+  onMount(() => {
+    isDev &&
       setTimeout(() => {
         selectSearchResult("a6jaSzZq6Fnd");
         startPathFinder("UlGQ5WaiQHpVvJp5QrN7");
-      }, 1)
-  );
+      }, 1);
+
+    for (const [name, store] of Object.entries(speedMethodMap)) {
+      store.subscribe((val) => {
+        console.log(name, "changed", val);
+
+        if (paths.length > 0 && $pathFinderOrigin && $pathFinderDestination) {
+          updatePathFinder();
+          updatePathDisplay(paths);
+        }
+      });
+    }
+
+    updatePathFinder;
+  });
 </script>
 
 <nav class="top left search flex vertical">
@@ -132,9 +145,11 @@
     />
   {:else}{/if}
 
-  {#if paths.length > 0}
-    <PathSelector {clearPath} {paths} />
-  {/if}
+  {#key paths}
+    {#if paths.length > 0}
+      <PathSelector {clearPath} {paths} />
+    {/if}
+  {/key}
 </nav>
 
 <nav class="bottom gutter">
