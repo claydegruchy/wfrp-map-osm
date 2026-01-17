@@ -87,7 +87,7 @@
   }
   console.log({ path });
 
-  let hidden = false;
+  export let hidden = false;
 </script>
 
 <main>

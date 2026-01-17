@@ -8,6 +8,7 @@
     selectedPathIndex,
   } from "./stores";
 
+  export let hidden;
   export let paths;
   export let clearPath;
 
@@ -42,7 +43,7 @@
 </script>
 
 <main>
-  <section class="butt">
+  <section>
     {#each paths as path, i}
       <small>
         <button
@@ -57,7 +58,8 @@
   <div>
     {#each paths as path, i}
       <div class={i == $selectedPathIndex ? "" : "hidden"}>
-        <PathDisplay {clearPath} {zoomToLocationById} {path}></PathDisplay>
+        <PathDisplay bind:hidden {clearPath} {zoomToLocationById} {path}
+        ></PathDisplay>
       </div>
     {/each}
   </div>
@@ -71,12 +73,26 @@
   main {
     display: flex;
     flex-direction: column;
-    padding: 2px;
+    padding: -2px;
+    max-width: 100%;
   }
   section {
-    padding: 2px;
+    padding: 0.5px;
   }
   .hidden {
     display: none;
+  }
+
+  button {
+    white-space: nowrap;
+  }
+
+  section {
+    display: flex;
+    flex-wrap: nowrap;
+  }
+
+  small {
+    flex: 0 0 auto;
   }
 </style>
